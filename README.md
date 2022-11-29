@@ -4,7 +4,7 @@ A company website for AI Medical
 
 ## Tech stack
 
-The project is built with [Next.js](https://nextjs.org/.
+The project is built with [Next.js](https://nextjs.org/).
 [Tailwind CSS](https://tailwindcss.com/) is used for styling.
 [Strapi](https://strapi.io/) is used as CMS for blogs and news.
 

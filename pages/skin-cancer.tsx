@@ -4,7 +4,7 @@ export default function SkinCancer() {
   return (
     <>
       <Head>
-        <title>AI Medichal | Skin cancer</title>
+        <title>AI Medical | Skin cancer</title>
         <meta name="description" content="Information about skin cancer" />
       </Head>
     </>

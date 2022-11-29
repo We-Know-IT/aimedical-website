@@ -4,8 +4,8 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>AI Medichal</title>
-        <meta name="description" content="AI Medichal" />
+        <title>AI Medical</title>
+        <meta name="description" content="AI Medical" />
       </Head>
     </>
   );

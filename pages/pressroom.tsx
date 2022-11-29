@@ -6,8 +6,8 @@ export default function PressRoom() {
   return (
     <>
       <Head>
-        <title>AI Medichal | Pressroom </title>
-        <meta name="description" content="News and blog from AI Medichal" />
+        <title>AI Medical | Pressroom </title>
+        <meta name="description" content="News and blog from AI Medical" />
       </Head>
     </>
   );

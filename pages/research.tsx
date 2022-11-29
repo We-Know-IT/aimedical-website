@@ -4,10 +4,10 @@ export default function Research() {
   return (
     <>
       <Head>
-        <title>AI Medichal | Research</title>
+        <title>AI Medical | Research</title>
         <meta
           name="description"
-          content="Information about AI medichal research"
+          content="Information about AI medical research"
         />
       </Head>
     </>
