@@ -15,9 +15,8 @@ export default function Navbar() {
   return (
     <nav
       className={
-        navbarOpen
-          ? "bg-gray-700 "
-          : "" + " md:bg-transparent absolute w-screen"
+        (navbarOpen ? "bg-gray-700 " : "") +
+        " md:bg-transparent absolute w-screen"
       }>
       {/* Top navbar */}
       <div className="p-6 w-full  mx-auto flex justify-between  md:container">
@@ -28,14 +27,29 @@ export default function Navbar() {
           {/* Hamburger menu */}
           <button
             type="button"
-            className="md:hidden"
+            className="md:hidden h-10"
             aria-controls="mobile-menu"
             onClick={(e) => toggleNavbar()}
             aria-expanded="false">
             <div className="space-y-2">
-              <div className="w-8 h-0.5 bg-white" />
-              <div className="w-8 h-0.5 bg-white" />
-              <div className="w-8 h-0.5 bg-white" />
+              <div
+                className={
+                  (navbarOpen ? "rotate-45 translate-y-1.5 " : "") +
+                  "w-8 h-0.5 bg-white transition-all"
+                }
+              />
+              <div
+                className={
+                  (navbarOpen ? "hidden " : "") +
+                  "w-8 h-0.5 bg-white transition-all"
+                }
+              />
+              <div
+                className={
+                  (navbarOpen ? "-rotate-45 -translate-y-1 " : "") +
+                  "w-8 h-0.5 bg-white transition-all"
+                }
+              />
             </div>
           </button>
           {/* Desktop links */}
