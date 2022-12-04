@@ -21,7 +21,9 @@ export default function Navbar() {
       }>
       {/* Top navbar */}
       <div className="p-6 w-full  mx-auto flex justify-between  md:container">
-        <Image src={"/images/logo.png"} alt={"logo"} width={56} height={56} />
+        <Link href="/">
+          <Image src={"/images/logo.png"} alt={"logo"} width={56} height={56} />
+        </Link>
         <div className="flex items-center">
           {/* Hamburger menu */}
           <button
