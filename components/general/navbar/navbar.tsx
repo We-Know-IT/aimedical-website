@@ -42,7 +42,7 @@ export default function Navbar() {
           <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
             <div className="hidden md:ml-6 md:block">
               <div className="flex space-x-4">
-                <ul className="flex items-center space-x-5">
+                <ul className="flex items-center space-x-6">
                   {navLinks.map((link) => {
                     return (
                       <li key={link.path}>
