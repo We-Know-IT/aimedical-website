@@ -3,7 +3,7 @@ import Link from "next/link";
 export interface INavLink {
   label: string;
   path: string;
-  highlight?: boolean;
+  isHightlighted?: boolean;
 }
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default function NavLink({ navLink }: Props) {
-  if (navLink.highlight) {
+  if (navLink.isHightlighted) {
     return (
       <Link
         href={navLink.path}

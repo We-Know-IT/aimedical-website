@@ -28,6 +28,6 @@ export const navLinks: INavLink[] = [
   {
     label: "Contact us",
     path: "/contact",
-    highlight: true,
+    isHightlighted: true,
   },
 ];
