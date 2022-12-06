@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import LogoIcon from "../../icons/common/logo";
+import HamburgerIcon from "./hamburger-icon";
 import NavLink from "./nav-link";
 import { navLinks } from "./nav-links";
 
@@ -32,26 +33,7 @@ export default function Navbar() {
             aria-controls="mobile-menu"
             onClick={toggleNavbar}
             aria-expanded={isNavbarOpen}>
-            <div className="space-y-2">
-              <div
-                className={
-                  (isNavbarOpen ? "rotate-45 translate-y-1.5 " : "") +
-                  "w-8 h-0.5 bg-white transition-all"
-                }
-              />
-              <div
-                className={
-                  (isNavbarOpen ? "hidden " : "") +
-                  "w-8 h-0.5 bg-white transition-all"
-                }
-              />
-              <div
-                className={
-                  (isNavbarOpen ? "-rotate-45 -translate-y-1 " : "") +
-                  "w-8 h-0.5 bg-white transition-all"
-                }
-              />
-            </div>
+            <HamburgerIcon isOpen={isNavbarOpen} />
           </button>
           {/* Desktop links */}
           <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
