@@ -1,8 +1,8 @@
 interface Props {
-  isOpen: boolean;
+  isOpen?: boolean;
 }
 
-export default function HamburgerIcon({ isOpen }: Props) {
+export default function HamburgerIcon({ isOpen = false }: Props) {
   return (
     <div className="space-y-2">
       <div
