@@ -7,10 +7,7 @@ import { getPosts, ServiceResponse } from "../../services/api";
 import { Post } from "../../services/types";
 import Image from "next/image";
 import Link from "next/link";
-
-const backgroundImageStyle: CSSProperties = {
-  backgroundImage: "url(/images/header.png)",
-};
+import Header from "../../components/general/header";
 
 export default function PressRoom(props: ServiceResponse<Post[]>) {
   const [posts, _] = useState<Post[]>(props.data || []);
@@ -51,19 +48,11 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
         <title>AI Medical | Pressroom </title>
         <meta name="description" content="News and blog from AI Medical" />
       </Head>
-      <header
-        className="relative h-5/6 bg-cover px-6 md:px-48"
-        style={backgroundImageStyle}>
-        <nav className="h-1/6"></nav>
-        <div className="bg-gradient-to-r from-blue-85 to-transparent w-screen absolute top-0 bottom-0 left-0 right-0 "></div>
-        <h2 className="relative font-bold text-color-secondary text-2xl">
-          Pressroom
-        </h2>
-        <div className=" h-1 bg-black relative my-4 w-24"></div>
-        <p className="text-color-secondary text-4xl relative font-bold">
-          In our pressroom you can find our blog and press releases
-        </p>
-      </header>
+      <Header
+        imageUrl="/images/header.png"
+        title="Pressroom"
+        text="In our pressroom you can find our blog and press releases"
+      />
       <main className="max-w-5xl ml-auto mr-auto">
         <section className="flex flex-row items-center justify-center ml-auto mr-auto my-10">
           <p className="text-blue-100 font-bold text-2xl mr-10 hidden md:block">
