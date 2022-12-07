@@ -11,8 +11,10 @@ module.exports = {
       colors: {
         // Configure your color palette here
         blue: {
-          dark: "rgb(0, 99, 175)",
-          light: "rgba(0, 99, 175, 0.5)",
+          100: "rgb(0, 99, 175)",
+          85: "rgba(0,99,175, 0.85)",
+          50: "rgba(0, 99, 175, 0.5)",
+          accent: "#28B2FF",
         },
         "text-primary": colors.black,
         "text-secondary": colors.white,
