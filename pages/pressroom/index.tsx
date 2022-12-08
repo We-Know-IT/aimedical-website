@@ -1,6 +1,6 @@
 import { GetServerSideProps, GetServerSidePropsResult } from "next";
 import Head from "next/head";
-import { CSSProperties, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../components/general/button";
 import PostCard from "../../components/pressroom/post";
 import { getPosts, ServiceResponse } from "../../services/api";
@@ -55,7 +55,7 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
       />
       <main className="max-w-5xl ml-auto mr-auto">
         <section className="flex flex-row items-center justify-center ml-auto mr-auto my-10">
-          <p className="text-blue-100 font-bold text-2xl mr-10 hidden md:block">
+          <p className="text-blue-100 font-bold text-xl mr-10 hidden md:block">
             Filter posts:
           </p>
           <Button

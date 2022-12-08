@@ -18,9 +18,9 @@ export default function PostDetails(props: ServiceResponse<Post>) {
         imageUrl={mediaBaseUrl + post?.images[0].url || "/images/header.png"}
       />
       <main className="max-w-5xl ml-auto mr-auto px-6">
-        <h2 className="text-blue-100 text-2xl mt-24 mb-10">{post?.title}</h2>
-        <p className="text-2xl font-medium mb-10">{post?.ingress}</p>
-        <p>{post?.content}</p>
+        <h2 className="text-blue-100 text-4xl mt-24 mb-10">{post?.title}</h2>
+        <p className="text-xl font-medium mb-10">{post?.ingress}</p>
+        <p className="text-base">{post?.content}</p>
       </main>
     </>
   );

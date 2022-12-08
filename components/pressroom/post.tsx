@@ -27,9 +27,9 @@ export default function PostCard({ post }: Props) {
     return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
   };
   return (
-    <div className="rounded-2xl shadow-md p-9">
-      <h3 className="text-blue-100 text-2xl my-2">{post.title}</h3>
-      <p className="text-lg line-clamp-3 mb-2">{post.ingress}</p>
+    <div className="rounded-2xl shadow-md p-9 background">
+      <h3 className="text-blue-100 text-xl my-2">{post.title}</h3>
+      <p className="text-base line-clamp-3 mb-2">{post.ingress}</p>
       <Image
         className="mb-2 mx-auto"
         src={mediaBaseUrl + post.images[0].url}
@@ -38,7 +38,7 @@ export default function PostCard({ post }: Props) {
         alt={post.images[0].alternativeText}
       />
       <div className="flex flex-row content-center justify-between">
-        <p className="text-color-primary text-sm">
+        <p className="text-color-on-primary text-sm">
           {getDateString(new Date(post.publishedAt))}
         </p>
         <Tag text={post.postType} />

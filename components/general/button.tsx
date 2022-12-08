@@ -7,7 +7,7 @@ type Props = {
 };
 
 const commonStyles =
-  " rounded-full px-6 py-1.5 md:px-12 md:py-2.5 transition-colors duration-200 flex flex-row items-center shadow-md";
+  " rounded-full text-base px-6 py-1.5 md:px-12 md:py-2.5 transition-colors duration-200 flex flex-row items-center shadow-md";
 
 export default function Button({
   children,
@@ -19,8 +19,10 @@ export default function Button({
     <button
       className={
         isBlue
-          ? classes + commonStyles + " bg-blue-100 text-color-secondary"
-          : classes + commonStyles + " bg-white text-color-primary"
+          ? classes + commonStyles + " bg-blue-100 text-color-on-blue"
+          : classes +
+            commonStyles +
+            " bg-background-primary text-color-on-primary"
       }
       onClick={onClick}>
       {children}

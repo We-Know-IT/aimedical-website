@@ -8,7 +8,7 @@ export default function Button({ text, classes = "" }: Props) {
     <div
       className={
         classes +
-        " bg-blue-accent text-color-primary rounded-full px-4 flex flex-col justify-center content-center"
+        " bg-gradient-to-l from-blue-100 to-blue-50 text-color-on-blue rounded-full px-8 py-1 flex flex-col justify-center content-center"
       }>
       {text}
     </div>
