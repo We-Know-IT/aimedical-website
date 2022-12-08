@@ -53,8 +53,8 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
         title="Pressroom"
         text="In our pressroom you can find our blog and press releases"
       />
-      <main className="max-w-5xl ml-auto mr-auto">
-        <section className="flex flex-row items-center justify-center ml-auto mr-auto my-10">
+      <main className="max-w-5xl ml-auto mr-auto my-10">
+        <section className="flex flex-row items-center justify-center ml-auto mr-auto ">
           <p className="text-blue-100 font-bold text-xl mr-10 hidden md:block">
             Filter posts:
           </p>
