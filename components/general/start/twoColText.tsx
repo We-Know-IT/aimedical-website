@@ -16,11 +16,11 @@ type Props = {
 
 export default function TwoColText({ title, text, actionButton, list }: Props) {
   return (
-    <div className="w-full bg-gray-100 flex px-2 pb-24 xl:h-5/6 xl:justify-evenly xl:p-0 xl:bg-white">
+    <div className="w-full bg-gray-100 flex px-2 pb-24 xl:h-5/6 xl:justify-evenly xl:p-0">
       {/* Container */}
-      <div className="flex items-center m-auto w-full h-full flex-col pt-24 bg-white xl:w-4/6 xl:h-5/6 xl:justify-evenly xl:flex-row xl:p-0">
+      <div className="flex items-center m-auto w-full h-full flex-col pt-24 bg-white xl:w-4/6 xl:h-5/6 xl:justify-evenly xl:flex-row xl:p-0 xl:bg-transparent">
         {/* flex box */}
-        <div className="h-2/3 flex justify-center justify-self-start gap-10 flex-col w-full bg-white px-4 xl:w-1/2">
+        <div className="h-2/3 flex justify-center justify-self-start gap-10 flex-col w-full bg-white px-4 xl:w-1/2 xl:bg-transparent">
           {/* left box */}
           <h2 className="text-blue-100 xl:text-5xl font-semibold text-3xl">
             {title}

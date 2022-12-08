@@ -18,7 +18,7 @@ export default function Navbar() {
     <nav
       className={
         (isNavbarOpen ? "bg-gray-700 " : "") +
-        " md:bg-transparent absolute w-screen"
+        " md:bg-transparent absolute w-full"
       }>
       {/* Top navbar */}
       <div className="p-6 w-full  mx-auto flex justify-between  md:container">
