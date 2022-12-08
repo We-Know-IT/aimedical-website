@@ -29,7 +29,7 @@ export default function TwoColImg({ title, text, actionButton, image }: Props) {
             <p className="text-lg text-white tracking-wide py-4"> {text}</p>
             <ActionButton
               onClick={actionButton && actionButton.onClick}
-              className="w-full font-medium">
+              className="w-full font-medium xl:w-auto">
               {actionButton && actionButton.text}
             </ActionButton>
           </div>
