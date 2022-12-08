@@ -30,13 +30,17 @@ export default function PostCard({ post }: Props) {
     <div className="rounded-2xl shadow-md p-9 background">
       <h3 className="text-blue-100 text-xl my-2">{post.title}</h3>
       <p className="text-base line-clamp-3 mb-2">{post.ingress}</p>
-      <Image
-        className="mb-2 mx-auto"
-        src={mediaBaseUrl + post.images[0].url}
-        width={post.images[0].width}
-        height={post.images[0].height}
-        alt={post.images[0].alternativeText}
-      />
+
+      {post.images[0] && (
+        <Image
+          className="mb-2 mx-auto"
+          src={mediaBaseUrl + post.images[0].url}
+          width={post.images[0].width}
+          height={post.images[0].height}
+          alt={post.images[0].alternativeText}
+        />
+      )}
+
       <div className="flex flex-row content-center justify-between">
         <p className="text-color-on-primary text-sm">
           {getDateString(new Date(post.publishedAt))}
