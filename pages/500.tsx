@@ -1,12 +1,14 @@
 import Head from "next/head";
 
-export default function Home() {
+export default function Error() {
   return (
     <>
       <Head>
         <title>AI Medical</title>
-        <meta name="description" content="AI Medical" />
       </Head>
+      <main>
+        <h1>Error </h1>
+      </main>
     </>
   );
 }
