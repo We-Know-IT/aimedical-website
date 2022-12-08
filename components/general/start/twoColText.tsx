@@ -43,12 +43,10 @@ export default function TwoColText({ title, text, actionButton, list }: Props) {
                 className="xl:w-2/3 flex justify-center w-full"
                 key={data.title}>
                 <div
-                  className="w-1/5 h-full py-5 self-center"
+                  className="w-1/5 h-full py-5 self-center bg-contain bg-center xl:bg-auto xl:bg-left"
                   style={{
                     backgroundImage: "url('/images/" + data.img + "')",
                     backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center",
-                    backgroundSize: "contain",
                   }}></div>
                 <div className="w-4/5">
                   <h3 className="text-2xl xl:font-semibold text-white py-2">
