@@ -8,7 +8,7 @@ export default function Layout({ children }: Props) {
   return (
     <>
       <Navbar />
-      <main className="w-screen h-screen">{children}</main>
+      <main className="max-w-screen h-screen">{children}</main>
     </>
   );
 }
