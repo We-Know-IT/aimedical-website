@@ -14,11 +14,22 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
 
   const [filters, setFilters] = useState<Set<string>>(new Set());
 
-  useEffect(() => {
+  const initFilters = () => {
     const filters = new Set<string>();
     filters.add("blog");
     filters.add("news");
     setFilters(filters);
+  };
+
+  const checkServerError = () => {
+    if (props.error) {
+      alert("Server error: " + props.error);
+    }
+  };
+
+  useEffect(() => {
+    initFilters();
+    checkServerError();
   }, []);
 
   const toggleBlogsFilter = () => {
@@ -38,8 +49,6 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
     }
 
     setFilters(_filters);
-
-    console.dir(_filters);
   };
 
   return (
@@ -54,14 +63,11 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
         text="In our pressroom you can find our blog and press releases"
       />
       <main className="max-w-5xl ml-auto mr-auto my-10">
-        <section className="flex flex-row items-center justify-center ml-auto mr-auto ">
-          <p className="text-blue-100 font-bold text-xl mr-10 hidden md:block">
+        <section className="flex flex-row gap-x-4 md:gap-x-8 items-center justify-center ml-auto mr-auto ">
+          <p className="text-blue-100 font-bold text-xl hidden md:block">
             Filter posts:
           </p>
-          <Button
-            isBlue={filters.has("blog")}
-            classes=" mr-4 md:mr-10"
-            onClick={toggleBlogsFilter}>
+          <Button isBlue={filters.has("blog")} onClick={toggleBlogsFilter}>
             <>
               Blogs
               {filters.has("blog") ? (
@@ -98,6 +104,8 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
         </section>
         <section className="ml-auto mr-auto p-6">
           <ul className="md:grid md:grid-cols-2 gap-14">
+            {/* Iterates over all the posts and returns UI components for each 
+            if they have a postType included in current filters.  */}
             {posts.map((p) => {
               if (filters.has(p.postType)) {
                 return (
