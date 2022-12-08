@@ -31,7 +31,7 @@ export default function TwoColText({ title, text, actionButton, list }: Props) {
           </ActionButton>
         </div>
         <div
-          className="xl:w-1/2 h-full rounded-lg flex gap-y-6 px-4 py-10 xl:items-center justify-center flex-col w-full"
+          className="xl:w-1/2 h-full rounded-lg flex gap-y-6 px-4 py-10 justify-center flex-col w-full xl:items-center xl:justify-evenly xl:gap-y-0"
           style={{
             background:
               "linear-gradient(314.06deg, #0063AF 0%, rgba(0, 99, 175, 0.5) 120%), #FFFFFF",
@@ -49,10 +49,10 @@ export default function TwoColText({ title, text, actionButton, list }: Props) {
                     backgroundRepeat: "no-repeat",
                   }}></div>
                 <div className="w-4/5">
-                  <h3 className="text-2xl xl:font-semibold text-white py-2">
+                  <h3 className="text-2xl xl:font-medium text-white py-2 xl:text-3xl">
                     {data.title}
                   </h3>
-                  <p className="text-lg text-white tracking-wide">
+                  <p className="text-lg text-white tracking-wide xl:text-xl">
                     {data.text}
                   </p>
                 </div>
