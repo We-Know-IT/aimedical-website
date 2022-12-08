@@ -6,4 +6,12 @@
   html {
     font-family: Arial, sans-serif;
   }
+
+  body {
+    min-height: 100vh;
+    min-width: 100vw;
+  }
+  * {
+    box-sizing: border-box;
+  }
 }

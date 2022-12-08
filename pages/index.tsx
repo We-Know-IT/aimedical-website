@@ -20,7 +20,7 @@ export default function Home() {
   };
 
   const buttonSection2 = {
-    text: "Learn more",
+    text: "Contact Us To Learn More",
     onClick: () => {
       return null;
     },
@@ -63,21 +63,21 @@ export default function Home() {
         title="Our Mission"
         text="Our mission is to support healthcare providers with AI powered diagnostic solutions so that no patient should die due to delay or misdiagnosis of a condition."
         actionButton={buttonSection2}
-        image="section.png"></TwoColImg>
-      <div className="w- h-2/6 gap-10 bg-gray-100 flex flex-col justify-center items-center p-8">
-        <h2 className="text-blue-100 font-bold text-4xl text-center border-b-4 border-white">
+        image="unsplash_pTrhfmj2jDA.png"></TwoColImg>
+      <div className="w-full h-2/6 gap-10 bg-gray-100 flex flex-col items-center p-8 h-1/2 xl:justify-center">
+        <h2 className="text-blue-100 font-bold text-4xl text-center border-b-2 border-white">
           Our Partners
         </h2>
-        <div className="w-4/6 h-1/3 flex justify-evenly">
+        <div className="flex flex-wrap w-full h-full justify-center md:w-1/2 xl:w-4/6 xl:h-1/3 xl:justify-evenly">
           <div
-            className="w-1/5 h-full"
+            className="w-1/5 xl:h-full flex-[0_0_50%] xl:flex-none"
             style={{
               backgroundImage: "url('/images/AI_Sweden_Logo_Black.png');",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
             }}></div>
           <div
-            className="w-1/5 h-full"
+            className="w-1/5 xl:h-full flex-[0_0_50%] xl:flex-none"
             style={{
               backgroundImage:
                 "url('/images/Karolinska_Institutet_Logo_Black.png');",
@@ -85,7 +85,7 @@ export default function Home() {
               backgroundPosition: "center",
             }}></div>
           <div
-            className="w-1/5 h-full"
+            className="w-1/5 xl:h-full flex-[0_0_50%] xl:flex-none"
             style={{
               backgroundImage:
                 "url('/images/Linkoping _University_Black.png');",
@@ -93,41 +93,20 @@ export default function Home() {
               backgroundPosition: "center",
             }}></div>
           <div
-            className="w-1/5 h-full"
+            className="w-1/5 xl:h-full flex-[0_0_50%] xl:flex-none"
             style={{
               backgroundImage: "url('/images/AIDA.png');",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
             }}></div>
           <div
-            className="w-1/5 h-full"
+            className="w-1/5 xl:h-full flex-[0_0_50%] xl:flex-none"
             style={{
               backgroundImage:
                 "url('/images/Stockholm_University_Horizontal.png');",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
             }}></div>
-          {/*<img
-            className="max-h-1/2"
-            alt="AI Sweden"
-            src="/images/AI_Sweden_Logo_Black.png"
-          />
-          <img
-            className="max-h-1/2"
-            alt="Karolinska Institutet"
-            src="/images/Karolinska_Institutet_Logo_Black.png"
-          />
-          <img
-            className="h-1/2"
-            alt="Linköping University"
-            src="/images/Linkoping _University_Black.png"
-          />
-          <img className="h-1/2" alt="AIDA" src="/images/AIDA.png" />
-          <img
-            className="h-1/2"
-            alt="Stockholm University"
-            src="/images/Stockholm_University_Horizontal.png"
-  />*/}
         </div>
       </div>
     </>
