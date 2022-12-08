@@ -16,7 +16,7 @@ export default function TwoColImg({ title, text, actionButton, image }: Props) {
       <div className="w-full h-full flex m-auto flex-col xl:w-4/6 xl:h-5/6 xl:justify-evenly xl:items-center xl:flex-row">
         {/* flex box */}
         <div
-          className="w-full pt-[100%] md:pt-[50%] flex flex-col bg-cover bg-center rounded-t-lg xl:rounded-l-lg xl:rounded-tr-none xl:w-2/5 xl:h-full xl:justify-center xl:flex-row"
+          className="w-full pt-[100%] md:pt-[50%] flex flex-col bg-cover bg-center rounded-t-lg xl:rounded-l-lg xl:rounded-tr-none xl:w-2/5 xl:h-full xl:justify-center xl:flex-row xl:pt-0"
           style={{ backgroundImage: 'url("/images/' + image + '")' }}></div>
         <div
           className="h-full flex items-center w-full rounded-b-lg xl:w-3/5  xl:rounded-r-lg xl:rounded-b-none xl:justify-center" /*bg-gradient-to-r from-blue-100 to-blue-50*/
