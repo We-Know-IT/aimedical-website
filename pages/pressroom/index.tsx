@@ -14,6 +14,8 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
 
   const [filters, setFilters] = useState<Set<string>>(new Set());
 
+  console.log(props);
+
   const initFilters = () => {
     const filters = new Set<string>();
     filters.add("blog");

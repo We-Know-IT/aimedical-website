@@ -17,11 +17,11 @@ export default function Navbar() {
   return (
     <nav
       className={
-        (isNavbarOpen ? "bg-gray-700 " : "") +
-        " md:bg-transparent absolute w-screen"
+        (isNavbarOpen ? "bg-gray-700 absolute top-0 left-0 " : "") +
+        "fixed top-0 left-0 right-0 md:bg-transparent z-10 px-5 md:px-40"
       }>
       {/* Top navbar */}
-      <div className="p-6 w-full  mx-auto flex justify-between  md:container">
+      <div className="p-6  mx-auto flex justify-between">
         <Link href="/">
           <LogoIcon w={56} h={56} />
         </Link>
