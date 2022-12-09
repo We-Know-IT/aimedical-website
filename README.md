@@ -38,6 +38,18 @@ See further details about the strapi server in the [aimedical-strapi repository]
 
 ### Deployed
 
+A strapi server is deployed at [render](render.com) and served on
+[strapi service](https://aimedical-strapi.onrender.com/). The first time requesting the site 
+can be slow since render will shut down inactive services. It can take up to 30 seconds for it to restart.
+
+Navigate to the [admin panel](https://aimedical-strapi.onrender.com/admin)
+to edit the added data.
+
+To run the website with the hosted strapi server go to /strap to edit the url and then start the website with the following command:
+```
+npm run dev
+```
+
 ## Deploy
 
 ### Production
