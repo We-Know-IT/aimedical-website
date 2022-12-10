@@ -13,7 +13,9 @@ module.exports = {
           100: "rgb(0, 99, 175)",
           85: "rgba(0,99,175, 0.85)",
           50: "rgba(0, 99, 175, 0.5)",
+          hover: "rgb(0, 77, 138)",
         },
+
         "color-on-primary": colors.black,
         "color-on-secondary": colors.black,
         "color-on-blue": colors.white,
