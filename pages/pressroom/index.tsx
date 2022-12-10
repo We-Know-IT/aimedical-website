@@ -107,9 +107,9 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
         <section className="ml-auto mr-auto p-6">
           <ul className="md:grid md:grid-cols-2 gap-14">
             {/* Iterates over all the posts and returns UI components for each 
-            if they have a postType included in current filters.  */}
+            if they have a postType included in current filters or if there are no filters active.  */}
             {posts.map((p) => {
-              if (filters.has(p.postType)) {
+              if (filters.has(p.postType) || filters.size === 0) {
                 return (
                   <li key={p.id}>
                     <Link href={"/pressroom/" + p.id}>
