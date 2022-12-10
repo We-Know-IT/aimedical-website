@@ -1,6 +1,6 @@
 type Props = {
   isBlue?: boolean;
-  classes?: string;
+  className?: string;
   children: React.ReactElement;
 
   onClick: () => void;
@@ -12,19 +12,17 @@ const commonStyles =
 export default function Button({
   children,
   onClick,
-  classes = "",
+  className = "",
   isBlue = true,
 }: Props) {
   return (
     <button
       className={
-        isBlue
-          ? classes +
-            commonStyles +
-            " bg-blue-100 text-color-on-blue hover:bg-blue-85"
-          : classes +
-            commonStyles +
-            " bg-background-primary text-color-on-primary hover:bg-background-secondary"
+        (isBlue
+          ? "bg-blue-100 text-color-on-blue hover:bg-blue-85 "
+          : "bg-background-primary text-color-on-primary hover:bg-background-secondary ") +
+        className +
+        commonStyles
       }
       onClick={onClick}>
       {children}
