@@ -22,11 +22,13 @@ export default function Header({ title, text, actionButton, imageUrl }: Props) {
       style={backgroundImageStyle}>
       <div className="bg-gradient-to-r from-blue-85 absolute top-0 bottom-0 left-0 right-0"></div>
       {title && (
-        <h2 className="relative font-bold text-color-on-blue text-xl">
-          {title}
-        </h2>
+        <>
+          <h2 className="relative font-bold text-color-on-blue text-xl">
+            {title}
+          </h2>
+          <div className="h-1 relative bg-black my-4 w-24"></div>
+        </>
       )}
-      {title && <div className="h-1 relative bg-black my-4 w-24"></div>}
       {text && (
         <p className="relative text-color-on-blue md:text-3xl text-2xl font-bold">
           {text}
