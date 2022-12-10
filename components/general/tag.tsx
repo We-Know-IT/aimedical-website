@@ -3,7 +3,7 @@ type Props = {
   text: string;
 };
 
-export default function Button({ text, classes = "" }: Props) {
+export default function Tag({ text, classes = "" }: Props) {
   return (
     <div
       className={
