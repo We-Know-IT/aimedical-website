@@ -19,7 +19,7 @@ export default function PostCard({ post }: Props) {
 
       {post.images[0] && (
         <Image
-          className="mb-2 max-h-64 w-auto object-cover"
+          className="mb-2 max-h-64 w-auto object-cover rounded"
           src={mediaBaseUrl + post.images[0].url}
           width={post.images[0].width}
           height={post.images[0].height}
@@ -27,8 +27,8 @@ export default function PostCard({ post }: Props) {
         />
       )}
 
-      <div className="flex flex-row content-center justify-between">
-        <p className="text-color-on-primary text-sm">
+      <div className="flex flex-row items-center justify-between">
+        <p className="text-color-on-primary text-sm flex">
           {getDateString(new Date(post.publishedAt))}
         </p>
         <Tag text={post.postType} />
