@@ -111,7 +111,7 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
             {posts.map((p) => {
               if (filters.has(p.postType) || filters.size === 0) {
                 return (
-                  <li key={p.id}>
+                  <li key={p.id} className="w-fit">
                     <Link href={"/pressroom/" + p.id}>
                       <PostCard post={p} />
                     </Link>
