@@ -64,7 +64,7 @@ export default function Home() {
         text="Our mission is to support healthcare providers with AI powered diagnostic solutions so that no patient should die due to delay or misdiagnosis of a condition."
         actionButton={buttonSection2}
         image="unsplash_pTrhfmj2jDA.png"></TwoColImg>
-      <div className="w-full h-2/6 gap-10 bg-gray-100 flex flex-col items-center p-8 h-1/2 xl:justify-center">
+      <div className="w-full h-1/2 gap-10 bg-gray-100 flex flex-col items-center p-8 xl:justify-center xl:p-0 xl:h-2/6">
         <h2 className="text-blue-100 font-bold text-4xl text-center border-b-2 border-white">
           Our Partners
         </h2>
