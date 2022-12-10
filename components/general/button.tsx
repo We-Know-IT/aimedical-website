@@ -19,10 +19,12 @@ export default function Button({
     <button
       className={
         isBlue
-          ? classes + commonStyles + " bg-blue-100 text-color-on-blue"
+          ? classes +
+            commonStyles +
+            " bg-blue-100 text-color-on-blue hover:bg-blue-85"
           : classes +
             commonStyles +
-            " bg-background-primary text-color-on-primary"
+            " bg-background-primary text-color-on-primary hover:bg-background-secondary"
       }
       onClick={onClick}>
       {children}
