@@ -26,7 +26,7 @@ export default function Header({ title, text, actionButton, imageUrl }: Props) {
           <h2 className="relative font-bold text-color-on-blue text-xl">
             {title}
           </h2>
-          <div className="h-1 relative bg-black my-4 w-24"></div>
+          <div className="h-1 relative my-4 w-24 rounded bg-gray"></div>
         </>
       )}
       {text && (
