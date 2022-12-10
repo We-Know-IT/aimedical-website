@@ -2,30 +2,14 @@ import { Post } from "../../services/types";
 import Image from "next/image";
 import Tag from "../general/tag";
 import { mediaBaseUrl } from "../../strapi/strapi";
+import { waitUntilSymbol } from "next/dist/server/web/spec-extension/fetch-event";
+import { getDateString } from "../../utils/date";
 
 type Props = {
   post: Post;
 };
 
-const months = [
-  "jan",
-  "feb",
-  "mars",
-  "apr",
-  "maj",
-  "june",
-  "july",
-  "aug",
-  "sep",
-  "oct",
-  "nov",
-  "dec",
-];
-
 export default function PostCard({ post }: Props) {
-  const getDateString = (date: Date) => {
-    return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
-  };
   return (
     <div className="rounded-2xl shadow-md p-9 background">
       <h3 className="text-blue-100 text-xl my-2">{post.title}</h3>
