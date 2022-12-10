@@ -19,7 +19,6 @@ module.exports = {
         "color-on-blue": colors.white,
         "background-primary": colors.white,
         "background-secondary": "rgba(243, 243, 243, 0.502)",
-        gray: "rgba(31, 31, 31, 1)",
       },
       fontFamily: {
         lato: ['"Lato"', "Arial", "Sans-serif"],
