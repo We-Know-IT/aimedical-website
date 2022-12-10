@@ -64,7 +64,7 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
         title="Pressroom"
         text="In our pressroom you can find our blog and press releases"
       />
-      <main className="max-w-5xl ml-auto mr-auto my-10">
+      <main className="container ml-auto mx-auto my-10">
         <section className="flex flex-row gap-x-4 md:gap-x-8 items-center justify-center ml-auto mr-auto ">
           <p className="text-blue-100 font-bold text-xl hidden md:block">
             Filter posts:
@@ -74,7 +74,7 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
               Blogs
               {filters.has("blog") ? (
                 <Image
-                  className="ml-1  w-4 h-auto"
+                  className="ml-1 w-4 h-auto "
                   src="/images/cancel_icon.png"
                   alt="cancel icon"
                   width={16}
@@ -104,7 +104,7 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
             </>
           </Button>
         </section>
-        <section className="ml-auto mr-auto p-6">
+        <section className="p-6">
           <ul className="md:grid md:grid-cols-2 gap-14">
             {/* Iterates over all the posts and returns UI components for each 
             if they have a postType included in current filters or if there are no filters active.  */}

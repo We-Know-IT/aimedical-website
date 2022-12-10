@@ -20,7 +20,7 @@ export default function PostDetails(props: ServiceResponse<Post>) {
       <main className="max-w-5xl ml-auto mr-auto px-6">
         <h2 className="text-blue-100 text-4xl mt-24 mb-10">{post?.title}</h2>
         <p className="text-xl font-medium mb-10">{post?.ingress}</p>
-        <p className="text-base">{post?.content}</p>
+        <p className="text-base whitespace-pre-wrap">{post?.content}</p>
       </main>
     </>
   );
