@@ -9,12 +9,14 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "../../components/general/header";
 
+const threeColsXLWidth = true;
+
 export default function PressRoom(props: ServiceResponse<Post[]>) {
   const [posts, _] = useState<Post[]>(props.data || []);
 
   const [filters, setFilters] = useState<Set<string>>(new Set());
 
-  console.log(props);
+  // console.log(props);
 
   const initFilters = () => {
     const filters = new Set<string>();
@@ -105,7 +107,11 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
           </Button>
         </section>
         <section className="p-6">
-          <ul className="md:grid md:grid-cols-2 gap-14">
+          <ul
+            className={
+              "md:grid md:grid-cols-2  gap-14" +
+              (threeColsXLWidth ? " xl:grid-cols-3" : "")
+            }>
             {/* Iterates over all the posts and returns UI components for each 
             if they have a postType included in current filters or if there are no filters active.  */}
             {posts.map((p) => {
