@@ -18,9 +18,9 @@ export default function TwoColText({ title, text, actionButton, list }: Props) {
   return (
     <div className="w-full bg-gray-100 flex px-2 pb-24 xl:h-5/6 xl:justify-evenly xl:p-0">
       {/* Container */}
-      <div className="flex items-center m-auto w-full h-full flex-col pt-24 bg-white xl:w-4/6 xl:h-5/6 xl:justify-evenly xl:flex-row xl:p-0 xl:bg-transparent">
+      <div className="w-full h-full flex flex-col items-center gap-y-10 my-auto pt-24 xl:h-5/6 xl:justify-evenly xl:flex-row xl:p-0 xl:bg-transparent xl:container xl:gap-y-0">
         {/* flex box */}
-        <div className="h-2/3 flex justify-center justify-self-start gap-10 flex-col w-full bg-white px-4 xl:w-3/5 xl:bg-transparent">
+        <div className="h-2/3 w-full flex justify-center justify-self-start gap-10 flex-col p-4 xl:bg-transparent xl:w-1/3">
           {/* left box */}
           <h2 className="text-3xl text-blue-100 font-semibold xl:text-4xl leading-snug">
             {title}
@@ -28,12 +28,14 @@ export default function TwoColText({ title, text, actionButton, list }: Props) {
           <p className="text-lg tracking-wider font-semibold leading-snug">
             {text}
           </p>
-          <ActionButton onClick={actionButton && actionButton.onClick}>
+          <ActionButton
+            onClick={actionButton && actionButton.onClick}
+            className={"hidden xl:inline-block"}>
             {actionButton && actionButton.text}
           </ActionButton>
         </div>
         <div
-          className="h-full rounded-lg flex gap-y-6 px-4 py-10 justify-center flex-col w-full xl:items-center xl:justify-evenly xl:gap-y-0 xl:w-1/2"
+          className="h-full w-full rounded-lg flex gap-y-6 px-4 py-10 justify-center flex-col xl:items-center xl:justify-evenly xl:gap-y-0 xl:w-1/2"
           style={{
             background:
               "linear-gradient(314.06deg, #0063AF 0%, rgba(0, 99, 175, 0.5) 120%), #FFFFFF",
