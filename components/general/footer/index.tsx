@@ -1,5 +1,6 @@
 import { useState } from "react";
 import LogoIcon from "../../icons/common/logo";
+import Button from "../button";
 
 const contactInformation = {
   email: "support@aimedtech.org",
@@ -57,13 +58,9 @@ export default function Footer() {
             placeholder="Your message"
             className="p-4 rounded-xl h-40 resize-none"
           />
-          <button
-            type="submit"
-            onClick={onSubmit}
-            /* TODO: Change hover background to use tailwind config*/
-            className="bg-white rounded-full text-lg px-11 py-3 w-fit shadow-md hover:bg-gray-200">
+          <Button onClick={onSubmit} isBlue={false} className="w-fit">
             Submit
-          </button>
+          </Button>
         </div>
         <div className="flex flex-col space-y-24">
           <div>
