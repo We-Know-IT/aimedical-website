@@ -9,7 +9,7 @@ export default function ActionButton({ onClick, children, className }: Props) {
   return (
     <button
       className={
-        "bg-white self-start py-4 px-10 rounded-full w-auto text-lg font-semibold shadow-lg " +
+        "bg-white self-start py-4 px-10 rounded-full w-auto text-lg font-semibold shadow-lg z-10 " +
         (className || "")
       }
       onClick={onClick}>
