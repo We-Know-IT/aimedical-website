@@ -2,15 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
+#__next {
+  height: 100%;
+}
 @layer base {
   html {
-    font-family: Arial, sans-serif;
-  }
-
-  body {
-    min-height: 100vh;
-  }
-  * {
-    box-sizing: border-box;
+    font-family: lato;
   }
 }

@@ -7,9 +7,19 @@ export interface Post {
   content: string;
   updatedAt: string;
   publishedAt: string;
-  images: [string];
-  videos: [string];
-  links: [string];
+  images: [Image];
+  videos: [Video];
   author?: string;
   postType: PostType;
+}
+
+export interface Image {
+  alternativeText: string;
+  width: number;
+  height: number;
+  url: string;
+}
+
+export interface Video {
+  url: string;
 }

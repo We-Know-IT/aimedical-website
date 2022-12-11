@@ -1,43 +1,44 @@
 import { CSSProperties } from "react";
-import ActionButton from "./actionButton";
+import Navbar from "./navbar";
 
 type Props = {
   title?: string;
   text?: string;
+  imageUrl: string;
   actionButton?: {
     text: string;
     onClick: () => void;
   };
 };
-const backgroundImageStyle: CSSProperties = {
-  backgroundImage: "url(/images/header.png)",
-};
-export default function Header({ title, text, actionButton }: Props) {
+
+export default function Header({ title, text, actionButton, imageUrl }: Props) {
+  const backgroundImageStyle: CSSProperties = {
+    backgroundImage: `url(${imageUrl})`,
+  };
+
   return (
     <header
-      className="h-5/6 max-w-screen bg-cover px-6 md:px-48 bg-cover"
+      className="relative h-[70vh] bg-cover w-full"
       style={backgroundImageStyle}>
-      {/* I väntan på elias navigation har jag en dumb div här  */}
-      <nav className="h-2/6"></nav>
-      {
-        //<div className="bg-gradient-to-r from-blue-85 to-transparent w-screen absolute top-0 bottom-0 left-0 right-0 "></div>
-      }
-      {title && (
-        <h2 className="relative font-bold text-color-secondary text-2xl w-1/2">
-          {title}
-        </h2>
-      )}
-      <div className=" h-1 bg-black relative my-4 w-24"></div>
-      {text && (
-        <p className="text-color-secondary text-white text-4xl relative font-bold w-3/5">
-          {text}
-        </p>
-      )}
-      {actionButton && (
-        <ActionButton onClick={actionButton.onClick}>
-          {actionButton.text}
-        </ActionButton>
-      )}
+      <div className="md:container md:mx-auto flex flex-col justify-center h-full px-5">
+        <div className="bg-gradient-to-r from-blue-85 absolute top-0 bottom-0 left-0 right-0"></div>
+        {title && (
+          <>
+            <h2 className="relative font-bold text-color-on-blue text-xl">
+              {title}
+            </h2>
+            <div className="h-1 relative my-4 w-24 rounded bg-gray-800"></div>
+          </>
+        )}
+        {text && (
+          <p className="relative text-color-on-blue md:text-3xl text-2xl font-bold">
+            {text}
+          </p>
+        )}
+        {actionButton && (
+          <button onClick={actionButton.onClick}>{actionButton.text}</button>
+        )}
+      </div>
     </header>
   );
 }
