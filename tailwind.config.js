@@ -20,6 +20,11 @@ module.exports = {
         "color-on-blue": colors.white,
         "background-primary": colors.white,
         "background-secondary": "rgba(243, 243, 243, 0.502)",
+
+        white: {
+          hover: "rgba(235, 235, 235, 0.9)",
+          DEFAULT: "rgb(255, 255, 255)",
+        },
       },
       fontFamily: {
         lato: ['"Lato"', "Arial", "Sans-serif"],

@@ -23,7 +23,7 @@ export default function NavLink({ navLink }: Props) {
   return (
     <Link
       href={navLink.path}
-      className="text-white font-semibold hover:text-gray-300 text-lg">
+      className="text-white font-semibold hover:text-white-hover text-lg">
       {navLink.label}
     </Link>
   );
