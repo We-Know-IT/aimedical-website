@@ -51,6 +51,7 @@ export default function Home() {
         <meta name="description" content="AI Medical" />
       </Head>
       <Header
+        imageUrl="/images/header.png"
         text="Driving fast and accurate diagnosis for all skin cancers - All through AI"
         actionButton={buttonHeader}
       />
@@ -65,7 +66,7 @@ export default function Home() {
         actionButton={buttonSection2}
         image="unsplash_pTrhfmj2jDA.png"></TwoColImg>
       <div className="w-full h-1/2 gap-10 bg-gray-100 flex flex-col items-center p-8 xl:justify-center xl:p-0 xl:h-2/6">
-        <h2 className="text-blue-100 font-bold text-4xl text-center border-b-2 border-white">
+        <h2 className="text-blue-100 font-bold text-3xl text-center border-b-2 border-white">
           Our Partners
         </h2>
         <div className="flex flex-wrap w-full h-full justify-center md:w-1/2 xl:w-4/6 xl:h-1/3 xl:justify-evenly">

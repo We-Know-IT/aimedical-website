@@ -1,4 +1,5 @@
 import { CSSProperties } from "react";
+import ActionButton from "./actionButton";
 import Navbar from "./navbar";
 
 type Props = {
@@ -36,7 +37,9 @@ export default function Header({ title, text, actionButton, imageUrl }: Props) {
           </p>
         )}
         {actionButton && (
-          <button onClick={actionButton.onClick}>{actionButton.text}</button>
+          <ActionButton onClick={actionButton.onClick}>
+            {actionButton.text}
+          </ActionButton>
         )}
       </div>
     </header>
