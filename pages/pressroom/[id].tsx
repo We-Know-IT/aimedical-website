@@ -5,6 +5,10 @@ import { getPost, ServiceResponse } from "../../services/api";
 import { Post } from "../../services/types";
 import { mediaBaseUrl } from "../../strapi/strapi";
 
+function capitalizeFirstLetter(string: string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 export default function PostDetails(props: ServiceResponse<Post>) {
   const post = props.data;
   return (
@@ -14,7 +18,7 @@ export default function PostDetails(props: ServiceResponse<Post>) {
         <meta name="description" content="News and blog from AI Medical" />
       </Head>
       <Header
-        text="Blog post"
+        title={capitalizeFirstLetter(post?.postType || "Blog") + " post"}
         imageUrl={mediaBaseUrl + post?.images[0]?.url || "/images/header.png"}
       />
       <main className="max-w-5xl ml-auto mr-auto px-6">
