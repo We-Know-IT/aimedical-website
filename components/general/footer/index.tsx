@@ -37,7 +37,7 @@ export default function Footer() {
         background:
           "linear-gradient(105.38deg, rgba(0, 99, 175, 0.8) 0%, rgba(0, 99, 175, 0.5) 100%), #FFFFFF;",
       }}>
-      <div className="flex flex-col bg-c p-16 w-full space-y-20 md:flex-row-reverse md:justify-between md:space-y-0 md:container md:mx-auto">
+      <div className="flex flex-col bg-c py-16 w-full space-y-20 md:flex-row-reverse md:justify-between md:space-y-0 md:container md:mx-auto px-5 ">
         <div className="flex flex-col space-y-4 md:w-1/2">
           <h2 className="text-2xl text-white font-bold">Send us a message</h2>
           <span className="bg-white w-32 h-1 rounded-full" />
