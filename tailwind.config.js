@@ -8,18 +8,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Configure your color palette here
         blue: {
-          dark: "rgb(0, 99, 175)",
-          light: "rgba(0, 99, 175, 0.5)",
           100: "rgb(0, 99, 175)",
           85: "rgba(0,99,175, 0.85)",
           50: "rgba(0, 99, 175, 0.5)",
+          hover: "rgb(0, 77, 138)",
         },
-        "text-primary": colors.black,
-        "text-secondary": colors.white,
-        "bg-primary": colors.white,
-        "bg-secondary": "rgba(243, 243, 243, 0.502)",
+
         "color-on-primary": colors.black,
         "color-on-secondary": colors.black,
         "color-on-blue": colors.white,
@@ -41,12 +36,13 @@ module.exports = {
       },
     },
   },
-  plugins: [],
   plugins: [require("@tailwindcss/line-clamp")],
 };
 
 /*
+
 Font sizes in design:
+
 42 / 16 = 2.625REM
 34px/16px = 2.125rem
 28px / 16px = 1.74 rem
@@ -54,4 +50,5 @@ Font sizes in design:
 18px / 16 = 1.125 rem
 16/16 = 1 rem
 14px / 16 = 0.875
+
 */
