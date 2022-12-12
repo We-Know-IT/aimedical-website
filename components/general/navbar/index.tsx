@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
+import { useWindowScrollPositions } from "../../../utils/scroll";
 import LogoIcon from "../../icons/common/logo";
 import HamburgerIcon from "./hamburger-icon";
 import NavLink from "./nav-link";
@@ -12,14 +13,18 @@ export default function Navbar() {
     setIsNavbarOpen(!isNavbarOpen);
   };
 
+  const { scrollX, scrollY } = useWindowScrollPositions();
+  const hasScrolled = scrollY > 0;
+
   return (
     <nav
       className={
         (isNavbarOpen ? "bg-gray-700 absolute top-0 left-0 " : "") +
-        "fixed top-0 left-0 right-0 md:bg-transparent z-10 container"
+        "fixed top-0 left-0 right-0 md:bg-transparent z-10 transition-all" +
+        (hasScrolled ? " md:bg-white" : "")
       }>
       {/* Top navbar */}
-      <div className="py-6  mx-auto flex justify-between">
+      <div className="py-6 mx-auto flex justify-between container">
         <Link href="/">
           <LogoIcon w={56} h={56} />
         </Link>
