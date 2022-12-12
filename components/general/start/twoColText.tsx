@@ -1,5 +1,6 @@
 import { CSSProperties } from "react";
 import ActionButton from "../actionButton";
+import Button from "../button";
 type Props = {
   title?: string;
   text?: string;
@@ -17,10 +18,12 @@ type Props = {
 export default function TwoColText({ title, text, actionButton, list }: Props) {
   return (
     /*<div className="w-full h-[75vh] bg-gray-100 flex px-2 pb-24 lg:justify-evenly lg:p-0 lg:py-24">*/
-      /* Container */
-      <div className="lg:container flex flex-col items-center px-2 space-y-10 my-auto pt-24 bg-gray-100 lg:justify-evenly lg:flex-row lg:bg-transparent py-24">
+    /* Container */
+    <section className="bg-background-secondary py-24">
+      {/* Container */}
+      <div className="flex flex-col justify-center items-center xl:flex-row  max-w-2xl xl:max-w-full container">
         {/* flex box */}
-        <div className="h-full w-full flex justify-center justify-self-start space-y-10 flex-col p-4 lg:w-1/2">
+        <div className="flex flex-col justify-center xl:self-center  space-y-10 p-4 ">
           {/* left box */}
           <h2 className="text-3xl text-blue-100 font-semibold lg:text-4xl leading-snug">
             {title}
@@ -28,18 +31,11 @@ export default function TwoColText({ title, text, actionButton, list }: Props) {
           <p className="text-lg tracking-wider font-semibold leading-snug">
             {text}
           </p>
-          <ActionButton
-            onClick={actionButton && actionButton.onClick}
-            className={"hidden lg:inline-block"}>
-            {actionButton && actionButton.text}
-          </ActionButton>
+          {actionButton && (
+            <Button onClick={actionButton.onClick}>{actionButton.text}</Button>
+          )}
         </div>
-        <div
-          className="h-full w-full rounded-xl flex gap-y-6 px-4 py-10 justify-center flex-col lg:items-center lg:justify-evenly lg:gap-y-0 lg:w-1/2"
-          style={{
-            background:
-              "linear-gradient(314.06deg, #0063AF 0%, rgba(0, 99, 175, 0.5) 120%), #FFFFFF",
-          }}>
+        <div className="bg-gradient-to-br from-blue-100 to-blue-50 h-full w-full rounded-xl flex gap-y-6 px-4 py-10 justify-center flex-col lg:items-center lg:justify-evenly lg:gap-y-0 ">
           {/*  bg-gradient-to-r from-blue-50 to-blue-100*/}
           {list &&
             list.map((data) => (
@@ -64,5 +60,6 @@ export default function TwoColText({ title, text, actionButton, list }: Props) {
             ))}
         </div>
       </div>
+    </section>
   );
 }

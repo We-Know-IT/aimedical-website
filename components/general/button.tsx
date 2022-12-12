@@ -1,19 +1,18 @@
 type Props = {
   isBlue?: boolean;
   className?: string;
-  children: React.ReactElement;
-
+  children: React.ReactElement | string;
   onClick: () => void;
 };
 
 const commonStyles =
-  " rounded-full text-base px-6 py-1.5 md:px-12 md:py-2.5 transition-colors duration-200 flex flex-row items-center shadow-md";
+  "rounded-full text-base px-6 py-1.5 xl:py-3.5  md:px-12 md:py-2.5 transition-colors duration-200 flex flex-row items-center justify-center shadow-md lg:w-fit ";
 
 export default function Button({
   children,
   onClick,
   className = "",
-  isBlue = true,
+  isBlue = false,
 }: Props) {
   return (
     <button

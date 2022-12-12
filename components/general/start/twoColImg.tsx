@@ -1,42 +1,50 @@
-import { CSSProperties } from "react";
-import ActionButton from "../actionButton";
 import Image from "next/image";
+import Button from "../button";
 type Props = {
   title?: string;
   text?: string;
   image?: string;
-  actionButton: {
+  actionButton?: {
     text: string;
     onClick: () => void;
   };
 };
 export default function TwoColImg({ title, text, actionButton, image }: Props) {
   return (
-    <div className="lg:container lg:h-auto bg-white flex flex-wrap px-2 py-24 lg:justify-evenly">
+    <section className="bg-background-primary py-24">
       {/* Container */}
-      <div className="flex flex-col items-center justify-center flex grow shrink-0 basis-full  lg:flex-row lg:py-0">
+      <div className="container flex flex-col xl:flex-row w-fit lg:w-auto">
         {/* left box */}
-        <div className="pt-[100%] relative h-full w-full items-stretch grow lg:w-2/5 lg:pt-0">
-          <Image src={"/images/" + image} alt="Doctor crossed arms" fill className={"rounded-t-xl lg:rounded-r-none lg:rounded-l-xl"} />
+        <div className="relative aspect-square w-full xl:w-2/5">
+          <Image
+            src={"/images/" + image}
+            alt="Doctor crossed arms"
+            fill
+            className={
+              "xl:rounded-bl-xl rounded-tl-xl rounded-tr-xl xl:rounded-tr-none "
+            }
+          />
         </div>
         {/* right box */}
         <div
-          className="flex items-center py-12 lg:grow lg:items-stretch rounded-b-xl lg:w-3/5 lg:rounded-bl-none lg:rounded-r-xl lg:justify-center lg:py-52"
-          style={{
-            background:
-              "linear-gradient(108.85deg, #0063AF 0%, rgba(0, 99, 175, 0.5) 120%);",
-          }}>
-          <div className="h-full w-full py-8 items-stretch flex flex-col px-6 lg:p-0 lg:w-2/3 xl:w-3/5">
-            <h2 className="text-3xl font-semibold text-white py-4">{title}</h2>
-            <p className="text-lg text-white tracking-wide py-4"> {text}</p>
-            <ActionButton
-              onClick={actionButton && actionButton.onClick}
-              className="w-full font-medium lg:w-auto self-center !w-full lg:!w-auto lg:self-start">
-              {actionButton && actionButton.text}
-            </ActionButton>
+          className="bg-gradient-to-br from-blue-100 to-blue-50 flex grow flex-col  items-center justify-center space-y-6 px-6 rounded-bl-xl rounded-br-xl 
+        xl:rounded-bl-none xl:rounded-tr-xl xl:rounded-br-xl py-12">
+          <div className="flex flex-col  items-s space-y-6">
+            <h2 className="text-3xl font-semibold text-color-on-blue">
+              {title}
+            </h2>
+            <p className="text-lg text-color-on-blue tracking-wide max-w-md">
+              {text}
+            </p>
+
+            {actionButton && (
+              <Button onClick={actionButton.onClick}>
+                {actionButton.text}
+              </Button>
+            )}
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

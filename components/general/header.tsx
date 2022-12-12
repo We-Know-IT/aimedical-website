@@ -6,20 +6,29 @@ type Props = {
   title?: string;
   text?: string;
   imageUrl: string;
+  fullHeight?: boolean;
   actionButton?: {
     text: string;
     onClick: () => void;
   };
 };
 
-export default function Header({ title, text, actionButton, imageUrl }: Props) {
+export default function Header({
+  title,
+  text,
+  actionButton,
+  imageUrl,
+  fullHeight,
+}: Props) {
   const backgroundImageStyle: CSSProperties = {
     backgroundImage: `url(${imageUrl})`,
   };
 
   return (
     <header
-      className="relative h-[70vh] bg-cover w-full"
+      className={
+        "relative bg-cover w-full " + (fullHeight ? "h-[100vh]" : "h-[500px]")
+      }
       style={backgroundImageStyle}>
       <div className="container flex flex-col justify-center h-full">
         <div className="bg-gradient-to-r from-blue-85 absolute top-0 bottom-0 left-0 right-0"></div>
