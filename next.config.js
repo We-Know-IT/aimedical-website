@@ -13,8 +13,11 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "aimedical-strapi.onrender.com",
-        port: "1337",
         pathname: "/uploads/**",
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
       },
     ],
   },
