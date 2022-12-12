@@ -8,7 +8,6 @@ type Props = {
 };
 
 export default function PostCard({ post }: Props) {
-  console.dir(post);
   return (
     <div className="rounded-2xl shadow-md p-9 background max-w-xl h-full flex flex-col justify-between border-2 border-transparent hover:border-blue-100 ">
       <div className="my-2 mb-2 flex flex-col space-y-2">
