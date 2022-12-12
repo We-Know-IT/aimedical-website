@@ -1,7 +1,6 @@
 import { Post } from "../../services/types";
 import Image from "next/image";
 import Tag from "../general/tag";
-import { mediaBaseUrl } from "../../strapi/strapi";
 import { getDateString } from "../../utils/date";
 
 type Props = {
@@ -20,7 +19,7 @@ export default function PostCard({ post }: Props) {
       {post.images[0] && (
         <Image
           className="mb-2 max-h-64 w-auto object-cover rounded"
-          src={mediaBaseUrl + post.images[0].url}
+          src={post.images[0].url}
           width={post.images[0].width}
           height={post.images[0].height}
           alt={post.images[0].alternativeText || ""}
