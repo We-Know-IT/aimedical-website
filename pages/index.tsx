@@ -26,6 +26,40 @@ export default function Home() {
     },
   };
 
+const partnerSrc = ["AI_Sweden_Logo_Black.png", "Karolinska_Institutet_Logo_Black.png", "Linkoping_University_Black.png", "AIDA.png", "Stockholm_University_Horizontal.png"]
+const partners = [
+  {
+    src: "AI_Sweden_Logo_Black.png",
+    alt: "AI Sweden Logo Black",
+    height: 100,
+    width: 200
+  },
+  {
+    src: "Karolinska_Institutet_Logo_Black.png",
+    alt: "Karolinska Institutet Logo Black",
+    height: 100,
+    width: 200
+  },
+  {
+    src: "Linkoping_University_Black.png",
+    alt: "Linköping University Logo Black",
+    height: 100,
+    width: 200
+  },
+  {
+    src: "AIDA.png",
+    alt: "AIDA Logo",
+    height: 100,
+    width: 200
+  },
+  {
+    src: "Stockholm_University_Horizontal.png",
+    alt: "Stockholm University Logo",
+    height: 100,
+    width: 200
+  }
+]
+
   const columnText = [
     {
       title: "Faster Diagnoses",
@@ -65,49 +99,12 @@ export default function Home() {
         text="Our mission is to support healthcare providers with AI powered diagnostic solutions so that no patient should die due to delay or misdiagnosis of a condition."
         actionButton={buttonSection2}
         image="unsplash_pTrhfmj2jDA.png"></TwoColImg>
-      <div className="w-full h-1/2 gap-10 bg-gray-100 flex flex-col items-center p-8 xl:justify-center xl:p-0 xl:h-2/6">
+      <div className="w-full gap-10 bg-gray-100 flex flex-col items-center p-8 lg:justify-center lg:py-24">
         <h2 className="text-blue-100 font-bold text-3xl text-center border-b-2 border-white">
           Our Partners
         </h2>
-        <div className="flex flex-wrap w-full h-full justify-center md:w-1/2 xl:w-4/6 xl:h-1/3 xl:justify-evenly">
-          <div
-            className="w-1/5 xl:h-full flex-[0_0_50%] xl:flex-none"
-            style={{
-              backgroundImage: "url('/images/AI_Sweden_Logo_Black.png');",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-            }}></div>
-          <div
-            className="w-1/5 xl:h-full flex-[0_0_50%] xl:flex-none"
-            style={{
-              backgroundImage:
-                "url('/images/Karolinska_Institutet_Logo_Black.png');",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-            }}></div>
-          <div
-            className="w-1/5 xl:h-full flex-[0_0_50%] xl:flex-none"
-            style={{
-              backgroundImage:
-                "url('/images/Linkoping _University_Black.png');",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-            }}></div>
-          <div
-            className="w-1/5 xl:h-full flex-[0_0_50%] xl:flex-none"
-            style={{
-              backgroundImage: "url('/images/AIDA.png');",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-            }}></div>
-          <div
-            className="w-1/5 xl:h-full flex-[0_0_50%] xl:flex-none"
-            style={{
-              backgroundImage:
-                "url('/images/Stockholm_University_Horizontal.png');",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-            }}></div>
+        <div className="flex flex-wrap justify-center items-center xl:space-x-8">
+            {partners.map(img => (<Image src={"/images/" + img.src} alt={img.alt} height={img.height} width={img.width}  className={"max-w-[33vw] object-contain object-center"}/>))}
         </div>
       </div>
     </>
