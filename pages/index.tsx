@@ -104,7 +104,7 @@ const partners = [
           Our Partners
         </h2>
         <div className="flex flex-wrap justify-center items-center xl:space-x-8">
-            {partners.map(img => (<Image src={"/images/" + img.src} alt={img.alt} height={img.height} width={img.width}  className={"max-w-[33vw] object-contain object-center"}/>))}
+            {partners.map(img => (<Image src={"/images/" + img.src} alt={img.alt} height={img.height} width={img.width}  className={"w-[33vw] lg:w-auto h-auto object-contain object-center"}/>))}
         </div>
       </div>
     </>
