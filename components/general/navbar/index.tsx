@@ -21,7 +21,7 @@ export default function Navbar() {
       className={
         (isNavbarOpen ? "bg-gray-700 absolute top-0 left-0 " : "") +
         "fixed top-0 left-0 right-0 md:bg-transparent z-10 transition-all" +
-        (hasScrolled ? " md:bg-white" : "")
+        (hasScrolled ? " md:bg-white shadow-xl" : "")
       }>
       {/* Top navbar */}
       <div className="py-6 mx-auto flex justify-between container">
