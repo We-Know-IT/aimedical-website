@@ -20,7 +20,7 @@ export default function Header({ title, text, actionButton, imageUrl }: Props) {
     <header
       className="relative h-[70vh] bg-cover w-full"
       style={backgroundImageStyle}>
-      <div className="md:container md:mx-auto flex flex-col justify-center h-full px-5">
+      <div className="container flex flex-col justify-center h-full">
         <div className="bg-gradient-to-r from-blue-85 absolute top-0 bottom-0 left-0 right-0"></div>
         {title && (
           <>
