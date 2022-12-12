@@ -1,6 +1,7 @@
 import { CSSProperties } from "react";
 import ActionButton from "../actionButton";
 import Button from "../button";
+import Image from "next/image";
 type Props = {
   title?: string;
   text?: string;
@@ -21,9 +22,9 @@ export default function TwoColText({ title, text, actionButton, list }: Props) {
     /* Container */
     <section className="bg-background-secondary py-24">
       {/* Container */}
-      <div className="flex flex-col justify-center items-center xl:flex-row  max-w-2xl xl:max-w-full container">
+      <div className="container flex flex-col justify-between items-center xl:flex-row max-w-xl xl:container">
         {/* flex box */}
-        <div className="flex flex-col justify-center xl:self-center  space-y-10 p-4 ">
+        <div className="flex flex-col justify-center space-y-10 p-4 xl:w-1/3">
           {/* left box */}
           <h2 className="text-3xl text-blue-100 font-semibold lg:text-4xl leading-snug">
             {title}
@@ -35,19 +36,21 @@ export default function TwoColText({ title, text, actionButton, list }: Props) {
             <Button onClick={actionButton.onClick}>{actionButton.text}</Button>
           )}
         </div>
-        <div className="bg-gradient-to-br from-blue-100 to-blue-50 h-full w-full rounded-xl flex gap-y-6 px-4 py-10 justify-center flex-col lg:items-center lg:justify-evenly lg:gap-y-0 ">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl flex gap-y-6 px-4 py-20 justify-center flex-col lg:items-center lg:justify-evenly lg:gap-y-0 xl:w-1/2 space-y-8">
           {/*  bg-gradient-to-r from-blue-50 to-blue-100*/}
           {list &&
             list.map((data) => (
               <div
-                className="lg:w-2/3 flex justify-center w-full space-y-8"
+                className="lg:w-2/3 flex justify-center items-center w-full"
                 key={data.title}>
-                <div
-                  className="w-1/5 h-full py-5 self-center bg-contain bg-center lg:bg-auto lg:bg-left"
-                  style={{
-                    backgroundImage: "url('/images/" + data.img + "')",
-                    backgroundRepeat: "no-repeat",
-                  }}></div>
+                <div className="w-1/5 h-full flex justify-center items-center">
+                  <Image
+                    src={"/images/" + data.img}
+                    alt={""}
+                    width={48}
+                    height={48}
+                  />
+                </div>
                 <div className="w-4/5">
                   <h3 className="text-2xl font-semibold text-white py-2 3lg:text-3xl">
                     {data.title}

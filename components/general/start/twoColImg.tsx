@@ -13,7 +13,7 @@ export default function TwoColImg({ title, text, actionButton, image }: Props) {
   return (
     <section className="bg-background-primary py-24">
       {/* Container */}
-      <div className="container flex flex-col xl:flex-row w-fit lg:w-auto">
+      <div className="container flex flex-col xl:flex-row max-w-xl xl:container">
         {/* left box */}
         <div className="relative aspect-square w-full xl:w-2/5">
           <Image
