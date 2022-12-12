@@ -3,7 +3,6 @@ import Head from "next/head";
 import Header from "../../components/general/header";
 import { getPost, ServiceResponse } from "../../services/api";
 import { Post } from "../../services/types";
-import { mediaBaseUrl } from "../../strapi/strapi";
 
 function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -19,7 +18,7 @@ export default function PostDetails(props: ServiceResponse<Post>) {
       </Head>
       <Header
         title={capitalizeFirstLetter(post?.postType || "Blog") + " post"}
-        imageUrl={mediaBaseUrl + post?.images[0]?.url || "/images/header.png"}
+        imageUrl={post?.images[0]?.url || "/images/header.png"}
       />
       <main className="max-w-5xl ml-auto mr-auto px-6">
         <h2 className="text-blue-100 text-4xl mt-24 mb-10">{post?.title}</h2>
