@@ -10,12 +10,10 @@ export interface INavLink {
 
 interface Props {
   navLink: INavLink;
+  color?: "white" | "black";
 }
 
-export default function NavLink({ navLink }: Props) {
-  const { scrollX, scrollY } = useWindowScrollPositions();
-  const hasScrolled = scrollY > 0;
-
+export default function NavLink({ navLink, color = "white" }: Props) {
   if (navLink.isHightlighted) {
     return (
       <Link
@@ -29,8 +27,10 @@ export default function NavLink({ navLink }: Props) {
     <Link
       href={navLink.path}
       className={
-        "text-white font-semibold hover:text-gray-300 text-lg" +
-        (hasScrolled ? " text-black hover:text-gray-500" : "")
+        "font-semibold text-lg" +
+        (color === "black"
+          ? " text-black hover:text-gray-500"
+          : " text-white hover:text-gray-300")
       }>
       {navLink.label}
     </Link>
