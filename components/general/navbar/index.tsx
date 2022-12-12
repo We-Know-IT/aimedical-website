@@ -13,7 +13,7 @@ export default function Navbar() {
     setIsNavbarOpen(!isNavbarOpen);
   };
 
-  const { scrollX, scrollY } = useWindowScrollPositions();
+  const { scrollY } = useWindowScrollPositions();
   const hasScrolled = scrollY > 0;
 
   return (
