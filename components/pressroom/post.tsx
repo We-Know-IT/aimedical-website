@@ -10,6 +10,7 @@ type Props = {
 };
 
 export default function PostCard({ post }: Props) {
+  console.dir(post);
   return (
     <div className="rounded-2xl shadow-md p-9 background max-w-xl h-full flex flex-col justify-between border-2 border-transparent hover:border-blue-100 ">
       <div className="my-2 mb-2 flex flex-col space-y-2">
@@ -23,7 +24,7 @@ export default function PostCard({ post }: Props) {
           src={mediaBaseUrl + post.images[0].url}
           width={post.images[0].width}
           height={post.images[0].height}
-          alt={post.images[0].alternativeText}
+          alt={post.images[0].alternativeText || ""}
         />
       )}
 

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import LogoIcon from "../../icons/common/logo";
@@ -10,7 +9,6 @@ export default function Navbar() {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
 
   const toggleNavbar = () => {
-    console.log("clicked");
     setIsNavbarOpen(!isNavbarOpen);
   };
 
@@ -18,7 +16,7 @@ export default function Navbar() {
     <nav
       className={
         (isNavbarOpen ? "bg-gray-700 absolute top-0 left-0 " : "") +
-        "fixed top-0 left-0 right-0 md:bg-transparent z-10 px-5 md:container md:mx-auto"
+        "fixed top-0 left-0 right-0 lg:bg-transparent z-10 px-5 lg:container lg:mx-auto"
       }>
       {/* Top navbar */}
       <div className="py-6  mx-auto flex justify-between">
@@ -29,15 +27,15 @@ export default function Navbar() {
           {/* Hamburger menu */}
           <button
             type="button"
-            className="md:hidden h-10"
+            className="lg:hidden h-10"
             aria-controls="mobile-menu"
             onClick={toggleNavbar}
             aria-expanded={isNavbarOpen}>
             <HamburgerIcon isOpen={isNavbarOpen} />
           </button>
           {/* Desktop links */}
-          <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
-            <div className="hidden md:ml-6 md:block">
+          <div className="flex flex-1 items-center justify-center lg:items-stretch lg:justify-start">
+            <div className="hidden lg:ml-6 lg:block">
               <ul className="flex items-center space-x-6">
                 {navLinks.map((link) => {
                   return (
@@ -53,7 +51,7 @@ export default function Navbar() {
       </div>
       {/* Mobile drop down menu */}
       <div
-        className={(!isNavbarOpen ? "hidden " : "") + "md:hidden"}
+        className={(!isNavbarOpen ? "hidden " : "") + "lg:hidden"}
         id="mobile-menu">
         <ul className="space-y-1 px-2 pt-2 pb-3 flex items-center flex-col">
           {navLinks.map((link) => {
