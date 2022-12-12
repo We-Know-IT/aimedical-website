@@ -2,7 +2,6 @@ import { Post } from "../../services/types";
 import Image from "next/image";
 import Tag from "../general/tag";
 import { mediaBaseUrl } from "../../strapi/strapi";
-import { waitUntilSymbol } from "next/dist/server/web/spec-extension/fetch-event";
 import { getDateString } from "../../utils/date";
 
 type Props = {
