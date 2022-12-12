@@ -66,7 +66,7 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
         title="Pressroom"
         text="In our pressroom you can find our blog and press releases"
       />
-      <main className="container ml-auto mx-auto my-10">
+      <main className="container my-10">
         <section className="flex flex-row gap-x-4 md:gap-x-8 items-center justify-center ml-auto mr-auto ">
           <p className="text-blue-100 font-bold text-xl hidden md:block">
             Filter posts:
@@ -106,10 +106,10 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
             </>
           </Button>
         </section>
-        <section className="p-6">
+        <section className="py-12">
           <ul
             className={
-              "md:grid md:grid-cols-2  gap-14" +
+              "md:grid md:grid-cols-2 gap-14" +
               (threeColsXLWidth ? " xl:grid-cols-3" : "")
             }>
             {/* Iterates over all the posts and returns UI components for each 
