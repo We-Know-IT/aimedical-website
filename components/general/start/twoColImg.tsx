@@ -16,11 +16,12 @@ export default function TwoColImg({ title, text, actionButton, image }: Props) {
       {/* Container */}
       <div className="flex flex-col items-center justify-center flex grow shrink-0 basis-full  lg:flex-row lg:py-0">
         {/* left box */}
-        <div className={"pt-[100%] lg:pt-0 h-full w-full items-stretch rounded-t-lg lg:rounded-r-none lg:rounded-l-lg grow p-0 lg:w-2/5 bg-cover bg-no-repeat bg-top"} style={ {backgroundImage: "url(/images/" + image + ")"} }>
+        <div className="pt-[100%] relative h-full w-full items-stretch grow lg:w-2/5 lg:pt-0">
+          <Image src={"/images/" + image} alt="Doctor crossed arms" fill className={"rounded-t-xl lg:rounded-r-none lg:rounded-l-xl"} />
         </div>
         {/* right box */}
         <div
-          className="flex items-center py-12 lg:grow lg:items-stretch rounded-b-lg lg:w-3/5 lg:rounded-bl-none lg:rounded-r-lg lg:justify-center lg:py-52"
+          className="flex items-center py-12 lg:grow lg:items-stretch rounded-b-xl lg:w-3/5 lg:rounded-bl-none lg:rounded-r-xl lg:justify-center lg:py-52"
           style={{
             background:
               "linear-gradient(108.85deg, #0063AF 0%, rgba(0, 99, 175, 0.5) 120%);",

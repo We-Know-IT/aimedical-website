@@ -35,7 +35,7 @@ export default function TwoColText({ title, text, actionButton, list }: Props) {
           </ActionButton>
         </div>
         <div
-          className="h-full w-full rounded-lg flex gap-y-6 px-4 py-10 justify-center flex-col lg:items-center lg:justify-evenly lg:gap-y-0 lg:w-1/2"
+          className="h-full w-full rounded-xl flex gap-y-6 px-4 py-10 justify-center flex-col lg:items-center lg:justify-evenly lg:gap-y-0 lg:w-1/2"
           style={{
             background:
               "linear-gradient(314.06deg, #0063AF 0%, rgba(0, 99, 175, 0.5) 120%), #FFFFFF",
