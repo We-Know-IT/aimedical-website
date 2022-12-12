@@ -15,6 +15,10 @@ const nextConfig = {
         hostname: "aimedical-strapi.onrender.com",
         pathname: "/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
     ],
   },
 };
