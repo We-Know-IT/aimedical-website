@@ -41,7 +41,7 @@ export default function Header({
           </>
         )}
         {text && (
-          <p className="relative text-color-on-blue md:text-3xl text-2xl font-bold">
+          <p className="relative text-color-on-blue md:text-3xl text-2xl font-bold whitespace-pre">
             {text}
           </p>
         )}

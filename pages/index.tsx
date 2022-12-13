@@ -91,8 +91,8 @@ export default function Home() {
         <meta name="description" content="AI Medical" />
       </Head>
       <Header
-        imageUrl="/images/header.png"
-        text="Driving fast and accurate diagnosis for all skin cancers - All through AI"
+        imageUrl="/images/accuray-MFSEP2g4YS0-unsplash.jpg"
+        text={`Driving fast and accurate\ndiagnosis for all skin cancers -\nAll through AI`}
         actionButton={buttonHeader}
         fullHeight={true}
       />
@@ -107,7 +107,7 @@ export default function Home() {
           title="Our Mission"
           text="Our mission is to support healthcare providers with AI powered diagnostic solutions so that no patient should die due to delay or misdiagnosis of a condition."
           actionButton={buttonSection2}
-          image="man_crossed_arms.jpeg"></TwoColImg>
+          image="man_crossed_arms.jpg"></TwoColImg>
         <div className="w-full gap-10 bg-gray-100 flex flex-col items-center flex p-8 lg:justify-center lg:py-24">
           <h2 className="text-blue-100 font-bold text-3xl text-center border-b-2 border-white">
             Our Partners
@@ -115,13 +115,12 @@ export default function Home() {
           <div className="flex flex-wrap justify-center items-center xl:space-x-8">
             {partners.map((img) => (
               <Image
+                key={img.alt}
                 src={"/images/" + img.src}
                 alt={img.alt}
                 height={img.height}
                 width={img.width}
-                className={
-                  "w-[33vw] lg:w-auto h-auto object-contain object-center"
-                }
+                className={"w-1/2 lg:w-auto h-auto object-cover object-center"}
               />
             ))}
           </div>
