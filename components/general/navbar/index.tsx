@@ -20,7 +20,7 @@ export default function Navbar() {
     <nav
       className={
         (isNavbarOpen || hasScrolled
-          ? "bg-white shadow-xl"
+          ? "bg-white shadow-xl lg:flex lg:items-start py-2 px-4 lg:gap-10 radius-10"
           : " bg-transparent") +
         " fixed top-0 left-0 right-0 z-10 transition-all"
       }>

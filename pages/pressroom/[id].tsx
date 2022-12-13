@@ -31,7 +31,7 @@ export default function PostDetails(props: ServiceResponse<Post>) {
         title={capitalizeFirstLetter(post?.postType || "Blog") + " post"}
         imageUrl={post?.headerImage?.url || ""}
       />
-      <main className="max-w-5xl ml-auto mr-auto px-6 mt-12">
+      <main className="max-w-5xl ml-auto mr-auto px-6 my-12">
         {post && (
           <ReactMarkdown
             components={{
@@ -39,7 +39,7 @@ export default function PostDetails(props: ServiceResponse<Post>) {
               h1: (props) => {
                 return (
                   <>
-                    <h3 className="text-4xl font-bold text-blue-100 mb-6">
+                    <h3 className="text-4xl font-bold text-blue-100 my-6">
                       {props.children[0]}
                     </h3>
                     <p className="text-lg font-medium mb-6">{post.ingress}</p>
@@ -48,21 +48,21 @@ export default function PostDetails(props: ServiceResponse<Post>) {
               },
               h2: (props) => {
                 return (
-                  <h4 className="text-xl font-bold text-color-on-primary mb-4">
+                  <h4 className="text-xl font-bold text-color-on-primary my-4">
                     {props.children[0]}
                   </h4>
                 );
               },
               h3: (props) => {
                 return (
-                  <h5 className="text-lg font-bold text-color-on-primary mb-4">
+                  <h5 className="text-lg font-bold text-color-on-primary my-4">
                     {props.children[0]}
                   </h5>
                 );
               },
               h4: (props) => {
                 return (
-                  <h6 className="text-lg text-color-on-primary mb-4">
+                  <h6 className="text-lg text-color-on-primary my-4">
                     {props.children[0]}
                   </h6>
                 );
@@ -70,7 +70,7 @@ export default function PostDetails(props: ServiceResponse<Post>) {
 
               img: (props) => {
                 return (
-                  <div className="relative w-full aspect-video mb-4">
+                  <div className="relative w-full aspect-video my-4">
                     <Image
                       src={props.src || ""}
                       alt={props.alt || ""}
@@ -85,7 +85,7 @@ export default function PostDetails(props: ServiceResponse<Post>) {
                 // The <a> element is valid to put inside <p> tags but the markdown parser is right now wrapping a single <a> inside <p> so we can remove that to!
                 if (props.node.children[0].type === "text") {
                   return (
-                    <p className="text-lg text-color-on-primary whitespace-pre-wrap mb-4">
+                    <p className="text-lg text-color-on-primary whitespace-pre-wrap my-4">
                       {props.children[0]}
                     </p>
                   );

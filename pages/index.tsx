@@ -35,15 +35,15 @@ const partners = [
     rowSpan: "row-start-3 row-end-3",
   },
   {
-    src: "Karolinska_Institutet_Logo_Black.png",
-    alt: "Karolinska Institutet Logo Black",
+    src: "KI_digital_logotyp_positiv_RGB.svg",
+    alt: "Karolinska Institutet Logo Plum",
     height: 100,
     width: 200,
     colSpan: "col-span-1",
     rowSpan: "row-start-2 row-end-2",
   },
   {
-    src: "Linkoping_University_Black.png",
+    src: "LiU_primary_black - PNG.png",
     alt: "Linköping University Logo Black",
     height: 100,
     width: 200,
@@ -59,7 +59,7 @@ const partners = [
     rowSpan: "row-span-1",
   },
   {
-    src: "Stockholm_University_Horizontal.png",
+    src: "SU_logo_STèENDE_TRYCK_20cm_cmyk.jpg",
     alt: "Stockholm University Logo",
     height: 100,
     width: 200,
@@ -94,11 +94,11 @@ export default function Home() {
         <meta name="description" content="AI Medical" />
       </Head>
       <Header
-        imageUrl="/images/header.png"
+        imageUrl="/images/header.jpg"
         text={
           <p className="relative text-color-on-blue text-2xl lg:text-5xl font-normal whitespace-pre-wrap mb-6">
             {`Driving fast and accurate \ndiagnosis for all skin cancers - \n`}
-            <span className="font-bold">All through AI</span>
+            <strong>All through AI</strong>
           </p>
         }
         actionButton={buttonHeader}
@@ -114,13 +114,13 @@ export default function Home() {
           title="Our Mission"
           text="Our mission is to support healthcare providers with AI powered diagnostic solutions so that no patient should die due to delay or misdiagnosis of a condition."
           actionButton={buttonSection2}
-          image="man_crossed_arms.jpeg"></TwoColImg>
+          image="man_crossed_arms.jpg"></TwoColImg>
         <section className="w-full bg-background-secondary flex flex-col items-center space-y-6 lg:space-y-12 py-24 px-6 md:px-0">
           <h2 className="text-blue-100 font-bold text-3xl text-center border-b-2 border-blue-100">
             Our Partners
           </h2>
           {/* displayed as grid on small screens to be able to rearrange the logos according to design, changes to flex row on bigger screens (xl) */}
-          <ul className="grid grid-cols-2 gap-6 justify-items-center items-center grid-rows-3 xl:flex xl:flex-wrap xl:justify-center xl:space-x-32 ">
+          <ul className="grid grid-cols-2 gap-x-6 gap-y-12 justify-items-center items-center grid-rows-3 xl:flex xl:flex-wrap xl:justify-center xl:space-x-32 ">
             {partners.map((img, i) => (
               <li
                 key={i}
@@ -132,6 +132,7 @@ export default function Home() {
                   alt={img.alt}
                   height={img.height}
                   width={img.width}
+                  className="h-[100px] w-[200px] object-contain object-center xl:h-[200px] xl:w-[400px]"
                 />
               </li>
             ))}
