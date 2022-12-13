@@ -116,9 +116,9 @@ export default function Home() {
           actionButton={buttonSection2}
           image="man_crossed_arms.jpeg"></TwoColImg>
         <section className="w-full bg-background-secondary flex flex-col items-center space-y-6 lg:space-y-12 py-24 px-6 md:px-0">
-          <h3 className="text-blue-100 font-bold text-3xl text-center border-b-2 border-blue-100">
+          <h2 className="text-blue-100 font-bold text-3xl text-center border-b-2 border-blue-100">
             Our Partners
-          </h3>
+          </h2>
           {/* displayed as grid on small screens to be able to rearrange the logos according to design, changes to flex row on bigger screens (xl) */}
           <ul className="grid grid-cols-2 gap-6 justify-items-center items-center grid-rows-3 xl:flex xl:flex-wrap xl:justify-center xl:space-x-32 ">
             {partners.map((img, i) => (
