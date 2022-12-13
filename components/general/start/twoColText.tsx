@@ -17,7 +17,6 @@ type Props = {
 
 export default function TwoColText({ title, text, actionButton, list }: Props) {
   return (
-    /*<div className="w-full h-[75vh] bg-gray-100 flex px-2 pb-24 lg:justify-evenly lg:p-0 lg:py-24">*/
     /* Container */
     <section className="bg-background-secondary py-24">
       {/* Container */}
@@ -25,10 +24,10 @@ export default function TwoColText({ title, text, actionButton, list }: Props) {
         {/* flex box */}
         <div className="flex flex-col justify-center space-y-10 p-4 xl:w-1/3">
           {/* left box */}
-          <h2 className="text-3xl text-blue-100 font-semibold lg:text-4xl leading-snug">
+          <h2 className="text-3xl text-blue-100 font-semibold lg:text-4xl leading-10">
             {title}
           </h2>
-          <p className="text-lg tracking-wider font-semibold leading-snug">
+          <p className="text-lg tracking-wider font-normal leading-[1.6rem]">
             {text}
           </p>
           {actionButton && (

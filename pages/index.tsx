@@ -31,30 +31,40 @@ const partners = [
     alt: "AI Sweden Logo Black",
     height: 100,
     width: 200,
+    colSpan: "col-span-2",
+    rowSpan: "row-start-3 row-end-3",
   },
   {
     src: "Karolinska_Institutet_Logo_Black.png",
     alt: "Karolinska Institutet Logo Black",
     height: 100,
     width: 200,
+    colSpan: "col-span-1",
+    rowSpan: "row-start-2 row-end-2",
   },
   {
     src: "Linkoping_University_Black.png",
     alt: "Linköping University Logo Black",
     height: 100,
     width: 200,
+    colSpan: "col-span-1",
+    rowSpan: "row-start-1 row-end-1",
   },
   {
     src: "AIDA.png",
     alt: "AIDA Logo",
     height: 100,
     width: 200,
+    colSpan: "col-start-2 col-end-2",
+    rowSpan: "row-span-1",
   },
   {
     src: "Stockholm_University_Horizontal.png",
     alt: "Stockholm University Logo",
     height: 100,
     width: 200,
+    colSpan: "col-start-2 col-end-2",
+    rowSpan: "row-start-2 row-end-2",
   },
 ];
 
@@ -105,19 +115,22 @@ export default function Home() {
           text="Our mission is to support healthcare providers with AI powered diagnostic solutions so that no patient should die due to delay or misdiagnosis of a condition."
           actionButton={buttonSection2}
           image="man_crossed_arms.jpeg"></TwoColImg>
-        <section className="w-full bg-background-secondary flex flex-col items-center space-y-6 lg:space-y-12 py-24">
+        <section className="w-full bg-background-secondary flex flex-col items-center space-y-6 lg:space-y-12 py-24 px-6 md:px-0">
           <h3 className="text-blue-100 font-bold text-3xl text-center border-b-2 border-blue-100">
             Our Partners
           </h3>
-          <ul className="flex flex-wrap justify-evenly items-center space-x-20 lg:space-x-40">
+          {/* displayed as grid on small screens to be able to rearrange the logos according to design, changes to flex row on bigger screens (xl) */}
+          <ul className="grid grid-cols-2 gap-6 justify-items-center items-center grid-rows-3 xl:flex xl:flex-wrap xl:justify-center xl:space-x-32 ">
             {partners.map((img) => (
-              <li className="w-20 xl:w-32 bg-red-50">
+              <li
+                className={
+                  " xl:w-20 2xl:w-32 " + img.colSpan + " " + img.rowSpan
+                }>
                 <Image
                   src={"/images/" + img.src}
                   alt={img.alt}
                   height={img.height}
                   width={img.width}
-                  className=" w-[33vw] xl:w-auto h-auto"
                 />
               </li>
             ))}

@@ -34,9 +34,11 @@ export default function Footer() {
   return (
     <footer className="bg-gradient-to-r from-blue-85 to-blue-50">
       <div className="flex flex-col py-16 w-full space-y-20 md:flex-row-reverse md:justify-between md:space-y-0 container">
-        <div className="flex flex-col space-y-4 md:w-1/2">
-          <h2 className="text-2xl text-white font-bold">Send us a message</h2>
-          <span className="bg-white w-32 h-1 rounded-full" />
+        <section className="flex flex-col space-y-4 md:w-1/2">
+          <h3 className="text-2xl text-color-on-blue font-bold">
+            Send us a message
+          </h3>
+          <span className="bg-background-primary w-32 h-1 rounded-full" />
           <input
             type="email"
             id="email"
@@ -57,43 +59,41 @@ export default function Footer() {
           <Button onClick={onSubmit} isBlue={false} className="w-fit">
             Submit
           </Button>
-        </div>
-        <div className="flex flex-col space-y-24">
-          <div>
-            <div className="flex flex-col space-y-4">
-              <h2 className="text-2xl text-white font-bold">Contacts</h2>
-              <span className="bg-white w-16 h-1 rounded-full" />
-              <p className="text-lg text-white font-bold">
-                {contactInformation.phone}
-              </p>
-              <p className="text-lg text-white">
-                <b>{contactInformation.address.street}</b>
-                <br />
-                {contactInformation.address.city}{" "}
-                {contactInformation.address.zip},{" "}
-                {contactInformation.address.country}
-              </p>
-              <p className="text-lg text-white font-bold">
-                {contactInformation.email}
-              </p>
-            </div>
+        </section>
+        <section className="flex flex-col space-y-24">
+          <div className="flex flex-col space-y-4">
+            <h3 className="text-2xl text-color-on-blue font-bold">Contacts</h3>
+            <span className="bg-background-primary w-16 h-1 rounded-full" />
+            <p className="text-lg text-color-on-blue font-bold">
+              {contactInformation.phone}
+            </p>
+            <p className="text-lg text-color-on-blue">
+              <b>{contactInformation.address.street}</b>
+              <br />
+              {contactInformation.address.city} {contactInformation.address.zip}
+              , {contactInformation.address.country}
+            </p>
+            <p className="text-lg text-color-on-blue font-bold">
+              {contactInformation.email}
+            </p>
           </div>
+
           <div className="flex justify-between items-center md:flex-col md:space-y-32 md:items-start">
             <div className="flex flex-col justify-center items-center space-y-4 md:flex-row md:space-y-0 md:space-x-8">
               <LogoIcon w={69} h={69} />
-              <h2 className="text-xl text-white font-bold">
+              <h2 className="text-xl text-color-on-blue font-bold">
                 AI Medical <br />
                 Technology
               </h2>
             </div>
             <div>
-              <p className="text-white text-sm">
+              <p className="text-color-on-blue text-sm">
                 Website Privacy policy <br />
                 Stockholm, Sweden <br /> © 2022 All rights reserved
               </p>
             </div>
           </div>
-        </div>
+        </section>
       </div>
     </footer>
   );
