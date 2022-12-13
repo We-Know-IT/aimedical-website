@@ -27,7 +27,7 @@ const buttonSection2 = {
 
 const partners = [
   {
-    src: "AI_Sweden_Logo_Black.png",
+    src: "partner_ai.svg", //"AI_Sweden_Logo_Black.png",
     alt: "AI Sweden Logo Black",
     height: 100,
     width: 200,
@@ -35,7 +35,7 @@ const partners = [
     rowSpan: "row-start-3 row-end-3",
   },
   {
-    src: "KI_digital_logotyp_positiv_RGB.svg",
+    src: "partner_ki.svg", //"KI_digital_logotyp_positiv_RGB.svg",
     alt: "Karolinska Institutet Logo Plum",
     height: 100,
     width: 200,
@@ -43,7 +43,7 @@ const partners = [
     rowSpan: "row-start-2 row-end-2",
   },
   {
-    src: "LiU_primary_black - PNG.png",
+    src: "partner_liu.svg", //"LiU_primary_black - PNG.png",
     alt: "Linköping University Logo Black",
     height: 100,
     width: 200,
@@ -51,7 +51,7 @@ const partners = [
     rowSpan: "row-start-1 row-end-1",
   },
   {
-    src: "AIDA.png",
+    src: "partner_aida.svg", //"AIDA.png",
     alt: "AIDA Logo",
     height: 100,
     width: 200,
@@ -59,7 +59,7 @@ const partners = [
     rowSpan: "row-span-1",
   },
   {
-    src: "SU_logo_STèENDE_TRYCK_20cm_cmyk.jpg",
+    src: "partner_su.svg", //"SU_logo_STèENDE_TRYCK_20cm_cmyk.jpg",
     alt: "Stockholm University Logo",
     height: 100,
     width: 200,
@@ -120,7 +120,7 @@ export default function Home() {
             Our Partners
           </h2>
           {/* displayed as grid on small screens to be able to rearrange the logos according to design, changes to flex row on bigger screens (xl) */}
-          <ul className="grid grid-cols-2 gap-x-6 gap-y-12 justify-items-center items-center grid-rows-3 xl:flex xl:flex-wrap xl:justify-center xl:space-x-32 ">
+          <ul className="grid grid-cols-2 gap-6 justify-items-center items-center grid-rows-3 xl:flex xl:flex-wrap xl:justify-center xl:space-x-32 ">
             {partners.map((img, i) => (
               <li
                 key={i}
@@ -132,7 +132,6 @@ export default function Home() {
                   alt={img.alt}
                   height={img.height}
                   width={img.width}
-                  className="h-[100px] w-[200px] object-contain object-center xl:h-[200px] xl:w-[400px]"
                 />
               </li>
             ))}
