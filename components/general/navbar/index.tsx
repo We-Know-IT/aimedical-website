@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
+import { useWindowScrollPositions } from "../../../utils/scroll";
 import LogoIcon from "../../icons/common/logo";
 import HamburgerIcon from "./hamburger-icon";
 import NavLink from "./nav-link";
@@ -12,14 +13,19 @@ export default function Navbar() {
     setIsNavbarOpen(!isNavbarOpen);
   };
 
+  const { scrollY } = useWindowScrollPositions();
+  const hasScrolled = scrollY > 0;
+
   return (
     <nav
       className={
-        (isNavbarOpen ? "bg-gray-700 absolute top-0 left-0 " : "") +
-        "fixed top-0 left-0 right-0 md:bg-transparent z-10 container"
+        (isNavbarOpen || hasScrolled
+          ? "bg-white shadow-xl"
+          : " bg-transparent") +
+        " fixed top-0 left-0 right-0 z-10 transition-all"
       }>
       {/* Top navbar */}
-      <div className="py-6  mx-auto flex justify-between">
+      <div className="py-6 mx-auto flex justify-between container">
         <Link href="/">
           <LogoIcon w={56} h={56} />
         </Link>
@@ -31,7 +37,10 @@ export default function Navbar() {
             aria-controls="mobile-menu"
             onClick={toggleNavbar}
             aria-expanded={isNavbarOpen}>
-            <HamburgerIcon isOpen={isNavbarOpen} />
+            <HamburgerIcon
+              isOpen={isNavbarOpen}
+              color={isNavbarOpen || hasScrolled ? "black" : "white"}
+            />
           </button>
           {/* Desktop links */}
           <div className="flex flex-1 items-center justify-center lg:items-stretch lg:justify-start">
@@ -40,7 +49,10 @@ export default function Navbar() {
                 {navLinks.map((link) => {
                   return (
                     <li key={link.path}>
-                      <NavLink navLink={link} />
+                      <NavLink
+                        navLink={link}
+                        color={hasScrolled ? "black" : "white"}
+                      />
                     </li>
                   );
                 })}
@@ -53,11 +65,14 @@ export default function Navbar() {
       <div
         className={(!isNavbarOpen ? "hidden " : "") + "lg:hidden"}
         id="mobile-menu">
-        <ul className="space-y-1 px-2 pt-2 pb-3 flex items-center flex-col">
+        <ul className="space-y-1 px-2 pt-2 pb-8 flex items-center flex-col">
           {navLinks.map((link) => {
             return (
               <li key={link.path} className="py-2">
-                <NavLink navLink={link} />
+                <NavLink
+                  navLink={link}
+                  color={isNavbarOpen ? "black" : "white"}
+                />
               </li>
             );
           })}

@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { useState } from "react";
+import { useWindowScrollPositions } from "../../../utils/scroll";
 
 export interface INavLink {
   label: string;
@@ -8,9 +10,10 @@ export interface INavLink {
 
 interface Props {
   navLink: INavLink;
+  color?: "white" | "black";
 }
 
-export default function NavLink({ navLink }: Props) {
+export default function NavLink({ navLink, color = "white" }: Props) {
   if (navLink.isHightlighted) {
     return (
       <Link
@@ -23,7 +26,12 @@ export default function NavLink({ navLink }: Props) {
   return (
     <Link
       href={navLink.path}
-      className="text-white font-semibold hover:text-white-hover text-lg">
+      className={
+        "font-semibold text-lg" +
+        (color === "black"
+          ? " text-black hover:text-gray-500"
+          : " text-white hover:text-white-hover")
+      }>
       {navLink.label}
     </Link>
   );
