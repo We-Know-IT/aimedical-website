@@ -15,15 +15,13 @@ export default function PostCard({ post }: Props) {
         <p className="text-base line-clamp-3 ">{post.ingress}</p>
       </div>
 
-      {post.images[0] && (
-        <Image
-          className="mb-2 max-h-64 w-auto object-cover rounded"
-          src={post.images[0].url}
-          width={post.images[0].width}
-          height={post.images[0].height}
-          alt={post.images[0].alternativeText || ""}
-        />
-      )}
+      <Image
+        className="mb-2 max-h-64 w-auto object-cover rounded"
+        src={post.listingImage?.url || ""}
+        width={post.listingImage?.width}
+        height={post.listingImage?.height}
+        alt={post.listingImage?.alternativeText || ""}
+      />
 
       <div className="flex flex-row items-center justify-between">
         <p className="text-color-on-primary text-sm flex">

@@ -1,4 +1,4 @@
-import { Post, PostType, Image, Video } from "./types";
+import { Post, PostType, Image } from "./types";
 import { strapi } from "../strapi/strapi";
 import { StrapiError } from "strapi-sdk-js";
 
@@ -18,7 +18,7 @@ async function getPosts(): Promise<ServiceResponse<Post[]>> {
   try {
     const response = await strapi.find("posts", {
       sort: "publishedAt:desc",
-      populate: ["images", "videos"],
+      populate: ["listingImage"],
     });
     if (Array.isArray(response.data))
       return {
@@ -34,7 +34,7 @@ async function getPosts(): Promise<ServiceResponse<Post[]>> {
 async function getPost(id: number): Promise<ServiceResponse<Post>> {
   try {
     const response = await strapi.findOne("posts", id, {
-      populate: ["images", "videos"],
+      populate: ["headerImage"],
     });
     return { data: parseStrapiPostData(response.data), error: null };
   } catch (e) {
@@ -43,6 +43,7 @@ async function getPost(id: number): Promise<ServiceResponse<Post>> {
 }
 
 function parseStrapiPostData(post: any): Post {
+  console.dir(post);
   const parsedPost: Post = {
     id: post.id,
     title: post.attributes.title,
@@ -50,18 +51,21 @@ function parseStrapiPostData(post: any): Post {
     content: post.attributes.content,
     updatedAt: post.attributes.updatedAt,
     publishedAt: post.attributes.publishedAt,
-    images: post.attributes.images.data
-      ? post.attributes.images.data.map((image: any) => {
-          return parseStrapiImageData(image);
-        })
-      : [],
-    videos: post.attributes.videos.data
-      ? post.attributes.videos.data.map((video: any) => {
-          return parseStrapiVideoData(video);
-        })
-      : [],
     postType: post.attributes.postType as PostType,
   };
+
+  if (post.attributes.listingImage) {
+    parsedPost.listingImage = parseStrapiImageData(
+      post.attributes.listingImage.data
+    );
+  }
+
+  if (post.attributes.headerImage) {
+    parsedPost.headerImage = parseStrapiImageData(
+      post.attributes.headerImage.data
+    );
+  }
+
   if (post.attributes.author) {
     parsedPost.author = post.attributes.author;
   }
@@ -79,16 +83,9 @@ function parseStrapiImageData(image: any) {
   return parsedImage;
 }
 
-function parseStrapiVideoData(video: any) {
-  const parsedVideo: Video = {
-    url: video.attributes.url,
-  };
-
-  return parsedVideo;
-}
-
 function getStrapiErrorResponse(e: any): ErrorResponse {
-  return { error: (e as StrapiError).error.message, data: null };
+  console.log(e);
+  return { error: (e as StrapiError).error?.message || "error", data: null };
 }
 
 export { getPosts, getPost };
