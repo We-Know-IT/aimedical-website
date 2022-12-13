@@ -21,7 +21,7 @@ export default function TwoColImg({ title, text, actionButton, image }: Props) {
             alt="Doctor crossed arms"
             fill
             className={
-              "xl:rounded-bl-xl rounded-tl-xl rounded-tr-xl xl:rounded-tr-none "
+              "xl:rounded-bl-xl rounded-tl-xl rounded-tr-xl xl:rounded-tr-none object-cover"
             }
           />
         </div>
