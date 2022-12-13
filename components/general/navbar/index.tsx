@@ -25,10 +25,13 @@ export default function Navbar() {
         " fixed top-0 left-0 right-0 z-10 transition-all"
       }>
       {/* Top navbar */}
-      <div className="py-6 mx-auto flex justify-between container">
-        <Link href="/">
-          <LogoIcon w={56} h={56} />
-        </Link>
+      <div className="py-6  mx-auto flex justify-between container">
+        <h1 aria-label="AI Medical">
+          <Link href="/">
+            <LogoIcon w={56} h={56} />
+          </Link>
+        </h1>
+
         <div className="flex items-center">
           {/* Hamburger menu */}
           <button

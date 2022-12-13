@@ -42,6 +42,7 @@ module.exports = {
         "2xl": "1.74rem",
         "3xl": "2.125rem",
         "4xl": "2.625rem",
+        "5xl": "3rem",
       },
     },
   },
@@ -53,6 +54,7 @@ module.exports = {
 
 Font sizes in design:
 
+48 / 16 = 3rem
 42 / 16 = 2.625REM
 34px/16px = 2.125rem
 28px / 16px = 1.74 rem
