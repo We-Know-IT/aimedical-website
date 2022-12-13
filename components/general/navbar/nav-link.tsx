@@ -30,7 +30,7 @@ export default function NavLink({ navLink, color = "white" }: Props) {
         "font-semibold text-lg" +
         (color === "black"
           ? " text-black hover:text-gray-500"
-          : " text-white hover:text-gray-300")
+          : " text-white hover:text-white-hover")
       }>
       {navLink.label}
     </Link>
