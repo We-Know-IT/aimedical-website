@@ -94,7 +94,6 @@ export default function Home() {
         <meta name="description" content="AI Medical" />
       </Head>
       <Header
-<<<<<<< HEAD
         imageUrl="/images/header.png"
         text={
           <p className="relative text-color-on-blue text-2xl lg:text-5xl font-normal whitespace-pre-wrap mb-6">
@@ -102,10 +101,6 @@ export default function Home() {
             <span className="font-bold">All through AI</span>
           </p>
         }
-=======
-        imageUrl="/images/accuray-MFSEP2g4YS0-unsplash.jpg"
-        text={`Driving fast and accurate\ndiagnosis for all skin cancers -\nAll through AI`}
->>>>>>> ac15119603741eaf411d4a9c054f8308f53155cd
         actionButton={buttonHeader}
         fullHeight={true}
       />
