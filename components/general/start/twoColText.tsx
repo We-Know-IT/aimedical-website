@@ -1,5 +1,4 @@
 import { CSSProperties } from "react";
-import ActionButton from "../actionButton";
 import Button from "../button";
 import Image from "next/image";
 type Props = {

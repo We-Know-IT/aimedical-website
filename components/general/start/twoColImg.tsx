@@ -30,9 +30,9 @@ export default function TwoColImg({ title, text, actionButton, image }: Props) {
           className="bg-gradient-to-br from-blue-100 to-blue-50 flex grow flex-col  items-center justify-center space-y-6 px-6 rounded-bl-xl rounded-br-xl 
         xl:rounded-bl-none xl:rounded-tr-xl xl:rounded-br-xl py-12">
           <div className="flex flex-col  items-s space-y-6">
-            <h2 className="text-3xl font-semibold text-color-on-blue">
+            <h3 className="text-3xl font-semibold text-color-on-blue">
               {title}
-            </h2>
+            </h3>
             <p className="text-lg text-color-on-blue tracking-wide max-w-md">
               {text}
             </p>
