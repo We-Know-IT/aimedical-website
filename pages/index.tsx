@@ -121,8 +121,9 @@ export default function Home() {
           </h3>
           {/* displayed as grid on small screens to be able to rearrange the logos according to design, changes to flex row on bigger screens (xl) */}
           <ul className="grid grid-cols-2 gap-6 justify-items-center items-center grid-rows-3 xl:flex xl:flex-wrap xl:justify-center xl:space-x-32 ">
-            {partners.map((img) => (
+            {partners.map((img, i) => (
               <li
+                key={i}
                 className={
                   " xl:w-20 2xl:w-32 " + img.colSpan + " " + img.rowSpan
                 }>
