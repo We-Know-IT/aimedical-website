@@ -20,10 +20,10 @@ export default function PostDetails(props: ServiceResponse<Post>) {
         title={capitalizeFirstLetter(post?.postType || "Blog") + " post"}
         imageUrl={post?.images[0]?.url || "/images/header.png"}
       />
-      <main className="max-w-5xl ml-auto mr-auto px-6">
-        <h3 className="text-blue-100 text-4xl mt-24 mb-10">{post?.title}</h3>
-        <p className="text-xl font-medium mb-10">{post?.ingress}</p>
-        <p className="text-base whitespace-pre-wrap">{post?.content}</p>
+      <main className="ml-auto mr-auto max-w-5xl px-6">
+        <h3 className="mt-24 mb-10 text-4xl text-blue-100">{post?.title}</h3>
+        <p className="mb-10 text-xl font-medium">{post?.ingress}</p>
+        <p className="whitespace-pre-wrap text-base">{post?.content}</p>
       </main>
     </>
   );

@@ -13,7 +13,7 @@ export default function TwoColImg({ title, text, actionButton, image }: Props) {
   return (
     <section className="bg-background-primary py-24">
       {/* Container */}
-      <div className="container flex flex-col xl:flex-row max-w-xl xl:container">
+      <div className="container flex max-w-xl flex-col xl:container xl:flex-row">
         {/* left box */}
         <div className="relative aspect-square w-full xl:w-2/5">
           <Image
@@ -21,19 +21,19 @@ export default function TwoColImg({ title, text, actionButton, image }: Props) {
             alt="Doctor crossed arms"
             fill
             className={
-              "xl:rounded-bl-xl rounded-tl-xl rounded-tr-xl xl:rounded-tr-none object-cover"
+              "rounded-tl-xl rounded-tr-xl object-cover xl:rounded-bl-xl xl:rounded-tr-none"
             }
           />
         </div>
         {/* right box */}
         <div
-          className="bg-gradient-to-br from-blue-100 to-blue-50 flex grow flex-col  items-center justify-center space-y-6 px-6 rounded-bl-xl rounded-br-xl 
-        xl:rounded-bl-none xl:rounded-tr-xl xl:rounded-br-xl py-12">
-          <div className="flex flex-col  items-s space-y-6">
+          className="flex grow flex-col items-center justify-center space-y-6  rounded-bl-xl rounded-br-xl bg-gradient-to-br from-blue-100 to-blue-50 px-6 
+        py-12 xl:rounded-bl-none xl:rounded-tr-xl xl:rounded-br-xl">
+          <div className="items-s flex  flex-col space-y-6">
             <h3 className="text-3xl font-semibold text-color-on-blue">
               {title}
             </h3>
-            <p className="text-lg text-color-on-blue tracking-wide max-w-md">
+            <p className="max-w-md text-lg tracking-wide text-color-on-blue">
               {text}
             </p>
 

@@ -65,8 +65,8 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
         text="In our pressroom you can find our blog and press releases"
       />
       <main className="container my-10">
-        <section className="flex flex-row gap-x-4 md:gap-x-8 items-center justify-center ml-auto mr-auto ">
-          <p className="text-blue-100 font-bold text-xl hidden md:block">
+        <section className="ml-auto mr-auto flex flex-row items-center justify-center gap-x-4 md:gap-x-8 ">
+          <p className="hidden text-xl font-bold text-blue-100 md:block">
             Filter posts:
           </p>
           <Button isBlue={filters.has("blog")} onClick={toggleBlogsFilter}>
@@ -74,14 +74,14 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
               Blogs
               {filters.has("blog") ? (
                 <Image
-                  className="ml-1 w-4 h-auto "
+                  className="ml-1 h-auto w-4 "
                   src="/images/cancel_icon.png"
                   alt="cancel icon"
                   width={16}
                   height={16}
                 />
               ) : (
-                <div className="w-4 h-4 ml-1"></div>
+                <div className="ml-1 h-4 w-4"></div>
               )}
             </>
           </Button>
@@ -92,14 +92,14 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
               News
               {filters.has("news") ? (
                 <Image
-                  className="ml-1  w-4 h-auto"
+                  className="ml-1  h-auto w-4"
                   src="/images/cancel_icon.png"
                   alt="cancel icon"
                   width={16}
                   height={16}
                 />
               ) : (
-                <div className="w-4 h-4 ml-1"></div>
+                <div className="ml-1 h-4 w-4"></div>
               )}
             </>
           </Button>
@@ -107,7 +107,7 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
         <section className="py-12">
           <ul
             className={
-              "md:grid md:grid-cols-2 gap-14" +
+              "gap-14 md:grid md:grid-cols-2" +
               (threeColsXLWidth ? " xl:grid-cols-3" : "")
             }>
             {/* Iterates over all the posts and returns UI components for each 

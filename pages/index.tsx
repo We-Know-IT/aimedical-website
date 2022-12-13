@@ -96,7 +96,7 @@ export default function Home() {
       <Header
         imageUrl="/images/header.png"
         text={
-          <p className="relative text-color-on-blue text-2xl lg:text-5xl font-normal whitespace-pre-wrap mb-6">
+          <p className="relative mb-6 whitespace-pre-wrap text-2xl font-normal text-color-on-blue lg:text-5xl">
             {`Driving fast and accurate \ndiagnosis for all skin cancers - \n`}
             <span className="font-bold">All through AI</span>
           </p>
@@ -115,12 +115,12 @@ export default function Home() {
           text="Our mission is to support healthcare providers with AI powered diagnostic solutions so that no patient should die due to delay or misdiagnosis of a condition."
           actionButton={buttonSection2}
           image="man_crossed_arms.jpeg"></TwoColImg>
-        <section className="w-full bg-background-secondary flex flex-col items-center space-y-6 lg:space-y-12 py-24 px-6 md:px-0">
-          <h2 className="text-blue-100 font-bold text-3xl text-center border-b-2 border-blue-100">
+        <section className="flex w-full flex-col items-center space-y-6 bg-background-secondary py-24 px-6 md:px-0 lg:space-y-12">
+          <h2 className="border-b-2 border-blue-100 text-center text-3xl font-bold text-blue-100">
             Our Partners
           </h2>
           {/* displayed as grid on small screens to be able to rearrange the logos according to design, changes to flex row on bigger screens (xl) */}
-          <ul className="grid grid-cols-2 gap-6 justify-items-center items-center grid-rows-3 xl:flex xl:flex-wrap xl:justify-center xl:space-x-32 ">
+          <ul className="grid grid-cols-2 grid-rows-3 items-center justify-items-center gap-6 xl:flex xl:flex-wrap xl:justify-center xl:space-x-32 ">
             {partners.map((img, i) => (
               <li
                 key={i}

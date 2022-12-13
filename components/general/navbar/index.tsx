@@ -25,7 +25,7 @@ export default function Navbar() {
         " fixed top-0 left-0 right-0 z-10 transition-all"
       }>
       {/* Top navbar */}
-      <div className="py-6  mx-auto flex justify-between container">
+      <div className="container  mx-auto flex justify-between py-6">
         <h1 aria-label="AI Medical">
           <Link href="/">
             <LogoIcon w={56} h={56} />
@@ -36,7 +36,7 @@ export default function Navbar() {
           {/* Hamburger menu */}
           <button
             type="button"
-            className="lg:hidden h-10"
+            className="h-10 lg:hidden"
             aria-controls="mobile-menu"
             onClick={toggleNavbar}
             aria-expanded={isNavbarOpen}>
@@ -68,7 +68,7 @@ export default function Navbar() {
       <div
         className={(!isNavbarOpen ? "hidden " : "") + "lg:hidden"}
         id="mobile-menu">
-        <ul className="space-y-1 px-2 pt-2 pb-8 flex items-center flex-col">
+        <ul className="flex flex-col items-center space-y-1 px-2 pt-2 pb-8">
           {navLinks.map((link) => {
             return (
               <li key={link.path} className="py-2">
