@@ -43,7 +43,6 @@ async function getPost(id: number): Promise<ServiceResponse<Post>> {
 }
 
 function parseStrapiPostData(post: any): Post {
-  console.dir(post);
   const parsedPost: Post = {
     id: post.id,
     title: post.attributes.title,
@@ -84,7 +83,6 @@ function parseStrapiImageData(image: any) {
 }
 
 function getStrapiErrorResponse(e: any): ErrorResponse {
-  console.log(e);
   return { error: (e as StrapiError).error?.message || "error", data: null };
 }
 

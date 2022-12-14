@@ -27,7 +27,7 @@ const buttonSection2 = {
 
 const partners = [
   {
-    src: "partner_ai.svg", //"AI_Sweden_Logo_Black.png",
+    src: "home/partner_ai.svg",
     alt: "AI Sweden Logo Black",
     height: 100,
     width: 200,
@@ -35,7 +35,7 @@ const partners = [
     rowSpan: "row-start-3 row-end-3",
   },
   {
-    src: "KI_digital_logotyp_positiv_RGB.svg", //"KI_digital_logotyp_positiv_RGB.svg", partner_ki.svg
+    src: "home/KI_digital_logotyp_positiv_RGB.svg",
     alt: "Karolinska Institutet Logo Plum",
     height: 100,
     width: 200,
@@ -43,7 +43,7 @@ const partners = [
     rowSpan: "row-start-2 row-end-2",
   },
   {
-    src: "partner_liu.svg", //"LiU_primary_black - PNG.png",
+    src: "home/partner_liu.svg",
     alt: "Linköping University Logo Black",
     height: 100,
     width: 200,
@@ -51,7 +51,7 @@ const partners = [
     rowSpan: "row-start-1 row-end-1",
   },
   {
-    src: "partner_aida.svg", //"AIDA.png",
+    src: "home/partner_aida.svg",
     alt: "AIDA Logo",
     height: 100,
     width: 200,
@@ -59,7 +59,7 @@ const partners = [
     rowSpan: "row-span-1",
   },
   {
-    src: "partner_su.svg", //"SU_logo_STèENDE_TRYCK_20cm_cmyk.jpg",
+    src: "home/partner_su.svg",
     alt: "Stockholm University Logo",
     height: 100,
     width: 200,
@@ -72,17 +72,17 @@ const columnText = [
   {
     title: "Faster Diagnoses",
     text: "Our decision support tool enables diagnostic decisions in seconds, avoiding long waiting times and reducing anxiety for patients",
-    img: "Spedometer.png",
+    img: "home/speed.svg",
   },
   {
     title: "Cost Efficient",
     text: "Supports reduction of unnecessary skin excisions thereby improving healthcare economics across multiple levels",
-    img: "Money.png",
+    img: "home/money.svg",
   },
   {
     title: "Improved Performance",
     text: "AI powered by a database comprised of 100,000 images of skin lesions ensures fewer melanomas missed, and fewer incorrect diagnoses",
-    img: "Accuracy.png",
+    img: "home/accuracy.svg",
   },
 ];
 
@@ -114,7 +114,7 @@ export default function Home() {
           title="Our Mission"
           text="Our mission is to support healthcare providers with AI powered diagnostic solutions so that no patient should die due to delay or misdiagnosis of a condition."
           actionButton={buttonSection2}
-          image="man_crossed_arms.jpg"></TwoColImg>
+          image="home/man_crossed_arms.jpg"></TwoColImg>
         <section className="w-full bg-background-secondary flex flex-col items-center space-y-6 lg:space-y-12 py-24 px-6 md:px-0">
           <h2 className="text-blue-100 font-bold text-3xl text-center border-b-2 border-blue-100">
             Our Partners
