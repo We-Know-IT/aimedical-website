@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useWindowScrollPositions } from "../../../utils/scroll";
 import LogoIcon from "../../icons/common/logo";
 import HamburgerIcon from "./hamburger-icon";
@@ -8,27 +8,39 @@ import { navLinks } from "./nav-links";
 
 export default function Navbar() {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+  const [logoSize, setLogoSize] = useState(56);
+  const { scrollY } = useWindowScrollPositions();
+  const hasScrolled = scrollY > 0;
+
+  useEffect(() => {
+    if (hasScrolled) {
+      setLogoSize(34);
+    } else {
+      setLogoSize(56);
+    }
+  }, [hasScrolled]);
 
   const toggleNavbar = () => {
     setIsNavbarOpen(!isNavbarOpen);
   };
 
-  const { scrollY } = useWindowScrollPositions();
-  const hasScrolled = scrollY > 0;
-
   return (
     <nav
       className={
         (isNavbarOpen || hasScrolled
-          ? "bg-white shadow-xl lg:flex lg:items-start py-2 px-4 lg:gap-10 radius-10"
+          ? "bg-white shadow-xl"
           : " bg-transparent") +
         " fixed top-0 left-0 right-0 z-10 transition-all"
       }>
       {/* Top navbar */}
-      <div className="py-6  mx-auto flex justify-between container">
+      <div
+        className={
+          " ease-in-out duration-250 mx-auto flex justify-between container " +
+          (hasScrolled ? "py-4" : "py-6")
+        }>
         <h1 aria-label="AI Medical">
           <Link href="/">
-            <LogoIcon w={56} h={56} />
+            <LogoIcon w={logoSize} h={logoSize} />
           </Link>
         </h1>
 

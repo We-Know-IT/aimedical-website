@@ -126,7 +126,7 @@ export default function PostDetails(props: ServiceResponse<Post>) {
                 } else {
                   return (
                     <a
-                      className="active:text-blue-100 focus:text-blue-hover visited:text-blue-hover link:text-blue-100 hover:text-blue-hover"
+                      className="active:text-blue-100 focus:text-blue-hover visited:text-blue-hover link:text-blue-100 hover:text-blue-hover font-semibold"
                       href={linkAddress}>
                       {linkName}
                     </a>

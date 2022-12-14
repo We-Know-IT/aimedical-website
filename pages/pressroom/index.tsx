@@ -60,7 +60,7 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
         <meta name="description" content="News and blog from AI Medical" />
       </Head>
       <Header
-        imageUrl="/images/header.png"
+        imageUrl="/images/header.jpg"
         title="Pressroom"
         text="In our pressroom you can find our blog and press releases"
       />

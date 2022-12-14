@@ -35,7 +35,7 @@ const partners = [
     rowSpan: "row-start-3 row-end-3",
   },
   {
-    src: "partner_ki.svg", //"KI_digital_logotyp_positiv_RGB.svg",
+    src: "KI_digital_logotyp_positiv_RGB.svg", //"KI_digital_logotyp_positiv_RGB.svg", partner_ki.svg
     alt: "Karolinska Institutet Logo Plum",
     height: 100,
     width: 200,

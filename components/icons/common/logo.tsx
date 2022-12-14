@@ -5,5 +5,13 @@ export default function LogoIcon({
   w = defaultHeight,
   h = defaultWidth,
 }: IconProps) {
-  return <Image src={"/images/logo.png"} width={w} height={h} alt="Logo" />;
+  return (
+    <Image
+      className="ease-in-out duration-200"
+      src={"/images/logo.png"}
+      width={w}
+      height={h}
+      alt="Logo"
+    />
+  );
 }
