@@ -27,7 +27,7 @@ const buttonSection2 = {
 
 const partners = [
   {
-    src: "AI_Sweden_Logo_Black.png",
+    src: "partner_ai.svg", //"AI_Sweden_Logo_Black.png",
     alt: "AI Sweden Logo Black",
     height: 100,
     width: 200,
@@ -35,15 +35,15 @@ const partners = [
     rowSpan: "row-start-3 row-end-3",
   },
   {
-    src: "Karolinska_Institutet_Logo_Black.png",
-    alt: "Karolinska Institutet Logo Black",
+    src: "partner_ki.svg", //"KI_digital_logotyp_positiv_RGB.svg",
+    alt: "Karolinska Institutet Logo Plum",
     height: 100,
     width: 200,
     colSpan: "col-span-1",
     rowSpan: "row-start-2 row-end-2",
   },
   {
-    src: "Linkoping_University_Black.png",
+    src: "partner_liu.svg", //"LiU_primary_black - PNG.png",
     alt: "Linköping University Logo Black",
     height: 100,
     width: 200,
@@ -51,7 +51,7 @@ const partners = [
     rowSpan: "row-start-1 row-end-1",
   },
   {
-    src: "AIDA.png",
+    src: "partner_aida.svg", //"AIDA.png",
     alt: "AIDA Logo",
     height: 100,
     width: 200,
@@ -59,7 +59,7 @@ const partners = [
     rowSpan: "row-span-1",
   },
   {
-    src: "Stockholm_University_Horizontal.png",
+    src: "partner_su.svg", //"SU_logo_STèENDE_TRYCK_20cm_cmyk.jpg",
     alt: "Stockholm University Logo",
     height: 100,
     width: 200,
@@ -94,11 +94,11 @@ export default function Home() {
         <meta name="description" content="AI Medical" />
       </Head>
       <Header
-        imageUrl="/images/header.png"
+        imageUrl="/images/header.jpg"
         text={
           <p className="relative text-color-on-blue text-2xl lg:text-5xl font-normal whitespace-pre-wrap mb-6">
             {`Driving fast and accurate \ndiagnosis for all skin cancers - \n`}
-            <span className="font-bold">All through AI</span>
+            <strong>All through AI</strong>
           </p>
         }
         actionButton={buttonHeader}
@@ -114,7 +114,7 @@ export default function Home() {
           title="Our Mission"
           text="Our mission is to support healthcare providers with AI powered diagnostic solutions so that no patient should die due to delay or misdiagnosis of a condition."
           actionButton={buttonSection2}
-          image="man_crossed_arms.jpeg"></TwoColImg>
+          image="man_crossed_arms.jpg"></TwoColImg>
         <section className="w-full bg-background-secondary flex flex-col items-center space-y-6 lg:space-y-12 py-24 px-6 md:px-0">
           <h2 className="text-blue-100 font-bold text-3xl text-center border-b-2 border-blue-100">
             Our Partners

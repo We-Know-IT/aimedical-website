@@ -1,4 +1,4 @@
-export type PostType = "news" | "blog";
+export type PostType = "news" | "blog" | "research";
 
 export interface Post {
   id: number;
@@ -7,8 +7,8 @@ export interface Post {
   content: string;
   updatedAt: string;
   publishedAt: string;
-  images: [Image];
-  videos: [Video];
+  headerImage?: Image;
+  listingImage?: Image;
   author?: string;
   postType: PostType;
 }
@@ -17,9 +17,5 @@ export interface Image {
   alternativeText: string;
   width: number;
   height: number;
-  url: string;
-}
-
-export interface Video {
   url: string;
 }
