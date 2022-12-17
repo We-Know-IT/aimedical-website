@@ -1,6 +1,5 @@
 import { CSSProperties } from "react";
 import Button from "./button";
-import Navbar from "./navbar";
 
 type Props = {
   title?: string;

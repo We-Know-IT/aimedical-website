@@ -1,4 +1,3 @@
-import { CSSProperties } from "react";
 import Button from "../button";
 import Image from "next/image";
 type Props = {

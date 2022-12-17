@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { useState } from "react";
-import { useWindowScrollPositions } from "../../../utils/scroll";
 
 export interface INavLink {
   label: string;

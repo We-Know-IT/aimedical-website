@@ -16,7 +16,6 @@ const contactInformation = {
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [isEmailSent, setIsEmailSent] = useState(false);
 
   const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);

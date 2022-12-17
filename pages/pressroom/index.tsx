@@ -1,4 +1,4 @@
-import { GetServerSideProps, GetServerSidePropsResult } from "next";
+import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import Button from "../../components/general/button";
@@ -12,7 +12,7 @@ import Header from "../../components/general/header";
 const threeColsXLWidth = true;
 
 export default function PressRoom(props: ServiceResponse<Post[]>) {
-  const [posts, _] = useState<Post[]>(props.data || []);
+  const [posts] = useState<Post[]>(props.data || []);
 
   const [filters, setFilters] = useState<Set<string>>(new Set());
 
@@ -32,6 +32,7 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
   useEffect(() => {
     initFilters();
     checkServerError();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const toggleBlogsFilter = () => {
