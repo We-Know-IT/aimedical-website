@@ -27,7 +27,7 @@ const buttonSection2 = {
 
 const partners = [
   {
-    src: "AI_Sweden_Logo_Black.png",
+    src: "home/partner_ai.svg",
     alt: "AI Sweden Logo Black",
     height: 100,
     width: 200,
@@ -35,15 +35,15 @@ const partners = [
     rowSpan: "row-start-3 row-end-3",
   },
   {
-    src: "Karolinska_Institutet_Logo_Black.png",
-    alt: "Karolinska Institutet Logo Black",
+    src: "home/KI_digital_logotyp_positiv_RGB.svg",
+    alt: "Karolinska Institutet Logo Plum",
     height: 100,
     width: 200,
     colSpan: "col-span-1",
     rowSpan: "row-start-2 row-end-2",
   },
   {
-    src: "Linkoping_University_Black.png",
+    src: "home/partner_liu.svg",
     alt: "Linköping University Logo Black",
     height: 100,
     width: 200,
@@ -51,7 +51,7 @@ const partners = [
     rowSpan: "row-start-1 row-end-1",
   },
   {
-    src: "AIDA.png",
+    src: "home/partner_aida.svg",
     alt: "AIDA Logo",
     height: 100,
     width: 200,
@@ -59,7 +59,7 @@ const partners = [
     rowSpan: "row-span-1",
   },
   {
-    src: "Stockholm_University_Horizontal.png",
+    src: "home/partner_su.svg",
     alt: "Stockholm University Logo",
     height: 100,
     width: 200,
@@ -72,17 +72,17 @@ const columnText = [
   {
     title: "Faster Diagnoses",
     text: "Our decision support tool enables diagnostic decisions in seconds, avoiding long waiting times and reducing anxiety for patients",
-    img: "Spedometer.png",
+    img: "home/speed.svg",
   },
   {
     title: "Cost Efficient",
     text: "Supports reduction of unnecessary skin excisions thereby improving healthcare economics across multiple levels",
-    img: "Money.png",
+    img: "home/money.svg",
   },
   {
     title: "Improved Performance",
     text: "AI powered by a database comprised of 100,000 images of skin lesions ensures fewer melanomas missed, and fewer incorrect diagnoses",
-    img: "Accuracy.png",
+    img: "home/accuracy.svg",
   },
 ];
 
@@ -94,11 +94,11 @@ export default function Home() {
         <meta name="description" content="AI Medical" />
       </Head>
       <Header
-        imageUrl="/images/header.png"
+        imageUrl="/images/header.jpg"
         text={
           <p className="relative mb-6 whitespace-pre-wrap text-2xl font-normal text-color-on-blue lg:text-5xl">
             {`Driving fast and accurate \ndiagnosis for all skin cancers - \n`}
-            <span className="font-bold">All through AI</span>
+            <strong>All through AI</strong>
           </p>
         }
         actionButton={buttonHeader}
@@ -114,7 +114,7 @@ export default function Home() {
           title="Our Mission"
           text="Our mission is to support healthcare providers with AI powered diagnostic solutions so that no patient should die due to delay or misdiagnosis of a condition."
           actionButton={buttonSection2}
-          image="man_crossed_arms.jpeg"></TwoColImg>
+          image="home/man_crossed_arms.jpg"></TwoColImg>
         <section className="flex w-full flex-col items-center space-y-6 bg-background-secondary py-24 px-6 md:px-0 lg:space-y-12">
           <h2 className="border-b-2 border-blue-100 text-center text-3xl font-bold text-blue-100">
             Our Partners

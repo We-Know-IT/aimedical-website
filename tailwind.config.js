@@ -8,7 +8,10 @@ module.exports = {
   theme: {
     container: {
       center: true,
-      padding: "1.25rem",
+      padding: {
+        DEFAULT: "1.25rem",
+        xl: "1.75rem",
+      },
     },
     extend: {
       colors: {
@@ -43,6 +46,11 @@ module.exports = {
         "3xl": "2.125rem",
         "4xl": "2.625rem",
         "5xl": "3rem",
+      },
+      boxShadow: {
+        md: "0 0 6px -1px rgb(0 0 0 / 0.1), 0 0 4px -2px rgb(0 0 0 / 0.1)",
+        lg: "0 0 15px -3px rgb(0 0 0 / 0.1), 0 0 6px -4px rgb(0 0 0 / 0.1)",
+        xl: "0 0 25px -5px rgb(0 0 0 / 0.1), 0 0 10px -6px rgb(0 0 0 / 0.1)",
       },
     },
   },

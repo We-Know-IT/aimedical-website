@@ -22,7 +22,7 @@ export const navLinks: INavLink[] = [
     path: "/research",
   },
   {
-    label: "News",
+    label: "Pressroom",
     path: "/pressroom",
   },
   {
