@@ -17,6 +17,7 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
   const [filters, setFilters] = useState<Set<PostType>>(new Set());
   const [nextPosts, setNextPosts] = useState<Post[]>([]);
   const [page, setPage] = useState(1);
+  const [error, setError] = useState("");
 
   const initFilters = () => {
     const filters = new Set<PostType>();
@@ -27,7 +28,7 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
 
   const checkServerError = () => {
     if (props.error) {
-      alert("Server error: " + props.error);
+      setError("Server error: " + props.error);
     }
   };
 
@@ -39,7 +40,11 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
       },
       filterBy: Array.from(filters),
     });
-    setNextPosts(newPosts.data || []);
+    if (newPosts.error || !newPosts.data) {
+      setError("Server error: " + newPosts.error);
+      return;
+    }
+    setNextPosts(newPosts.data);
   };
 
   const initPosts = async (filters: PostType[]) => {
@@ -52,9 +57,10 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
       filterBy: filters,
     });
     if (posts.error || !posts.data) {
-      alert("Server error: " + posts.error);
+      setError("Server error: " + posts.error);
       return;
     }
+    setError("");
     setPosts(posts.data);
 
     const nextPosts = await getPosts({
@@ -65,17 +71,18 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
       filterBy: filters,
     });
     if (nextPosts.error || !nextPosts.data) {
-      alert("Server error: " + nextPosts.error);
+      setError("Server error: " + nextPosts.error);
       return;
     }
+    setError("");
     setNextPosts(nextPosts.data);
     setPage(1);
   };
 
   useEffect(() => {
     initFilters();
-    initPosts(["blog", "news"]);
     checkServerError();
+    initPosts(["blog", "news"]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -111,6 +118,10 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
     loadNextPosts(currentPage + 1);
   };
 
+  const tryAgain = () => {
+    initPosts(Array.from(filters));
+  };
+
   return (
     <>
       <Head>
@@ -127,7 +138,10 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
           <p className="hidden text-xl font-bold text-primary md:block">
             Filter posts:
           </p>
-          <Button isBlue={filters.has("blog")} onClick={toggleBlogsFilter}>
+          <Button
+            isBlue={filters.has("blog")}
+            onClick={toggleBlogsFilter}
+            disabled={error ? true : false}>
             <>
               Blogs
               {filters.has("blog") ? (
@@ -145,7 +159,8 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
           </Button>
           <Button
             isBlue={filters.has("news")}
-            onClick={togglePressReleasesFilter}>
+            onClick={togglePressReleasesFilter}
+            disabled={error ? true : false}>
             <>
               News
               {filters.has("news") ? (
@@ -163,6 +178,24 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
           </Button>
         </section>
         <section className="py-12">
+          {/* If there is an error, show a message. */}
+          {error && (
+            <div className="flex flex-col items-center gap-14">
+              <p className="text-center text-xl font-bold text-error-dark">
+                {error}
+              </p>
+              <Button onClick={tryAgain} isBlue>
+                Try again
+              </Button>
+            </div>
+          )}
+          {/* If there are no posts to show, show a message. */}
+          {posts.length === 0 && !error && (
+            <p className="text-center text-xl font-bold text-primary">
+              Looks like there are no posts to show.
+            </p>
+          )}
+          {/* If there are posts to show, show them. */}
           <ul
             className={
               "flex flex-col gap-8 md:grid md:grid-cols-2 md:gap-14" +
