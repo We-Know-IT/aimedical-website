@@ -32,7 +32,7 @@ export default function Header({
       style={backgroundImageStyle}>
       <div className="container flex h-full flex-col justify-center">
         <>
-          <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-r from-blue-85"></div>
+          <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-r from-primary/[0.85]"></div>
           {title && (
             <>
               <h2 className="relative text-xl font-bold text-color-on-blue">

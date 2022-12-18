@@ -22,6 +22,30 @@ module.exports = {
           hover: "rgb(0, 77, 138)",
         },
 
+        primary: {
+          DEFAULT: "#0063AF",
+          dark: "#004275",
+          light: "#008cf7",
+        },
+
+        error: {
+          DEFAULT: "#f44336",
+          dark: "#d32f2f",
+          light: "#e57373",
+        },
+
+        warning: {
+          DEFAULT: "#ffa726",
+          dark: "#f57c00",
+          light: "#ffb74d",
+        },
+
+        success: {
+          DEFAULT: "#66bb6a",
+          dark: "#388e3c",
+          light: "#81c784",
+        },
+
         "color-on-primary": colors.black,
         "color-on-secondary": colors.black,
         "color-on-blue": colors.white,

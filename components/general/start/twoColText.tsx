@@ -23,7 +23,7 @@ export default function TwoColText({ title, text, actionButton, list }: Props) {
         {/* flex box */}
         <div className="flex flex-col justify-center space-y-10 p-4 xl:w-1/3">
           {/* left box */}
-          <h2 className="text-3xl font-semibold leading-10 text-blue-100 lg:text-4xl">
+          <h2 className="text-3xl font-semibold leading-10 text-primary lg:text-4xl">
             {title}
           </h2>
           <p className="text-lg font-normal leading-[1.6rem] tracking-wider">
@@ -33,8 +33,8 @@ export default function TwoColText({ title, text, actionButton, list }: Props) {
             <Button onClick={actionButton.onClick}>{actionButton.text}</Button>
           )}
         </div>
-        <div className="flex flex-col justify-center gap-y-6 space-y-8 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 px-4 py-20 lg:items-center lg:justify-evenly lg:gap-y-0 xl:w-1/2">
-          {/*  bg-gradient-to-r from-blue-50 to-blue-100*/}
+        <div className="flex flex-col justify-center gap-y-6 space-y-8 rounded-xl bg-gradient-to-br from-primary/50 to-primary px-4 py-20 lg:items-center lg:justify-evenly lg:gap-y-0 xl:w-1/2">
+          {/*  bg-gradient-to-r from-primary/[50] to-primary*/}
           {list &&
             list.map((data) => (
               <div

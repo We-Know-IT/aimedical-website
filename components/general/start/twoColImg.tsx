@@ -27,7 +27,7 @@ export default function TwoColImg({ title, text, actionButton, image }: Props) {
         </div>
         {/* right box */}
         <div
-          className="flex grow flex-col items-center justify-center space-y-6  rounded-bl-xl rounded-br-xl bg-gradient-to-br from-blue-100 to-blue-50 px-6 
+          className="flex grow flex-col items-center justify-center space-y-6  rounded-bl-xl rounded-br-xl bg-gradient-to-br from-primary to-primary/50 px-6 
         py-12 xl:rounded-bl-none xl:rounded-tr-xl xl:rounded-br-xl">
           <div className="items-s flex  flex-col space-y-6">
             <h3 className="text-3xl font-semibold text-color-on-blue">
