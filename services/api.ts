@@ -105,6 +105,9 @@ function parseStrapiImageData(image: any) {
     height: image.attributes.height,
     url: image.attributes.url,
   };
+  if (process.env.NODE_ENV === "development") {
+    parsedImage.url = "http://localhost:1337" + parsedImage.url;
+  }
 
   return parsedImage;
 }

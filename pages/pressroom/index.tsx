@@ -165,7 +165,7 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
         <section className="py-12">
           <ul
             className={
-              "gap-14 md:grid md:grid-cols-2" +
+              "flex flex-col gap-8 md:grid md:grid-cols-2 md:gap-14" +
               (threeColsXLWidth ? " xl:grid-cols-3" : "")
             }>
             {/* Iterates over all the posts and returns UI components for each 
@@ -173,7 +173,7 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
             {posts.map((p) => {
               if (filters.has(p.postType) || filters.size === 0) {
                 return (
-                  <li key={p.id} className="w-fit">
+                  <li key={p.id} className="w-full">
                     <Link href={"/pressroom/" + p.id}>
                       <PostCard post={p} />
                     </Link>
