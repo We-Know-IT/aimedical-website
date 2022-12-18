@@ -4,20 +4,22 @@ import { useEffect, useState } from "react";
 import Button from "../../components/general/button";
 import PostCard from "../../components/pressroom/post";
 import { getPosts, ServiceResponse } from "../../services/api";
-import { Post } from "../../services/types";
+import { Post, PostType } from "../../services/types";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "../../components/general/header";
 
 const threeColsXLWidth = true;
+const pageSize = 6;
 
 export default function PressRoom(props: ServiceResponse<Post[]>) {
-  const [posts] = useState<Post[]>(props.data || []);
-
-  const [filters, setFilters] = useState<Set<string>>(new Set());
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [filters, setFilters] = useState<Set<PostType>>(new Set());
+  const [nextPosts, setNextPosts] = useState<Post[]>([]);
+  const [page, setPage] = useState(1);
 
   const initFilters = () => {
-    const filters = new Set<string>();
+    const filters = new Set<PostType>();
     filters.add("blog");
     filters.add("news");
     setFilters(filters);
@@ -29,8 +31,50 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
     }
   };
 
+  const loadNextPosts = async (page: number) => {
+    const newPosts = await getPosts({
+      pagination: {
+        start: page * pageSize,
+        limit: pageSize,
+      },
+      filterBy: Array.from(filters),
+    });
+    setNextPosts(newPosts.data || []);
+  };
+
+  const initPosts = async (filters: PostType[]) => {
+    console.log(filters);
+    const posts = await getPosts({
+      pagination: {
+        start: 0,
+        limit: pageSize,
+      },
+      filterBy: filters,
+    });
+    if (posts.error || !posts.data) {
+      alert("Server error: " + posts.error);
+      return;
+    }
+    setPosts(posts.data);
+
+    const nextPosts = await getPosts({
+      pagination: {
+        start: 1 * pageSize,
+        limit: pageSize,
+      },
+      filterBy: filters,
+    });
+    if (nextPosts.error || !nextPosts.data) {
+      alert("Server error: " + nextPosts.error);
+      return;
+    }
+    setNextPosts(nextPosts.data);
+    setPage(1);
+  };
+
   useEffect(() => {
     initFilters();
+    initPosts(["blog", "news"]);
     checkServerError();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -43,15 +87,28 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
     toggleEntryInFilters("news");
   };
 
-  const toggleEntryInFilters = (entry: string) => {
+  const toggleEntryInFilters = (entry: PostType) => {
     const _filters = new Set(filters);
     if (_filters.has(entry)) {
       _filters.delete(entry);
     } else {
       _filters.add(entry);
     }
-
+    if (_filters.size >= 0) initPosts(Array.from(_filters));
+    else initPosts(["blog", "news"]);
     setFilters(_filters);
+  };
+
+  const loadMorePosts = async () => {
+    setPosts([...posts, ...nextPosts]);
+    const currentPage = page;
+    setPage(currentPage + 1);
+
+    if (nextPosts.length < pageSize) {
+      setNextPosts([]); // Means there is no more posts to load
+      return;
+    }
+    loadNextPosts(currentPage + 1);
   };
 
   return (
@@ -125,6 +182,13 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
               }
             })}
           </ul>
+          {nextPosts.length > 0 && (
+            <div className="mt-12 flex flex-col items-center">
+              <Button onClick={loadMorePosts} isBlue>
+                Load more
+              </Button>
+            </div>
+          )}
         </section>
       </main>
     </>
@@ -135,6 +199,6 @@ export const getServerSideProps: GetServerSideProps<{
   data: Post[] | null;
   error: string | null;
 }> = async () => {
-  const res = await getPosts();
+  const res = await getPosts({ pagination: { start: 0, limit: pageSize } });
   return { props: res };
 };

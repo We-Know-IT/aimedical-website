@@ -14,11 +14,38 @@ type ErrorResponse = {
 
 export type ServiceResponse<T> = DataResponse<T> | ErrorResponse;
 
-async function getPosts(): Promise<ServiceResponse<Post[]>> {
+type PaginationByOffset = {
+  start: number;
+  limit: number;
+  withCount?: boolean;
+};
+
+type PaginationByPage = {
+  page: number;
+  pageSize: number;
+  withCount?: boolean;
+};
+
+export interface PostsRequestParams {
+  sort?: string;
+  pagination?: PaginationByOffset | PaginationByPage;
+  filters?: Record<string, unknown>;
+  filterBy?: PostType[];
+}
+
+async function getPosts({
+  sort = "publishedAt:desc",
+  pagination = { start: 0, limit: 10 },
+  filterBy = ["blog", "news", "research"],
+}: PostsRequestParams = {}): Promise<ServiceResponse<Post[]>> {
   try {
     const response = await strapi.find("posts", {
-      sort: "publishedAt:desc",
+      sort,
       populate: ["listingImage"],
+      pagination,
+      filters: {
+        postType: filterBy,
+      },
     });
     if (Array.isArray(response.data))
       return {

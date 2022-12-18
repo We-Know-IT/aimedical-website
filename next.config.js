@@ -11,6 +11,10 @@ const nextConfig = {
         pathname: "/uploads/**",
       },
       {
+        protocol: "http",
+        hostname: "localhost",
+      },
+      {
         protocol: "https",
         hostname: "aimedical-strapi.onrender.com",
         pathname: "/uploads/**",
