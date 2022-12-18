@@ -28,54 +28,51 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
 
   const checkServerError = () => {
     if (props.error) {
-      setError("Server error: " + props.error);
+      handleError(props.error);
     }
+  };
+
+  const handleError = (error: string) => {
+    console.error(error);
+    setError("Whoops! Looks like there was an error fetching the posts.");
+  };
+
+  const getPostsAndSetError = async (
+    start: number,
+    limit: number,
+    filterBy: PostType[]
+  ): Promise<Post[]> => {
+    const posts = await getPosts({
+      pagination: {
+        start,
+        limit,
+      },
+      filterBy,
+    });
+    if (posts.error || !posts.data) {
+      handleError(posts.error);
+      return [];
+    }
+    setError("");
+    return posts.data;
   };
 
   const loadNextPosts = async (page: number) => {
-    const newPosts = await getPosts({
-      pagination: {
-        start: page * pageSize,
-        limit: pageSize,
-      },
-      filterBy: Array.from(filters),
-    });
-    if (newPosts.error || !newPosts.data) {
-      setError("Server error: " + newPosts.error);
-      return;
-    }
-    setNextPosts(newPosts.data);
+    const newPosts = await getPostsAndSetError(
+      page * pageSize,
+      pageSize,
+      Array.from(filters)
+    );
+    setNextPosts(newPosts);
   };
 
   const initPosts = async (filters: PostType[]) => {
-    console.log(filters);
-    const posts = await getPosts({
-      pagination: {
-        start: 0,
-        limit: pageSize,
-      },
-      filterBy: filters,
-    });
-    if (posts.error || !posts.data) {
-      setError("Server error: " + posts.error);
-      return;
-    }
-    setError("");
-    setPosts(posts.data);
+    const posts = await getPostsAndSetError(0, pageSize, filters);
+    setPosts(posts);
 
-    const nextPosts = await getPosts({
-      pagination: {
-        start: 1 * pageSize,
-        limit: pageSize,
-      },
-      filterBy: filters,
-    });
-    if (nextPosts.error || !nextPosts.data) {
-      setError("Server error: " + nextPosts.error);
-      return;
-    }
-    setError("");
-    setNextPosts(nextPosts.data);
+    const nextPosts = await getPostsAndSetError(pageSize, pageSize, filters);
+    setNextPosts(nextPosts);
+
     setPage(1);
   };
 
