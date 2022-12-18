@@ -15,13 +15,6 @@ module.exports = {
     },
     extend: {
       colors: {
-        blue: {
-          100: "rgb(0, 99, 175)",
-          85: "rgba(0,99,175, 0.85)",
-          50: "rgba(0, 99, 175, 0.5)",
-          hover: "rgb(0, 77, 138)",
-        },
-
         primary: {
           DEFAULT: "#0063AF",
           dark: "#004275",
