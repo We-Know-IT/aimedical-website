@@ -18,8 +18,8 @@ export default function Button({
     <button
       className={
         (isBlue
-          ? "bg-primary text-color-on-blue hover:bg-primary-dark "
-          : "bg-background-primary text-color-on-primary hover:bg-white-hover") +
+          ? "bg-primary  text-on-primary hover:bg-primary-dark "
+          : "bg-background-primary text-on-bg-primary hover:bg-background-primary-hover") +
         commonStyles +
         className
       }

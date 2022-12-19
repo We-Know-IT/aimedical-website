@@ -38,16 +38,21 @@ module.exports = {
           dark: "#388e3c",
           light: "#81c784",
         },
-
-        "color-on-primary": colors.black,
-        "color-on-secondary": colors.black,
-        "color-on-blue": colors.white,
-        "background-primary": colors.white,
-        "background-secondary": "rgba(243, 243, 243, 0.502)",
-
-        white: {
+        "background-primary": {
+          DEFAULT: colors.white,
           hover: "rgba(235, 235, 235, 0.9)",
-          DEFAULT: "rgb(255, 255, 255)",
+        },
+        "background-secondary": "rgba(243, 243, 243, 0.502)",
+        "surface-primary": colors.white,
+        "on-bg-primary": { DEFAULT: colors.black, hover: colors.gray[500] },
+        "on-bg-secondary": { DEFAULT: colors.black, hover: colors.gray[500] },
+        "on-surface-primary": {
+          DEFAULT: colors.black,
+          hover: colors.gray[500],
+        },
+        "on-primary": {
+          hover: "rgba(235, 235, 235, 0.9)",
+          DEFAULT: colors.white,
         },
       },
       fontFamily: {

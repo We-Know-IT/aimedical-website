@@ -24,7 +24,7 @@ export default function PostCard({ post }: Props) {
       />
 
       <div className="flex flex-row items-center justify-between">
-        <p className="flex text-sm text-color-on-primary">
+        <p className="flex text-sm text-on-primary">
           {getDateString(new Date(post.publishedAt))}
         </p>
         <Tag text={post.postType} />
