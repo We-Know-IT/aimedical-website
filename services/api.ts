@@ -1,37 +1,6 @@
-import { Post, PostType, Image } from "./types";
+import { Post, PostsRequestParams, ServiceResponse } from "./types";
 import { strapi } from "../strapi/strapi";
-import { StrapiError } from "strapi-sdk-js";
-
-type DataResponse<T> = {
-  data: T;
-  error: null;
-};
-
-type ErrorResponse = {
-  error: string;
-  data: null;
-};
-
-export type ServiceResponse<T> = DataResponse<T> | ErrorResponse;
-
-type PaginationByOffset = {
-  start: number;
-  limit: number;
-  withCount?: boolean;
-};
-
-type PaginationByPage = {
-  page: number;
-  pageSize: number;
-  withCount?: boolean;
-};
-
-export interface PostsRequestParams {
-  sort?: string;
-  pagination?: PaginationByOffset | PaginationByPage;
-  filters?: Record<string, unknown>;
-  filterBy?: PostType[];
-}
+import { getStrapiErrorResponse, parseStrapiPostData } from "./strapi.utils";
 
 async function getPosts({
   sort = "publishedAt:desc",
@@ -67,53 +36,6 @@ async function getPost(id: number): Promise<ServiceResponse<Post>> {
   } catch (e) {
     return getStrapiErrorResponse(e);
   }
-}
-
-function parseStrapiPostData(post: any): Post {
-  const parsedPost: Post = {
-    id: post.id,
-    title: post.attributes.title,
-    ingress: post.attributes.ingress,
-    content: post.attributes.content,
-    updatedAt: post.attributes.updatedAt,
-    publishedAt: post.attributes.publishedAt,
-    postType: post.attributes.postType as PostType,
-  };
-
-  if (post.attributes.listingImage) {
-    parsedPost.listingImage = parseStrapiImageData(
-      post.attributes.listingImage.data
-    );
-  }
-
-  if (post.attributes.headerImage) {
-    parsedPost.headerImage = parseStrapiImageData(
-      post.attributes.headerImage.data
-    );
-  }
-
-  if (post.attributes.author) {
-    parsedPost.author = post.attributes.author;
-  }
-  return parsedPost;
-}
-
-function parseStrapiImageData(image: any) {
-  const parsedImage: Image = {
-    alternativeText: image.attributes.alternativeText,
-    width: image.attributes.width,
-    height: image.attributes.height,
-    url: image.attributes.url,
-  };
-  if (process.env.NODE_ENV === "development") {
-    parsedImage.url = "http://localhost:1337" + parsedImage.url;
-  }
-
-  return parsedImage;
-}
-
-function getStrapiErrorResponse(e: any): ErrorResponse {
-  return { error: (e as StrapiError).error?.message || "error", data: null };
 }
 
 export { getPosts, getPost };
