@@ -35,7 +35,7 @@ export default function Navbar() {
       {/* Top navbar */}
       <div
         className={
-          " ease-in-out duration-250 mx-auto flex justify-between container " +
+          " duration-250 container mx-auto flex justify-between ease-in-out " +
           (hasScrolled ? "py-4" : "py-6")
         }>
         <h1 aria-label="AI Medical" className="flex flex-col justify-center">
@@ -48,7 +48,7 @@ export default function Navbar() {
           {/* Hamburger menu */}
           <button
             type="button"
-            className="lg:hidden h-10"
+            className="h-10 lg:hidden"
             aria-controls="mobile-menu"
             onClick={toggleNavbar}
             aria-expanded={isNavbarOpen}>
@@ -80,7 +80,7 @@ export default function Navbar() {
       <div
         className={(!isNavbarOpen ? "hidden " : "") + "lg:hidden"}
         id="mobile-menu">
-        <ul className="space-y-1 px-2 pt-2 pb-8 flex items-center flex-col">
+        <ul className="flex flex-col items-center space-y-1 px-2 pt-2 pb-8">
           {navLinks.map((link) => {
             return (
               <li key={link.path} className="py-2">
