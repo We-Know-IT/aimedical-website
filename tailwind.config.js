@@ -14,6 +14,29 @@ module.exports = {
       },
     },
     extend: {
+      gridTemplateColumns: {
+        // Simple 16 column grid
+        "advantage-card": "40px auto",
+      },
+      keyframes: {
+        right: {
+          "0%": { width: "0%" },
+          "100%": { width: "100%" },
+        },
+        up: {
+          "0%": { transform: "scale(1, 0)" },
+          "100%": { transform: "scale(1, 1)" },
+        },
+        "fade-in": {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
+        },
+      },
+      animation: {
+        right: "right 0.5s ease-out",
+        up: "up 0.5s ease-out ",
+        "fade-in": "fade-in 0.5s ease-out 0.2",
+      },
       colors: {
         primary: {
           DEFAULT: "#0063AF",
