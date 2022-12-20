@@ -31,10 +31,10 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gradient-to-r from-blue-85 to-blue-50">
+    <footer className="bg-gradient-to-r from-primary/[0.85] to-primary/50">
       <div className="container flex w-full flex-col space-y-20 py-16 md:flex-row-reverse md:justify-between md:space-y-0">
         <section className="flex flex-col space-y-4 md:w-1/2">
-          <h3 className="text-2xl font-bold text-color-on-blue">
+          <h3 className="text-2xl font-bold text-on-primary">
             Send us a message
           </h3>
           <span className="h-1 w-32 rounded-full bg-background-primary" />
@@ -61,18 +61,18 @@ export default function Footer() {
         </section>
         <section className="flex flex-col space-y-24">
           <div className="flex flex-col space-y-4">
-            <h3 className="text-2xl font-bold text-color-on-blue">Contacts</h3>
+            <h3 className="text-2xl font-bold text-on-primary">Contacts</h3>
             <span className="h-1 w-16 rounded-full bg-background-primary" />
-            <p className="text-lg font-bold text-color-on-blue">
+            <p className="text-lg font-bold text-on-primary">
               {contactInformation.phone}
             </p>
-            <p className="text-lg text-color-on-blue">
+            <p className="text-lg text-on-primary">
               <b>{contactInformation.address.street}</b>
               <br />
               {contactInformation.address.city} {contactInformation.address.zip}
               , {contactInformation.address.country}
             </p>
-            <p className="text-lg font-bold text-color-on-blue">
+            <p className="text-lg font-bold text-on-primary">
               {contactInformation.email}
             </p>
           </div>
@@ -80,13 +80,13 @@ export default function Footer() {
           <div className="flex items-center justify-between md:flex-col md:items-start md:space-y-32">
             <div className="flex flex-col items-center justify-center space-y-4 md:flex-row md:space-y-0 md:space-x-8">
               <LogoIcon w={69} h={69} />
-              <h2 className="text-xl font-bold text-color-on-blue">
+              <h2 className="text-xl font-bold text-on-primary">
                 AI Medical <br />
                 Technology
               </h2>
             </div>
             <div>
-              <p className="text-sm text-color-on-blue">
+              <p className="text-sm text-on-primary">
                 Website Privacy policy <br />
                 Stockholm, Sweden <br /> © 2022 All rights reserved
               </p>

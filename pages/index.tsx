@@ -96,7 +96,7 @@ export default function Home() {
       <Header
         imageUrl="/images/header.jpg"
         text={
-          <p className="relative mb-6 whitespace-pre-wrap text-2xl font-normal text-color-on-blue lg:text-5xl">
+          <p className="relative mb-6 whitespace-pre-wrap text-2xl font-normal text-on-primary lg:text-5xl">
             {`Driving fast and accurate \ndiagnosis for all skin cancers - \n`}
             <strong>All through AI</strong>
           </p>
@@ -116,7 +116,7 @@ export default function Home() {
           actionButton={buttonSection2}
           image="home/man_crossed_arms.jpg"></TwoColImg>
         <section className="flex w-full flex-col items-center space-y-6 bg-background-secondary py-24 px-6 md:px-0 lg:space-y-12">
-          <h2 className="border-b-2 border-blue-100 text-center text-3xl font-bold text-blue-100">
+          <h2 className="border-b-2 border-primary text-center text-3xl font-bold text-primary">
             Our Partners
           </h2>
           {/* displayed as grid on small screens to be able to rearrange the logos according to design, changes to flex row on bigger screens (xl) */}

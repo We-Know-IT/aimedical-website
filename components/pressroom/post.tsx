@@ -9,9 +9,9 @@ type Props = {
 
 export default function PostCard({ post }: Props) {
   return (
-    <div className="background flex h-full max-w-xl flex-col justify-between rounded-2xl border-2 border-transparent p-9 shadow-md duration-200 hover:border-blue-100">
+    <div className="background flex h-full max-w-xl flex-col justify-between rounded-2xl border-2 border-transparent p-9 shadow-md duration-200 hover:border-primary">
       <div className="my-2 mb-2 flex flex-col space-y-2">
-        <h3 className="text-xl text-blue-100">{post.title}</h3>
+        <h3 className="text-xl text-primary">{post.title}</h3>
         <p className="text-base line-clamp-3 ">{post.ingress}</p>
       </div>
 
@@ -24,7 +24,7 @@ export default function PostCard({ post }: Props) {
       />
 
       <div className="flex flex-row items-center justify-between">
-        <p className="flex text-sm text-color-on-primary">
+        <p className="flex text-sm text-on-primary">
           {getDateString(new Date(post.publishedAt))}
         </p>
         <Tag text={post.postType} />
