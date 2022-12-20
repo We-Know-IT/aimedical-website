@@ -49,10 +49,10 @@ export default function TwoColText({ title, text, actionButton, list }: Props) {
                   />
                 </div>
                 <div className="w-4/5">
-                  <h3 className="3lg:text-3xl py-2 text-2xl font-semibold text-white">
+                  <h3 className="3lg:text-3xl py-2 text-2xl font-semibold  text-on-primary">
                     {data.title}
                   </h3>
-                  <p className="3lg:text-xl text-lg leading-snug tracking-wide text-white">
+                  <p className="3lg:text-xl text-lg leading-snug tracking-wide  text-on-primary">
                     {data.text}
                   </p>
                 </div>

@@ -16,7 +16,7 @@ export default function NavLink({ navLink, color = "white" }: Props) {
     return (
       <Link
         href={navLink.path}
-        className="flex items-center rounded-full bg-primary px-6 py-2 text-lg font-semibold text-white hover:bg-primary-dark">
+        className="flex items-center rounded-full bg-primary px-6 py-2 text-lg font-semibold text-on-primary hover:bg-primary-dark">
         {navLink.label}
       </Link>
     );
@@ -27,8 +27,8 @@ export default function NavLink({ navLink, color = "white" }: Props) {
       className={
         "text-lg font-semibold" +
         (color === "black"
-          ? " text-black hover:text-gray-500"
-          : " text-white hover:text-white-hover")
+          ? " text-on-bg-primary hover:text-on-bg-primary-hover"
+          : " text-on-primary hover:text-on-primary-hover")
       }>
       {navLink.label}
     </Link>
