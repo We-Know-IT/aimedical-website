@@ -27,16 +27,31 @@ module.exports = {
           "0%": { transform: "scale(1, 0)" },
           "100%": { transform: "scale(1, 1)" },
         },
+        "translate-up": {
+          "0%": { transform: "translateY(100%)" },
+          "100%": { transform: "translateY(0%)" },
+        },
         "fade-in": {
           "0%": { opacity: 0 },
           "100%": { opacity: 1 },
+        },
+        circle: {
+          "0%": {
+            "stroke-dashoffset": "calc(3.14 * 100px)",
+          },
+          "100%": {
+            "stroke-dashoffset": "calc(3.14 * 100px / 2 - 15px)",
+          },
         },
       },
       animation: {
         right: "right 0.5s ease-out",
         up: "up 0.5s ease-out ",
         "fade-in": "fade-in 0.5s ease-out 0.2",
+        circle: "circle 1s ease-in-out",
+        "slide-up": "translate-up 1s ease-out, fade-in 1.5s ease-out 0.25s",
       },
+
       colors: {
         primary: {
           DEFAULT: "#0063AF",

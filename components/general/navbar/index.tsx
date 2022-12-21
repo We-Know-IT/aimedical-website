@@ -28,7 +28,7 @@ export default function Navbar() {
     <nav
       className={
         (isNavbarOpen || hasScrolled
-          ? "bg-background-primary shadow-xl"
+          ? "bg-background-primary "
           : " bg-transparent") +
         " fixed top-0 left-0 right-0 z-10 transition-all"
       }>
