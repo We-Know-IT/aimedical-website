@@ -43,7 +43,7 @@ export default function Header({
           )}
           {text &&
             (typeof text == "string" ? (
-              <p className="relative mb-6 whitespace-pre-wrap text-2xl font-bold text-on-primary lg:text-3xl">
+              <p className="relative mb-6 max-w-xl whitespace-pre-wrap text-2xl font-bold text-on-primary lg:text-3xl">
                 {text}
               </p>
             ) : (
