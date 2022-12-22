@@ -30,9 +30,9 @@ export default function PostCard({ post }: Props) {
       {!post && <Skeleton height={200} />}
 
       <div className="flex flex-row items-center justify-between">
-        <p className="flex text-sm text-on-primary">
+        <p className="flex text-sm text-on-surface-primary">
           {post ? (
-            getDateString(new Date(post?.publishedAt))
+            getDateString(new Date(post.publishedAt))
           ) : (
             <Skeleton width={60} />
           )}

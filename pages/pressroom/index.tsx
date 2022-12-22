@@ -2,14 +2,14 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import Button from "../../components/general/button";
 import PostCard from "../../components/pressroom/post";
-import { getPosts } from "../../services/api";
-import { Post, PostType, ServiceResponse } from "../../services/types";
+import { PostType } from "../../services/types";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "../../components/general/header";
+import { usePosts } from "../../hooks/usePosts";
 
 const threeColsXLWidth = true;
-const pageSize = 6;
+const pageSize = 2;
 
 const getFullPostTypeSet = (): Set<PostType> => {
   const filters = new Set<PostType>();
@@ -18,15 +18,19 @@ const getFullPostTypeSet = (): Set<PostType> => {
   return filters;
 };
 
-export default function PressRoom(props: ServiceResponse<Post[]>) {
-  const [posts, setPosts] = useState<Post[]>([]);
+export default function PressRoom() {
   const [filters, setFilters] = useState<Set<PostType>>(new Set());
-  const [nextPosts, setNextPosts] = useState<Post[]>([]);
-  const [page, setPage] = useState(1);
-  const [error, setError] = useState("");
-  const [loadingPosts, setLoadingPosts] = useState(false);
-  const [loadingNextPosts, setLoadingNextPosts] = useState(false);
-  const [awaitingNextPosts, setAwaitingNextPosts] = useState(false);
+
+  const {
+    posts,
+    morePostsToLoad,
+    loadingPosts,
+    loadingNextPosts,
+    awaitingNextPosts,
+    error,
+    loadMorePosts,
+    initPosts,
+  } = usePosts(filters, pageSize);
 
   const showSkeletons = loadingPosts || awaitingNextPosts;
 
@@ -34,63 +38,8 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
     setFilters(getFullPostTypeSet());
   };
 
-  const checkServerError = () => {
-    if (props.error) {
-      handleError(props.error);
-    }
-  };
-
-  const handleError = (error: string) => {
-    console.error(error);
-    setError("Whoops! Looks like there was an error fetching the posts.");
-  };
-
-  const getPostsAndSetError = async (
-    start: number,
-    limit: number,
-    filterBy: Set<PostType>
-  ): Promise<Post[]> => {
-    const posts = await getPosts({
-      pagination: {
-        start,
-        limit,
-      },
-      filterBy: Array.from(filterBy),
-    });
-    if (posts.error || !posts.data) {
-      handleError(posts.error);
-      return [];
-    }
-    setError("");
-    return posts.data;
-  };
-
-  const loadNextPosts = async (page: number, filters: Set<PostType>) => {
-    setLoadingNextPosts(true);
-    const newPosts = await getPostsAndSetError(
-      page * pageSize,
-      pageSize,
-      filters
-    );
-    setNextPosts(newPosts);
-    setLoadingNextPosts(false);
-  };
-
-  const initPosts = async (filters: Set<PostType>) => {
-    setLoadingPosts(true);
-    const posts = await getPostsAndSetError(0, pageSize, filters);
-    setPosts(posts);
-    setLoadingPosts(false);
-
-    loadNextPosts(1, filters);
-
-    setPage(1);
-  };
-
   useEffect(() => {
     initFilters();
-    checkServerError();
-    initPosts(getFullPostTypeSet());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -114,32 +63,7 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
     setFilters(_filters);
   };
 
-  useEffect(() => {
-    if (!loadingNextPosts && awaitingNextPosts) {
-      setAwaitingNextPosts(false);
-      loadMorePosts();
-    }
-  }, [awaitingNextPosts, loadingNextPosts]);
-
-  const loadMorePosts = () => {
-    setPosts([...posts, ...nextPosts]);
-    const currentPage = page;
-    setPage(currentPage + 1);
-
-    if (nextPosts.length < pageSize) {
-      // Means there is no more posts to load
-      setNextPosts([]);
-      return;
-    }
-    loadNextPosts(currentPage + 1, filters);
-  };
-
   const onLoadMore = async () => {
-    if (loadingNextPosts) {
-      setAwaitingNextPosts(true);
-      return;
-    }
-
     loadMorePosts();
   };
 
@@ -205,7 +129,7 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
         <section className="py-12">
           {/* If there is an error, show a message. */}
           {error && (
-            <div className="flex flex-col items-center gap-14">
+            <div className="mb-8 flex flex-col items-center gap-14">
               <p className="text-center text-xl font-bold text-error-dark">
                 {error}
               </p>
@@ -215,7 +139,7 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
             </div>
           )}
           {/* If there are no posts to show, show a message. */}
-          {posts.length === 0 && !error && (
+          {posts.length === 0 && !error && !loadingPosts && (
             <p className="text-center text-xl font-bold text-primary">
               Looks like there are no posts to show.
             </p>
@@ -244,13 +168,14 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
                 return <PostCard key={`skeleton-${i}`} />;
               })}
           </ul>
-          {(nextPosts.length > 0 || loadingNextPosts) && !awaitingNextPosts && (
-            <div className="mt-12 flex flex-col items-center">
-              <Button onClick={onLoadMore} isBlue>
-                Load more
-              </Button>
-            </div>
-          )}
+          {(morePostsToLoad || (loadingNextPosts && !error)) &&
+            !awaitingNextPosts && (
+              <div className="mt-12 flex flex-col items-center">
+                <Button onClick={onLoadMore} isBlue>
+                  Load more
+                </Button>
+              </div>
+            )}
         </section>
       </main>
     </>
