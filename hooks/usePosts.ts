@@ -23,8 +23,6 @@ const usePosts = (filters: Set<PostType>, pageSize: number) => {
     limit: number,
     filterBy: Set<PostType>
   ): Promise<Post[]> => {
-    // delay for  4 seconds
-    await new Promise((resolve) => setTimeout(resolve, 1000));
     const posts = await getPosts({
       pagination: {
         start,
