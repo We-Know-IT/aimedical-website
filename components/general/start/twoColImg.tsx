@@ -34,7 +34,7 @@ export default function TwoColImg({ title, text, actionButton, image }: Props) {
       <div
         className={
           "container flex max-w-xl flex-col xl:container xl:flex-row " +
-          (animate ? " animate-slide-up " : "")
+          (animate ? " animate-fade-up " : "")
         }>
         {/* left box */}
         <div className="relative aspect-square w-full xl:w-2/5">
