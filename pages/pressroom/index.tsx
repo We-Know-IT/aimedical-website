@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "../../components/general/button";
 import PostCard from "../../components/pressroom/post";
 import { PostType } from "../../services/types";
@@ -18,7 +18,7 @@ export default function PressRoom() {
 
   const {
     posts,
-    morePostsToLoad,
+    hasNextPosts,
     loadingPosts,
     loadingNextPosts,
     awaitingNextPosts,
@@ -154,7 +154,7 @@ export default function PressRoom() {
                 return <PostCard key={`skeleton-${i}`} />;
               })}
           </ul>
-          {(morePostsToLoad || (loadingNextPosts && !error)) &&
+          {(hasNextPosts || (loadingNextPosts && !error)) &&
             !awaitingNextPosts && (
               <div className="mt-12 flex flex-col items-center">
                 <Button onClick={onLoadMore} isBlue>

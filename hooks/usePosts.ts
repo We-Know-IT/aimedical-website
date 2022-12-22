@@ -11,7 +11,7 @@ const usePosts = (filters: Set<PostType>, pageSize: number) => {
   const [loadingNextPosts, setLoadingNextPosts] = useState(false);
   const [awaitingNextPosts, setAwaitingNextPosts] = useState(false);
 
-  const morePostsToLoad = nextPosts.length > 0;
+  const hasNextPosts = nextPosts.length > 0;
 
   const handleError = (error: string) => {
     console.error(error);
@@ -91,7 +91,7 @@ const usePosts = (filters: Set<PostType>, pageSize: number) => {
 
   return {
     posts,
-    morePostsToLoad,
+    hasNextPosts,
     loadingPosts,
     loadingNextPosts,
     awaitingNextPosts,
