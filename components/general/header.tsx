@@ -34,12 +34,12 @@ export default function Header({
         <>
           <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-r from-primary/[0.85]"></div>
           {title && (
-            <>
-              <h2 className="relative text-xl font-bold text-on-primary">
+            <div className="w-fit">
+              <h2 className="relative w-fit text-xl font-bold text-on-primary">
                 {title}
               </h2>
-              <div className="relative my-4 h-1 w-24 rounded bg-gray-800"></div>
-            </>
+              <div className="relative my-4 h-1 w-3/4 rounded bg-gray-800"></div>
+            </div>
           )}
           {text &&
             (typeof text == "string" ? (

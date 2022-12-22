@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useWindowScrollPositions } from "../../utils/scroll";
+import { useEffect, useRef, useState, RefObject } from "react";
+import { useElementInViewPort } from "../../utils/elementInViewPort";
 
 type Props = {
   svgClasses: string;
@@ -14,53 +14,45 @@ export default function CircleDiagram({
   radius,
   text,
 }: Props) {
-  const circumference = Math.PI * (radius * 2); // used for property stroke-dasharray
-  const [strokeDashoffset, setStrokeDashoffset] = useState(circumference); // used for property stroke-dashoffset, used to "clip out" part of the circle
-  const circleRef = useRef<SVGCircleElement>(null);
-  const [isInViewport, setIsInViewport] = useState(false);
+  const diameter = radius * 2;
+  const circumference = Math.PI * diameter; // used for property stroke-dasharray of the circle.
+  const [strokeDashoffset, setStrokeDashoffset] = useState(circumference); // used to remove part of the circle by setting an offset to the stroke-dash that is beeing drawn.
+  const circleRef = useRef<SVGCircleElement>(null); // used to calculate position of the circle on scroll event and animate it when it comes into viewport.
+  const svgWidthAndHeight = diameter * 2; // the svg element needs to be twice as big as the circle since the method of drawing the circle is by drawing it with thick strokes. So even if the
+  // diameter of the <circle> is 100, it takes up the whole 200 width svg.
 
-  const onScroll = useCallback(() => {
-    // make the circle animate when it comes into viewport
+  const circleInViewportState = useElementInViewPort(
+    circleRef as unknown as RefObject<HTMLElement>
+  );
+
+  /**
+   * Animates the circle by:
+   *
+   * 1. Toggles transition style on the circle by adding transition of the "stroke-dashoffset".
+   * 2. Change length of the stroke-dashoffset to toggle between the full circumference, which results in no dash beeing drawn since it is offsetet away and
+   *    a part of the circumference, a little less than half of it, to show a part of the circle.
+   *
+   * FYI: Transitions are used instead of css animation since we wanted to use dynamic values for the stroke-dashoffset.
+   */
+  const animateCircle = () => {
     if (circleRef.current) {
-      const boxCircle = circleRef.current.getBoundingClientRect();
-
-      const diff = boxCircle.top - window.innerHeight;
-
-      if (
-        (boxCircle.bottom <= 0 ||
-          (diff <= 0 && Math.abs(diff) > boxCircle.height)) &&
-        isInViewport
-      ) {
-        console.log("TOGGLING " + isInViewport + " to " + !isInViewport);
-        setIsInViewport(false);
-        circleRef.current.style.transitionProperty =
-          "stroke-dashoffset 0s ease-in-out 0.5s";
-        setStrokeDashoffset(circumference);
-      } else if (
-        diff <= 0 &&
-        boxCircle.top - window.innerHeight < boxCircle.height &&
-        !isInViewport
-      ) {
-        console.log("TOGGLING " + isInViewport + " to ");
-        setIsInViewport(true);
+      if (circleInViewportState.isInViewport) {
         circleRef.current.style.transition = "stroke-dashoffset 1s ease-in-out";
         setStrokeDashoffset(circumference / 2 - 15);
+      } else {
+        ("stroke-dashoffset 0s ease-in-out 0.5s");
+        setStrokeDashoffset(circumference);
       }
     }
-  }, [isInViewport]);
+  };
 
-  useEffect(onScroll, []);
-
-  useEffect(() => {
-    addEventListener("scroll", onScroll);
-
-    return () => {
-      removeEventListener("scroll", onScroll);
-    };
-  }, [isInViewport]);
+  useEffect(animateCircle, [circleInViewportState]);
 
   return (
-    <svg className={svgClasses} width={radius * 4} height={radius * 4}>
+    <svg
+      className={svgClasses + " md:translate-x-1/3"}
+      width={svgWidthAndHeight}
+      height={svgWidthAndHeight}>
       <defs>
         <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="rgba(0,99, 175, 0.75)" />
@@ -70,9 +62,7 @@ export default function CircleDiagram({
 
       <circle
         ref={circleRef}
-        className={
-          " origin-center fill-transparent stroke-[50%] transition-[stroke-dashoffset] delay-200 duration-1000 ease-in-out"
-        }
+        className={" origin-center fill-transparent stroke-[50%]"}
         cx="50%"
         cy="50%"
         r={radius}
@@ -84,10 +74,10 @@ export default function CircleDiagram({
         }}
       />
       <text
-        x="0%"
+        x="10%"
         y="50%"
         className={
-          "translate-y-[0.5rem] translate-x-[1rem] fill-on-primary stroke-on-primary" +
+          "translate-y-[0.5rem]  fill-on-primary stroke-on-primary" +
           textClasses
         }>
         {text}

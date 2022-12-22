@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { useElementInViewPort } from "../../../utils/elementInViewPort";
 import Button from "../button";
 type Props = {
   title?: string;
@@ -14,27 +15,18 @@ export default function TwoColImg({ title, text, actionButton, image }: Props) {
   const sectionRef = useRef<HTMLElement>(null);
   const [animate, setAnimate] = useState(false);
 
-  const onScroll = () => {
-    // make the section animate upwards and fade in when it comes into viewport
-    if (sectionRef.current) {
-      const box = sectionRef.current.getBoundingClientRect();
-      if (box.top - window.innerHeight <= 0) {
-        setAnimate(true);
-      } else {
-        setAnimate(false);
-      }
-    }
-  };
+  const sectionInViewportState = useElementInViewPort(sectionRef);
 
   useEffect(() => {
-    addEventListener("scroll", onScroll);
-
-    onScroll();
-
-    return () => {
-      removeEventListener("scroll", onScroll);
-    };
-  }, []);
+    if (
+      sectionInViewportState.isInViewport &&
+      sectionInViewportState.direction === "down"
+    ) {
+      setAnimate(true);
+    } else {
+      setAnimate(false);
+    }
+  }, [sectionInViewportState]);
 
   return (
     <section ref={sectionRef} className="bg-background-primary py-24">
