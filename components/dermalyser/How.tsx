@@ -1,6 +1,4 @@
 import HowSlide from "./HowSlide";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
 
 const slides = [
   {
@@ -27,19 +25,9 @@ export default function How() {
         <h2 className="text-center text-xl font-bold leading-6 text-primary md:text-3xl md:leading-10">
           How it works
         </h2>
-        <div className="mx-auto h-[2px] w-1/4 bg-primary " />
-        <Swiper
-          spaceBetween={50}
-          slidesPerView={1}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}>
-          {slides.map((s) => (
-            <SwiperSlide key={s.title}>
-              <HowSlide {...s} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <div className="mx-auto h-[2px] w-1/12 bg-primary " />
       </div>
+      <p className="text-center font-bold">TODO</p>
     </section>
   );
 }

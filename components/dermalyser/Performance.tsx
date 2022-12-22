@@ -33,7 +33,7 @@ export default function Performance() {
             and General Practitioners.
           </p>
 
-          <ul className="mx-auto flex flex-row items-center justify-center  md:flex-col md:gap-4 ">
+          <ul className="mx-auto flex flex-row items-center justify-center  gap-4 md:flex-col ">
             {bars.map((bar, i) => (
               <li key={i}>
                 <Bar {...bar} classes="scale-y-[0.9] md:scale-y-[0.8] " />

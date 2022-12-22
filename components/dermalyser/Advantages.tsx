@@ -25,7 +25,7 @@ export default function Advantages() {
         <h2 className="text-center text-xl font-bold leading-6 text-primary md:text-3xl md:leading-10">
           Advantages of using Dermalyser
         </h2>
-        <div className="mx-auto h-[2px] w-1/4 bg-primary " />
+        <div className="mx-auto h-[2px] w-1/6 bg-primary " />
         <ul className="flex flex-col gap-16 lg:flex-row">
           {advantages.map((a) => (
             <li key={a.title}>
