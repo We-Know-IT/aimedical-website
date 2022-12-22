@@ -9,17 +9,12 @@ import Header from "../../components/general/header";
 import { usePosts } from "../../hooks/usePosts";
 
 const threeColsXLWidth = true;
-const pageSize = 2;
+const pageSize = 6;
 
-const getFullPostTypeSet = (): Set<PostType> => {
-  const filters = new Set<PostType>();
-  filters.add("blog");
-  filters.add("news");
-  return filters;
-};
+const initialFilters = new Set<PostType>(["blog", "news"]);
 
 export default function PressRoom() {
-  const [filters, setFilters] = useState<Set<PostType>>(new Set());
+  const [filters, setFilters] = useState<Set<PostType>>(initialFilters);
 
   const {
     posts,
@@ -33,15 +28,6 @@ export default function PressRoom() {
   } = usePosts(filters, pageSize);
 
   const showSkeletons = loadingPosts || awaitingNextPosts;
-
-  const initFilters = () => {
-    setFilters(getFullPostTypeSet());
-  };
-
-  useEffect(() => {
-    initFilters();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const toggleBlogsFilter = () => {
     toggleEntryInFilters("blog");
@@ -59,7 +45,7 @@ export default function PressRoom() {
       _filters.add(entry);
     }
     if (_filters.size >= 0) initPosts(_filters);
-    else initPosts(getFullPostTypeSet());
+    else initPosts(initialFilters);
     setFilters(_filters);
   };
 
