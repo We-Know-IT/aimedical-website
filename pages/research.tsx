@@ -26,11 +26,15 @@ export default function Research() {
         text="A collection of our research and third party research relevant to us"
       />
       <main className="container">
-        <div className="my-10">
+        <ul className="my-10 flex flex-col">
           {posts.map((post) => {
-            return <ResearchPostCard post={post} key={post.id} />;
+            return (
+              <li className="mb-12" key={post.id}>
+                <ResearchPostCard post={post} />
+              </li>
+            );
           })}
-        </div>
+        </ul>
       </main>
     </>
   );
