@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "../../components/general/button";
 import PostCard from "../../components/pressroom/post";
 import { PostType } from "../../services/types";
@@ -9,21 +9,16 @@ import Header from "../../components/general/header";
 import { usePosts } from "../../hooks/usePosts";
 
 const threeColsXLWidth = true;
-const pageSize = 2;
+const pageSize = 6;
 
-const getFullPostTypeSet = (): Set<PostType> => {
-  const filters = new Set<PostType>();
-  filters.add("blog");
-  filters.add("news");
-  return filters;
-};
+const initialFilters = new Set<PostType>(["blog", "news"]);
 
 export default function PressRoom() {
-  const [filters, setFilters] = useState<Set<PostType>>(new Set());
+  const [filters, setFilters] = useState<Set<PostType>>(initialFilters);
 
   const {
     posts,
-    morePostsToLoad,
+    hasNextPosts,
     loadingPosts,
     loadingNextPosts,
     awaitingNextPosts,
@@ -33,15 +28,6 @@ export default function PressRoom() {
   } = usePosts(filters, pageSize);
 
   const showSkeletons = loadingPosts || awaitingNextPosts;
-
-  const initFilters = () => {
-    setFilters(getFullPostTypeSet());
-  };
-
-  useEffect(() => {
-    initFilters();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const toggleBlogsFilter = () => {
     toggleEntryInFilters("blog");
@@ -59,7 +45,7 @@ export default function PressRoom() {
       _filters.add(entry);
     }
     if (_filters.size >= 0) initPosts(_filters);
-    else initPosts(getFullPostTypeSet());
+    else initPosts(initialFilters);
     setFilters(_filters);
   };
 
@@ -168,8 +154,9 @@ export default function PressRoom() {
                 return <PostCard key={`skeleton-${i}`} />;
               })}
           </ul>
-          {(morePostsToLoad || (loadingNextPosts && !error)) &&
-            !awaitingNextPosts && (
+          {(hasNextPosts || loadingNextPosts) &&
+            !awaitingNextPosts &&
+            !error && (
               <div className="mt-12 flex flex-col items-center">
                 <Button onClick={onLoadMore} isBlue>
                   Load more
