@@ -6,7 +6,7 @@ import { usePosts } from "../hooks/usePosts";
 import { PostType } from "../services/types";
 
 const researchSet = new Set<PostType>(["research"]);
-const pageSize = 2;
+const pageSize = 3;
 
 export default function Research() {
   const {
