@@ -17,7 +17,7 @@ export default function researchPostCard({ post }: Props) {
     <div className="flex h-full flex-col rounded-2xl shadow-md duration-200 md:h-80 md:w-full md:flex-row lg:h-96">
       {post?.listingImage && (
         <Image
-          alt={post.listingImage.alternativeText}
+          alt={post.listingImage.alternativeText || "Research post image"}
           className="clip-path-b md:clip-path-r h-64 w-full rounded-2xl object-cover md:h-full md:w-5/12"
           src={post.listingImage?.url || ""}
           width={post.listingImage?.width}
