@@ -87,7 +87,7 @@ const usePosts = (filters: Set<PostType>, pageSize: number) => {
 
   useEffect(() => {
     initPosts(filters);
-  }, []);
+  }, [filters]);
 
   return {
     posts,
