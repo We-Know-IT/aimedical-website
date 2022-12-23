@@ -11,7 +11,7 @@ const pageSize = 2;
 export default function Research() {
   const {
     posts,
-    morePostsToLoad,
+    hasNextPosts,
     loadingPosts,
     error,
     loadingNextPosts,
@@ -53,7 +53,7 @@ export default function Research() {
               return <ResearchPostCard key={`skeleton-${i}`} />;
             })}
         </ul>
-        {(morePostsToLoad || (loadingNextPosts && !error)) &&
+        {(hasNextPosts || (loadingNextPosts && !error)) &&
           !awaitingNextPosts && (
             <div className="my-12 flex flex-col items-center">
               <Button onClick={onLoadMore} isBlue>
