@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import { CSSProperties, useEffect } from "react";
 import Button from "./button";
 
 type Props = {
@@ -21,15 +21,26 @@ export default function Header({
   fullHeight,
 }: Props) {
   const backgroundImageStyle: CSSProperties = {
-    backgroundImage: `url(${imageUrl})`,
+    backgroundImage: `url("/images/blur.jpg")`,
   };
+  useEffect(() => {
+    var src = imageUrl;
+    var header = document.getElementById('header')
+    if (header != null) {
+      var image = new Image();
+        image.addEventListener('load', function() {
+        header.style.backgroundImage = 'url(' + src + ')';
+      });
+      image.src = src;
+    }
+  })
 
   return (
     <header
       className={
         "relative w-full bg-cover " + (fullHeight ? "h-[100vh]" : "h-[600px]")
       }
-      style={backgroundImageStyle}>
+      style={backgroundImageStyle} id="header">
       <div className="container flex h-full flex-col justify-center">
         <>
           <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-r from-blue-85"></div>
