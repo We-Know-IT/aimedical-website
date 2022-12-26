@@ -53,10 +53,10 @@ export default function Bar({ text, value, classes, isHighlighted }: Props) {
     <div
       ref={barRef}
       className={
-        " grid h-[400px] w-[75px] grid-cols-1 grid-rows-[2fr_1fr] items-end justify-center gap-4  md:h-[60px] md:w-[500px] md:grid-cols-[1fr_2fr]  md:grid-rows-1 md:items-center " +
+        " grid h-[400px] w-[75px] grid-cols-1 grid-rows-[2fr_1fr] items-end justify-center gap-4  md:h-[60px] md:w-[500px] md:w-full md:grid-cols-[1fr_2fr]  md:grid-rows-1 md:items-center " +
         classes
       }>
-      <p className=" row-start-2 row-end-2 origin-center -rotate-90 self-center whitespace-pre-wrap font-bold text-on-bg-primary md:col-start-1 md:col-end-1 md:row-start-1 md:row-end-1 md:rotate-0 md:text-lg">
+      <p className="row-start-2 row-end-2 origin-center -rotate-90 self-center whitespace-pre-wrap font-bold text-on-bg-primary md:col-start-1 md:col-end-1 md:row-start-1 md:row-end-1 md:rotate-0 md:text-lg">
         {text}
       </p>
       <div

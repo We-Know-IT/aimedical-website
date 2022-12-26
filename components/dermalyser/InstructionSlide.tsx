@@ -30,8 +30,8 @@ export default function HowSlide({
         <h3 className="text-xl font-bold text-primary">{title}</h3>
         <p className="max-w-sm text-on-bg-primary">{text}</p>
       </div>
-      <Button isBlue={true} onClick={onClick} className="my-auto">
-        {buttonText}
+      <Button isBlue={true} onClick={onClick} className="my-auto px-12">
+        <>Next <span className="text-2xl ml-4 -mt-1">&rsaquo;</span></>
       </Button>
     </div>
   );

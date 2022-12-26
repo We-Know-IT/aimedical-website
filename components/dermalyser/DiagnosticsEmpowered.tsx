@@ -5,7 +5,7 @@ export default function DiagnosticsEmpowered() {
         <h2 className="text-primary text-xl md:text-3xl font-bold text-center leading-6 md:leading-10">
           Diagnostics empowered with AI
         </h2>
-        <p className="text-on-bg-primary text-lg font-normal text-center  leading-7 md:max-w-2xl mx-auto">
+        <p className="text-on-bg-primary text-lg font-medium text-center leading-7 md:max-w-2xl mx-auto">
           Dermalyser is a diagnostic decision support system empowered with
           advanced artificial intelligence. The primary function is to classify
           skin cancer such as malignant melanoma using image analysis combined
@@ -14,9 +14,9 @@ export default function DiagnosticsEmpowered() {
           quality-controlled dermatoscopic images of patients’ skin lesions
           together with associated patient data.
         </p>
-        <div className="w-full md:max-w-2xl mx-auto aspect-video">
+        <div className="w-full md:max-w-2xl mx-auto aspect-video rounded-lg overflow-hidden shadow-lg">
           <iframe
-            className="w-full h-full shadow-md"
+            className="w-full h-full"
             title="Dermalyser User guide"
             src="https://player.vimeo.com/video/711636240?h=c1d894c848"
             allowFullScreen></iframe>
