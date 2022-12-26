@@ -53,12 +53,18 @@ module.exports = {
         xl: "0 0 25px -5px rgb(0 0 0 / 0.1), 0 0 10px -6px rgb(0 0 0 / 0.1)",
       },
       animation: {
-        fadeIn: 'fadeIn 1s ease-in 1',
+        fadeIn: 'fadeIn 1s cubic-bezier(0.11, 0, 0.5, 0) 1',
       },
       keyframes: {
         fadeIn: {
-          '0%': { opacity: 0 },
-          '100%': { opacity: 1 },
+          '0%': { 
+            opacity: 0,
+            '-webkit-filter': 'blur(12px)',
+            filter: 'blur(12px)'
+          },
+          '100%': { opacity: 1,
+            '-webkit-filter': 'blur(0)',
+            filter: 'blur(0)' },
         }
       }
     },
