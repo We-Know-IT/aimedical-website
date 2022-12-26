@@ -46,7 +46,7 @@ export default function Header({
           <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-r from-blue-85"></div>
           {title && (
             <>
-              <h2 className="relative text-xl font-bold text-color-on-blue">
+              <h2 className="relative text-xl font-bold text-color-on-blue animate-fadeIn">
                 {title}
               </h2>
               <div className="relative my-4 h-1 w-24 rounded bg-gray-800"></div>
@@ -54,7 +54,7 @@ export default function Header({
           )}
           {text &&
             (typeof text == "string" ? (
-              <p className="relative mb-6 whitespace-pre-wrap text-2xl font-bold text-color-on-blue lg:text-3xl">
+              <p className="relative mb-6 whitespace-pre-wrap text-2xl font-bold text-color-on-blue lg:text-3xl animate-fadeIn">
                 {text}
               </p>
             ) : (
