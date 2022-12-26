@@ -39,7 +39,7 @@ export default function PostDetails(props: ServiceResponse<Post>) {
               h1: (props) => {
                 return (
                   <>
-                    <h3 className="my-6 text-4xl font-bold text-blue-100">
+                    <h3 className="my-6 text-4xl font-bold text-primary">
                       {props.children[0]}
                     </h3>
                     <p className="mb-6 text-lg font-medium">{post.ingress}</p>
@@ -126,7 +126,7 @@ export default function PostDetails(props: ServiceResponse<Post>) {
                 } else {
                   return (
                     <a
-                      className="link:text-blue-100 font-semibold visited:text-blue-hover hover:text-blue-hover focus:text-blue-hover active:text-blue-100"
+                      className="link:text-primary font-semibold visited:text-primary-dark hover:text-primary-dark focus:text-primary-dark active:text-primary"
                       href={linkAddress}>
                       {linkName}
                     </a>

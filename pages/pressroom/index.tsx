@@ -67,7 +67,7 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
       />
       <main className="container my-10">
         <section className="ml-auto mr-auto flex flex-row items-center justify-center gap-x-4 md:gap-x-8 ">
-          <p className="hidden text-xl font-bold text-blue-100 md:block">
+          <p className="hidden text-xl font-bold text-primary md:block">
             Filter posts:
           </p>
           <Button isBlue={filters.has("blog")} onClick={toggleBlogsFilter}>
