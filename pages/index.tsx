@@ -96,7 +96,7 @@ export default function Home() {
       <Header
         imageUrl="/images/header.jpg"
         text={
-          <p className="relative mb-6 whitespace-pre-wrap text-2xl font-normal text-color-on-blue lg:text-5xl">
+          <p className="relative mb-6 whitespace-pre-wrap text-2xl font-normal text-color-on-blue lg:text-5xl animate-fadeIn">
             {`Driving fast and accurate \ndiagnosis for all skin cancers - \n`}
             <strong>All through AI</strong>
           </p>
