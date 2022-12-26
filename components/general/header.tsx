@@ -62,7 +62,7 @@ export default function Header({
             ))}
 
           {actionButton && (
-            <Button className="z-1 relative" onClick={actionButton.onClick}>
+            <Button className="z-1 relative active:bg-black active:text-white" onClick={actionButton.onClick}>
               {actionButton.text}
             </Button>
           )}
