@@ -1,8 +1,8 @@
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Header from "../../components/general/header";
-import { getPost, ServiceResponse } from "../../services/api";
-import { Post } from "../../services/types";
+import { getPost } from "../../services/api";
+import { Post, ServiceResponse } from "../../services/types";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 
@@ -48,21 +48,21 @@ export default function PostDetails(props: ServiceResponse<Post>) {
               },
               h2: (props) => {
                 return (
-                  <h4 className="my-4 text-xl font-bold text-color-on-primary">
+                  <h4 className="text-color-on-primary my-4 text-xl font-bold">
                     {props.children[0]}
                   </h4>
                 );
               },
               h3: (props) => {
                 return (
-                  <h5 className="my-4 text-lg font-bold text-color-on-primary">
+                  <h5 className="text-color-on-primary my-4 text-lg font-bold">
                     {props.children[0]}
                   </h5>
                 );
               },
               h4: (props) => {
                 return (
-                  <h6 className="my-4 text-lg text-color-on-primary">
+                  <h6 className="text-color-on-primary my-4 text-lg">
                     {props.children[0]}
                   </h6>
                 );
@@ -85,7 +85,7 @@ export default function PostDetails(props: ServiceResponse<Post>) {
                 // The <a> element is valid to put inside <p> tags but the markdown parser is right now wrapping a single <a> inside <p> so we can remove that to!
                 if (props.node.children[0].type === "text") {
                   return (
-                    <p className="my-4 whitespace-pre-wrap text-lg text-color-on-primary">
+                    <p className="text-color-on-primary my-4 whitespace-pre-wrap text-lg">
                       {props.children[0]}
                     </p>
                   );
