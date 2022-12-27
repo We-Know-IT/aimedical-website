@@ -69,9 +69,11 @@ module.exports = {
           DEFAULT: "rgba(243, 243, 243, 0.502)",
           dark: "rgba(243, 243, 243, 1.0)",
         },
+        "background-accent": "rgba(33, 33, 33, 1)",
         "surface-primary": colors.white,
         "on-bg-primary": { DEFAULT: colors.black, hover: colors.gray[500] },
         "on-bg-secondary": { DEFAULT: colors.black, hover: colors.gray[500] },
+        "on-bg-accent": { DEFAULT: colors.white, hover: "rgba(235, 235, 235, 0.9" },
         "on-surface-primary": {
           DEFAULT: colors.black,
           hover: colors.gray[500],
@@ -100,6 +102,21 @@ module.exports = {
         lg: "0 0 15px -3px rgb(0 0 0 / 0.1), 0 0 6px -4px rgb(0 0 0 / 0.1)",
         xl: "0 0 25px -5px rgb(0 0 0 / 0.1), 0 0 10px -6px rgb(0 0 0 / 0.1)",
       },
+      animation: {
+        'focus-in': 'focus-in 1s cubic-bezier(0.11, 0, 0.5, 0) 1',
+      },
+      keyframes: {
+        'focus-in': {
+          '0%': { 
+            opacity: 0,
+            '-webkit-filter': 'blur(12px)',
+            filter: 'blur(12px)'
+          },
+          '100%': { opacity: 1,
+            '-webkit-filter': 'blur(0)',
+            filter: 'blur(0)' },
+        }
+      }
     },
   },
 

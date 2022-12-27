@@ -3,6 +3,7 @@ type Props = {
   className?: string;
   children: React.ReactElement | string;
   onClick: () => void;
+  disabled?: boolean;
 };
 
 const commonStyles =
@@ -13,16 +14,25 @@ export default function Button({
   onClick,
   className = "",
   isBlue = false,
+  disabled = false,
 }: Props) {
+  const getClassName = () => {
+    if (isBlue) {
+      return " bg-primary  text-on-primary hover:bg-primary-dark ";
+    }
+
+    return " bg-background-primary text-on-bg-primary hover:bg-background-primary-hover ";
+  };
+
   return (
     <button
       className={
-        (isBlue
-          ? "bg-primary  text-on-primary hover:bg-primary-dark "
-          : "bg-background-primary text-on-bg-primary hover:bg-background-primary-hover") +
+        getClassName() +
         commonStyles +
-        className
+        className +
+        (disabled ? " cursor-not-allowed opacity-50 " : "")
       }
+      disabled={disabled}
       onClick={onClick}>
       {children}
     </button>
