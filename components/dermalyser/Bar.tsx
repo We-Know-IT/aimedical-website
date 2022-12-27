@@ -6,11 +6,18 @@ type Props = {
   value: number;
   classes: string;
   isHighlighted: boolean;
+  valueText: string;
 };
 
 const layoutWidthBreakpoint = 1024; // same as tailwind "lg"
 
-export default function Bar({ text, value, classes, isHighlighted }: Props) {
+export default function Bar({
+  text,
+  value,
+  classes,
+  isHighlighted,
+  valueText,
+}: Props) {
   const barRef = useRef<HTMLDivElement>(null);
   const [animateUp, setAnimateUp] = useState(false);
   const [animateRight, setAnimateRight] = useState(false);
@@ -75,7 +82,7 @@ export default function Bar({ text, value, classes, isHighlighted }: Props) {
             "absolute top-2 left-1/2 -translate-x-1/2 text-lg font-bold text-on-primary lg:left-auto lg:top-1/2 lg:right-2 lg:-translate-y-1/2 lg:translate-x-0  " +
             (animateRight || animateUp ? "  animate-fade-in" : "")
           }>
-          {value}
+          {valueText}
         </p>
         <div
           className={

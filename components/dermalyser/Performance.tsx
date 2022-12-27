@@ -18,6 +18,16 @@ const bars = [
   },
 ];
 
+const minValue = Math.min(...bars.map((bar) => bar.value));
+const maxValue = Math.max(...bars.map((bar) => bar.value));
+const scaleFactor = 0.4;
+
+const getvalue = (value: number) => {
+  const t = Math.max(minValue * (1 - scaleFactor), 0);
+  value = (value - t) / (maxValue - t);
+  return value;
+};
+
 export default function Performance() {
   return (
     <section className="bg-background-primary">
@@ -36,7 +46,12 @@ export default function Performance() {
           <ul className="mx-auto flex w-[80%] flex-row  justify-center gap-4 lg:flex-col">
             {bars.map((bar, i) => (
               <li key={i}>
-                <Bar {...bar} classes="scale-y-[0.9] lg:scale-y-[0.8] " />
+                <Bar
+                  {...bar}
+                  value={getvalue(bar.value)}
+                  valueText={bar.value.toFixed(2)}
+                  classes="scale-y-[0.9] lg:scale-y-[0.8] "
+                />
               </li>
             ))}
           </ul>
