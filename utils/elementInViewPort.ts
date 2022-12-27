@@ -6,9 +6,12 @@ export type ElementInViewportState = {
   direction: "down" | "up" | null;
 };
 
-export const useElementInViewPort = (el: RefObject<HTMLElement>) => {
+export const useElementInViewPort = (
+  el: RefObject<HTMLElement>,
+  offset: number = 0
+) => {
   const { prevScrollPosition, scrollPosition } = useWindowScrollPositions();
-  const [state, setState] = useState<ElementInViewportState>({
+  const [viewPortstate, setViewPortState] = useState<ElementInViewportState>({
     isInViewport: false,
     direction: null,
   });
@@ -17,7 +20,9 @@ export const useElementInViewPort = (el: RefObject<HTMLElement>) => {
     prevScrollPosition: { scrollY: number; scrollX: number },
     currentScrollPosition: { scrollY: number; scrollX: number }
   ) => {
-    return scrollPosition.scrollY > prevScrollPosition.scrollY ? "down" : "up";
+    return currentScrollPosition.scrollY > prevScrollPosition.scrollY
+      ? "down"
+      : "up";
   };
 
   const onScroll = useCallback(() => {
@@ -26,8 +31,12 @@ export const useElementInViewPort = (el: RefObject<HTMLElement>) => {
       /*
      If the top of the element is within 0 <---> window.innerHeight it means that the element is in the viewport.
     */
-      if (box.top > 0 && box.top < window.innerHeight && !state.isInViewport) {
-        setState({
+      if (
+        box.top > 0 &&
+        box.top < window.innerHeight - offset &&
+        !viewPortstate.isInViewport
+      ) {
+        setViewPortState({
           isInViewport: true,
           direction: getScrollDirection(prevScrollPosition, scrollPosition),
         });
@@ -38,15 +47,15 @@ export const useElementInViewPort = (el: RefObject<HTMLElement>) => {
          * */
       } else if (
         (box.bottom < 0 || box.top > window.innerHeight) &&
-        state.isInViewport
+        viewPortstate.isInViewport
       ) {
-        setState({
+        setViewPortState({
           isInViewport: false,
           direction: getScrollDirection(prevScrollPosition, scrollPosition),
         });
       }
     }
-  }, [state]);
+  }, [viewPortstate]);
 
   useEffect(onScroll, []);
 
@@ -56,7 +65,7 @@ export const useElementInViewPort = (el: RefObject<HTMLElement>) => {
     return () => {
       removeEventListener("scroll", onScroll);
     };
-  }, [state]);
+  }, [viewPortstate]);
 
-  return state;
+  return viewPortstate;
 };

@@ -22,7 +22,7 @@ export default function TheraputicArea() {
         imageUrl="/images/dermalyser/header.png"
         title="Theraputic Area"
         text={
-          <p className="relative mb-6 whitespace-pre-wrap text-2xl font-normal text-on-primary lg:text-5xl">
+          <p className="relative mb-6 whitespace-pre-wrap text-xl font-bold text-on-primary lg:w-1/2 lg:text-2xl">
             {`Skin cancer is one of the most common cancers in the world, accounting for nearly half of all cancers`}
           </p>
         }

@@ -5,6 +5,7 @@ type Props = {
   svgClasses: string;
   textClasses: string;
   radius: number;
+  fillPercentage: number;
   text: string;
 };
 
@@ -13,6 +14,7 @@ export default function CircleDiagram({
   textClasses,
   radius,
   text,
+  fillPercentage,
 }: Props) {
   const diameter = radius * 2;
   const circumference = Math.PI * diameter; // used for property stroke-dasharray of the circle.
@@ -22,7 +24,8 @@ export default function CircleDiagram({
   // diameter of the <circle> is 100, it takes up the whole 200 width svg.
 
   const circleInViewportState = useElementInViewPort(
-    circleRef as unknown as RefObject<HTMLElement>
+    circleRef as unknown as RefObject<HTMLElement>,
+    diameter / 3
   );
 
   /**
@@ -38,9 +41,9 @@ export default function CircleDiagram({
     if (circleRef.current) {
       if (circleInViewportState.isInViewport) {
         circleRef.current.style.transition = "stroke-dashoffset 1s ease-in-out";
-        setStrokeDashoffset(circumference / 2 - 15);
+        setStrokeDashoffset(circumference * (1 - fillPercentage / 100));
       } else {
-        ("stroke-dashoffset 0s ease-in-out 0.5s");
+        ("stroke-dashoffset 0s");
         setStrokeDashoffset(circumference);
       }
     }
@@ -50,7 +53,7 @@ export default function CircleDiagram({
 
   return (
     <svg
-      className={svgClasses + " md:translate-x-1/3"}
+      className={svgClasses}
       width={svgWidthAndHeight}
       height={svgWidthAndHeight}>
       <defs>

@@ -48,21 +48,21 @@ export default function PostDetails(props: ServiceResponse<Post>) {
               },
               h2: (props) => {
                 return (
-                  <h4 className="my-4 text-xl font-bold text-on-primary">
+                  <h4 className="my-4 text-xl font-bold text-on-bg-primary">
                     {props.children[0]}
                   </h4>
                 );
               },
               h3: (props) => {
                 return (
-                  <h5 className="my-4 text-lg font-bold text-on-primary">
+                  <h5 className="my-4 text-lg font-bold text-on-bg-primary">
                     {props.children[0]}
                   </h5>
                 );
               },
               h4: (props) => {
                 return (
-                  <h6 className="my-4 text-lg text-on-primary">
+                  <h6 className="my-4 text-lg text-on-bg-primary">
                     {props.children[0]}
                   </h6>
                 );
@@ -85,7 +85,7 @@ export default function PostDetails(props: ServiceResponse<Post>) {
                 // The <a> element is valid to put inside <p> tags but the markdown parser is right now wrapping a single <a> inside <p> so we can remove that to!
                 if (props.node.children[0].type === "text") {
                   return (
-                    <p className="my-4 whitespace-pre-wrap text-lg text-on-primary">
+                    <p className="my-4 whitespace-pre-wrap text-lg text-on-bg-primary">
                       {props.children[0]}
                     </p>
                   );
