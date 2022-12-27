@@ -79,9 +79,11 @@ export default function Bar({ text, value, classes, isHighlighted }: Props) {
         </p>
         <div
           className={
-            " h-full w-full rounded-xl" +
+            " h-full w-full rounded-xl shadow-[0_2px_4px_0px_rgba(0,0,0,0.2)] " +
             (isHighlighted
-              ? " bg-gradient-to-r from-primary to-primary/[0.75]"
+              ? dimensions.width > layoutWidthBreakpoint
+                ? " bg-gradient-to-r from-primary/[0.5] to-primary "
+                : " bg-gradient-to-t from-primary/[0.5] to-primary "
               : " bg-on-bg-primary ") +
             (animateRight ? " animate-right " : "") +
             (animateUp ? " origin-bottom animate-up " : "")
