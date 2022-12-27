@@ -9,7 +9,9 @@ import { navLinks } from "./nav-links";
 export default function Navbar() {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const [logoSize, setLogoSize] = useState(56);
-  const { scrollY } = useWindowScrollPositions();
+  const {
+    scrollPosition: { scrollY },
+  } = useWindowScrollPositions();
   const hasScrolled = scrollY > 0;
 
   useEffect(() => {
