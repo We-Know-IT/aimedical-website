@@ -18,6 +18,7 @@ export default function PostCard({ post }: Props) {
           {post?.ingress || <Skeleton count={3} />}
         </p>
       </div>
+
       {post?.listingImage && (
         <Image
           className="mb-2 max-h-64 w-auto rounded object-cover"
@@ -25,6 +26,8 @@ export default function PostCard({ post }: Props) {
           width={post.listingImage?.width}
           height={post.listingImage?.height}
           alt={post.listingImage?.alternativeText || ""}
+          placeholder="blur"
+          blurDataURL="/images/blur.jpg"
         />
       )}
       {!post && <Skeleton height={200} />}
