@@ -46,7 +46,7 @@ export const useElementInViewPort = (
          *
          * */
       } else if (
-        (box.bottom < 0 || box.top > window.innerHeight) &&
+        (box.bottom < 0 || box.top > window.innerHeight - offset) &&
         viewPortstate.isInViewport
       ) {
         setViewPortState({
