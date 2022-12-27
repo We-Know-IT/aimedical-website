@@ -19,7 +19,7 @@ export default function EmployeeCard({ employee }: Props) {
   }, [isDesciptionVisibile]);
 
   return (
-    <div className="flex flex-col items-center gap-y-4 rounded-xl pb-6 shadow-xl">
+    <div className="flex flex-col items-center justify-center gap-y-4 rounded-xl pb-6 shadow-xl">
       <Image
         className="clip-path-image h-[300px] w-full rounded-t-xl object-cover"
         src={employee.image}
@@ -27,6 +27,17 @@ export default function EmployeeCard({ employee }: Props) {
         height={300}
         alt={employee.name + " " + employee.title}
       />
+
+      <a href={employee.linkedInLink}>
+        <Image
+          src="/images/about/linkedin_logo.png"
+          width={42}
+          height={42}
+          alt="linked in link"
+        />
+      </a>
+
+      <div className="mx-auto h-[2px] w-1/4 bg-primary " />
 
       <h3 className=" text-lg font-bold text-primary">{employee.name}</h3>
       <p className="text-on-bg-primary/50">{employee.title}</p>

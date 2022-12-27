@@ -10,6 +10,7 @@ export type Employee = {
   title: string;
   image: string;
   description: string;
+  linkedInLink: string;
 };
 
 export default function About({
@@ -41,7 +42,9 @@ export default function About({
 }
 
 const isEmployeeType = (val: any) => {
-  return val.name && val.title && val.image && val.description;
+  return (
+    val.name && val.title && val.image && val.description && val.linkedInLink
+  );
 };
 
 const isValidJsonEmployeeData = (json: any) => {
