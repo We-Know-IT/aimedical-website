@@ -1,4 +1,5 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useWindowDimensions } from "../../utils/resize";
 import InstructionSlide from "./InstructionSlide";
 
 const slides = [
@@ -25,6 +26,8 @@ const slides = [
 ];
 
 export default function How() {
+  const { width } = useWindowDimensions();
+
   const slidesRef = useRef<HTMLUListElement>(null);
   const [slideIdx, setSlideIdx] = useState(0);
 
@@ -46,8 +49,20 @@ export default function How() {
         left: -slidesRef.current.clientWidth * (slides.length - 1),
         behavior: "smooth",
       });
+      setSlideIdx(0);
     }
   };
+
+  const updateSlidesScrollOnResize = () => {
+    if (slidesRef.current) {
+      slidesRef.current.scrollTo({
+        top: 0,
+        left: slidesRef.current.clientWidth * slideIdx,
+      });
+    }
+  };
+
+  useEffect(updateSlidesScrollOnResize, [width]);
 
   return (
     <section className="bg-background-primary py-24 lg:py-32">
