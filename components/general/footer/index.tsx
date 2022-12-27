@@ -25,9 +25,29 @@ export default function Footer() {
     setMessage(e.target.value);
   };
 
-  const onSubmit = () => {
-    // TODO: Send email
-    console.log(email, message);
+  const onSubmit = async () => {
+    // TODO: notifikation ui
+    try {
+      const response = await fetch("/api/email", {
+        method: "POST",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message, email }),
+      });
+
+      if (response.status === 200) {
+        alert("Message sent");
+        setEmail("");
+        setMessage("");
+      } else {
+        alert("Failed to send message");
+      }
+    } catch (e) {
+      console.log(e);
+      alert("Failed to send message");
+    }
   };
 
   return (
@@ -46,6 +66,7 @@ export default function Footer() {
             value={email}
             placeholder="Email"
             className="rounded-xl p-4"
+            required
           />
           <textarea
             id="message"
@@ -54,6 +75,7 @@ export default function Footer() {
             value={message}
             placeholder="Your message"
             className="h-40 resize-none rounded-xl p-4"
+            required
           />
           <Button onClick={onSubmit} isBlue={false} className="w-fit">
             Submit
