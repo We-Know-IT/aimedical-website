@@ -20,12 +20,14 @@ const bars = [
 
 const minValue = Math.min(...bars.map((bar) => bar.value));
 const maxValue = Math.max(...bars.map((bar) => bar.value));
-const scaleFactor = 0.4;
+const minPercentage = 0.7;
 
 const getvalue = (value: number) => {
-  const t = Math.max(minValue * (1 - scaleFactor), 0);
-  value = (value - t) / (maxValue - t);
-  return value;
+  // minvalue should give scaleFactor and maxvalue should give 1 and everything in between should be scaled accordingly
+  return (
+    ((value - minValue) / (maxValue - minValue)) * (1 - minPercentage) +
+    minPercentage
+  );
 };
 
 export default function Performance() {
