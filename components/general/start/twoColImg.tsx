@@ -23,6 +23,8 @@ export default function TwoColImg({ title, text, actionButton, image }: Props) {
             className={
               "rounded-tl-xl rounded-tr-xl object-cover xl:rounded-bl-xl xl:rounded-tr-none"
             }
+            placeholder="blur"
+            blurDataURL="/images/blur.jpg"
           />
         </div>
         {/* right box */}
