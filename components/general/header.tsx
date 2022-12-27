@@ -24,8 +24,8 @@ export default function Header({
     backgroundImage: `url("/images/blur.jpg")`,
   };
   useEffect(() => {
-    var src = imageUrl;
-    var header = document.getElementById('header')
+    const src = imageUrl;
+    const header = document.getElementById('header')
     if (header != null) {
       var image = new Image();
         image.addEventListener('load', function() {
@@ -46,7 +46,7 @@ export default function Header({
           <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-r from-primary/[0.85]"></div>
           {title && (
             <>
-              <h2 className="relative text-xl font-bold text-on-primary animate-fadeIn">
+              <h2 className="relative text-xl font-bold text-on-primary animate-focus-in">
                 {title}
               </h2>
               <div className="relative my-4 h-1 w-24 rounded bg-gray-800"></div>
@@ -54,7 +54,7 @@ export default function Header({
           )}
           {text &&
             (typeof text == "string" ? (
-              <p className="relative mb-6 whitespace-pre-wrap text-2xl font-bold text-on-primary lg:text-3xl animate-fadeIn">
+              <p className="relative mb-6 whitespace-pre-wrap text-2xl font-bold text-on-primary lg:text-3xl animate-focus-in">
                 {text}
               </p>
             ) : (
@@ -62,7 +62,7 @@ export default function Header({
             ))}
 
           {actionButton && (
-            <Button className="z-1 relative active:bg-black active:text-white" onClick={actionButton.onClick}>
+            <Button className="z-1 relative active:bg-background-accent active:text-on-bg-accent" onClick={actionButton.onClick}>
               {actionButton.text}
             </Button>
           )}
