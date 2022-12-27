@@ -1,59 +1,15 @@
+import { Employee } from "../../pages/about";
 import EmployeeCard from "./EmployeeCard";
 
-export type Employee = {
-  name: string;
-  title: string;
-  image: string;
-  description: string;
+type Props = {
+  employees: Employee[];
 };
-const employees: Employee[] = [
-  {
-    name: "Christoffer Ekström",
-    title: "CEO / Co-Founder",
-    description: `Christoffer Ekström is one of the founders of AI Medical Technology and is the company’s 
-    CEO and one of the board members. He is a serial entrepreneur and holds a Master’s degree in immersive technologies (M.Sc.) from Stockholm University and finalising a bachelor’s 
-    degree in business administration (BBA) at Uppsala University. Christoffer is an experienced climber and adventurer.`,
-    image: "/images/about/employee_test.png",
-  },
-  {
-    name: "Christoffer Ekström",
-    title: "CEO / Co-Founder",
-    description: `Christoffer Ekström is one of the founders of AI Medical Technology and is the company’s 
-    CEO and one of the board members. He is a serial entrepreneur and holds a Master’s degree in immersive technologies (M.Sc.) from Stockholm University and finalising a bachelor’s 
-    degree in business administration (BBA) at Uppsala University. Christoffer is an experienced climber and adventurer.`,
-    image: "/images/about/employee_test.png",
-  },
-  {
-    name: "Christoffer Ekström",
-    title: "CEO / Co-Founder",
-    description: `Christoffer Ekström is one of the founders of AI Medical Technology and is the company’s 
-    CEO and one of the board members. He is a serial entrepreneur and holds a Master’s degree in immersive technologies (M.Sc.) from Stockholm University and finalising a bachelor’s 
-    degree in business administration (BBA) at Uppsala University. Christoffer is an experienced climber and adventurer.`,
-    image: "/images/about/employee_test.png",
-  },
-  {
-    name: "Christoffer Ekström",
-    title: "CEO / Co-Founder",
-    description: `Christoffer Ekström is one of the founders of AI Medical Technology and is the company’s 
-    CEO and one of the board members. He is a serial entrepreneur and holds a Master’s degree in immersive technologies (M.Sc.) from Stockholm University and finalising a bachelor’s 
-    degree in business administration (BBA) at Uppsala University. Christoffer is an experienced climber and adventurer.`,
-    image: "/images/about/employee_test.png",
-  },
-  {
-    name: "Christoffer Ekström",
-    title: "CEO / Co-Founder",
-    description: `Christoffer Ekström is one of the founders of AI Medical Technology and is the company’s 
-    CEO and one of the board members. He is a serial entrepreneur and holds a Master’s degree in immersive technologies (M.Sc.) from Stockholm University and finalising a bachelor’s 
-    degree in business administration (BBA) at Uppsala University. Christoffer is an experienced climber and adventurer.`,
-    image: "/images/about/employee_test.png",
-  },
-];
 
-export default function Team() {
+export default function Team({ employees }: Props) {
   return (
     <section className="bg-background-primary py-24 xl:py-32">
-      <div className="container flex  flex-col items-center justify-center space-y-12">
-        <section className="flex max-w-xl flex-col items-center space-y-4 lg:max-w-2xl">
+      <div className="container  flex max-w-xl flex-col  items-center justify-center space-y-12 xl:container">
+        <section className="flex flex-col items-center space-y-4 lg:max-w-2xl">
           <div className="flex flex-col items-center space-y-4">
             {" "}
             <h2 className="text-left text-xl font-bold leading-6 text-primary xl:text-3xl xl:leading-10">

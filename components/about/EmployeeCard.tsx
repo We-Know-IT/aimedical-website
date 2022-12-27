@@ -1,4 +1,4 @@
-import { Employee } from "./Team";
+import { Employee } from "../../pages/about";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -21,7 +21,7 @@ export default function EmployeeCard({ employee }: Props) {
   return (
     <div className="flex flex-col items-center gap-y-4 rounded-xl pb-6 shadow-xl">
       <Image
-        className="clip-path-image w-full rounded-t-xl"
+        className="clip-path-image h-[300px] w-full rounded-t-xl object-cover"
         src={employee.image}
         width={300}
         height={300}

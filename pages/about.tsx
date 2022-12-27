@@ -1,9 +1,20 @@
+import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import Background from "../components/about/Background";
 import Team from "../components/about/Team";
 import Header from "../components/general/header";
+const fs = require("fs").promises;
 
-export default function About() {
+export type Employee = {
+  name: string;
+  title: string;
+  image: string;
+  description: string;
+};
+
+export default function About({
+  employees,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <Head>
@@ -23,8 +34,44 @@ export default function About() {
       />
       <main>
         <Background />
-        <Team />
+        <Team employees={employees} />
       </main>
     </>
   );
 }
+
+const isEmployeeType = (val: any) => {
+  return val.name && val.title && val.image && val.description;
+};
+
+const isValidJsonEmployeeData = (json: any) => {
+  if (!json.every) {
+    return false;
+  }
+
+  return json.every((el: any) => isEmployeeType(el));
+};
+
+export const getStaticProps: GetStaticProps<{
+  employees: Employee[];
+}> = async () => {
+  const file = await fs.readFile("./data/employees.json");
+
+  if (file) {
+    const json = JSON.parse(file);
+
+    if (!isValidJsonEmployeeData(json)) {
+      return {
+        props: { employees: [] },
+      };
+    }
+
+    return {
+      props: { employees: json as Employee[] },
+    };
+  }
+
+  return {
+    props: { employees: [] },
+  };
+};
