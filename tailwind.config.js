@@ -14,6 +14,44 @@ module.exports = {
       },
     },
     extend: {
+      gridTemplateColumns: {
+        // Simple 16 column grid
+        "advantage-card": "40px auto",
+      },
+      keyframes: {
+        right: {
+          "0%": { width: "0%" },
+          "100%": { width: "100%" },
+        },
+        up: {
+          "0%": { transform: "scale(1, 0)" },
+          "100%": { transform: "scale(1, 1)" },
+        },
+        "translate-up": {
+          "0%": { transform: "translateY(100%)" },
+          "100%": { transform: "translateY(0%)" },
+        },
+        "translate-down": {
+          "0%": { transform: "translateY(0%)" },
+          "100%": { transform: "translateY(100%)" },
+        },
+        "fade-out": {
+          "0%": { opacity: 1 },
+          "100%": { opacity: 0 },
+        },
+        "fade-in": {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
+        },
+      },
+      animation: {
+        right: "right 0.5s ease-out",
+        up: "up 0.5s ease-out ",
+        "fade-in": "fade-in 0.5s ease-out 0.2",
+        "fade-up": "fade-in 1.25s ease-out , translate-up 0.75s ease-out ",
+        "fade-down": "fade-out 1.25s ease-in , translate-down 0.75s linear",
+      },
+
       colors: {
         primary: {
           DEFAULT: "#0063AF",
@@ -42,7 +80,10 @@ module.exports = {
           DEFAULT: colors.white,
           hover: "rgba(235, 235, 235, 0.9)",
         },
-        "background-secondary": "rgba(243, 243, 243, 0.502)",
+        "background-secondary": {
+          DEFAULT: "rgba(243, 243, 243, 0.502)",
+          dark: "rgba(243, 243, 243, 1.0)",
+        },
         "background-accent": "rgba(33, 33, 33, 1)",
         "surface-primary": colors.white,
         "on-bg-primary": { DEFAULT: colors.black, hover: colors.gray[500] },

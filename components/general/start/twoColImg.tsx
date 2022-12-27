@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { useElementInViewPort } from "../../../utils/elementInViewPort";
 import Button from "../button";
 type Props = {
   title?: string;
@@ -10,10 +12,30 @@ type Props = {
   };
 };
 export default function TwoColImg({ title, text, actionButton, image }: Props) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [animate, setAnimate] = useState(false);
+
+  const sectionInViewportState = useElementInViewPort(sectionRef);
+
+  useEffect(() => {
+    if (
+      sectionInViewportState.isInViewport &&
+      sectionInViewportState.direction === "down"
+    ) {
+      setAnimate(true);
+    } else {
+      setAnimate(false);
+    }
+  }, [sectionInViewportState]);
+
   return (
-    <section className="bg-background-primary py-24">
+    <section ref={sectionRef} className="bg-background-primary py-24">
       {/* Container */}
-      <div className="container flex max-w-xl flex-col xl:container xl:flex-row">
+      <div
+        className={
+          "container flex max-w-xl flex-col xl:container xl:flex-row " +
+          (animate ? " animate-fade-up " : "")
+        }>
         {/* left box */}
         <div className="relative aspect-square w-full xl:w-2/5">
           <Image
@@ -31,7 +53,7 @@ export default function TwoColImg({ title, text, actionButton, image }: Props) {
         <div
           className="flex grow flex-col items-center justify-center space-y-6  rounded-bl-xl rounded-br-xl bg-gradient-to-br from-primary to-primary/50 px-6 
         py-12 xl:rounded-bl-none xl:rounded-tr-xl xl:rounded-br-xl">
-          <div className="items-s flex  flex-col space-y-6">
+          <div className="item-center flex  flex-col space-y-6">
             <h3 className="text-3xl font-semibold text-on-primary">{title}</h3>
             <p className="max-w-md text-lg tracking-wide text-on-primary">
               {text}

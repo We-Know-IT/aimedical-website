@@ -26,13 +26,17 @@ export default function Header({
   useEffect(() => {
     const src = imageUrl;
     const header = document.getElementById("header");
+    const header = document.getElementById("header");
     if (header != null) {
       var image = new Image();
+      image.addEventListener("load", function () {
+        header.style.backgroundImage = "url(" + src + ")";
       image.addEventListener("load", function () {
         header.style.backgroundImage = "url(" + src + ")";
       });
       image.src = src;
     }
+  });
   });
 
   return (
@@ -42,16 +46,18 @@ export default function Header({
       }
       style={backgroundImageStyle}
       id="header">
+      style={backgroundImageStyle}
+      id="header">
       <div className="container flex h-full flex-col justify-center">
         <>
           <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-r from-primary/[0.85]"></div>
           {title && (
-            <>
-              <h2 className="relative animate-focus-in text-xl font-bold text-on-primary">
+            <div className="w-fit">
+              <h2 className="relative w-fit animate-focus-in text-xl font-bold text-on-primary">
                 {title}
               </h2>
-              <div className="relative my-4 h-1 w-24 rounded bg-gray-800"></div>
-            </>
+              <div className="relative my-4 h-1 w-3/4 rounded bg-gray-800"></div>
+            </div>
           )}
           {text &&
             (typeof text == "string" ? (
@@ -63,6 +69,9 @@ export default function Header({
             ))}
 
           {actionButton && (
+            <Button
+              className="z-1 relative active:bg-background-accent active:text-on-bg-accent"
+              onClick={actionButton.onClick}>
             <Button
               className="z-1 relative active:bg-background-accent active:text-on-bg-accent"
               onClick={actionButton.onClick}>
