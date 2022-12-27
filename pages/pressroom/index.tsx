@@ -1,39 +1,33 @@
-import { GetServerSideProps } from "next";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "../../components/general/button";
 import PostCard from "../../components/pressroom/post";
-import { getPosts, ServiceResponse } from "../../services/api";
-import { Post } from "../../services/types";
+import { PostType } from "../../services/types";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "../../components/general/header";
+import { usePosts } from "../../hooks/usePosts";
 
 const threeColsXLWidth = true;
+const pageSize = 6;
 
-export default function PressRoom(props: ServiceResponse<Post[]>) {
-  const [posts] = useState<Post[]>(props.data || []);
+const initialFilters = new Set<PostType>(["blog", "news"]);
 
-  const [filters, setFilters] = useState<Set<string>>(new Set());
+export default function PressRoom() {
+  const [filters, setFilters] = useState<Set<PostType>>(initialFilters);
 
-  const initFilters = () => {
-    const filters = new Set<string>();
-    filters.add("blog");
-    filters.add("news");
-    setFilters(filters);
-  };
+  const {
+    posts,
+    hasNextPosts,
+    loadingPosts,
+    loadingNextPosts,
+    awaitingNextPosts,
+    error,
+    loadMorePosts,
+    initPosts,
+  } = usePosts(filters, pageSize);
 
-  const checkServerError = () => {
-    if (props.error) {
-      alert("Server error: " + props.error);
-    }
-  };
-
-  useEffect(() => {
-    initFilters();
-    checkServerError();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const showSkeletons = loadingPosts || awaitingNextPosts;
 
   const toggleBlogsFilter = () => {
     toggleEntryInFilters("blog");
@@ -43,15 +37,24 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
     toggleEntryInFilters("news");
   };
 
-  const toggleEntryInFilters = (entry: string) => {
+  const toggleEntryInFilters = (entry: PostType) => {
     const _filters = new Set(filters);
     if (_filters.has(entry)) {
       _filters.delete(entry);
     } else {
       _filters.add(entry);
     }
-
+    if (_filters.size >= 0) initPosts(_filters);
+    else initPosts(initialFilters);
     setFilters(_filters);
+  };
+
+  const onLoadMore = async () => {
+    loadMorePosts();
+  };
+
+  const tryAgain = () => {
+    initPosts(filters);
   };
 
   return (
@@ -70,7 +73,10 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
           <p className="hidden text-xl font-bold text-primary md:block">
             Filter posts:
           </p>
-          <Button isBlue={filters.has("blog")} onClick={toggleBlogsFilter}>
+          <Button
+            isBlue={filters.has("blog")}
+            onClick={toggleBlogsFilter}
+            disabled={error ? true : false}>
             <>
               Blogs
               {filters.has("blog") ? (
@@ -88,7 +94,8 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
           </Button>
           <Button
             isBlue={filters.has("news")}
-            onClick={togglePressReleasesFilter}>
+            onClick={togglePressReleasesFilter}
+            disabled={error ? true : false}>
             <>
               News
               {filters.has("news") ? (
@@ -106,9 +113,27 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
           </Button>
         </section>
         <section className="py-12">
+          {/* If there is an error, show a message. */}
+          {error && (
+            <div className="mb-8 flex flex-col items-center gap-14">
+              <p className="text-center text-xl font-bold text-error-dark">
+                {error}
+              </p>
+              <Button onClick={tryAgain} isBlue>
+                Try again
+              </Button>
+            </div>
+          )}
+          {/* If there are no posts to show, show a message. */}
+          {posts.length === 0 && !error && !loadingPosts && (
+            <p className="text-center text-xl font-bold text-primary">
+              Looks like there are no posts to show.
+            </p>
+          )}
+          {/* If there are posts to show, show them. */}
           <ul
             className={
-              "gap-14 md:grid md:grid-cols-2" +
+              "flex flex-col gap-8 md:grid md:grid-cols-2 md:gap-14" +
               (threeColsXLWidth ? " xl:grid-cols-3" : "")
             }>
             {/* Iterates over all the posts and returns UI components for each 
@@ -116,7 +141,7 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
             {posts.map((p) => {
               if (filters.has(p.postType) || filters.size === 0) {
                 return (
-                  <li key={p.id} className="w-fit">
+                  <li key={p.id} className="w-full">
                     <Link href={"/pressroom/" + p.id}>
                       <PostCard post={p} />
                     </Link>
@@ -124,17 +149,22 @@ export default function PressRoom(props: ServiceResponse<Post[]>) {
                 );
               }
             })}
+            {showSkeletons &&
+              [...Array(pageSize)].map((x, i) => {
+                return <PostCard key={`skeleton-${i}`} />;
+              })}
           </ul>
+          {(hasNextPosts || loadingNextPosts) &&
+            !awaitingNextPosts &&
+            !error && (
+              <div className="mt-12 flex flex-col items-center">
+                <Button onClick={onLoadMore} isBlue>
+                  Load more
+                </Button>
+              </div>
+            )}
         </section>
       </main>
     </>
   );
 }
-
-export const getServerSideProps: GetServerSideProps<{
-  data: Post[] | null;
-  error: string | null;
-}> = async () => {
-  const res = await getPosts();
-  return { props: res };
-};

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Advantages from "../components/dermalyser/Advantages";
 import DiagnosticsEmpowered from "../components/dermalyser/DiagnosticsEmpowered";
-import How from "../components/dermalyser/How";
+import HowItWorks from "../components/dermalyser/HowItWorks";
 import Performance from "../components/dermalyser/Performance";
 import Header from "../components/general/header";
 
@@ -28,7 +28,7 @@ export default function Dermalyser() {
         <DiagnosticsEmpowered />
         <Performance />
         <Advantages />
-        <How />
+        <HowItWorks />
       </main>
     </>
   );

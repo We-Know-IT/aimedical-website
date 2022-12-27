@@ -1,8 +1,8 @@
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Header from "../../components/general/header";
-import { getPost, ServiceResponse } from "../../services/api";
-import { Post } from "../../services/types";
+import { getPost } from "../../services/api";
+import { Post, ServiceResponse } from "../../services/types";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 

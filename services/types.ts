@@ -19,3 +19,34 @@ export interface Image {
   height: number;
   url: string;
 }
+
+type DataResponse<T> = {
+  data: T;
+  error: null;
+};
+
+type ErrorResponse = {
+  error: string;
+  data: null;
+};
+
+export type ServiceResponse<T> = DataResponse<T> | ErrorResponse;
+
+type PaginationByOffset = {
+  start: number;
+  limit: number;
+  withCount?: boolean;
+};
+
+type PaginationByPage = {
+  page: number;
+  pageSize: number;
+  withCount?: boolean;
+};
+
+export interface PostsRequestParams {
+  sort?: string;
+  pagination?: PaginationByOffset | PaginationByPage;
+  filters?: Record<string, unknown>;
+  filterBy?: PostType[];
+}
