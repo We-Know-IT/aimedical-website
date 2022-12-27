@@ -26,17 +26,13 @@ export default function Header({
   useEffect(() => {
     const src = imageUrl;
     const header = document.getElementById("header");
-    const header = document.getElementById("header");
     if (header != null) {
       var image = new Image();
-      image.addEventListener("load", function () {
-        header.style.backgroundImage = "url(" + src + ")";
       image.addEventListener("load", function () {
         header.style.backgroundImage = "url(" + src + ")";
       });
       image.src = src;
     }
-  });
   });
 
   return (
@@ -44,8 +40,6 @@ export default function Header({
       className={
         "relative w-full bg-cover " + (fullHeight ? "h-[100vh]" : "h-[600px]")
       }
-      style={backgroundImageStyle}
-      id="header">
       style={backgroundImageStyle}
       id="header">
       <div className="container flex h-full flex-col justify-center">
@@ -69,9 +63,6 @@ export default function Header({
             ))}
 
           {actionButton && (
-            <Button
-              className="z-1 relative active:bg-background-accent active:text-on-bg-accent"
-              onClick={actionButton.onClick}>
             <Button
               className="z-1 relative active:bg-background-accent active:text-on-bg-accent"
               onClick={actionButton.onClick}>
