@@ -35,11 +35,11 @@ export default function researchPostCard({ post }: Props) {
           <h3 className="text-xl text-primary md:w-full md:text-start">
             {post?.title || <Skeleton />}
           </h3>
-          <p className="w-full text-start text-base">
+          <p className="w-full text-start text-base line-clamp-5">
             {post?.ingress || <Skeleton count={4} />}
           </p>
           {post ? (
-            <Link href={`/pressroom/${post.id}`}>
+            <Link href={`/research/${post.id}`}>
               <Button onClick={onReadMoreClick} isBlue className="py-3 px-10">
                 Read more
               </Button>
