@@ -31,25 +31,25 @@ module.exports = {
           "0%": { transform: "translateY(100%)" },
           "100%": { transform: "translateY(0%)" },
         },
+        "translate-down": {
+          "0%": { transform: "translateY(0%)" },
+          "100%": { transform: "translateY(100%)" },
+        },
+        "fade-out": {
+          "0%": { opacity: 1 },
+          "100%": { opacity: 0 },
+        },
         "fade-in": {
           "0%": { opacity: 0 },
           "100%": { opacity: 1 },
-        },
-        circle: {
-          "0%": {
-            "stroke-dashoffset": "calc(3.14 * 100px)",
-          },
-          "100%": {
-            "stroke-dashoffset": "calc(3.14 * 100px / 2 - 15px)",
-          },
         },
       },
       animation: {
         right: "right 0.5s ease-out",
         up: "up 0.5s ease-out ",
         "fade-in": "fade-in 0.5s ease-out 0.2",
-        circle: "circle 1s ease-in-out",
-        "slide-up": "translate-up 1s ease-out, fade-in 1.5s ease-out 0.25s",
+        "fade-up": "fade-in 1.25s ease-out , translate-up 0.75s ease-out ",
+        "fade-down": "fade-out 1.25s ease-in , translate-down 0.75s linear",
       },
 
       colors: {
