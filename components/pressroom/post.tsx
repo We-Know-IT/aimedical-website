@@ -21,6 +21,8 @@ export default function PostCard({ post }: Props) {
         width={post.listingImage?.width}
         height={post.listingImage?.height}
         alt={post.listingImage?.alternativeText || ""}
+        placeholder="blur"
+        blurDataURL="/images/blur.jpg"
       />
 
       <div className="flex flex-row items-center justify-between">
