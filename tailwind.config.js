@@ -65,7 +65,10 @@ module.exports = {
           DEFAULT: colors.white,
           hover: "rgba(235, 235, 235, 0.9)",
         },
-        "background-secondary": "rgba(243, 243, 243, 0.502)",
+        "background-secondary": {
+          DEFAULT: "rgba(243, 243, 243, 0.502)",
+          dark: "rgba(243, 243, 243, 1.0)",
+        },
         "surface-primary": colors.white,
         "on-bg-primary": { DEFAULT: colors.black, hover: colors.gray[500] },
         "on-bg-secondary": { DEFAULT: colors.black, hover: colors.gray[500] },

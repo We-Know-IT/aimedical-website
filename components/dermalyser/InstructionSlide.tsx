@@ -1,5 +1,6 @@
 import Button from "../general/button";
 import Image from "next/image";
+import { ReactElement } from "react";
 
 type Props = {
   title: string;
@@ -7,6 +8,8 @@ type Props = {
   image: string;
   onClick: () => void;
   buttonText: string;
+  buttonIcon: ReactElement;
+  iconPosition: "left" | "right";
 };
 
 export default function HowSlide({
@@ -15,14 +18,16 @@ export default function HowSlide({
   image,
   onClick,
   buttonText,
+  buttonIcon,
+  iconPosition,
 }: Props) {
   return (
-    <div className="relative flex w-full flex-col items-center justify-between gap-24 md:flex-row">
+    <div className="relative flex w-full flex-col items-center justify-between gap-24 lg:flex-row">
       <Image src={image} width={312} height={524} alt="" />
 
       <div className="space-y-6">
         <div className="w-fit">
-          <h2 className="mb-4  text-xl font-bold leading-6 text-primary md:text-3xl md:leading-10">
+          <h2 className="mb-4  text-xl font-bold leading-6 text-primary lg:text-3xl lg:leading-10">
             How it works
           </h2>
           <div className=" mb-10 h-[2px] w-3/4 bg-primary" />
@@ -30,9 +35,24 @@ export default function HowSlide({
         <h3 className="text-xl font-bold text-primary">{title}</h3>
         <p className="max-w-sm text-on-bg-primary">{text}</p>
       </div>
-      <Button isBlue={true} onClick={onClick} className="my-auto px-12">
-        <>Next <span className="text-2xl ml-4 -mt-1">&rsaquo;</span></>
-      </Button>
+
+      {iconPosition === "right" && (
+        <Button isBlue={true} onClick={onClick} className="my-auto px-12">
+          <>
+            {buttonText}{" "}
+            <span className="ml-4 -mt-1 text-2xl">{buttonIcon}</span>
+          </>
+        </Button>
+      )}
+
+      {iconPosition === "left" && (
+        <Button isBlue={true} onClick={onClick} className="my-auto px-12">
+          <>
+            <span className="mr-4 -mt-1 text-2xl">{buttonIcon}</span>{" "}
+            {buttonText}
+          </>
+        </Button>
+      )}
     </div>
   );
 }

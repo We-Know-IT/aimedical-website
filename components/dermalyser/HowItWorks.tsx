@@ -50,8 +50,8 @@ export default function How() {
   };
 
   return (
-    <section className="bg-background-primary py-24 md:py-32">
-      <div className="container">
+    <section className="bg-background-primary py-24 lg:py-32">
+      <div className="container max-w-xl lg:container">
         <ul ref={slidesRef} className={"flex flex-row overflow-x-hidden"}>
           {slides.map((s, i) => {
             if (i === slides.length - 1) {
@@ -61,6 +61,8 @@ export default function How() {
                     {...s}
                     onClick={returnToFirstSlide}
                     buttonText="Return"
+                    buttonIcon={<>&lsaquo;</>}
+                    iconPosition="left"
                   />
                 </li>
               );
@@ -71,6 +73,8 @@ export default function How() {
                     {...s}
                     onClick={nextSlide}
                     buttonText="Next"
+                    buttonIcon={<>&rsaquo; </>}
+                    iconPosition="right"
                   />
                 </li>
               );

@@ -20,9 +20,9 @@ const advantages = [
 
 export default function Advantages() {
   return (
-    <section className="bg-background-secondary py-24 md:py-32">
-      <div className="container flex flex-col gap-12 ">
-        <h2 className="text-center text-xl font-bold leading-6 text-primary md:text-3xl md:leading-10">
+    <section className="bg-background-secondary py-24 lg:py-32">
+      <div className="container flex max-w-xl flex-col gap-12 lg:container">
+        <h2 className="text-center text-xl font-bold leading-6 text-primary lg:text-3xl lg:leading-10">
           Advantages of using Dermalyser
         </h2>
         <div className="mx-auto h-[2px] w-1/6 bg-primary " />
