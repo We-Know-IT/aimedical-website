@@ -28,38 +28,12 @@ export default function TwoColImg({ title, text, actionButton, image }: Props) {
     }
   }, [sectionInViewportState]);
 
-  useEffect(() => {
-    function checkVisible(elm: Element) {
-      var rect = elm.getBoundingClientRect();
-      var viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
-      return (rect.bottom <= 0 || rect.top - viewHeight <= -300);
-    }
-
-    function animateUp () {
-      if (checkVisible(sectionContainer)) {
-        section[0].classList.remove("translate-y-[50vh]")
-        document.removeEventListener("scroll", animateUp)
-      }
-    }
-
-
-
-    //let section = Array.from(document.getElementsByClassName("reveal") as HTMLCollectionOf<HTMLElement>)
-    let section = document.querySelectorAll<HTMLElement>(".reveal")
-    //let sectionContainer = Array.from(document.querySelectorAll(".revealContainer") as HTMLCollectionOf<HTMLElement>)
-    let sectionContainer = document.querySelectorAll(".revealContainer")[0]
-
-    animateUp()
-    document.addEventListener("scroll", animateUp)
-
-  }, [])
-
   return (
-    <section ref={sectionRef} className="bg-background-primary py-24 revealContainer">
+    <section ref={sectionRef} className="bg-background-primary py-24">
       {/* Container */}
       <div
         className={
-          "container flex max-w-xl flex-col xl:container xl:flex-row translate-y-[50vh] duration-500 reveal " +
+          "container flex max-w-xl flex-col xl:container xl:flex-row translate-y-[50vh] duration-500 " +
           (animate ? " animate-fade-up " : "")
         }>
         {/* left box */}
