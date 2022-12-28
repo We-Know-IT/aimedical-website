@@ -7,7 +7,7 @@ type Props = {
 };
 
 const commonStyles =
-  " rounded-full text-base px-6 py-1.5 xl:py-3.5  md:px-12 md:py-2.5 transition-colors duration-200 flex flex-row items-center justify-center shadow-md sm:w-fit ";
+  " rounded-full text-base px-6 py-1.5 xl:py-3.5  md:px-12 md:py-2.5 transition-colors duration-200 flex flex-row items-center justify-center shadow-md sm:w-fit active:bg-background-accent active:text-on-bg-accent ";
 
 export default function Button({
   children,
