@@ -11,8 +11,6 @@ type Props = {
 };
 
 export default function researchPostCard({ post }: Props) {
-  const onReadMoreClick = () => {};
-
   return (
     <div className="flex h-full flex-col rounded-2xl shadow-md duration-200 md:h-80 md:w-full md:flex-row lg:h-96">
       {post?.listingImage && (
@@ -40,10 +38,7 @@ export default function researchPostCard({ post }: Props) {
           </p>
           {post ? (
             <Link href={`/research/${post.id}`}>
-              <Button
-                onClick={onReadMoreClick}
-                isPrimary
-                className="py-3 px-10">
+              <Button isPrimary className="py-3 px-10">
                 Read more
               </Button>
             </Link>
