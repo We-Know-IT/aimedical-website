@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useElementInViewPort } from "../../../utils/elementInViewPort";
 import Button from "../button";
@@ -8,7 +9,8 @@ type Props = {
   image?: string;
   actionButton?: {
     text: string;
-    onClick: () => void;
+    onClick?: () => void;
+    href?: string;
   };
 };
 export default function TwoColImg({ title, text, actionButton, image }: Props) {
@@ -59,11 +61,18 @@ export default function TwoColImg({ title, text, actionButton, image }: Props) {
               {text}
             </p>
 
-            {actionButton && (
-              <Button onClick={actionButton.onClick}>
-                {actionButton.text}
-              </Button>
-            )}
+            {actionButton &&
+              (actionButton.href ? (
+                <Link href={actionButton.href}>
+                  <Button onClick={actionButton.onClick}>
+                    {actionButton.text}
+                  </Button>
+                </Link>
+              ) : (
+                <Button onClick={actionButton.onClick}>
+                  {actionButton.text}
+                </Button>
+              ))}
           </div>
         </div>
       </div>

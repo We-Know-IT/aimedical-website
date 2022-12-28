@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CSSProperties, useEffect } from "react";
 import Button from "./button";
 
@@ -9,7 +10,8 @@ type Props = {
   fullHeight?: boolean;
   actionButton?: {
     text: string;
-    onClick: () => void;
+    onClick?: () => void;
+    href?: string;
   };
 };
 
@@ -62,13 +64,22 @@ export default function Header({
               { ...text }
             ))}
 
-          {actionButton && (
-            <Button
-              className="z-1 relative active:bg-background-accent active:text-on-bg-accent"
-              onClick={actionButton.onClick}>
-              {actionButton.text}
-            </Button>
-          )}
+          {actionButton &&
+            (actionButton.href ? (
+              <Link href={actionButton.href}>
+                <Button
+                  className="z-1 relative active:bg-background-accent active:text-on-bg-accent"
+                  onClick={actionButton.onClick}>
+                  {actionButton.text}
+                </Button>
+              </Link>
+            ) : (
+              <Button
+                className="z-1 relative active:bg-background-accent active:text-on-bg-accent"
+                onClick={actionButton.onClick}>
+                {actionButton.text}
+              </Button>
+            ))}
         </>
       </div>
     </header>

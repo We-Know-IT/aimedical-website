@@ -35,7 +35,7 @@ export default function TheraputicArea() {
           text="The most common skin cancers are non-melanoma cancers - basal cell and squamous cell carcinomas. They are treatable and seldom fatal. Malignant melanoma is the third and generally the most serious form of skin cancer as it tends to spread (metastasize) quickly throughout the body."
           actionButton={{
             text: "With us you can win the race",
-            onClick: () => {},
+            href: "/dermalyser",
           }}
           image="theraputic-area/sprint_track.png"
         />
