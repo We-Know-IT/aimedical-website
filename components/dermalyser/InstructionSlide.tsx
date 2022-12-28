@@ -26,7 +26,7 @@ export default function HowSlide({
       <Image src={image} width={312} height={524} alt="" />
 
       <div className="space-y-6">
-        <div className="absolute top-0 w-fit">
+        <div className="w-fit lg:absolute lg:top-0">
           <h2 className="mb-4  text-xl font-bold leading-6 text-primary lg:text-3xl lg:leading-10">
             How it works
           </h2>
