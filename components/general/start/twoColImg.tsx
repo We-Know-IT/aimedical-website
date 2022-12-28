@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useElementInViewPort } from "../../../utils/elementInViewPort";
 import Button from "../button";
@@ -8,25 +9,21 @@ type Props = {
   image?: string;
   actionButton?: {
     text: string;
-    onClick: () => void;
+    onClick?: () => void;
+    href?: string;
   };
 };
 export default function TwoColImg({ title, text, actionButton, image }: Props) {
   const sectionRef = useRef<HTMLElement>(null);
   const [animate, setAnimate] = useState(false);
 
-  const sectionInViewportState = useElementInViewPort(sectionRef);
+  const sectionInViewportState = useElementInViewPort(sectionRef, 200);
 
   useEffect(() => {
-    if (
-      sectionInViewportState.isInViewport &&
-      sectionInViewportState.direction === "down"
-    ) {
+    if (sectionInViewportState.isInViewport && !animate) {
       setAnimate(true);
-    } else {
-      setAnimate(false);
     }
-  }, [sectionInViewportState]);
+  }, [sectionInViewportState, animate]);
 
   return (
     <section ref={sectionRef} className="bg-background-primary py-24">
@@ -34,7 +31,7 @@ export default function TwoColImg({ title, text, actionButton, image }: Props) {
       <div
         className={
           "container flex max-w-xl flex-col xl:container xl:flex-row " +
-          (animate ? " animate-fade-up " : "")
+          (animate ? " animate-fade-up " : " invisible animate-fade-down")
         }>
         {/* left box */}
         <div className="relative aspect-square w-full xl:w-2/5">
@@ -59,11 +56,18 @@ export default function TwoColImg({ title, text, actionButton, image }: Props) {
               {text}
             </p>
 
-            {actionButton && (
-              <Button onClick={actionButton.onClick}>
-                {actionButton.text}
-              </Button>
-            )}
+            {actionButton &&
+              (actionButton.href ? (
+                <Link href={actionButton.href}>
+                  <Button onClick={actionButton.onClick}>
+                    {actionButton.text}
+                  </Button>
+                </Link>
+              ) : (
+                <Button onClick={actionButton.onClick}>
+                  {actionButton.text}
+                </Button>
+              ))}
           </div>
         </div>
       </div>

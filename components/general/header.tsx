@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CSSProperties, useEffect } from "react";
 import Button from "./button";
 
@@ -9,9 +10,12 @@ type Props = {
   fullHeight?: boolean;
   actionButton?: {
     text: string;
-    onClick: () => void;
+    onClick?: () => void;
+    href?: string;
   };
 };
+
+const buttonStyles = "z-1 relative";
 
 export default function Header({
   title,
@@ -43,11 +47,11 @@ export default function Header({
       style={backgroundImageStyle}
       id="header">
       <div className="container flex h-full flex-col justify-center">
-        <>
-          <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-r from-primary/[0.85]"></div>
+        <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-r from-primary/[0.85]"></div>
+        <div className="animate-focus-in">
           {title && (
             <div className="w-fit">
-              <h2 className="relative w-fit animate-focus-in text-xl font-bold text-on-primary">
+              <h2 className="relative w-fit text-xl font-bold text-on-primary">
                 {title}
               </h2>
               <div className="relative my-4 h-1 w-3/4 rounded bg-gray-800"></div>
@@ -55,21 +59,26 @@ export default function Header({
           )}
           {text &&
             (typeof text == "string" ? (
-              <p className="relative mb-6 max-w-xl animate-focus-in whitespace-pre-wrap text-2xl font-bold text-on-primary lg:text-3xl">
+              <p className="relative mb-6 whitespace-pre-wrap text-lg font-bold text-on-primary sm:text-xl lg:w-1/2 lg:text-2xl">
                 {text}
               </p>
             ) : (
               { ...text }
             ))}
 
-          {actionButton && (
-            <Button
-              className="z-1 relative active:bg-background-accent active:text-on-bg-accent"
-              onClick={actionButton.onClick}>
-              {actionButton.text}
-            </Button>
-          )}
-        </>
+          {actionButton &&
+            (actionButton.href ? (
+              <Link href={actionButton.href}>
+                <Button className={buttonStyles} onClick={actionButton.onClick}>
+                  {actionButton.text}
+                </Button>
+              </Link>
+            ) : (
+              <Button className={buttonStyles} onClick={actionButton.onClick}>
+                {actionButton.text}
+              </Button>
+            ))}
+        </div>
       </div>
     </header>
   );

@@ -10,7 +10,8 @@ module.exports = {
       center: true,
       padding: {
         DEFAULT: "1.25rem",
-        xl: "1.75rem",
+        xl: "5rem",
+        "2xl": "13rem",
       },
     },
     extend: {
@@ -43,6 +44,18 @@ module.exports = {
           "0%": { opacity: 0 },
           "100%": { opacity: 1 },
         },
+        "focus-in": {
+          "0%": {
+            opacity: 0,
+            "-webkit-filter": "blur(12px)",
+            filter: "blur(12px)",
+          },
+          "100%": {
+            opacity: 1,
+            "-webkit-filter": "blur(0)",
+            filter: "blur(0)",
+          },
+        },
       },
       animation: {
         right: "right 0.5s ease-out",
@@ -50,13 +63,15 @@ module.exports = {
         "fade-in": "fade-in 0.5s ease-out 0.2",
         "fade-up": "fade-in 1.25s ease-out , translate-up 0.75s ease-out ",
         "fade-down": "fade-out 1.25s ease-in , translate-down 0.75s linear",
+        "focus-in": "focus-in 500ms cubic-bezier(0.11, 0, 0.5, 0) 1",
       },
 
       colors: {
         primary: {
           DEFAULT: "#0063AF",
-          dark: "#004275",
+          hover: "#004275",
           light: "#008cf7",
+          active: "#013054",
         },
 
         error: {
@@ -76,6 +91,7 @@ module.exports = {
           dark: "#388e3c",
           light: "#81c784",
         },
+
         "background-primary": {
           DEFAULT: colors.white,
           hover: "rgba(235, 235, 235, 0.9)",
@@ -85,16 +101,28 @@ module.exports = {
           dark: "rgba(243, 243, 243, 1.0)",
         },
         "background-accent": "rgba(33, 33, 33, 1)",
-        "surface-primary": colors.white,
-        "on-bg-primary": { DEFAULT: colors.black, hover: colors.gray[500] },
+        "surface-primary": {
+          DEFAULT: colors.white,
+          hover: "rgba(235, 235, 235, 0.9)",
+        },
+        "on-bg-primary": {
+          DEFAULT: colors.black,
+          hover: colors.gray[500],
+          active: colors.gray[600],
+        },
         "on-bg-secondary": { DEFAULT: colors.black, hover: colors.gray[500] },
-        "on-bg-accent": { DEFAULT: colors.white, hover: "rgba(235, 235, 235, 0.9" },
+        "on-bg-accent": {
+          DEFAULT: colors.white,
+          hover: "rgba(235, 235, 235, 0.9",
+        },
         "on-surface-primary": {
           DEFAULT: colors.black,
           hover: colors.gray[500],
+          active: colors.gray[600],
         },
         "on-primary": {
-          hover: "rgba(235, 235, 235, 0.9)",
+          hover: colors.gray[200],
+          active: colors.gray[300],
           DEFAULT: colors.white,
         },
       },
@@ -117,21 +145,6 @@ module.exports = {
         lg: "0 0 15px -3px rgb(0 0 0 / 0.1), 0 0 6px -4px rgb(0 0 0 / 0.1)",
         xl: "0 0 25px -5px rgb(0 0 0 / 0.1), 0 0 10px -6px rgb(0 0 0 / 0.1)",
       },
-      animation: {
-        'focus-in': 'focus-in 1s cubic-bezier(0.11, 0, 0.5, 0) 1',
-      },
-      keyframes: {
-        'focus-in': {
-          '0%': { 
-            opacity: 0,
-            '-webkit-filter': 'blur(12px)',
-            filter: 'blur(12px)'
-          },
-          '100%': { opacity: 1,
-            '-webkit-filter': 'blur(0)',
-            filter: 'blur(0)' },
-        }
-      }
     },
   },
 

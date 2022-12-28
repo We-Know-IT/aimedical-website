@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useWindowScrollPositions } from "../../../utils/scroll";
 import LogoIcon from "../../icons/common/logo";
@@ -12,6 +13,7 @@ export default function Navbar() {
   const {
     scrollPosition: { scrollY },
   } = useWindowScrollPositions();
+  const router = useRouter();
   const hasScrolled = scrollY > 0;
 
   useEffect(() => {
@@ -25,19 +27,24 @@ export default function Navbar() {
   const toggleNavbar = () => {
     setIsNavbarOpen(!isNavbarOpen);
   };
+  useEffect(() => {
+    if (isNavbarOpen) {
+      setIsNavbarOpen(false);
+    }
+  }, [router.asPath]);
 
   return (
     <nav
       className={
         (isNavbarOpen || hasScrolled
-          ? "bg-background-primary shadow-xl"
+          ? "bg-surface-primary shadow-xl"
           : " bg-transparent") +
         " fixed top-0 left-0 right-0 z-10 transition-all"
       }>
       {/* Top navbar */}
       <div
         className={
-          " duration-250 container mx-auto flex justify-between ease-in-out " +
+          " duration-250 container relative z-10 mx-auto flex justify-between ease-in-out " +
           (hasScrolled ? "py-4" : "py-6")
         }>
         <h1 aria-label="AI Medical" className="flex flex-col justify-center">
@@ -80,7 +87,9 @@ export default function Navbar() {
       </div>
       {/* Mobile drop down menu */}
       <div
-        className={(!isNavbarOpen ? "hidden " : "") + "lg:hidden"}
+        className={
+          "relative z-10 " + (!isNavbarOpen ? "hidden " : "") + "lg:hidden"
+        }
         id="mobile-menu">
         <ul className="flex flex-col items-center space-y-1 px-2 pt-2 pb-8">
           {navLinks.map((link) => {
@@ -95,6 +104,11 @@ export default function Navbar() {
           })}
         </ul>
       </div>
+      {isNavbarOpen && (
+        <div
+          className="fixed top-0 left-0 h-screen w-screen "
+          onClick={toggleNavbar}></div>
+      )}
     </nav>
   );
 }

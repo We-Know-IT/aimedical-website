@@ -1,8 +1,8 @@
 type Props = {
-  isBlue?: boolean;
+  isPrimary?: boolean;
   className?: string;
   children: React.ReactElement | string;
-  onClick: () => void;
+  onClick?: () => void;
   disabled?: boolean;
 };
 
@@ -13,15 +13,15 @@ export default function Button({
   children,
   onClick,
   className = "",
-  isBlue = false,
+  isPrimary = false,
   disabled = false,
 }: Props) {
   const getClassName = () => {
-    if (isBlue) {
-      return " bg-primary  text-on-primary hover:bg-primary-dark ";
+    if (isPrimary) {
+      return " bg-primary text-on-primary hover:bg-primary-hover active:bg-primary-active ";
     }
 
-    return " bg-background-primary text-on-bg-primary hover:bg-background-primary-hover ";
+    return " bg-white text-on-bg-primary hover:bg-gray-200 active:bg-gray-300 focus:bg-gray-200 ";
   };
 
   return (

@@ -11,9 +11,11 @@ type Props = {
 
 export default function PostCard({ post }: Props) {
   return (
-    <div className="background flex h-full max-w-xl flex-col justify-between rounded-2xl border-2 border-transparent p-9 shadow-md duration-200 hover:border-primary">
+    <div className="group flex h-full max-w-xl flex-col justify-between rounded-xl bg-surface-primary p-9 shadow-lg duration-200 hover:-translate-y-1 hover:shadow-2xl">
       <div className="my-2 mb-2 flex flex-col space-y-2">
-        <h3 className="text-xl text-primary">{post?.title || <Skeleton />}</h3>
+        <h3 className="text-xl text-primary  group-hover:underline">
+          {post?.title || <Skeleton />}
+        </h3>
         <p className="text-base line-clamp-3 ">
           {post?.ingress || <Skeleton count={3} />}
         </p>

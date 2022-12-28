@@ -18,11 +18,7 @@ export default function Dermalyser() {
       <Header
         imageUrl="/images/dermalyser/header.png"
         title="Dermalyser"
-        text={
-          <p className="relative mb-6 whitespace-pre-wrap text-2xl font-normal text-on-primary lg:text-5xl">
-            {`Driving Fast, Accurate Diagnosis\n for all Skin Cancers`}
-          </p>
-        }
+        text="Driving Fast, Accurate Diagnosis for all Skin Cancers"
       />
       <main className="flex flex-col">
         <DiagnosticsEmpowered />

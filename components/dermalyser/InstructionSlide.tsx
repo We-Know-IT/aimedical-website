@@ -26,7 +26,7 @@ export default function HowSlide({
       <Image src={image} width={312} height={524} alt="" />
 
       <div className="space-y-6">
-        <div className="absolute top-0 w-fit">
+        <div className="w-fit lg:absolute lg:top-0">
           <h2 className="mb-4  text-xl font-bold leading-6 text-primary lg:text-3xl lg:leading-10">
             How it works
           </h2>
@@ -37,7 +37,10 @@ export default function HowSlide({
       </div>
 
       {iconPosition === "right" && (
-        <Button isBlue={true} onClick={onClick} className="my-auto px-12">
+        <Button
+          isPrimary={true}
+          onClick={onClick}
+          className="my-auto px-12 md:px-16">
           <>
             {buttonText}{" "}
             <span className="ml-4 -mt-1 text-2xl">{buttonIcon}</span>
@@ -46,7 +49,7 @@ export default function HowSlide({
       )}
 
       {iconPosition === "left" && (
-        <Button isBlue={true} onClick={onClick} className="my-auto px-12">
+        <Button isPrimary={true} onClick={onClick} className="my-auto md:px-16">
           <>
             <span className="mr-4 -mt-1 text-2xl">{buttonIcon}</span>{" "}
             {buttonText}
