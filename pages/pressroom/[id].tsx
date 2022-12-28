@@ -5,6 +5,7 @@ import { getPost } from "../../services/api";
 import { Post, ServiceResponse } from "../../services/types";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
+import Link from "next/link";
 
 function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -101,19 +102,17 @@ export default function PostDetails(props: ServiceResponse<Post>) {
 
                 const linkName = props.children[0];
                 const linkAddress = props.href;
+                if (!linkName || !linkAddress) return null;
                 if (
-                  (linkName && isVideoLink(linkName.toString())) ||
-                  (linkAddress && isVideoLink(linkAddress))
+                  isVideoLink(linkName.toString()) ||
+                  isVideoLink(linkAddress)
                 ) {
                   return (
                     <video controls className="mb-4 aspect-video" width="100%">
                       <source src={props.href} type="video/mp4" />
                     </video>
                   );
-                } else if (
-                  linkAddress &&
-                  isYoutubeLink(linkAddress.toString())
-                ) {
+                } else if (isYoutubeLink(linkAddress.toString())) {
                   return (
                     <iframe
                       className="mb-4 aspect-video"
@@ -125,11 +124,11 @@ export default function PostDetails(props: ServiceResponse<Post>) {
                   );
                 } else {
                   return (
-                    <a
-                      className="link:text-primary font-semibold visited:text-primary-dark hover:text-primary-dark focus:text-primary-dark active:text-primary"
+                    <Link
+                      className="font-semibold text-primary visited:text-primary-hover hover:text-primary-hover focus:text-primary-hover active:text-primary"
                       href={linkAddress}>
                       {linkName}
-                    </a>
+                    </Link>
                   );
                 }
               },
