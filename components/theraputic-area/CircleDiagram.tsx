@@ -38,13 +38,13 @@ export default function CircleDiagram({
    * FYI: Transitions are used instead of css animation since we wanted to use dynamic values for the stroke-dashoffset.
    */
   const animateCircle = () => {
+    if (strokeDashoffset != circumference) return;
+
     if (circleRef.current) {
       if (circleInViewportState.isInViewport) {
-        circleRef.current.style.transition = "stroke-dashoffset 1s ease-in-out";
+        circleRef.current.style.transition =
+          "stroke-dashoffset 1s ease-in-out 0.2s";
         setStrokeDashoffset(circumference * (1 - fillPercentage / 100));
-      } else {
-        ("stroke-dashoffset 0s");
-        setStrokeDashoffset(circumference);
       }
     }
   };

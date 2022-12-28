@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useElementInViewPort } from "../../utils/elementInViewPort";
 import { useWindowDimensions } from "../../utils/resize";
 
 type Props = {
@@ -29,21 +30,15 @@ export default function Bar({
     dimensions.width > layoutWidthBreakpoint ? value * 100 + "%" : "70px"
   );
 
-  // OBS: will be replaced by custom hook on another branch
-  const onScroll = () => {
-    // make the bar animate when it comes into viewport
-    if (barRef.current) {
-      const box = barRef.current.getBoundingClientRect();
-      if (box.top - window.innerHeight <= 0) {
-        window.innerWidth > layoutWidthBreakpoint
-          ? setAnimateRight(true)
-          : setAnimateUp(true);
-      } else {
-        setAnimateRight(false);
-        setAnimateUp(false);
-      }
+  const sectionInViewportState = useElementInViewPort(barRef);
+
+  useEffect(() => {
+    if (sectionInViewportState.isInViewport && !animateUp && !animateRight) {
+      window.innerWidth > layoutWidthBreakpoint
+        ? setAnimateRight(true)
+        : setAnimateUp(true);
     }
-  };
+  }, [sectionInViewportState]);
 
   const updateBarDimensions = () => {
     setBarHeight(
@@ -53,14 +48,6 @@ export default function Bar({
       dimensions.width > layoutWidthBreakpoint ? value * 100 + "%" : "100%"
     );
   };
-
-  useEffect(() => {
-    addEventListener("scroll", onScroll);
-
-    return () => {
-      removeEventListener("scroll", onScroll);
-    };
-  }, []);
 
   useEffect(updateBarDimensions, [dimensions]);
 
