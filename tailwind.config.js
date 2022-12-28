@@ -10,7 +10,8 @@ module.exports = {
       center: true,
       padding: {
         DEFAULT: "1.25rem",
-        xl: "1.75rem",
+        xl: "5rem",
+        "2xl": "13rem",
       },
     },
     extend: {
@@ -62,7 +63,7 @@ module.exports = {
         "fade-in": "fade-in 0.5s ease-out 0.2",
         "fade-up": "fade-in 1.25s ease-out , translate-up 0.75s ease-out ",
         "fade-down": "fade-out 1.25s ease-in , translate-down 0.75s linear",
-        "focus-in": "focus-in 1s cubic-bezier(0.11, 0, 0.5, 0) 1",
+        "focus-in": "focus-in 500ms cubic-bezier(0.11, 0, 0.5, 0) 1",
       },
 
       colors: {
