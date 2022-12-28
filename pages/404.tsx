@@ -1,11 +1,12 @@
 import Head from "next/head";
 import Header from "../components/general/header";
+
 const actionButton = {
   text: "Go back home",
   href: "/",
 };
 
-export default function Error() {
+export default function NotFound() {
   return (
     <>
       <Head>
@@ -13,8 +14,8 @@ export default function Error() {
       </Head>
       <Header
         imageUrl="/images/header.jpg"
-        title="500 Server error"
-        text="It seems there was an issue connecting to the server, please try again later."
+        title="404 Not found"
+        text="Wow looks like you got lost, but don't worry we can help you get back home."
         fullHeight
         actionButton={actionButton}
       />

@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const buttonHeader = {
   text: "Learn more",
-  href: "/dermalyser",
+  href: "#home-section1",
 };
 
 const buttonSection1 = {
@@ -98,7 +98,7 @@ export default function Home() {
         actionButton={buttonHeader}
         fullHeight={true}
       />
-      <main>
+      <main id="home-section1">
         <TwoColText
           title="AI Powered Diagnostic Solutions"
           text="We are dedicated to developing AI powered diagnostic solutions that enable frontline healthcare practitioners to make easier, faster and more reliable diagnoses for their patients. Our first product, Dermalyser, is a clinically validated decision support tool for the diagnosis of all skin cancers."
