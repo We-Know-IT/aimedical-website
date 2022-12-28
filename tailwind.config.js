@@ -68,8 +68,9 @@ module.exports = {
       colors: {
         primary: {
           DEFAULT: "#0063AF",
-          dark: "#004275",
+          hover: "#004275",
           light: "#008cf7",
+          active: "#013054",
         },
 
         error: {
@@ -89,6 +90,7 @@ module.exports = {
           dark: "#388e3c",
           light: "#81c784",
         },
+
         "background-primary": {
           DEFAULT: colors.white,
           hover: "rgba(235, 235, 235, 0.9)",
@@ -98,7 +100,11 @@ module.exports = {
           dark: "rgba(243, 243, 243, 1.0)",
         },
         "background-accent": "rgba(33, 33, 33, 1)",
-        "surface-primary": colors.white,
+        "surface-primary": {
+          DEFAULT: colors.white,
+          hover: "rgba(235, 235, 235, 0.9)",
+          active: "",
+        },
         "on-bg-primary": { DEFAULT: colors.black, hover: colors.gray[500] },
         "on-bg-secondary": { DEFAULT: colors.black, hover: colors.gray[500] },
         "on-bg-accent": {

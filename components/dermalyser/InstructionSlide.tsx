@@ -37,7 +37,10 @@ export default function HowSlide({
       </div>
 
       {iconPosition === "right" && (
-        <Button isBlue={true} onClick={onClick} className="my-auto px-12">
+        <Button
+          isBlue={true}
+          onClick={onClick}
+          className="my-auto px-12 md:px-16">
           <>
             {buttonText}{" "}
             <span className="ml-4 -mt-1 text-2xl">{buttonIcon}</span>
@@ -46,7 +49,7 @@ export default function HowSlide({
       )}
 
       {iconPosition === "left" && (
-        <Button isBlue={true} onClick={onClick} className="my-auto px-12">
+        <Button isBlue={true} onClick={onClick} className="my-auto md:px-16">
           <>
             <span className="mr-4 -mt-1 text-2xl">{buttonIcon}</span>{" "}
             {buttonText}

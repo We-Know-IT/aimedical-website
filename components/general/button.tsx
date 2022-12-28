@@ -18,10 +18,10 @@ export default function Button({
 }: Props) {
   const getClassName = () => {
     if (isBlue) {
-      return " bg-primary  text-on-primary hover:bg-primary-dark ";
+      return " bg-primary text-on-primary hover:bg-primary-hover active:bg-primary-active ";
     }
 
-    return " bg-background-primary text-on-bg-primary hover:bg-background-primary-hover ";
+    return " bg-white text-on-bg-primary hover:bg-gray-200 active:bg-gray-300 focus:bg-gray-200 ";
   };
 
   return (
