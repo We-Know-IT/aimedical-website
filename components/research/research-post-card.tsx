@@ -18,7 +18,7 @@ export default function researchPostCard({ post }: Props) {
       {post?.listingImage && (
         <Image
           alt={post.listingImage.alternativeText || "Research post image"}
-          className="clip-path-b md:clip-path-r h-64 w-full rounded-2xl object-cover md:h-full md:w-5/12"
+          className="clip-path-b md:clip-path-r h-64 w-full rounded-2xl object-cover md:h-80 md:w-5/12"
           src={post.listingImage?.url || ""}
           width={post.listingImage?.width}
           height={post.listingImage?.height}
@@ -40,7 +40,10 @@ export default function researchPostCard({ post }: Props) {
           </p>
           {post ? (
             <Link href={`/research/${post.id}`}>
-              <Button onClick={onReadMoreClick} isBlue className="py-3 px-10">
+              <Button
+                onClick={onReadMoreClick}
+                isPrimary
+                className="py-3 px-10">
                 Read more
               </Button>
             </Link>

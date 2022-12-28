@@ -56,7 +56,7 @@ export default function Research() {
         {(hasNextPosts || (loadingNextPosts && !error)) &&
           !awaitingNextPosts && (
             <div className="my-12 flex flex-col items-center">
-              <Button onClick={onLoadMore} isBlue>
+              <Button onClick={onLoadMore} isPrimary>
                 Load more
               </Button>
             </div>
