@@ -74,7 +74,7 @@ export default function PressRoom() {
             Filter posts:
           </p>
           <Button
-            isBlue={filters.has("blog")}
+            isPrimary={filters.has("blog")}
             onClick={toggleBlogsFilter}
             disabled={error ? true : false}>
             <>
@@ -93,7 +93,7 @@ export default function PressRoom() {
             </>
           </Button>
           <Button
-            isBlue={filters.has("news")}
+            isPrimary={filters.has("news")}
             onClick={togglePressReleasesFilter}
             disabled={error ? true : false}>
             <>
@@ -119,7 +119,7 @@ export default function PressRoom() {
               <p className="text-center text-xl font-bold text-error-dark">
                 {error}
               </p>
-              <Button onClick={tryAgain} isBlue>
+              <Button onClick={tryAgain} isPrimary>
                 Try again
               </Button>
             </div>
@@ -158,7 +158,7 @@ export default function PressRoom() {
             !awaitingNextPosts &&
             !error && (
               <div className="mt-12 flex flex-col items-center">
-                <Button onClick={onLoadMore} isBlue>
+                <Button onClick={onLoadMore} isPrimary>
                   Load more
                 </Button>
               </div>

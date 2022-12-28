@@ -103,9 +103,12 @@ module.exports = {
         "surface-primary": {
           DEFAULT: colors.white,
           hover: "rgba(235, 235, 235, 0.9)",
-          active: "",
         },
-        "on-bg-primary": { DEFAULT: colors.black, hover: colors.gray[500] },
+        "on-bg-primary": {
+          DEFAULT: colors.black,
+          hover: colors.gray[500],
+          active: colors.gray[600],
+        },
         "on-bg-secondary": { DEFAULT: colors.black, hover: colors.gray[500] },
         "on-bg-accent": {
           DEFAULT: colors.white,
@@ -114,9 +117,11 @@ module.exports = {
         "on-surface-primary": {
           DEFAULT: colors.black,
           hover: colors.gray[500],
+          active: colors.gray[600],
         },
         "on-primary": {
-          hover: "rgba(235, 235, 235, 0.9)",
+          hover: colors.gray[200],
+          active: colors.gray[300],
           DEFAULT: colors.white,
         },
       },

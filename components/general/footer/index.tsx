@@ -57,7 +57,7 @@ export default function Footer() {
             placeholder="Your message"
             className="h-40 resize-none rounded-xl p-4"
           />
-          <Button onClick={onSubmit} isBlue={false} className="w-fit">
+          <Button onClick={onSubmit} isPrimary={false} className="w-fit">
             Submit
           </Button>
         </section>
