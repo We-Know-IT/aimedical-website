@@ -1,10 +1,11 @@
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Header from "../../components/general/header";
-import { getPost, ServiceResponse } from "../../services/api";
-import { Post } from "../../services/types";
+import { getPost } from "../../services/api";
+import { Post, ServiceResponse } from "../../services/types";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
+import Link from "next/link";
 
 function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -31,7 +32,7 @@ export default function PostDetails(props: ServiceResponse<Post>) {
         title={capitalizeFirstLetter(post?.postType || "Blog") + " post"}
         imageUrl={post?.headerImage?.url || ""}
       />
-      <main className="max-w-5xl ml-auto mr-auto px-6 my-12">
+      <main className="my-12 ml-auto mr-auto max-w-5xl px-6">
         {post && (
           <ReactMarkdown
             components={{
@@ -39,30 +40,30 @@ export default function PostDetails(props: ServiceResponse<Post>) {
               h1: (props) => {
                 return (
                   <>
-                    <h3 className="text-4xl font-bold text-blue-100 my-6">
+                    <h3 className="my-6 text-4xl font-bold text-primary">
                       {props.children[0]}
                     </h3>
-                    <p className="text-lg font-medium mb-6">{post.ingress}</p>
+                    <p className="mb-6 text-lg font-medium">{post.ingress}</p>
                   </>
                 );
               },
               h2: (props) => {
                 return (
-                  <h4 className="text-xl font-bold text-color-on-primary my-4">
+                  <h4 className="my-4 text-xl font-bold text-on-bg-primary">
                     {props.children[0]}
                   </h4>
                 );
               },
               h3: (props) => {
                 return (
-                  <h5 className="text-lg font-bold text-color-on-primary my-4">
+                  <h5 className="my-4 text-lg font-bold text-on-bg-primary">
                     {props.children[0]}
                   </h5>
                 );
               },
               h4: (props) => {
                 return (
-                  <h6 className="text-lg text-color-on-primary my-4">
+                  <h6 className="my-4 text-lg text-on-bg-primary">
                     {props.children[0]}
                   </h6>
                 );
@@ -70,7 +71,7 @@ export default function PostDetails(props: ServiceResponse<Post>) {
 
               img: (props) => {
                 return (
-                  <div className="relative w-full aspect-video my-4">
+                  <div className="relative my-4 aspect-video w-full">
                     <Image
                       src={props.src || ""}
                       alt={props.alt || ""}
@@ -85,7 +86,7 @@ export default function PostDetails(props: ServiceResponse<Post>) {
                 // The <a> element is valid to put inside <p> tags but the markdown parser is right now wrapping a single <a> inside <p> so we can remove that to!
                 if (props.node.children[0].type === "text") {
                   return (
-                    <p className="text-lg text-color-on-primary whitespace-pre-wrap my-4">
+                    <p className="my-4 whitespace-pre-wrap text-lg text-on-bg-primary">
                       {props.children[0]}
                     </p>
                   );
@@ -101,22 +102,20 @@ export default function PostDetails(props: ServiceResponse<Post>) {
 
                 const linkName = props.children[0];
                 const linkAddress = props.href;
+                if (!linkName || !linkAddress) return null;
                 if (
-                  (linkName && isVideoLink(linkName.toString())) ||
-                  (linkAddress && isVideoLink(linkAddress))
+                  isVideoLink(linkName.toString()) ||
+                  isVideoLink(linkAddress)
                 ) {
                   return (
-                    <video controls className="aspect-video mb-4" width="100%">
+                    <video controls className="mb-4 aspect-video" width="100%">
                       <source src={props.href} type="video/mp4" />
                     </video>
                   );
-                } else if (
-                  linkAddress &&
-                  isYoutubeLink(linkAddress.toString())
-                ) {
+                } else if (isYoutubeLink(linkAddress.toString())) {
                   return (
                     <iframe
-                      className="aspect-video mb-4"
+                      className="mb-4 aspect-video"
                       width="100%"
                       title={linkName?.toString() || ""}
                       src={linkAddress}
@@ -125,11 +124,11 @@ export default function PostDetails(props: ServiceResponse<Post>) {
                   );
                 } else {
                   return (
-                    <a
-                      className="active:text-blue-100 focus:text-blue-hover visited:text-blue-hover link:text-blue-100 hover:text-blue-hover font-semibold"
+                    <Link
+                      className="font-semibold text-primary visited:text-primary-hover hover:text-primary-hover focus:text-primary-hover active:text-primary"
                       href={linkAddress}>
                       {linkName}
-                    </a>
+                    </Link>
                   );
                 }
               },

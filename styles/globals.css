@@ -2,18 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body,
-#__next {
-  height: 100%;
-}
-
-* {
-  box-sizing: border-box;
+@layer utilities {
+  .clip-path-image {
+    clip-path: ellipse(80% 100% at top);
+  }
 }
 
 @layer base {
+  html,
+  body,
+  #__next {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth !important; /*Overrides tailwind default*/
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
   html {
     font-family: lato;
+  }
+}
+
+@layer utilities {
+  .clip-path-b {
+    clip-path: ellipse(75% 100% at 50% 0%);
+  }
+  .clip-path-r {
+    clip-path: ellipse(100% 100% at 0% 50%);
   }
 }

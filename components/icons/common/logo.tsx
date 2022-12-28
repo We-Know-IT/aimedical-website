@@ -7,7 +7,7 @@ export default function LogoIcon({
 }: IconProps) {
   return (
     <Image
-      className="ease-in-out duration-200"
+      className="duration-200 ease-in-out"
       src={"/images/logo.png"}
       width={w}
       height={h}

@@ -1,4 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { useElementInViewPort } from "../../../utils/elementInViewPort";
 import Button from "../button";
 type Props = {
   title?: string;
@@ -6,14 +9,30 @@ type Props = {
   image?: string;
   actionButton?: {
     text: string;
-    onClick: () => void;
+    onClick?: () => void;
+    href?: string;
   };
 };
 export default function TwoColImg({ title, text, actionButton, image }: Props) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [animate, setAnimate] = useState(false);
+
+  const sectionInViewportState = useElementInViewPort(sectionRef, 200);
+
+  useEffect(() => {
+    if (sectionInViewportState.isInViewport && !animate) {
+      setAnimate(true);
+    }
+  }, [sectionInViewportState, animate]);
+
   return (
-    <section className="bg-background-primary py-24">
+    <section ref={sectionRef} className="bg-background-primary py-24">
       {/* Container */}
-      <div className="container flex flex-col xl:flex-row max-w-xl xl:container">
+      <div
+        className={
+          "container flex max-w-xl flex-col xl:container xl:flex-row " +
+          (animate ? " animate-fade-up " : " invisible animate-fade-down")
+        }>
         {/* left box */}
         <div className="relative aspect-square w-full xl:w-2/5">
           <Image
@@ -21,27 +40,34 @@ export default function TwoColImg({ title, text, actionButton, image }: Props) {
             alt="Doctor crossed arms"
             fill
             className={
-              "xl:rounded-bl-xl rounded-tl-xl rounded-tr-xl xl:rounded-tr-none object-cover"
+              "rounded-tl-xl rounded-tr-xl object-cover xl:rounded-bl-xl xl:rounded-tr-none"
             }
+            placeholder="blur"
+            blurDataURL="/images/blur.jpg"
           />
         </div>
         {/* right box */}
         <div
-          className="bg-gradient-to-br from-blue-100 to-blue-50 flex grow flex-col  items-center justify-center space-y-6 px-6 rounded-bl-xl rounded-br-xl 
-        xl:rounded-bl-none xl:rounded-tr-xl xl:rounded-br-xl py-12">
-          <div className="flex flex-col  items-s space-y-6">
-            <h3 className="text-3xl font-semibold text-color-on-blue">
-              {title}
-            </h3>
-            <p className="text-lg text-color-on-blue tracking-wide max-w-md">
+          className="flex grow flex-col items-center justify-center space-y-6  rounded-bl-xl rounded-br-xl bg-gradient-to-br from-primary to-primary/50 px-6 
+        py-12 xl:rounded-bl-none xl:rounded-tr-xl xl:rounded-br-xl">
+          <div className="item-center flex  flex-col space-y-6">
+            <h3 className="text-3xl font-semibold text-on-primary">{title}</h3>
+            <p className="max-w-md text-lg tracking-wide text-on-primary">
               {text}
             </p>
 
-            {actionButton && (
-              <Button onClick={actionButton.onClick}>
-                {actionButton.text}
-              </Button>
-            )}
+            {actionButton &&
+              (actionButton.href ? (
+                <Link href={actionButton.href}>
+                  <Button onClick={actionButton.onClick}>
+                    {actionButton.text}
+                  </Button>
+                </Link>
+              ) : (
+                <Button onClick={actionButton.onClick}>
+                  {actionButton.text}
+                </Button>
+              ))}
           </div>
         </div>
       </div>

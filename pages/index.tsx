@@ -6,23 +6,17 @@ import Image from "next/image";
 
 const buttonHeader = {
   text: "Learn more",
-  onClick: () => {
-    return null;
-  },
+  href: "#home-section1",
 };
 
 const buttonSection1 = {
   text: "Read more",
-  onClick: () => {
-    return null;
-  },
+  href: "/dermalyser",
 };
 
 const buttonSection2 = {
   text: "Contact Us To Learn More",
-  onClick: () => {
-    return null;
-  },
+  href: "#contact",
 };
 
 const partners = [
@@ -96,7 +90,7 @@ export default function Home() {
       <Header
         imageUrl="/images/header.jpg"
         text={
-          <p className="relative text-color-on-blue text-2xl lg:text-5xl font-normal whitespace-pre-wrap mb-6">
+          <p className="relative mb-6 animate-focus-in whitespace-pre-wrap text-2xl font-normal text-on-primary lg:text-5xl">
             {`Driving fast and accurate \ndiagnosis for all skin cancers - \n`}
             <strong>All through AI</strong>
           </p>
@@ -104,7 +98,7 @@ export default function Home() {
         actionButton={buttonHeader}
         fullHeight={true}
       />
-      <main>
+      <main id="home-section1">
         <TwoColText
           title="AI Powered Diagnostic Solutions"
           text="We are dedicated to developing AI powered diagnostic solutions that enable frontline healthcare practitioners to make easier, faster and more reliable diagnoses for their patients. Our first product, Dermalyser, is a clinically validated decision support tool for the diagnosis of all skin cancers."
@@ -115,12 +109,12 @@ export default function Home() {
           text="Our mission is to support healthcare providers with AI powered diagnostic solutions so that no patient should die due to delay or misdiagnosis of a condition."
           actionButton={buttonSection2}
           image="home/man_crossed_arms.jpg"></TwoColImg>
-        <section className="w-full bg-background-secondary flex flex-col items-center space-y-6 lg:space-y-12 py-24 px-6 md:px-0">
-          <h2 className="text-blue-100 font-bold text-3xl text-center border-b-2 border-blue-100">
+        <section className="flex w-full flex-col items-center space-y-6 bg-background-secondary py-24 px-6 md:px-0 lg:space-y-12">
+          <h2 className="border-b-2 border-primary text-center text-3xl font-bold text-primary">
             Our Partners
           </h2>
           {/* displayed as grid on small screens to be able to rearrange the logos according to design, changes to flex row on bigger screens (xl) */}
-          <ul className="grid grid-cols-2 gap-6 justify-items-center items-center grid-rows-3 xl:flex xl:flex-wrap xl:justify-center xl:space-x-32 ">
+          <ul className="grid grid-cols-2 grid-rows-3 items-center justify-items-center gap-6 xl:flex xl:flex-wrap xl:justify-center xl:space-x-32 ">
             {partners.map((img, i) => (
               <li
                 key={i}

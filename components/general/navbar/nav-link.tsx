@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { useState } from "react";
-import { useWindowScrollPositions } from "../../../utils/scroll";
+import Button from "../button";
 
 export interface INavLink {
   label: string;
@@ -16,10 +15,12 @@ interface Props {
 export default function NavLink({ navLink, color = "white" }: Props) {
   if (navLink.isHightlighted) {
     return (
-      <Link
-        href={navLink.path}
-        className="text-white bg-blue-100 px-6 py-2 rounded-full flex items-center font-semibold text-lg hover:bg-blue-hover">
-        {navLink.label}
+      <Link href={navLink.path}>
+        <Button
+          className="font-bold md:px-8 md:py-2 md:text-lg xl:py-2"
+          isPrimary>
+          {navLink.label}
+        </Button>
       </Link>
     );
   }
@@ -27,10 +28,10 @@ export default function NavLink({ navLink, color = "white" }: Props) {
     <Link
       href={navLink.path}
       className={
-        "font-semibold text-lg" +
+        "text-lg font-semibold" +
         (color === "black"
-          ? " text-black hover:text-gray-500"
-          : " text-white hover:text-white-hover")
+          ? " text-on-surface-primary hover:text-on-surface-primary-hover active:text-on-surface-primary-active"
+          : " text-on-primary hover:text-on-primary-hover active:text-on-primary-active")
       }>
       {navLink.label}
     </Link>

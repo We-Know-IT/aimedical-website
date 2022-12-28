@@ -10,8 +10,8 @@ export const navLinks: INavLink[] = [
     path: "/dermalyser",
   },
   {
-    label: "Skin cancer",
-    path: "/skin-cancer",
+    label: "Theraputic Area",
+    path: "/theraputic-area",
   },
   {
     label: "About",
@@ -27,7 +27,7 @@ export const navLinks: INavLink[] = [
   },
   {
     label: "Contact us",
-    path: "/contact",
+    path: "#contact",
     isHightlighted: true,
   },
 ];

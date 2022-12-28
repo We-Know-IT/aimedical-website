@@ -2,32 +2,51 @@ import { Post } from "../../services/types";
 import Image from "next/image";
 import Tag from "../general/tag";
 import { getDateString } from "../../utils/date";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 type Props = {
-  post: Post;
+  post?: Post;
 };
 
 export default function PostCard({ post }: Props) {
   return (
-    <div className="rounded-2xl shadow-md p-9 background max-w-xl h-full flex flex-col justify-between border-2 border-transparent hover:border-blue-100 duration-200">
+    <div className="group flex h-full max-w-xl flex-col justify-between rounded-xl bg-surface-primary p-9 shadow-lg duration-200 hover:-translate-y-1 hover:shadow-2xl">
       <div className="my-2 mb-2 flex flex-col space-y-2">
-        <h3 className="text-blue-100 text-xl">{post.title}</h3>
-        <p className="text-base line-clamp-3 ">{post.ingress}</p>
+        <h3 className="text-xl text-primary  group-hover:underline">
+          {post?.title || <Skeleton />}
+        </h3>
+        <p className="text-base line-clamp-3 ">
+          {post?.ingress || <Skeleton count={3} />}
+        </p>
       </div>
 
-      <Image
-        className="mb-2 max-h-64 w-auto object-cover rounded"
-        src={post.listingImage?.url || ""}
-        width={post.listingImage?.width}
-        height={post.listingImage?.height}
-        alt={post.listingImage?.alternativeText || ""}
-      />
+      {post?.listingImage && (
+        <Image
+          className="mb-2 max-h-64 w-auto rounded object-cover"
+          src={post.listingImage?.url || ""}
+          width={post.listingImage?.width}
+          height={post.listingImage?.height}
+          alt={post.listingImage?.alternativeText || ""}
+          placeholder="blur"
+          blurDataURL="/images/blur.jpg"
+        />
+      )}
+      {!post && <Skeleton height={200} />}
 
       <div className="flex flex-row items-center justify-between">
-        <p className="text-color-on-primary text-sm flex">
-          {getDateString(new Date(post.publishedAt))}
+        <p className="flex text-sm text-on-surface-primary">
+          {post ? (
+            getDateString(new Date(post.publishedAt))
+          ) : (
+            <Skeleton width={60} />
+          )}
         </p>
-        <Tag text={post.postType} />
+        {post ? (
+          <Tag text={post.postType} />
+        ) : (
+          <Skeleton width={80} height={25} borderRadius={100} />
+        )}
       </div>
     </div>
   );

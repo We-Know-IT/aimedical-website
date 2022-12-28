@@ -10,27 +10,120 @@ module.exports = {
       center: true,
       padding: {
         DEFAULT: "1.25rem",
-        xl: "1.75rem",
+        xl: "5rem",
+        "2xl": "13rem",
       },
     },
     extend: {
+      gridTemplateColumns: {
+        // Simple 16 column grid
+        "advantage-card": "40px auto",
+      },
+      keyframes: {
+        right: {
+          "0%": { width: "0%" },
+          "100%": { width: "100%" },
+        },
+        up: {
+          "0%": { transform: "scale(1, 0)" },
+          "100%": { transform: "scale(1, 1)" },
+        },
+        "translate-up": {
+          "0%": { transform: "translateY(100%)" },
+          "100%": { transform: "translateY(0%)" },
+        },
+        "translate-down": {
+          "0%": { transform: "translateY(0%)" },
+          "100%": { transform: "translateY(100%)" },
+        },
+        "fade-out": {
+          "0%": { opacity: 1 },
+          "100%": { opacity: 0 },
+        },
+        "fade-in": {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
+        },
+        "focus-in": {
+          "0%": {
+            opacity: 0,
+            "-webkit-filter": "blur(12px)",
+            filter: "blur(12px)",
+          },
+          "100%": {
+            opacity: 1,
+            "-webkit-filter": "blur(0)",
+            filter: "blur(0)",
+          },
+        },
+      },
+      animation: {
+        right: "right 0.5s ease-out",
+        up: "up 0.5s ease-out ",
+        "fade-in": "fade-in 0.5s ease-out 0.2",
+        "fade-up": "fade-in 1.25s ease-out , translate-up 0.75s ease-out ",
+        "fade-down": "fade-out 1.25s ease-in , translate-down 0.75s linear",
+        "focus-in": "focus-in 500ms cubic-bezier(0.11, 0, 0.5, 0) 1",
+      },
+
       colors: {
-        blue: {
-          100: "rgb(0, 99, 175)",
-          85: "rgba(0,99,175, 0.85)",
-          50: "rgba(0, 99, 175, 0.5)",
-          hover: "rgb(0, 77, 138)",
+        primary: {
+          DEFAULT: "#0063AF",
+          hover: "#004275",
+          light: "#008cf7",
+          active: "#013054",
         },
 
-        "color-on-primary": colors.black,
-        "color-on-secondary": colors.black,
-        "color-on-blue": colors.white,
-        "background-primary": colors.white,
-        "background-secondary": "rgba(243, 243, 243, 0.502)",
+        error: {
+          DEFAULT: "#f44336",
+          dark: "#d32f2f",
+          light: "#e57373",
+        },
 
-        white: {
+        warning: {
+          DEFAULT: "#ffa726",
+          dark: "#f57c00",
+          light: "#ffb74d",
+        },
+
+        success: {
+          DEFAULT: "#66bb6a",
+          dark: "#388e3c",
+          light: "#81c784",
+        },
+
+        "background-primary": {
+          DEFAULT: colors.white,
           hover: "rgba(235, 235, 235, 0.9)",
-          DEFAULT: "rgb(255, 255, 255)",
+        },
+        "background-secondary": {
+          DEFAULT: "rgba(243, 243, 243, 0.502)",
+          dark: "rgba(243, 243, 243, 1.0)",
+        },
+        "background-accent": "rgba(33, 33, 33, 1)",
+        "surface-primary": {
+          DEFAULT: colors.white,
+          hover: "rgba(235, 235, 235, 0.9)",
+        },
+        "on-bg-primary": {
+          DEFAULT: colors.black,
+          hover: colors.gray[500],
+          active: colors.gray[600],
+        },
+        "on-bg-secondary": { DEFAULT: colors.black, hover: colors.gray[500] },
+        "on-bg-accent": {
+          DEFAULT: colors.white,
+          hover: "rgba(235, 235, 235, 0.9",
+        },
+        "on-surface-primary": {
+          DEFAULT: colors.black,
+          hover: colors.gray[500],
+          active: colors.gray[600],
+        },
+        "on-primary": {
+          hover: colors.gray[200],
+          active: colors.gray[300],
+          DEFAULT: colors.white,
         },
       },
       fontFamily: {
