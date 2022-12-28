@@ -32,15 +32,12 @@ export default function TwoColImg({ title, text, actionButton, image }: Props) {
     function checkVisible(elm: Element) {
       var rect = elm.getBoundingClientRect();
       var viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
-      console.log("rect bot " + rect.bottom)
-      console.log("viewHeight: " + viewHeight)
       return (rect.bottom <= 0 || rect.top - viewHeight <= -300);
     }
 
     function animateUp () {
       if (checkVisible(sectionContainer)) {
-        //section[0].classList.remove("translate-y-[100vh]")
-        section[0].style.transform = "translateY(0)"
+        section[0].classList.remove("translate-y-[50vh]")
         document.removeEventListener("scroll", animateUp)
       }
     }
