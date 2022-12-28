@@ -27,3 +27,12 @@
     font-family: lato;
   }
 }
+
+@layer utilities {
+  .clip-path-b {
+    clip-path: ellipse(75% 100% at 50% 0%);
+  }
+  .clip-path-r {
+    clip-path: ellipse(100% 100% at 0% 50%);
+  }
+}
