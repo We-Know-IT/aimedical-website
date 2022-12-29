@@ -16,7 +16,7 @@ export default function researchPostCard({ post }: Props) {
       {post?.listingImage && (
         <Image
           alt={post.listingImage.alternativeText || "Research post image"}
-          className="clip-path-b md:clip-path-r h-64 w-full rounded-2xl object-cover md:h-80 md:w-5/12"
+          className="clip-path-b md:clip-path-r h-64 w-full rounded-2xl object-cover md:h-80 md:w-5/12 lg:h-96"
           src={post.listingImage?.url || ""}
           width={post.listingImage?.width}
           height={post.listingImage?.height}
