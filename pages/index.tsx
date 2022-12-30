@@ -6,23 +6,17 @@ import Image from "next/image";
 
 const buttonHeader = {
   text: "Learn more",
-  onClick: () => {
-    return null;
-  },
+  href: "#home-section1",
 };
 
 const buttonSection1 = {
   text: "Read more",
-  onClick: () => {
-    return null;
-  },
+  href: "/dermalyser",
 };
 
 const buttonSection2 = {
   text: "Contact Us To Learn More",
-  onClick: () => {
-    return null;
-  },
+  href: "#contact",
 };
 
 const partners = [
@@ -96,7 +90,7 @@ export default function Home() {
       <Header
         imageUrl="/images/header.jpg"
         text={
-          <p className="relative mb-6 whitespace-pre-wrap text-2xl font-normal text-on-primary lg:text-5xl">
+          <p className="relative mb-6 animate-focus-in whitespace-pre-wrap text-2xl font-normal text-on-primary lg:text-5xl">
             {`Driving fast and accurate \ndiagnosis for all skin cancers - \n`}
             <strong>All through AI</strong>
           </p>
@@ -104,7 +98,7 @@ export default function Home() {
         actionButton={buttonHeader}
         fullHeight={true}
       />
-      <main>
+      <main id="home-section1">
         <TwoColText
           title="AI Powered Diagnostic Solutions"
           text="We are dedicated to developing AI powered diagnostic solutions that enable frontline healthcare practitioners to make easier, faster and more reliable diagnoses for their patients. Our first product, Dermalyser, is a clinically validated decision support tool for the diagnosis of all skin cancers."

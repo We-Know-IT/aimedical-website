@@ -1,11 +1,13 @@
 import Button from "../button";
 import Image from "next/image";
+import Link from "next/link";
 type Props = {
   title?: string;
   text?: string;
   actionButton: {
     text: string;
-    onClick: () => void;
+    onClick?: () => void;
+    href?: string;
   };
   list?: {
     title: string;
@@ -29,9 +31,18 @@ export default function TwoColText({ title, text, actionButton, list }: Props) {
           <p className="text-lg font-normal leading-[1.6rem] tracking-wider">
             {text}
           </p>
-          {actionButton && (
-            <Button onClick={actionButton.onClick}>{actionButton.text}</Button>
-          )}
+          {actionButton &&
+            (actionButton.href ? (
+              <Link href={actionButton.href}>
+                <Button onClick={actionButton.onClick}>
+                  {actionButton.text}
+                </Button>
+              </Link>
+            ) : (
+              <Button onClick={actionButton.onClick}>
+                {actionButton.text}
+              </Button>
+            ))}
         </div>
         <div className="flex flex-col justify-center gap-y-6 space-y-8 rounded-xl bg-gradient-to-br from-primary/50 to-primary px-4 py-20 lg:items-center lg:justify-evenly lg:gap-y-0 xl:w-1/2">
           {/*  bg-gradient-to-r from-primary/[50] to-primary*/}

@@ -51,7 +51,9 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gradient-to-r from-primary/[0.85] to-primary/50">
+    <footer
+      className="bg-gradient-to-r from-primary/[0.85] to-primary/50"
+      id="contact">
       <div className="container flex w-full flex-col space-y-20 py-16 md:flex-row-reverse md:justify-between md:space-y-0">
         <section className="flex flex-col space-y-4 md:w-1/2">
           <h3 className="text-2xl font-bold text-on-primary">
@@ -77,7 +79,7 @@ export default function Footer() {
             className="h-40 resize-none rounded-xl p-4"
             required
           />
-          <Button onClick={onSubmit} isBlue={false} className="w-fit">
+          <Button onClick={onSubmit} isPrimary={false} className="w-fit">
             Submit
           </Button>
         </section>

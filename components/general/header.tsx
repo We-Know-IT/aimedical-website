@@ -1,4 +1,5 @@
-import { CSSProperties } from "react";
+import Link from "next/link";
+import { CSSProperties, useEffect } from "react";
 import Button from "./button";
 
 type Props = {
@@ -9,9 +10,12 @@ type Props = {
   fullHeight?: boolean;
   actionButton?: {
     text: string;
-    onClick: () => void;
+    onClick?: () => void;
+    href?: string;
   };
 };
+
+const buttonStyles = "z-1 relative";
 
 export default function Header({
   title,
@@ -21,41 +25,60 @@ export default function Header({
   fullHeight,
 }: Props) {
   const backgroundImageStyle: CSSProperties = {
-    backgroundImage: `url(${imageUrl})`,
+    backgroundImage: `url("/images/blur.jpg")`,
   };
+  useEffect(() => {
+    const src = imageUrl;
+    const header = document.getElementById("header");
+    if (header != null) {
+      var image = new Image();
+      image.addEventListener("load", function () {
+        header.style.backgroundImage = "url(" + src + ")";
+      });
+      image.src = src;
+    }
+  });
 
   return (
     <header
       className={
         "relative w-full bg-cover " + (fullHeight ? "h-[100vh]" : "h-[600px]")
       }
-      style={backgroundImageStyle}>
+      style={backgroundImageStyle}
+      id="header">
       <div className="container flex h-full flex-col justify-center">
-        <>
-          <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-r from-primary/[0.85]"></div>
+        <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-r from-primary/[0.85]"></div>
+        <div className="animate-focus-in">
           {title && (
-            <>
-              <h2 className="relative text-xl font-bold text-on-primary">
+            <div className="w-fit">
+              <h2 className="relative w-fit text-xl font-bold text-on-primary">
                 {title}
               </h2>
-              <div className="relative my-4 h-1 w-24 rounded bg-gray-800"></div>
-            </>
+              <div className="relative my-4 h-1 w-3/4 rounded bg-gray-800"></div>
+            </div>
           )}
           {text &&
             (typeof text == "string" ? (
-              <p className="relative mb-6 whitespace-pre-wrap text-2xl font-bold text-on-primary lg:text-3xl">
+              <p className="relative mb-6 whitespace-pre-wrap text-lg font-bold text-on-primary sm:text-xl lg:w-1/2 lg:text-2xl">
                 {text}
               </p>
             ) : (
               { ...text }
             ))}
 
-          {actionButton && (
-            <Button className="z-1 relative" onClick={actionButton.onClick}>
-              {actionButton.text}
-            </Button>
-          )}
-        </>
+          {actionButton &&
+            (actionButton.href ? (
+              <Link href={actionButton.href}>
+                <Button className={buttonStyles} onClick={actionButton.onClick}>
+                  {actionButton.text}
+                </Button>
+              </Link>
+            ) : (
+              <Button className={buttonStyles} onClick={actionButton.onClick}>
+                {actionButton.text}
+              </Button>
+            ))}
+        </div>
       </div>
     </header>
   );

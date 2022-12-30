@@ -1,10 +1,11 @@
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Header from "../../components/general/header";
-import { getPost, ServiceResponse } from "../../services/api";
-import { Post } from "../../services/types";
+import { getPost } from "../../services/api";
+import { Post, ServiceResponse } from "../../services/types";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
+import Link from "next/link";
 
 function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -48,21 +49,21 @@ export default function PostDetails(props: ServiceResponse<Post>) {
               },
               h2: (props) => {
                 return (
-                  <h4 className="my-4 text-xl font-bold text-color-on-primary">
+                  <h4 className="my-4 text-xl font-bold text-on-bg-primary">
                     {props.children[0]}
                   </h4>
                 );
               },
               h3: (props) => {
                 return (
-                  <h5 className="my-4 text-lg font-bold text-color-on-primary">
+                  <h5 className="my-4 text-lg font-bold text-on-bg-primary">
                     {props.children[0]}
                   </h5>
                 );
               },
               h4: (props) => {
                 return (
-                  <h6 className="my-4 text-lg text-color-on-primary">
+                  <h6 className="my-4 text-lg text-on-bg-primary">
                     {props.children[0]}
                   </h6>
                 );
@@ -85,7 +86,7 @@ export default function PostDetails(props: ServiceResponse<Post>) {
                 // The <a> element is valid to put inside <p> tags but the markdown parser is right now wrapping a single <a> inside <p> so we can remove that to!
                 if (props.node.children[0].type === "text") {
                   return (
-                    <p className="my-4 whitespace-pre-wrap text-lg text-color-on-primary">
+                    <p className="my-4 whitespace-pre-wrap text-lg text-on-bg-primary">
                       {props.children[0]}
                     </p>
                   );
@@ -101,19 +102,17 @@ export default function PostDetails(props: ServiceResponse<Post>) {
 
                 const linkName = props.children[0];
                 const linkAddress = props.href;
+                if (!linkName || !linkAddress) return null;
                 if (
-                  (linkName && isVideoLink(linkName.toString())) ||
-                  (linkAddress && isVideoLink(linkAddress))
+                  isVideoLink(linkName.toString()) ||
+                  isVideoLink(linkAddress)
                 ) {
                   return (
                     <video controls className="mb-4 aspect-video" width="100%">
                       <source src={props.href} type="video/mp4" />
                     </video>
                   );
-                } else if (
-                  linkAddress &&
-                  isYoutubeLink(linkAddress.toString())
-                ) {
+                } else if (isYoutubeLink(linkAddress.toString())) {
                   return (
                     <iframe
                       className="mb-4 aspect-video"
@@ -125,11 +124,11 @@ export default function PostDetails(props: ServiceResponse<Post>) {
                   );
                 } else {
                   return (
-                    <a
-                      className="link:text-primary font-semibold visited:text-primary-dark hover:text-primary-dark focus:text-primary-dark active:text-primary"
+                    <Link
+                      className="font-semibold text-primary visited:text-primary-hover hover:text-primary-hover focus:text-primary-hover active:text-primary"
                       href={linkAddress}>
                       {linkName}
-                    </a>
+                    </Link>
                   );
                 }
               },
