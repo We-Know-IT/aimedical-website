@@ -32,6 +32,7 @@ export default function PressRoom() {
   };
 
   const toggleEntryInFilters = (entry: PostType) => {
+    if (loadingPosts) return;
     const _filters = new Set(displayFilters);
     if (_filters.has(entry)) {
       _filters.delete(entry);
