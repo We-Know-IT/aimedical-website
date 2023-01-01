@@ -48,4 +48,19 @@ function getStrapiErrorResponse(e: any) {
   return { error: (e as StrapiError).error?.message || "error", data: null };
 }
 
-export { parseStrapiPostData, parseStrapiImageData, getStrapiErrorResponse };
+function parseStrapiMetaData(meta: any) {
+  return {
+    pagination: {
+      start: meta.pagination.start || 0,
+      limit: meta.pagination.limit || 0,
+      total: meta.pagination.total || 0,
+    },
+  };
+}
+
+export {
+  parseStrapiPostData,
+  parseStrapiImageData,
+  getStrapiErrorResponse,
+  parseStrapiMetaData,
+};

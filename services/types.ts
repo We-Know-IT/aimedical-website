@@ -13,6 +13,19 @@ export interface Post {
   postType: PostType;
 }
 
+export interface PostsMetaInformation {
+  pagination?: {
+    start: number;
+    limit: number;
+    total: number;
+  };
+}
+
+export interface PostsResponse {
+  posts: Post[];
+  meta: PostsMetaInformation;
+}
+
 export interface Image {
   alternativeText: string;
   width: number;
