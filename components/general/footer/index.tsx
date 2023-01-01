@@ -1,7 +1,6 @@
 import { useState } from "react";
 import LogoIcon from "../../icons/common/logo";
 import Button from "../button";
-import Image from "next/image";
 import { isValidEmail, isValidMessage } from "../../../utils/validation";
 
 const contactInformation = {
