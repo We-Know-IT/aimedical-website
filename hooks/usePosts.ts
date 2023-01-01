@@ -34,7 +34,6 @@ const usePosts = (filters: Set<PostType>, pageSize: number) => {
     limit: number,
     filterBy: Set<PostType>
   ): Promise<Post[]> => {
-    await new Promise((resolve) => setTimeout(resolve, 100));
     const posts = await getPosts({
       pagination: {
         start,
