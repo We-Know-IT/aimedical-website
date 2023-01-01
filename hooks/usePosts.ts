@@ -13,11 +13,22 @@ const usePosts = (filters: Set<PostType>, pageSize: number) => {
 
   const hasNextPosts = nextPosts.length > 0;
 
+  /**
+   * Logs the error to the console and sets the error state
+   * @param error The error message to log to the console and set as the error state
+   */
   const handleError = (error: string) => {
     console.error(error);
     setError("Whoops! Looks like there was an error fetching the posts.");
   };
 
+  /**
+   * Fetches posts and sets the error state if there was an error
+   * @param start The start index of the posts to fetch
+   * @param limit The number of posts to fetch
+   * @param filterBy The post types to filter by
+   * @returns The posts fetched
+   */
   const getPostsAndSetError = async (
     start: number,
     limit: number,
@@ -38,6 +49,11 @@ const usePosts = (filters: Set<PostType>, pageSize: number) => {
     return posts.data;
   };
 
+  /**
+   * Loads the next page of posts and sets the nextPosts state with the result of the fetch call and sets the loadingNextPosts state to true while the fetch is in progress and false when it is done
+   * @param page The page number to load the posts for
+   * @param filters The post types to filter by
+   */
   const loadNextPosts = async (page: number, filters: Set<PostType>) => {
     setLoadingNextPosts(true);
     const newPosts = await getPostsAndSetError(
@@ -49,6 +65,12 @@ const usePosts = (filters: Set<PostType>, pageSize: number) => {
     setLoadingNextPosts(false);
   };
 
+  /**
+   * Initializes the posts state with the first page of posts and sets the loadingPosts state to true while the fetch is in progress and false when it is done.
+   * Also loads the next page of posts and sets the page state to 1
+   * @param filters The post types to filter by
+   *
+   */
   const initPosts = async (filters: Set<PostType>) => {
     setLoadingPosts(true);
     const posts = await getPostsAndSetError(0, pageSize, filters);
@@ -60,13 +82,10 @@ const usePosts = (filters: Set<PostType>, pageSize: number) => {
     setPage(1);
   };
 
-  useEffect(() => {
-    if (!loadingNextPosts && awaitingNextPosts) {
-      setAwaitingNextPosts(false);
-      loadMorePosts();
-    }
-  }, [awaitingNextPosts, loadingNextPosts]);
-
+  /**
+   * Updates the posts state with the nextPosts state and sets the page state to the next page number.
+   * Also loads the next page of posts if there are more posts to load.
+   */
   const loadMorePosts = () => {
     if (loadingNextPosts) {
       setAwaitingNextPosts(true);
@@ -74,6 +93,7 @@ const usePosts = (filters: Set<PostType>, pageSize: number) => {
     }
     setAwaitingNextPosts(false);
     setPosts([...posts, ...nextPosts]);
+
     const nextPage = page + 1;
     setPage(nextPage);
 
@@ -84,6 +104,23 @@ const usePosts = (filters: Set<PostType>, pageSize: number) => {
     }
     loadNextPosts(nextPage, filters);
   };
+
+  useEffect(() => {
+    if (!loadingNextPosts && awaitingNextPosts) {
+      setAwaitingNextPosts(false);
+      loadMorePosts();
+    }
+  }, [awaitingNextPosts, loadingNextPosts]);
+
+  /**
+   * Makes sure the loadingNextPosts state is set to true when the nextPosts state changes,
+   * removing this useEffect will cause the loadMorePosts function to not work properly and sometimes produce duplicate posts
+   */
+  useEffect(() => {
+    if (nextPosts.length > 0 && loadingNextPosts) {
+      setLoadingNextPosts(true);
+    }
+  }, [nextPosts]);
 
   useEffect(() => {
     initPosts(filters);
