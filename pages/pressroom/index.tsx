@@ -44,7 +44,7 @@ export default function PressRoom() {
     } else {
       _filters.add(entry);
     }
-    if (_filters.size >= 0) initPosts(_filters);
+    if (_filters.size > 0) initPosts(_filters);
     else initPosts(initialFilters);
     setFilters(_filters);
   };
