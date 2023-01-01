@@ -1,29 +1,30 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { createTransport } from "nodemailer";
+import { isValidEmail, isValidMessage } from "../../utils/validation";
 
 const emailConfig = {
-  port: 465,
-  host: "smtp.gmail.com",
+  host: process.env.EMAIL_HOST,
   auth: {
-    user: "SÄTT IN DIN EMAIL",
-    pass: "SÄTT IN DITT LÖSENORD",
+    user: process.env.EMAIL_NAME,
+    pass: process.env.EMAIL_PASS,
   },
   secure: true,
 };
 
-export default async function (req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const transporter = createTransport(emailConfig);
-
   if (!isValidPostData(req)) {
     res.status(400).end();
   }
 
   const mailData = {
-    from: "lovejansson.94@gmail.com",
-    to: "lovejansson.94@gmail.com",
+    from: req.body.email,
+    to: process.env.EMAIL_NAME || "",
     subject: `Message From ${req.body.email}`,
-    text: req.body.message,
-    html: `<div>${req.body.message}</div>`,
+    text: `Message from: ${req.body.email} \n\nMessage: \n${req.body.message}`,
   };
 
   const response = await transporter.sendMail(mailData);
@@ -48,6 +49,8 @@ const isValidPostData = (req: NextApiRequest) => {
     req.body.email &&
     req.body.message &&
     typeof req.body.email === "string" &&
-    typeof req.body.message === "string"
+    isValidEmail(req.body.email) &&
+    typeof req.body.message === "string" &&
+    isValidMessage(req.body.message)
   );
 };
