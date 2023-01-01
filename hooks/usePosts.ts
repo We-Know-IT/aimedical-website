@@ -56,7 +56,6 @@ const usePosts = (filters: Set<PostType>, pageSize: number) => {
    * Is called when the filters state changes.
    */
   const initPosts = async () => {
-    if (loadingPosts) return;
     setPosts([]);
     setLoadingPosts(true);
     const newPosts = await getPostsAndSetError(0, pageSize, filters);
