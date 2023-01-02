@@ -18,6 +18,7 @@ export default async function handler(
   const transporter = createTransport(emailConfig);
   if (!isValidPostData(req)) {
     res.status(400).end();
+    return;
   }
 
   const mailData = {
@@ -31,9 +32,11 @@ export default async function handler(
 
   if (response.accepted.includes(mailData.to)) {
     res.status(200).end();
+    return;
   } else {
     console.log(response);
     res.status(500).end();
+    return;
   }
 }
 
