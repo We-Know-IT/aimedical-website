@@ -34,7 +34,7 @@ export default function NavLink({ navLink, color = "white" }: Props) {
       return " text-primary active:text-primary-active hover:text-primary-hover ";
     }
     if (isActive && color === "white") {
-      return " border-b-2 border-primary text-on-primary hover:text-on-primary-hover active:text-on-primary-active";
+      return " border-b-2 border-white text-on-primary hover:text-on-primary-hover active:text-on-primary-active";
     }
     if (color === "black") {
       return "font-semibold text-on-surface-primary hover:text-on-surface-primary-hover active:text-on-surface-primary-active";
