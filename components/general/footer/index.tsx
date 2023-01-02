@@ -29,11 +29,13 @@ const ErrorMessage = ({ message }: { message: string }) => {
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const [isSent, setIsSent] = useState(false);
   const [emailErrorMsg, setEmailErrorMsg] = useState("");
   const [messageErrorMsg, setMessageErrorMsg] = useState("");
   const [sendingErrorMsg, setSendingErrorMsg] = useState("");
+  const [privacyPolcyErrorMsg, setPrivacyPolicyErrorMsg] = useState("");
 
   const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -50,16 +52,22 @@ export default function Footer() {
   };
 
   const onSubmit = async () => {
-    // TODO: notifikation ui
+    let formIsValid = true;
     if (!isValidEmail(email)) {
       validateEmail(email);
-      return;
+      formIsValid = false;
     }
 
     if (!isValidMessage(message)) {
       validateMessage(message);
-      return;
+      formIsValid = false;
     }
+
+    if (!privacyPolicy) {
+      setPrivacyPolicyErrorMsg("You must accept the privacy policy");
+      formIsValid = false;
+    }
+    if (!formIsValid) return;
 
     setIsSending(true);
 
@@ -77,6 +85,8 @@ export default function Footer() {
         setEmail("");
         setMessage("");
         setSendingErrorMsg("");
+        setPrivacyPolicyErrorMsg("");
+        setPrivacyPolicy(false);
         setIsSent(true);
       } else {
         setSendingErrorMsg("Failed to send message, try again later");
@@ -114,6 +124,10 @@ export default function Footer() {
       return;
     }
     setMessageErrorMsg("");
+  };
+
+  const onPrivacyPolicyChange = () => {
+    setPrivacyPolicy((prev) => !prev);
   };
 
   const getButtonContent = () => {
@@ -185,6 +199,29 @@ export default function Footer() {
             />
             {messageErrorMsg && <ErrorMessage message={messageErrorMsg} />}
           </div>
+          <div className="flex flex-col space-y-1">
+            <div className="flex items-center space-x-2">
+              <input
+                id="privacy-policy"
+                type="checkbox"
+                name="privacy-policy"
+                onChange={onPrivacyPolicyChange}
+                checked={privacyPolicy}
+                className={
+                  "h-4 w-4 bg-error " +
+                  (messageErrorMsg ? inputErrorClasses : "")
+                }
+                required
+              />
+              <p className="font-bold text-white">
+                I agree to the terms of use and privacy policy.
+              </p>
+            </div>
+            {privacyPolcyErrorMsg && (
+              <ErrorMessage message={privacyPolcyErrorMsg} />
+            )}
+          </div>
+
           <div className="flex w-full flex-col space-y-4 lg:flex-row lg:items-center lg:space-y-0 lg:space-x-2">
             <Button
               onClick={onSubmit}
