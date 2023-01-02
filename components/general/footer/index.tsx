@@ -2,6 +2,7 @@ import { useState } from "react";
 import LogoIcon from "../../icons/common/logo";
 import Button from "../button";
 import { isValidEmail, isValidMessage } from "../../../utils/validation";
+import ErrorIcon from "../../icons/common/error";
 
 const contactInformation = {
   email: "support@aimedtech.org",
@@ -14,7 +15,16 @@ const contactInformation = {
   },
 };
 
-const inputErrorClasses = "border-error border-2";
+const inputErrorClasses = "border-error-dark border-2";
+
+const ErrorMessage = ({ message }: { message: string }) => {
+  return (
+    <div className="flex items-center space-x-2">
+      <ErrorIcon h={24} w={24} />
+      <p className="font-bold text-error-dark">{message}</p>
+    </div>
+  );
+};
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -70,10 +80,12 @@ export default function Footer() {
         setIsSent(true);
       } else {
         setSendingErrorMsg("Failed to send message, try again later");
+        setIsSent(false);
       }
     } catch (e) {
       console.error(e);
       setSendingErrorMsg("Failed to send message, try again later");
+      setIsSent(false);
     }
     setIsSending(false);
   };
@@ -140,7 +152,7 @@ export default function Footer() {
             Send us a message
           </h3>
           <span className="h-1 w-32 rounded-full bg-background-primary" />
-          <div>
+          <div className="space-y-1">
             <input
               type="email"
               id="email"
@@ -155,9 +167,7 @@ export default function Footer() {
               }
               required
             />
-            {emailErrorMsg && (
-              <p className="font-bold text-error">{emailErrorMsg}</p>
-            )}
+            {emailErrorMsg && <ErrorMessage message={emailErrorMsg} />}
           </div>
           <div>
             <textarea
@@ -173,11 +183,9 @@ export default function Footer() {
               }
               required
             />
-            {messageErrorMsg && (
-              <p className="font-bold text-error">{messageErrorMsg}</p>
-            )}
+            {messageErrorMsg && <ErrorMessage message={messageErrorMsg} />}
           </div>
-          <div className="flex w-full flex-col space-y-4 md:flex-row md:items-center md:space-y-0">
+          <div className="flex w-full flex-col space-y-4 lg:flex-row lg:items-center lg:space-y-0 lg:space-x-2">
             <Button
               onClick={onSubmit}
               isPrimary={false}
@@ -197,9 +205,7 @@ export default function Footer() {
                 Message sent
               </p>
             )}
-            {sendingErrorMsg && (
-              <p className="font-bold text-error md:ml-4">{sendingErrorMsg}</p>
-            )}
+            {sendingErrorMsg && <ErrorMessage message={sendingErrorMsg} />}
           </div>
         </section>
         <section className="flex flex-col space-y-24">
