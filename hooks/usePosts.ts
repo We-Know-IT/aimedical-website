@@ -50,10 +50,8 @@ const usePosts = (filters: Set<PostType>, pageSize: number) => {
       },
       filterBy: Array.from(filterBy),
     });
-    if (res.error === "canceled") {
-      console.error(res.error);
-      return;
-    }
+    if (res.error === "canceled") return;
+
     if (res.error || !res.data) {
       handleError(res.error);
       return;
