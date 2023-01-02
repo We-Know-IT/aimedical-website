@@ -32,6 +32,7 @@ export default function PressRoom() {
   };
 
   const toggleEntryInFilters = (entry: PostType) => {
+    // Prevents toggling filters while loading posts. This is to prevent a longer loading of posts to override a shorter loading of posts.
     if (loadingPosts) return;
     const _filters = new Set(displayFilters);
     if (_filters.has(entry)) {
