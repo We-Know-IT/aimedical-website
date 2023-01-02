@@ -46,9 +46,7 @@ export default function NavLink({ navLink, color = "white" }: Props) {
   return (
     <Link
       href={navLink.path}
-      className={
-        "h-full text-lg font-semibold transition-all duration-150 " + getStyle()
-      }>
+      className={"h-full text-lg font-semibold " + getStyle()}>
       {navLink.label}
     </Link>
   );
