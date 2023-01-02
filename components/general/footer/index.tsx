@@ -194,7 +194,7 @@ export default function Footer() {
               {getButtonContent()}
             </Button>
             {isSent && (
-              <p className="flex items-center justify-center font-bold text-white md:ml-4">
+              <p className="flex items-center font-bold text-white lg:ml-4">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   height="24"
