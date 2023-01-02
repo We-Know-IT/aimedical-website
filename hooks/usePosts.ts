@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import { getPosts } from "../services/api";
+import { getPosts, setAbortSignal } from "../services/api";
 import { PostType, Post } from "../services/types";
+
+let abortController = new AbortController();
 
 const usePosts = (filters: Set<PostType>, pageSize: number) => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -10,6 +12,10 @@ const usePosts = (filters: Set<PostType>, pageSize: number) => {
   const [hasNextPosts, setHasNextPosts] = useState(true);
 
   useEffect(() => {
+    abortController.abort();
+    abortController = new AbortController();
+    setAbortSignal(abortController.signal);
+
     initPosts();
   }, [filters]);
 
@@ -18,37 +24,45 @@ const usePosts = (filters: Set<PostType>, pageSize: number) => {
    * @param error The error message to log to the console and set as the error state
    */
   const handleError = (error: string) => {
+    if (error === "canceled") return;
     console.error(error);
     setError("Whoops! Looks like there was an error fetching the posts.");
   };
 
   /**
-   * Fetches posts and sets the error state if there was an error
+   * Fetches and appends the posts to the posts list and sets the error state if there was an error. Does not append the posts if the request was canceled.
    * @param start The start index of the posts to fetch
    * @param limit The number of posts to fetch
    * @param filterBy The post types to filter by
    * @returns The posts fetched
    */
-  const getPostsAndSetError = async (
+  const loadPostsAndSetError = async (
     start: number,
     limit: number,
-    filterBy: Set<PostType>
-  ): Promise<Post[]> => {
-    const posts = await getPosts({
+    filterBy: Set<PostType>,
+    posts: Post[]
+  ): Promise<void> => {
+    setLoadingPosts(true);
+    const res = await getPosts({
       pagination: {
         start,
         limit,
       },
       filterBy: Array.from(filterBy),
     });
-    if (posts.error || !posts.data) {
-      handleError(posts.error);
-      return [];
+    if (res.error === "canceled") {
+      console.error(res.error);
+      return;
+    }
+    if (res.error || !res.data) {
+      handleError(res.error);
+      return;
     }
     setError("");
-    const total = posts.data.meta.pagination?.total || 0;
-    setHasNextPosts(total > start + limit);
-    return posts.data.posts;
+    const total = res.data.meta.pagination?.total || Infinity;
+    setHasNextPosts(posts.length + res.data.posts.length < total);
+    setPosts([...posts, ...res.data.posts]);
+    setLoadingPosts(false);
   };
 
   /**
@@ -57,10 +71,7 @@ const usePosts = (filters: Set<PostType>, pageSize: number) => {
    */
   const initPosts = async () => {
     setPosts([]);
-    setLoadingPosts(true);
-    const newPosts = await getPostsAndSetError(0, pageSize, filters);
-    setPosts(newPosts);
-    setLoadingPosts(false);
+    loadPostsAndSetError(0, pageSize, filters, []);
     setPage(1);
   };
 
@@ -69,14 +80,7 @@ const usePosts = (filters: Set<PostType>, pageSize: number) => {
    * @param page The page number to load
    */
   const loadPosts = async (page: number) => {
-    setLoadingPosts(true);
-    const newPosts = await getPostsAndSetError(
-      page * pageSize,
-      pageSize,
-      filters
-    );
-    setPosts([...posts, ...newPosts]);
-    setLoadingPosts(false);
+    await loadPostsAndSetError(page * pageSize, pageSize, filters, posts);
   };
 
   /**

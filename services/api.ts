@@ -50,4 +50,8 @@ async function getPost(id: number): Promise<ServiceResponse<Post>> {
   }
 }
 
-export { getPosts, getPost };
+function setAbortSignal(signal: AbortSignal) {
+  strapi.axios.defaults.signal = signal;
+}
+
+export { getPosts, getPost, setAbortSignal };
