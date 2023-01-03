@@ -26,7 +26,6 @@ export function CookieConsentProvider({ children }: Props) {
 
   useEffect(() => {
     const checkCookieConsent = () => {
-      console.log("useCookieConsent useEffect");
       if (Cookies.get(CONSENT_COOKIE_KEY) === undefined) {
         setCookieConsent(undefined);
         return;
