@@ -42,7 +42,7 @@ export default async function handler(
 
 /**
  *
- * Checks if "email" and "message" is present in the body of the request and if they are strings.
+ * Checks if "email" and "message" is present in the body of the request and if they are strings and if they are valid.
  *
  * @param req
  * @returns true/false if the conditions hold or not.
