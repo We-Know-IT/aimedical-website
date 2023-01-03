@@ -76,7 +76,7 @@ module.exports = {
 
         error: {
           DEFAULT: "#f44336",
-          dark: "#d32f2f",
+          dark: "#890100",
           light: "#e57373",
         },
 
