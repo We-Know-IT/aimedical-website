@@ -24,7 +24,6 @@ const usePosts = (filters: Set<PostType>, pageSize: number) => {
    * @param error The error message to log to the console and set as the error state
    */
   const handleError = (error: string) => {
-    if (error === "canceled") return;
     console.error(error);
     setError("Whoops! Looks like there was an error fetching the posts.");
   };
