@@ -21,7 +21,7 @@ export default function CookieConsent() {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 w-full bg-background-primary p-4 shadow-xl">
+    <div className="fixed bottom-0 left-0 z-20 w-full bg-background-primary p-4 shadow-xl">
       <div className="container flex flex-col items-center justify-between md:flex-row">
         <p className="text-md text-primary">
           We use third-party cookies to improve your experience on our website.
