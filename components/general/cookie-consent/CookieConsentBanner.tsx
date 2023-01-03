@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useCookieConsent } from "../../../utils/cookieConsent";
+import { useCookieConsent } from "../../../context/cookieConsent";
 
 export default function CookieConsent() {
   const { cookieConsent, setConsent } = useCookieConsent();

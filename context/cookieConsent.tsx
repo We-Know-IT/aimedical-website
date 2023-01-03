@@ -1,10 +1,25 @@
+import { createContext, useContext } from "react";
+
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 
 const CONSENT_COOKIE_KEY = "cookie_consent";
 const CONSENT_COOKIE_EXPIRE_DATE = 365;
 
-export const useCookieConsent = () => {
+interface CookieConsentType {
+  cookieConsent: boolean | undefined;
+  setConsent: (consent: boolean) => void;
+}
+
+const CookieConsentContext = createContext<CookieConsentType>(
+  {} as CookieConsentType
+);
+
+type Props = {
+  children: React.ReactNode;
+};
+
+export function CookieConsentProvider({ children }: Props) {
   const [cookieConsent, setCookieConsent] = useState<boolean | undefined>(
     undefined
   );
@@ -29,5 +44,19 @@ export const useCookieConsent = () => {
     });
   };
 
-  return { cookieConsent, setConsent };
-};
+  return (
+    <CookieConsentContext.Provider value={{ cookieConsent, setConsent }}>
+      {children}
+    </CookieConsentContext.Provider>
+  );
+}
+
+export function useCookieConsent() {
+  const context = useContext(CookieConsentContext);
+  if (context === undefined) {
+    throw new Error(
+      "useCookieConsent must be used within a CookieConsentProvider"
+    );
+  }
+  return context;
+}
