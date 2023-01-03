@@ -27,15 +27,12 @@ export function CookieConsentProvider({ children }: Props) {
   );
 
   useEffect(() => {
-    const checkCookieConsent = () => {
-      if (Cookies.get(CONSENT_COOKIE_KEY) === undefined) {
-        setCookieConsent(undefined);
-        return;
-      }
-      const hasConsented = Cookies.get(CONSENT_COOKIE_KEY) === "true";
-      setCookieConsent(hasConsented);
-    };
-    checkCookieConsent();
+    if (Cookies.get(CONSENT_COOKIE_KEY) === undefined) {
+      setCookieConsent(undefined);
+      return;
+    }
+    const hasConsented = Cookies.get(CONSENT_COOKIE_KEY) === "true";
+    setCookieConsent(hasConsented);
   }, []);
 
   const setConsent = (consent: boolean) => {
