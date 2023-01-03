@@ -4,6 +4,8 @@ import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 
 const CONSENT_COOKIE_KEY = "cookie_consent";
+
+// Interpreted as days, can be a date object or a number of days from now
 const CONSENT_COOKIE_EXPIRE_DATE = 365;
 
 interface CookieConsentType {
