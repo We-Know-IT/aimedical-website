@@ -22,7 +22,22 @@ export default function PostDetails(props: ServiceResponse<Post>) {
   };
 
   const isYoutubeLink = (content: string) => {
-    return content.toLowerCase().includes("youtube");
+    if (content.toLowerCase().includes("youtube")) {
+      return true;
+    }
+    if (content.toLowerCase().includes("youtu.be")) {
+      return true;
+    }
+    return false;
+  };
+
+  const getEmbedYoutubeLink = (url: string) => {
+    console.log(url);
+    const regExp =
+      /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/|shorts\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    const videoId = match ? match[1] : "";
+    return `https://www.youtube.com/embed/${videoId}`;
   };
 
   return (
@@ -124,7 +139,7 @@ export default function PostDetails(props: ServiceResponse<Post>) {
                       className="mb-4 aspect-video"
                       width="100%"
                       title={linkName?.toString() || ""}
-                      src={linkAddress}
+                      src={getEmbedYoutubeLink(linkAddress.toString())}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen></iframe>
                   );
