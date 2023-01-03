@@ -1,12 +1,21 @@
-import { Post, PostsRequestParams, ServiceResponse } from "./types";
+import {
+  Post,
+  PostsRequestParams,
+  PostsResponse,
+  ServiceResponse,
+} from "./types";
 import { strapi } from "../strapi/strapi";
-import { getStrapiErrorResponse, parseStrapiPostData } from "./strapi.utils";
+import {
+  getStrapiErrorResponse,
+  parseStrapiMetaData,
+  parseStrapiPostData,
+} from "./strapi.utils";
 
 async function getPosts({
   sort = "publishedAt:desc",
   pagination = { start: 0, limit: 10 },
   filterBy = ["blog", "news", "research"],
-}: PostsRequestParams = {}): Promise<ServiceResponse<Post[]>> {
+}: PostsRequestParams = {}): Promise<ServiceResponse<PostsResponse>> {
   try {
     const response = await strapi.find("posts", {
       sort,
@@ -18,10 +27,13 @@ async function getPosts({
     });
     if (Array.isArray(response.data))
       return {
-        data: response.data.map(parseStrapiPostData),
+        data: {
+          posts: response.data.map(parseStrapiPostData),
+          meta: parseStrapiMetaData(response.meta),
+        },
         error: null,
       };
-    return { data: [], error: null };
+    return { data: { posts: [], meta: {} }, error: null };
   } catch (e) {
     return getStrapiErrorResponse(e);
   }
@@ -38,4 +50,8 @@ async function getPost(id: number): Promise<ServiceResponse<Post>> {
   }
 }
 
-export { getPosts, getPost };
+function setAbortSignal(signal: AbortSignal) {
+  strapi.axios.defaults.signal = signal;
+}
+
+export { getPosts, getPost, setAbortSignal };

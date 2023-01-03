@@ -15,19 +15,13 @@ const initialFilters = new Set<PostType>(["blog", "news"]);
 
 export default function PressRoom() {
   const [filters, setFilters] = useState<Set<PostType>>(initialFilters);
+  const [displayFilters, setDisplayFilters] =
+    useState<Set<PostType>>(initialFilters);
 
-  const {
-    posts,
-    hasNextPosts,
-    loadingPosts,
-    loadingNextPosts,
-    awaitingNextPosts,
-    error,
-    loadMorePosts,
-    initPosts,
-  } = usePosts(filters, pageSize);
+  const { posts, hasNextPosts, loadingPosts, error, loadMorePosts, initPosts } =
+    usePosts(filters, pageSize);
 
-  const showSkeletons = loadingPosts || awaitingNextPosts;
+  const showSkeletons = loadingPosts;
 
   const toggleBlogsFilter = () => {
     toggleEntryInFilters("blog");
@@ -38,15 +32,16 @@ export default function PressRoom() {
   };
 
   const toggleEntryInFilters = (entry: PostType) => {
-    const _filters = new Set(filters);
+    const _filters = new Set(displayFilters);
     if (_filters.has(entry)) {
       _filters.delete(entry);
     } else {
       _filters.add(entry);
     }
-    if (_filters.size >= 0) initPosts(_filters);
-    else initPosts(initialFilters);
-    setFilters(_filters);
+    setDisplayFilters(_filters);
+    if (_filters.size > 0) {
+      setFilters(_filters);
+    } else setFilters(initialFilters);
   };
 
   const onLoadMore = async () => {
@@ -54,7 +49,7 @@ export default function PressRoom() {
   };
 
   const tryAgain = () => {
-    initPosts(filters);
+    initPosts();
   };
 
   return (
@@ -75,12 +70,12 @@ export default function PressRoom() {
               Filter posts:
             </p>
             <Button
-              isPrimary={filters.has("blog")}
+              isPrimary={displayFilters.has("blog")}
               onClick={toggleBlogsFilter}
               disabled={error ? true : false}>
               <>
                 Blogs
-                {filters.has("blog") ? (
+                {displayFilters.has("blog") ? (
                   <Image
                     className="ml-1 h-auto w-4 "
                     src="/images/cancel_icon.png"
@@ -94,12 +89,12 @@ export default function PressRoom() {
               </>
             </Button>
             <Button
-              isPrimary={filters.has("news")}
+              isPrimary={displayFilters.has("news")}
               onClick={togglePressReleasesFilter}
               disabled={error ? true : false}>
               <>
                 News
-                {filters.has("news") ? (
+                {displayFilters.has("news") ? (
                   <Image
                     className="ml-1  h-auto w-4"
                     src="/images/cancel_icon.png"
@@ -138,32 +133,28 @@ export default function PressRoom() {
                 (threeColsXLWidth ? " xl:grid-cols-3" : "")
               }>
               {/* Iterates over all the posts and returns UI components for each 
-            if they have a postType included in current filters or if there are no filters active.  */}
+            if they have a postType included in current displayFilters or if there are no displayFilters active.  */}
               {posts.map((p) => {
-                if (filters.has(p.postType) || filters.size === 0) {
-                  return (
-                    <li key={p.id} className="w-full">
-                      <Link href={"/pressroom/" + p.id}>
-                        <PostCard post={p} />
-                      </Link>
-                    </li>
-                  );
-                }
+                return (
+                  <li key={p.id} className="w-full">
+                    <Link href={"/pressroom/" + p.id}>
+                      <PostCard post={p} />
+                    </Link>
+                  </li>
+                );
               })}
               {showSkeletons &&
                 [...Array(pageSize)].map((x, i) => {
                   return <PostCard key={`skeleton-${i}`} />;
                 })}
             </ul>
-            {(hasNextPosts || loadingNextPosts) &&
-              !awaitingNextPosts &&
-              !error && (
-                <div className="mt-12 flex flex-col items-center">
-                  <Button onClick={onLoadMore} isPrimary>
-                    Load more
-                  </Button>
-                </div>
-              )}
+            {hasNextPosts && !error && !loadingPosts && (
+              <div className="mt-12 flex flex-col items-center">
+                <Button onClick={onLoadMore} isPrimary>
+                  Load more
+                </Button>
+              </div>
+            )}
           </section>
         </div>
       </main>

@@ -9,17 +9,12 @@ const researchSet = new Set<PostType>(["research"]);
 const pageSize = 3;
 
 export default function Research() {
-  const {
-    posts,
-    hasNextPosts,
-    loadingPosts,
-    error,
-    loadingNextPosts,
-    awaitingNextPosts,
-    loadMorePosts,
-  } = usePosts(researchSet, pageSize);
+  const { posts, hasNextPosts, loadingPosts, error, loadMorePosts } = usePosts(
+    researchSet,
+    pageSize
+  );
 
-  const showSkeletons = loadingPosts || awaitingNextPosts;
+  const showSkeletons = loadingPosts;
 
   const onLoadMore = () => {
     loadMorePosts();
@@ -53,14 +48,13 @@ export default function Research() {
               return <ResearchPostCard key={`skeleton-${i}`} />;
             })}
         </ul>
-        {(hasNextPosts || (loadingNextPosts && !error)) &&
-          !awaitingNextPosts && (
-            <div className="my-12 flex flex-col items-center">
-              <Button onClick={onLoadMore} isPrimary>
-                Load more
-              </Button>
-            </div>
-          )}
+        {hasNextPosts && !error && !loadingPosts && (
+          <div className="my-12 flex flex-col items-center">
+            <Button onClick={onLoadMore} isPrimary>
+              Load more
+            </Button>
+          </div>
+        )}
       </main>
     </>
   );

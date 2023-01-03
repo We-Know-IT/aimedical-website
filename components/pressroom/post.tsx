@@ -20,33 +20,34 @@ export default function PostCard({ post }: Props) {
           {post?.ingress || <Skeleton count={3} />}
         </p>
       </div>
-
-      {post?.listingImage && (
-        <Image
-          className="mb-2 max-h-64 w-auto rounded object-cover"
-          src={post.listingImage?.url || ""}
-          width={post.listingImage?.width}
-          height={post.listingImage?.height}
-          alt={post.listingImage?.alternativeText || ""}
-          placeholder="blur"
-          blurDataURL="/images/blur.jpg"
-        />
-      )}
-      {!post && <Skeleton height={200} />}
-
-      <div className="flex flex-row items-center justify-between">
-        <p className="flex text-sm text-on-surface-primary">
-          {post ? (
-            getDateString(new Date(post.publishedAt))
-          ) : (
-            <Skeleton width={60} />
-          )}
-        </p>
-        {post ? (
-          <Tag text={post.postType} />
-        ) : (
-          <Skeleton width={80} height={25} borderRadius={100} />
+      <div className="flex flex-col">
+        {post?.listingImage && (
+          <Image
+            className="mb-2 max-h-64 w-auto rounded object-cover"
+            src={post.listingImage?.url || ""}
+            width={post.listingImage?.width}
+            height={post.listingImage?.height}
+            alt={post.listingImage?.alternativeText || ""}
+            placeholder="blur"
+            blurDataURL="/images/blur.jpg"
+          />
         )}
+        {!post && <Skeleton height={200} />}
+
+        <div className="flex flex-row items-center justify-between">
+          <p className="flex text-sm text-on-surface-primary">
+            {post ? (
+              getDateString(new Date(post.publishedAt))
+            ) : (
+              <Skeleton width={60} />
+            )}
+          </p>
+          {post ? (
+            <Tag text={post.postType} />
+          ) : (
+            <Skeleton width={80} height={25} borderRadius={100} />
+          )}
+        </div>
       </div>
     </div>
   );
