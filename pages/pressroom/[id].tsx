@@ -6,6 +6,7 @@ import { Post, ServiceResponse } from "../../services/types";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import Link from "next/link";
+import { useCookieConsent } from "../../context/cookieConsent";
 
 function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -13,6 +14,8 @@ function capitalizeFirstLetter(string: string) {
 
 export default function PostDetails(props: ServiceResponse<Post>) {
   const post = props.data;
+
+  const { cookieConsent, setConsent } = useCookieConsent();
 
   const isVideoLink = (content: string) => {
     return content.toLowerCase().includes("video");
@@ -112,7 +115,10 @@ export default function PostDetails(props: ServiceResponse<Post>) {
                       <source src={props.href} type="video/mp4" />
                     </video>
                   );
-                } else if (isYoutubeLink(linkAddress.toString())) {
+                } else if (
+                  isYoutubeLink(linkAddress.toString()) &&
+                  cookieConsent
+                ) {
                   return (
                     <iframe
                       className="mb-4 aspect-video"
@@ -121,6 +127,23 @@ export default function PostDetails(props: ServiceResponse<Post>) {
                       src={linkAddress}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen></iframe>
+                  );
+                } else if (
+                  isYoutubeLink(linkAddress.toString()) &&
+                  !cookieConsent
+                ) {
+                  return (
+                    <div className="mb-4 flex aspect-video h-full w-full flex-col items-center justify-center rounded-md bg-gray-100">
+                      <p className="text-lg text-on-bg-primary">
+                        To be able to watch this video you need to allow
+                        cookies.
+                      </p>
+                      <button
+                        className="mt-4 rounded-md bg-primary px-6 py-2 text-lg text-white hover:bg-primary-hover focus:bg-primary-hover active:bg-primary-active"
+                        onClick={() => setConsent(true)}>
+                        Allow cookies
+                      </button>
+                    </div>
                   );
                 } else {
                   return (
