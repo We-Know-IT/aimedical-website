@@ -18,7 +18,7 @@ export default function DiagnosticsEmpowered() {
           <iframe
             className="h-full w-full"
             title="Dermalyser User guide"
-            src="https://player.vimeo.com/video/711636240?h=c1d894c848"
+            src="https://player.vimeo.com/video/711636240?h=c1d894c848?dnt=true"
             allowFullScreen></iframe>
         </div>
       </div>

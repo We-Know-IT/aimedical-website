@@ -16,6 +16,7 @@ const contactInformation = {
 };
 
 const inputErrorClasses = "border-error-dark border-2";
+const privacyPolicyErrorMessage = "You must accept the privacy policy";
 
 const ErrorMessage = ({ message }: { message: string }) => {
   return (
@@ -64,7 +65,7 @@ export default function Footer() {
     }
 
     if (!privacyPolicy) {
-      setPrivacyPolicyErrorMsg("You must accept the privacy policy");
+      setPrivacyPolicyErrorMsg(privacyPolicyErrorMessage);
       formIsValid = false;
     }
     if (!formIsValid) return;
@@ -127,6 +128,8 @@ export default function Footer() {
   };
 
   const onPrivacyPolicyChange = () => {
+    if (privacyPolicy) setPrivacyPolicyErrorMsg(privacyPolicyErrorMessage);
+    else setPrivacyPolicyErrorMsg("");
     setPrivacyPolicy((prev) => !prev);
   };
 
@@ -227,7 +230,11 @@ export default function Footer() {
               onClick={onSubmit}
               isPrimary={false}
               className="w-full"
-              disabled={emailErrorMsg !== "" || messageErrorMsg !== ""}>
+              disabled={
+                emailErrorMsg !== "" ||
+                messageErrorMsg !== "" ||
+                privacyPolcyErrorMsg !== ""
+              }>
               {getButtonContent()}
             </Button>
             {isSent && (
