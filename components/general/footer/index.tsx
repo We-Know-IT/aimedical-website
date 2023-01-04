@@ -230,7 +230,11 @@ export default function Footer() {
               onClick={onSubmit}
               isPrimary={false}
               className="w-full"
-              disabled={emailErrorMsg !== "" || messageErrorMsg !== ""}>
+              disabled={
+                emailErrorMsg !== "" ||
+                messageErrorMsg !== "" ||
+                privacyPolcyErrorMsg !== ""
+              }>
               {getButtonContent()}
             </Button>
             {isSent && (
