@@ -20,6 +20,7 @@
     "nodemailer": "^6.8.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-google-recaptcha": "^2.1.0",
     "react-loading-skeleton": "^3.1.0",
     "react-markdown": "^8.0.4",
     "strapi-sdk-js": "^2.2.0",
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "@types/nodemailer": "^6.4.7",
+    "@types/react-google-recaptcha": "^2.1.5",
     "autoprefixer": "^10.4.13",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-only-warn": "^1.1.0",
