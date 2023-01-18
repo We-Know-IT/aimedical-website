@@ -37,8 +37,7 @@ export default function Footer() {
   const [emailErrorMsg, setEmailErrorMsg] = useState("");
   const [messageErrorMsg, setMessageErrorMsg] = useState("");
   const [sendingErrorMsg, setSendingErrorMsg] = useState("");
-  const [privacyPolcyErrorMsg, setPrivacyPolicyErrorMsg] = useState("");
-  const [captcha, setCaptcha] = useState("");
+  const [privacyPolicyErrorMsg, setPrivacyPolicyErrorMsg] = useState("");
   const [captchaErrorMsg, setCaptchaErrorMsg] = useState("");
 
   const recaptchaRef = useRef<ReCAPTCHA>(null);
@@ -57,7 +56,10 @@ export default function Footer() {
     }
   };
 
-  const onSubmit = async () => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const captcha = await getCaptcha();
+
     let formIsValid = true;
     if (!isValidEmail(email)) {
       validateEmail(email);
@@ -100,8 +102,7 @@ export default function Footer() {
         setPrivacyPolicyErrorMsg("");
         setPrivacyPolicy(false);
         setIsSent(true);
-        setCaptcha("");
-        recaptchaRef.current?.reset();
+        resetCaptcha();
       } else {
         setSendingErrorMsg("Failed to send message, try again later");
         setIsSent(false);
@@ -140,19 +141,28 @@ export default function Footer() {
     setMessageErrorMsg("");
   };
 
+  const hasPassedValidation = () => {
+    return (
+      !emailErrorMsg &&
+      !messageErrorMsg &&
+      !privacyPolicyErrorMsg &&
+      !captchaErrorMsg
+    );
+  };
+
   const onPrivacyPolicyChange = () => {
     if (privacyPolicy) setPrivacyPolicyErrorMsg(privacyPolicyErrorMessage);
     else setPrivacyPolicyErrorMsg("");
     setPrivacyPolicy((prev) => !prev);
   };
 
-  const onCaptchaChange = (token: string | null) => {
-    if (!token) {
-      setCaptcha("");
-      return;
-    }
-    setCaptchaErrorMsg("");
-    setCaptcha(token);
+  const getCaptcha = async () => {
+    const token = await recaptchaRef.current?.executeAsync();
+    return token;
+  };
+
+  const resetCaptcha = () => {
+    recaptchaRef.current?.reset();
   };
 
   const getButtonContent = () => {
@@ -187,7 +197,7 @@ export default function Footer() {
       id="contact">
       <div className="container flex w-full flex-col space-y-20 py-16 md:flex-row-reverse md:justify-between md:space-y-0">
         {/* Email contact form */}
-        <section className="flex flex-col space-y-4 md:w-1/2">
+        <form className="flex flex-col space-y-4 md:w-1/2" onSubmit={onSubmit}>
           <h3 className="text-2xl font-bold text-on-primary">
             Send us a message
           </h3>
@@ -243,8 +253,8 @@ export default function Footer() {
                 I agree to the terms of use and privacy policy.
               </p>
             </div>
-            {privacyPolcyErrorMsg && (
-              <ErrorMessage message={privacyPolcyErrorMsg} />
+            {privacyPolicyErrorMsg && (
+              <ErrorMessage message={privacyPolicyErrorMsg} />
             )}
           </div>
           <div>
@@ -253,20 +263,16 @@ export default function Footer() {
               sitekey={
                 process.env.NEXT_PUBLIC_RECAPTCHA_EMAIL_SITE_KEY || "site-key"
               }
-              onChange={onCaptchaChange}
+              size="invisible"
             />
             {captchaErrorMsg && <ErrorMessage message={captchaErrorMsg} />}
           </div>
           <div className="flex w-full flex-col space-y-4 lg:flex-row lg:items-center lg:space-y-0 lg:space-x-2">
             <Button
-              onClick={onSubmit}
               isPrimary={false}
               className="w-full"
-              disabled={
-                emailErrorMsg !== "" ||
-                messageErrorMsg !== "" ||
-                privacyPolcyErrorMsg !== ""
-              }>
+              disabled={!hasPassedValidation()}
+              type="submit">
               {getButtonContent()}
             </Button>
             {isSent && (
@@ -283,7 +289,7 @@ export default function Footer() {
             )}
             {sendingErrorMsg && <ErrorMessage message={sendingErrorMsg} />}
           </div>
-        </section>
+        </form>
 
         {/* Contact information */}
         <section className="flex flex-col space-y-24">
