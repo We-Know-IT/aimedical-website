@@ -257,16 +257,7 @@ export default function Footer() {
               <ErrorMessage message={privacyPolicyErrorMsg} />
             )}
           </div>
-          <div>
-            <ReCAPTCHA
-              ref={recaptchaRef}
-              sitekey={
-                process.env.NEXT_PUBLIC_RECAPTCHA_EMAIL_SITE_KEY || "site-key"
-              }
-              size="invisible"
-            />
-            {captchaErrorMsg && <ErrorMessage message={captchaErrorMsg} />}
-          </div>
+          {captchaErrorMsg && <ErrorMessage message={captchaErrorMsg} />}
           <div className="flex w-full flex-col space-y-4 lg:flex-row lg:items-center lg:space-y-0 lg:space-x-2">
             <Button
               isPrimary={false}
@@ -289,6 +280,13 @@ export default function Footer() {
             )}
             {sendingErrorMsg && <ErrorMessage message={sendingErrorMsg} />}
           </div>
+          <ReCAPTCHA
+            ref={recaptchaRef}
+            sitekey={
+              process.env.NEXT_PUBLIC_RECAPTCHA_EMAIL_SITE_KEY || "site-key"
+            }
+            size="invisible"
+          />
         </form>
 
         {/* Contact information */}
