@@ -42,7 +42,6 @@ export default async function handler(
      *  "error-codes": [...]        // optional
       }
      */
-    console.log(captchaValidation);
     if (!captchaValidation.success) {
       return res.status(422).json({
         message: "Unproccesable request, Invalid captcha code",
