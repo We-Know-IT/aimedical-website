@@ -12,7 +12,7 @@ type Props = {
 
 export default function researchPostCard({ post }: Props) {
   return (
-    <div className="flex h-full flex-col rounded-2xl shadow-md duration-200 md:h-80 md:w-full md:flex-row lg:h-96">
+    <div className="flex h-full flex-col rounded-2xl shadow-xl duration-200 md:h-80 md:w-full md:flex-row lg:h-96">
       {post?.listingImage && (
         <Image
           alt={post.listingImage.alternativeText || "Research post image"}

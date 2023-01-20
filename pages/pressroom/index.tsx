@@ -21,7 +21,7 @@ export default function PressRoom() {
   const { posts, hasNextPosts, loadingPosts, error, loadMorePosts, initPosts } =
     usePosts(filters, pageSize);
 
-  const showSkeletons = loadingPosts;
+  const showSkeletons = loadingPosts && !error;
 
   const toggleBlogsFilter = () => {
     toggleEntryInFilters("blog");
