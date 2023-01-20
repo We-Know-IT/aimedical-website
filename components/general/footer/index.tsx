@@ -83,6 +83,8 @@ export default function Footer() {
 
     if (!formIsValid) return;
 
+    if (isSending) return;
+
     setIsSending(true);
 
     try {
@@ -262,7 +264,7 @@ export default function Footer() {
             <Button
               isPrimary={false}
               className="w-full"
-              disabled={!hasPassedValidation()}
+              disabled={!hasPassedValidation() || isSending}
               type="submit">
               {getButtonContent()}
             </Button>
