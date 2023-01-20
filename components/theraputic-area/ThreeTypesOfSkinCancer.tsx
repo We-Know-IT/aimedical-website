@@ -54,11 +54,11 @@ const skinCancers: SkinCancer[] = [
   {
     textComponent: (
       <>
-        <b>Melanoma</b> skin cancer is responsible for 60,000 deaths each
-        year.The latest data from the World Health Organization (WHO) predicts
-        that annual deaths from melanoma will increase to 100,000 by 2040.
-        Melanoma is more common in light skin people than in dark skin people.
-        Dark skin people have more eumelanin while light skin people have more
+        <b>Melanoma</b> skin cancer is responsible for 60,000 deaths each year.
+        The latest data from the World Health Organization (WHO) predicts that
+        annual deaths from melanoma will increase to 100,000 by 2040. Melanoma
+        is more common in light skin people than in dark skin people. Dark skin
+        people have more eumelanin while light skin people have more
         pheomelanin. While eumelanin has the ability to protect the skin from
         sun damage, pheomelanin does not. That&apos;s why people with darker
         skin are at lower risk for developing skin cancer than light skin people
