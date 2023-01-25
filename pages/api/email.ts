@@ -11,6 +11,22 @@ const emailConfig = {
   secure: true,
 };
 
+/**
+     * The structure of response from the veirfy API is
+     * {
+     *  "success": true|false,
+     *  "challenge_ts": timestamp,  // timestamp of the challenge load (ISO format yyyy-MM-dd'T'HH:mm:ssZZ)
+     *  "hostname": string,         // the hostname of the site where the reCAPTCHA was solved
+     *  "error-codes": [...]        // optional
+      }
+*/
+type reCaptchaResponse = {
+  success: boolean;
+  challenge_ts: string;
+  hostname: string;
+  "error-codes": string[];
+};
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -32,16 +48,8 @@ export default async function handler(
         method: "POST",
       }
     );
-    const captchaValidation = await response.json();
-    /**
-     * The structure of response from the veirfy API is
-     * {
-     *  "success": true|false,
-     *  "challenge_ts": timestamp,  // timestamp of the challenge load (ISO format yyyy-MM-dd'T'HH:mm:ssZZ)
-     *  "hostname": string,         // the hostname of the site where the reCAPTCHA was solved
-     *  "error-codes": [...]        // optional
-      }
-     */
+    const captchaValidation: reCaptchaResponse = await response.json();
+
     if (!captchaValidation.success) {
       return res.status(422).json({
         message: "Unproccesable request, Invalid captcha code",
