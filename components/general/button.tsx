@@ -4,6 +4,7 @@ type Props = {
   children: React.ReactElement | string;
   onClick?: () => void;
   disabled?: boolean;
+  type?: "button" | "submit" | "reset";
 };
 
 const commonStyles =
@@ -15,6 +16,7 @@ export default function Button({
   className = "",
   isPrimary = false,
   disabled = false,
+  type = "button",
 }: Props) {
   const getClassName = () => {
     if (isPrimary) {
@@ -33,7 +35,8 @@ export default function Button({
         (disabled ? " cursor-not-allowed opacity-50 " : "")
       }
       disabled={disabled}
-      onClick={onClick}>
+      onClick={onClick}
+      type={type}>
       {children}
     </button>
   );
