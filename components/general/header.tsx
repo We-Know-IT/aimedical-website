@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { CSSProperties, useEffect } from "react";
 import Button from "./button";
@@ -27,17 +28,6 @@ export default function Header({
   const backgroundImageStyle: CSSProperties = {
     backgroundImage: `url("/images/blur.jpg")`,
   };
-  useEffect(() => {
-    const src = imageUrl;
-    const header = document.getElementById("header");
-    if (header != null) {
-      var image = new Image();
-      image.addEventListener("load", function () {
-        header.style.backgroundImage = "url(" + src + ")";
-      });
-      image.src = src;
-    }
-  });
 
   return (
     <header
@@ -46,6 +36,14 @@ export default function Header({
       }
       style={backgroundImageStyle}
       id="header">
+      <Image
+        src={imageUrl}
+        alt="Header image"
+        fill
+        className={"object-cover"}
+        placeholder="blur"
+        blurDataURL="/images/blur.jpg"
+      />
       <div className="container flex h-full flex-col justify-center">
         <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-r from-primary/[0.85]"></div>
         <div className="animate-focus-in">

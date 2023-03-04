@@ -3,6 +3,7 @@ import LogoIcon from "../../icons/common/logo";
 import Button from "../button";
 import { isValidEmail, isValidMessage } from "../../../utils/validation";
 import ErrorIcon from "../../icons/common/error";
+import Link from "next/link";
 import ReCAPTCHA from "react-google-recaptcha";
 
 const contactInformation = {
@@ -252,7 +253,13 @@ export default function Footer() {
                 required
               />
               <p className="font-bold text-white">
-                I agree to the terms of use and privacy policy.
+                I agree to the terms of use and{" "}
+                <Link
+                  href="privacy-policy"
+                  className=" text-on-primary underline hover:text-on-primary-hover">
+                  privacy policy
+                </Link>
+                .
               </p>
             </div>
             {privacyPolicyErrorMsg && (
@@ -321,7 +328,12 @@ export default function Footer() {
             </div>
             <div>
               <p className="text-sm text-on-primary">
-                Website Privacy policy <br />
+                <Link
+                  href="privacy-policy"
+                  className="text-on-primary hover:text-on-primary-hover">
+                  Website Privacy policy
+                </Link>{" "}
+                <br />
                 Stockholm, Sweden <br /> © 2022 All rights reserved
               </p>
             </div>

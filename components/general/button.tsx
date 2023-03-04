@@ -32,7 +32,7 @@ export default function Button({
         getClassName() +
         commonStyles +
         className +
-        (disabled ? " cursor-not-allowed opacity-50 " : "")
+        (disabled ? " cursor-default opacity-50 " : "")
       }
       disabled={disabled}
       onClick={onClick}
