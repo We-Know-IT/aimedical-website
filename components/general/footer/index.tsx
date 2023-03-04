@@ -256,7 +256,7 @@ export default function Footer() {
                 I agree to the terms of use and{" "}
                 <Link
                   href="privacy-policy"
-                  className="text-on-primary hover:text-on-primary-hover">
+                  className=" text-on-primary underline hover:text-on-primary-hover">
                   privacy policy
                 </Link>
                 .
