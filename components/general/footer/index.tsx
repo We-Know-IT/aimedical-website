@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import LogoIcon from "../../icons/common/logo";
 import Button from "../button";
 import { isValidEmail, isValidMessage } from "../../../utils/validation";
 import ErrorIcon from "../../icons/common/error";
 import Link from "next/link";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const contactInformation = {
   email: "support@aimedtech.org",
@@ -37,7 +38,10 @@ export default function Footer() {
   const [emailErrorMsg, setEmailErrorMsg] = useState("");
   const [messageErrorMsg, setMessageErrorMsg] = useState("");
   const [sendingErrorMsg, setSendingErrorMsg] = useState("");
-  const [privacyPolcyErrorMsg, setPrivacyPolicyErrorMsg] = useState("");
+  const [privacyPolicyErrorMsg, setPrivacyPolicyErrorMsg] = useState("");
+  const [captchaErrorMsg, setCaptchaErrorMsg] = useState("");
+
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -53,7 +57,10 @@ export default function Footer() {
     }
   };
 
-  const onSubmit = async () => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const captcha = await getCaptcha();
+
     let formIsValid = true;
     if (!isValidEmail(email)) {
       validateEmail(email);
@@ -69,7 +76,15 @@ export default function Footer() {
       setPrivacyPolicyErrorMsg(privacyPolicyErrorMessage);
       formIsValid = false;
     }
+
+    if (!captcha) {
+      setCaptchaErrorMsg("Passing the captcha is required");
+      formIsValid = false;
+    }
+
     if (!formIsValid) return;
+
+    if (isSending) return;
 
     setIsSending(true);
 
@@ -80,7 +95,7 @@ export default function Footer() {
           Accept: "application/json, text/plain, */*",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ message, email }),
+        body: JSON.stringify({ message, email, captcha }),
       });
 
       if (response.status === 200) {
@@ -90,6 +105,7 @@ export default function Footer() {
         setPrivacyPolicyErrorMsg("");
         setPrivacyPolicy(false);
         setIsSent(true);
+        resetCaptcha();
       } else {
         setSendingErrorMsg("Failed to send message, try again later");
         setIsSent(false);
@@ -128,10 +144,28 @@ export default function Footer() {
     setMessageErrorMsg("");
   };
 
+  const hasPassedValidation = () => {
+    return (
+      !emailErrorMsg &&
+      !messageErrorMsg &&
+      !privacyPolicyErrorMsg &&
+      !captchaErrorMsg
+    );
+  };
+
   const onPrivacyPolicyChange = () => {
     if (privacyPolicy) setPrivacyPolicyErrorMsg(privacyPolicyErrorMessage);
     else setPrivacyPolicyErrorMsg("");
     setPrivacyPolicy((prev) => !prev);
+  };
+
+  const getCaptcha = async () => {
+    const token = await recaptchaRef.current?.executeAsync();
+    return token;
+  };
+
+  const resetCaptcha = () => {
+    recaptchaRef.current?.reset();
   };
 
   const getButtonContent = () => {
@@ -165,7 +199,8 @@ export default function Footer() {
       className="bg-gradient-to-br from-primary/[0.85] to-primary/50"
       id="contact">
       <div className="container flex w-full flex-col space-y-20 py-16 md:flex-row-reverse md:justify-between md:space-y-0">
-        <section className="flex flex-col space-y-4 md:w-1/2">
+        {/* Email contact form */}
+        <form className="flex flex-col space-y-4 md:w-1/2" onSubmit={onSubmit}>
           <h3 className="text-2xl font-bold text-on-primary">
             Send us a message
           </h3>
@@ -227,21 +262,17 @@ export default function Footer() {
                 .
               </p>
             </div>
-            {privacyPolcyErrorMsg && (
-              <ErrorMessage message={privacyPolcyErrorMsg} />
+            {privacyPolicyErrorMsg && (
+              <ErrorMessage message={privacyPolicyErrorMsg} />
             )}
           </div>
-
+          {captchaErrorMsg && <ErrorMessage message={captchaErrorMsg} />}
           <div className="flex w-full flex-col space-y-4 lg:flex-row lg:items-center lg:space-y-0 lg:space-x-2">
             <Button
-              onClick={onSubmit}
               isPrimary={false}
               className="w-full"
-              disabled={
-                emailErrorMsg !== "" ||
-                messageErrorMsg !== "" ||
-                privacyPolcyErrorMsg !== ""
-              }>
+              disabled={!hasPassedValidation() || isSending}
+              type="submit">
               {getButtonContent()}
             </Button>
             {isSent && (
@@ -258,7 +289,16 @@ export default function Footer() {
             )}
             {sendingErrorMsg && <ErrorMessage message={sendingErrorMsg} />}
           </div>
-        </section>
+          <ReCAPTCHA
+            ref={recaptchaRef}
+            sitekey={
+              process.env.NEXT_PUBLIC_RECAPTCHA_EMAIL_SITE_KEY || "site-key"
+            }
+            size="invisible"
+          />
+        </form>
+
+        {/* Contact information */}
         <section className="flex flex-col space-y-24">
           <div className="flex flex-col space-y-4">
             <h3 className="text-2xl font-bold text-on-primary">Contacts</h3>
@@ -277,6 +317,7 @@ export default function Footer() {
             </p>
           </div>
 
+          {/* Website information */}
           <div className="flex items-center justify-between md:flex-col md:items-start md:space-y-32">
             <div className="flex flex-col items-center justify-center space-y-4 md:flex-row md:space-y-0 md:space-x-8">
               <LogoIcon w={69} h={69} />
