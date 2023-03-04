@@ -1,7 +1,7 @@
 import Head from "next/head";
-import Header from "../components/general/header";
-import TwoColText from "../components/general/start/twoColText";
-import TwoColImg from "../components/general/start/twoColImg";
+import Header from "../components/general/Header_t";
+import TwoColText from "../components/general/start/TwoColText_t";
+import TwoColImg from "../components/general/start/TwoColImg_t";
 import Image from "next/image";
 
 const buttonHeader = {

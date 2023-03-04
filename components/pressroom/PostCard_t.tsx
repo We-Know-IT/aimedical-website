@@ -1,6 +1,6 @@
 import { Post } from "../../services/types";
 import Image from "next/image";
-import Tag from "../general/tag";
+import Tag from "../general/Tag_t";
 import { getDateString } from "../../utils/date";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";

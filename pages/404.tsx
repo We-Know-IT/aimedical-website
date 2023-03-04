@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Header from "../components/general/header";
+import Header from "../components/general/Header_t";
 
 const actionButton = {
   text: "Go back home",

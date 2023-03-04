@@ -2,9 +2,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useWindowScrollPositions } from "../../../utils/scroll";
-import LogoIcon from "../../icons/common/logo";
-import HamburgerIcon from "./hamburger-icon";
-import NavLink from "./nav-link";
+import LogoIcon from "../../icons/common/Logo_t";
+import HamburgerIcon from "./HamburgerIcon_t";
+import NavLink from "./NavLink";
 import { navLinks } from "./nav-links";
 
 export default function Navbar() {

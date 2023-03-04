@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Post } from "../../services/types";
 import Skeleton from "react-loading-skeleton";
-import Button from "../general/button";
+import Button from "../general/Button_t";
 import Link from "next/link";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -10,7 +10,7 @@ type Props = {
   post?: Post;
 };
 
-export default function researchPostCard({ post }: Props) {
+export default function ResearchPostCard({ post }: Props) {
   return (
     <div className="flex h-full flex-col rounded-2xl shadow-xl duration-200 md:h-80 md:w-full md:flex-row lg:h-96">
       {post?.listingImage && (

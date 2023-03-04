@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CSSProperties, useEffect } from "react";
-import Button from "./button";
+import Button from "./Button_t";
 
 type Props = {
   title?: string;

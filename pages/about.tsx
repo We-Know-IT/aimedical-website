@@ -2,7 +2,7 @@ import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import Background from "../components/about/Background";
 import Team from "../components/about/Team";
-import Header from "../components/general/header";
+import Header from "../components/general/Header_t";
 const fs = require("fs").promises;
 
 export type Employee = {

@@ -1,6 +1,6 @@
 import Head from "next/head";
-import Header from "../components/general/header";
-import TwoColImg from "../components/general/start/twoColImg";
+import Header from "../components/general/Header_t";
+import TwoColImg from "../components/general/start/TwoColImg_t";
 import SoCommonThat from "../components/theraputic-area/SoCommonThat";
 import ThreeTypesOfSkinCancer from "../components/theraputic-area/ThreeTypesOfSkinCancer";
 

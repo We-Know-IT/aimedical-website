@@ -1,7 +1,7 @@
 import Head from "next/head";
-import Button from "../../components/general/button";
-import Header from "../../components/general/header";
-import ResearchPostCard from "../../components/research/research-post-card";
+import Button from "../../components/general/Button_t";
+import Header from "../../components/general/Header_t";
+import ResearchPostCard from "../../components/research/ResearchPostCard_t";
 import { usePosts } from "../../hooks/usePosts";
 import { PostType } from "../../services/types";
 
@@ -32,7 +32,7 @@ export default function Research() {
         />
       </Head>
       <Header
-        imageUrl="/images/research-header.png"
+        imageUrl="/images/research/header.png"
         title="Research"
         text="A collection of our research and third party research relevant to us"
       />
