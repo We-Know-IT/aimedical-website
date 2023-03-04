@@ -59,6 +59,7 @@ export default function Navbar() {
             type="button"
             className="h-10 lg:hidden"
             aria-controls="mobile-menu"
+            name="mobile-menu"
             onClick={toggleNavbar}
             aria-expanded={isNavbarOpen}>
             <HamburgerIcon
