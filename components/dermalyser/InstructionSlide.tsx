@@ -1,4 +1,4 @@
-import Button from "../general/Button_t";
+import Button from "../general/Button";
 import Image from "next/image";
 import { ReactElement } from "react";
 

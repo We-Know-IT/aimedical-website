@@ -1,11 +1,11 @@
 import Head from "next/head";
 import { useState } from "react";
-import Button from "../../components/general/Button_t";
-import PostCard from "../../components/pressroom/PostCard_t";
+import Button from "../../components/general/Button";
+import PostCard from "../../components/pressroom/PostCard";
 import { PostType } from "../../services/types";
 import Image from "next/image";
 import Link from "next/link";
-import Header from "../../components/general/Header_t";
+import Header from "../../components/general/Header";
 import { usePosts } from "../../hooks/usePosts";
 
 const threeColsXLWidth = false;

@@ -1,7 +1,7 @@
 import Head from "next/head";
-import Button from "../../components/general/Button_t";
-import Header from "../../components/general/Header_t";
-import ResearchPostCard from "../../components/research/ResearchPostCard_t";
+import Button from "../../components/general/Button";
+import Header from "../../components/general/Header";
+import ResearchPostCard from "../../components/research/ResearchPostCard";
 import { usePosts } from "../../hooks/usePosts";
 import { PostType } from "../../services/types";
 

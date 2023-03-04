@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Button from "../Button_t";
+import Button from "../Button";
 
 export interface INavLink {
   label: string;

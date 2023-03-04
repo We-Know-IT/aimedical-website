@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Post } from "../../services/types";
 import Skeleton from "react-loading-skeleton";
-import Button from "../general/Button_t";
+import Button from "../general/Button";
 import Link from "next/link";
 import "react-loading-skeleton/dist/skeleton.css";
 

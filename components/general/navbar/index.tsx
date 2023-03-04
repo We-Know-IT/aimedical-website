@@ -2,8 +2,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useWindowScrollPositions } from "../../../utils/scroll";
-import LogoIcon from "../../icons/common/Logo_t";
-import HamburgerIcon from "./HamburgerIcon_t";
+import LogoIcon from "../../icons/common/Logo";
+import HamburgerIcon from "./HamburgerIcon";
 import NavLink from "./NavLink";
 import { navLinks } from "./nav-links";
 

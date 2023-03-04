@@ -1,8 +1,8 @@
 import { useState } from "react";
-import LogoIcon from "../../icons/common/Logo_t";
-import Button from "../Button_t";
+import LogoIcon from "../../icons/common/Logo";
+import Button from "../Button";
 import { isValidEmail, isValidMessage } from "../../../utils/validation";
-import ErrorIcon from "../../icons/common/Error_t";
+import ErrorIcon from "../../icons/common/Error";
 
 const contactInformation = {
   email: "support@aimedtech.org",

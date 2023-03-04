@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React, { isValidElement } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import Header from "../components/general/Header_t";
+import Header from "../components/general/Header";
 import remarkGfm from "remark-gfm";
 import privacyPolicy from "../texts/privacy-policy.md";
 
