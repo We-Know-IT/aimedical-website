@@ -1,4 +1,4 @@
-import Button from "../button";
+import Button from "../Button";
 import Image from "next/image";
 import Link from "next/link";
 type Props = {

@@ -1,7 +1,7 @@
 import Head from "next/head";
-import Button from "../../components/general/button";
-import Header from "../../components/general/header";
-import ResearchPostCard from "../../components/research/research-post-card";
+import Button from "../../components/general/Button";
+import Header from "../../components/general/Header";
+import ResearchPostCard from "../../components/research/ResearchPostCard";
 import { usePosts } from "../../hooks/usePosts";
 import { PostType } from "../../services/types";
 
@@ -9,15 +9,17 @@ const researchSet = new Set<PostType>(["research"]);
 const pageSize = 3;
 
 export default function Research() {
-  const { posts, hasNextPosts, loadingPosts, error, loadMorePosts } = usePosts(
-    researchSet,
-    pageSize
-  );
+  const { posts, hasNextPosts, loadingPosts, error, loadMorePosts, initPosts } =
+    usePosts(researchSet, pageSize);
 
-  const showSkeletons = loadingPosts;
+  const showSkeletons = loadingPosts && !error;
 
   const onLoadMore = () => {
     loadMorePosts();
+  };
+
+  const tryAgain = () => {
+    initPosts();
   };
 
   return (
@@ -30,7 +32,7 @@ export default function Research() {
         />
       </Head>
       <Header
-        imageUrl="/images/research-header.png"
+        imageUrl="/images/research/header.png"
         title="Research"
         text="A collection of our research and third party research relevant to us"
       />
@@ -48,6 +50,23 @@ export default function Research() {
               return <ResearchPostCard key={`skeleton-${i}`} />;
             })}
         </ul>
+        {/* If there are no posts to show, show a message. */}
+        {posts.length === 0 && !error && !loadingPosts && (
+          <p className="text-center text-xl font-bold text-primary">
+            Looks like there are no posts to show.
+          </p>
+        )}
+        {/* If there is an error, show a message. */}
+        {error && (
+          <div className="mb-8 flex flex-col items-center gap-14">
+            <p className="text-center text-xl font-bold text-error-dark">
+              {error}
+            </p>
+            <Button onClick={tryAgain} isPrimary>
+              Try again
+            </Button>
+          </div>
+        )}
         {hasNextPosts && !error && !loadingPosts && (
           <div className="my-12 flex flex-col items-center">
             <Button onClick={onLoadMore} isPrimary>

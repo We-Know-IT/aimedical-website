@@ -3,7 +3,7 @@ import Advantages from "../components/dermalyser/Advantages";
 import DiagnosticsEmpowered from "../components/dermalyser/DiagnosticsEmpowered";
 import HowItWorks from "../components/dermalyser/HowItWorks";
 import Performance from "../components/dermalyser/Performance";
-import Header from "../components/general/header";
+import Header from "../components/general/Header";
 
 export default function Dermalyser() {
   return (

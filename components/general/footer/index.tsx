@@ -1,10 +1,10 @@
+import LogoIcon from "../../icons/common/Logo";
+import Button from "../Button";
 import { useRef, useState } from "react";
-import LogoIcon from "../../icons/common/logo";
-import Button from "../button";
 import { isValidEmail, isValidMessage } from "../../../utils/validation";
-import ErrorIcon from "../../icons/common/error";
 import Link from "next/link";
 import ReCAPTCHA from "react-google-recaptcha";
+import ErrorIcon from "../../icons/common/Error";
 
 const contactInformation = {
   email: "support@aimedtech.org",

@@ -1,11 +1,11 @@
 import Head from "next/head";
 import { useState } from "react";
-import Button from "../../components/general/button";
-import PostCard from "../../components/pressroom/post";
+import Button from "../../components/general/Button";
+import PostCard from "../../components/pressroom/PostCard";
 import { PostType } from "../../services/types";
 import Image from "next/image";
 import Link from "next/link";
-import Header from "../../components/general/header";
+import Header from "../../components/general/Header";
 import { usePosts } from "../../hooks/usePosts";
 
 const threeColsXLWidth = false;
@@ -21,7 +21,7 @@ export default function PressRoom() {
   const { posts, hasNextPosts, loadingPosts, error, loadMorePosts, initPosts } =
     usePosts(filters, pageSize);
 
-  const showSkeletons = loadingPosts;
+  const showSkeletons = loadingPosts && !error;
 
   const toggleBlogsFilter = () => {
     toggleEntryInFilters("blog");
@@ -78,7 +78,7 @@ export default function PressRoom() {
                 {displayFilters.has("blog") ? (
                   <Image
                     className="ml-1 h-auto w-4 "
-                    src="/images/cancel_icon.png"
+                    src="/images/icons/cancel_icon.png"
                     alt="cancel icon"
                     width={16}
                     height={16}
@@ -97,7 +97,7 @@ export default function PressRoom() {
                 {displayFilters.has("news") ? (
                   <Image
                     className="ml-1  h-auto w-4"
-                    src="/images/cancel_icon.png"
+                    src="/images/icons/cancel_icon.png"
                     alt="cancel icon"
                     width={16}
                     height={16}

@@ -11,17 +11,17 @@ const slides = [
   {
     title: "2. Enter in patient's details",
     text: "Securily upload the patient's details to the app, including age and sex.",
-    image: "/images/dermalyser/slide_1.png",
+    image: "/images/dermalyser/slide_2.png",
   },
   {
     title: "3. Take a Picture",
     text: "Using a dermascope which can be easily attached to the device camera, take a picture of the suspect skin lesion. ",
-    image: "/images/dermalyser/slide_1.png",
+    image: "/images/dermalyser/slide_3.png",
   },
   {
     title: "4. Receive Results",
     text: "The image is analysed using our proprietary AI software and reports back the malignancy risk in real time.",
-    image: "/images/dermalyser/slide_1.png",
+    image: "/images/dermalyser/slide_4.png",
   },
 ];
 

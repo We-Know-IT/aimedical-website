@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useElementInViewPort } from "../../../utils/elementInViewPort";
-import Button from "../button";
+import Button from "../Button";
 type Props = {
   title?: string;
   text?: string;
