@@ -54,11 +54,22 @@ npm run dev
 
 ### Production
 
-The final website is deployed on AWS according to design below.
-TODO: add image and adjust later.
+The Next.js web application is deployed on AWS Amplify. 
+
+The Strapi backend is deployed on AWS according to the design below.
+
+![image](https://user-images.githubusercontent.com/48758319/222985802-71df690f-86c1-42c4-9019-23b7dd069212.png)
+
 
 ### During development
 
-The website is hosted on render.com during development for demos and to
+The website was hosted on render.com during development for demos and to
 get feedback from customer.
-TODO: add image and adjust later.
+
+## Data
+
+### Employees
+The data for employees are stored staticly in JSON file located at [data/employees.json](/data/employees.json) and the corresponding images are stored in [public/images/employees](/public/images/employees).
+
+### Posts
+The posts are stored in Strapi.
