@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { CSSProperties } from "react";
 import SkinCancer from "./SkinCancer";
 
@@ -7,13 +6,13 @@ const backgroundImageStyle: CSSProperties = {
   backgroundSize: "cover",
 };
 
-interface SkinCancer {
+interface ISkinCancer {
   textComponent: React.ReactNode;
   imageSrc: string;
   alt: string;
 }
 
-const skinCancers: SkinCancer[] = [
+const skinCancers: ISkinCancer[] = [
   {
     textComponent: (
       <>
