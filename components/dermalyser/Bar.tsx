@@ -78,7 +78,7 @@ export default function Bar({
               ? dimensions.width > layoutWidthBreakpoint
                 ? " bg-gradient-to-r from-primary/[0.5] to-primary "
                 : " bg-gradient-to-t from-primary/[0.5] to-primary "
-              : " bg-on-bg-primary ") +
+              : " bg-[#192645] ") +
             (animateRight ? " animate-right " : "") +
             (animateUp ? " origin-bottom animate-up " : "")
           }></div>

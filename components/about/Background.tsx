@@ -26,8 +26,8 @@ export default function Background() {
 
         <Image
           className="max-w-[250px] xl:max-w-none"
-          height={360}
-          width={360}
+          height={250}
+          width={250}
           alt="company logo"
           src={"/images/about/logo.png"}
         />
