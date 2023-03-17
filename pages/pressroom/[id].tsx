@@ -7,43 +7,53 @@ import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import Link from "next/link";
 import { useCookieConsent } from "../../context/cookieConsent";
+import MetaTags from "../../components/general/seo/MetaTags";
 
 function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+const isYoutubeLink = (content: string) => {
+  if (content.toLowerCase().includes("youtube")) {
+    return true;
+  }
+  if (content.toLowerCase().includes("youtu.be")) {
+    return true;
+  }
+  return false;
+};
+
+const isVideoLink = (content: string) => {
+  return content.toLowerCase().includes("video");
+};
+
+const getEmbedYoutubeLink = (url: string) => {
+  const regExp =
+    /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/|shorts\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
+  const match = url.match(regExp);
+  const videoId = match ? match[1] : "";
+  return `https://www.youtube.com/embed/${videoId}`;
+};
 
 export default function PostDetails(props: ServiceResponse<Post>) {
   const post = props.data;
 
   const { cookieConsent, setConsent } = useCookieConsent();
 
-  const isVideoLink = (content: string) => {
-    return content.toLowerCase().includes("video");
-  };
-
-  const isYoutubeLink = (content: string) => {
-    if (content.toLowerCase().includes("youtube")) {
-      return true;
-    }
-    if (content.toLowerCase().includes("youtu.be")) {
-      return true;
-    }
-    return false;
-  };
-
-  const getEmbedYoutubeLink = (url: string) => {
-    const regExp =
-      /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/|shorts\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
-    const match = url.match(regExp);
-    const videoId = match ? match[1] : "";
-    return `https://www.youtube.com/embed/${videoId}`;
-  };
-
   return (
     <>
       <Head>
         <title>AI Medical | Pressroom </title>
         <meta name="description" content="News and blog from AI Medical" />
+        {post && post.seo && (
+          <MetaTags
+            title={post.seo.metaTitle}
+            description={post.seo.metaDescription}
+            image={post.seo.shareImage?.url}
+            keywords={post.seo.keywords}
+            preventIndexing={post.seo.preventIndexing}
+          />
+        )}
       </Head>
       <Header
         title={capitalizeFirstLetter(post?.postType || "Blog") + " post"}

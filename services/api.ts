@@ -42,7 +42,7 @@ async function getPosts({
 async function getPost(id: number): Promise<ServiceResponse<Post>> {
   try {
     const response = await strapi.findOne("posts", id, {
-      populate: ["headerImage"],
+      populate: ["headerImage", "seo", "seo.shareImage"],
     });
     return { data: parseStrapiPostData(response.data), error: null };
   } catch (e) {

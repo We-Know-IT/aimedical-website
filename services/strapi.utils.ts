@@ -27,6 +27,22 @@ function parseStrapiPostData(post: any): Post {
   if (post.attributes.author) {
     parsedPost.author = post.attributes.author;
   }
+
+  if (post.attributes.seo) {
+    parsedPost.seo = post.attributes.seo;
+    if (
+      post.attributes.seo.shareImage &&
+      parsedPost.seo?.shareImage &&
+      post.attributes.seo.shareImage.data &&
+      post.attributes.seo.shareImage.data.attributes
+    ) {
+      parsedPost.seo.shareImage = parseStrapiImageData(
+        post.attributes.seo.shareImage.data
+      );
+    } else {
+      if (parsedPost.seo?.shareImage) delete parsedPost.seo.shareImage;
+    }
+  }
   return parsedPost;
 }
 
