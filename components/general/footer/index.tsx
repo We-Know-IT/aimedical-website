@@ -258,7 +258,7 @@ export default function Footer() {
                 <p className="font-bold text-white">
                   I agree to the terms of use and{" "}
                   <Link
-                    href="privacy-policy"
+                    href="/privacy-policy"
                     className=" text-on-primary underline hover:text-on-primary-hover">
                     privacy policy
                   </Link>
@@ -338,7 +338,7 @@ export default function Footer() {
         <section className="mt-24 flex w-full justify-between md:mt-12">
           <p className="text-sm text-on-primary">
             <Link
-              href="privacy-policy"
+              href="/privacy-policy"
               className="text-on-primary hover:text-on-primary-hover">
               Website Privacy policy
             </Link>{" "}
