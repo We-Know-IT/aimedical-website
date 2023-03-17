@@ -13,18 +13,20 @@ import {
 
 async function getPosts({
   sort = "publishedAt:desc",
-  pagination = { start: 0, limit: 10 },
+  pagination,
   filterBy = ["blog", "news", "research"],
 }: PostsRequestParams = {}): Promise<ServiceResponse<PostsResponse>> {
+  const options = {
+    sort,
+    populate: ["listingImage"],
+    pagination,
+    filters: {
+      postType: filterBy,
+    },
+  };
+
   try {
-    const response = await strapi.find("posts", {
-      sort,
-      populate: ["listingImage"],
-      pagination,
-      filters: {
-        postType: filterBy,
-      },
-    });
+    const response = await strapi.find("posts", options);
     if (Array.isArray(response.data))
       return {
         data: {

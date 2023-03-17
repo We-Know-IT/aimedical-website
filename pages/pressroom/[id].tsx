@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Header from "../../components/general/Header";
-import { getPost } from "../../services/api";
+import { getPost, getPosts } from "../../services/api";
 import { Post, ServiceResponse } from "../../services/types";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
@@ -188,7 +188,7 @@ export default function PostDetails(props: ServiceResponse<Post>) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps<{
+export const getStaticProps: GetServerSideProps<{
   data: Post | null;
   error: string | null;
 }> = async (context) => {
@@ -207,5 +207,25 @@ export const getServerSideProps: GetServerSideProps<{
     throw res.error;
   }
 
-  return { props: res };
+  return { props: res, revalidate: 10 };
 };
+
+export async function getStaticPaths() {
+  const res = await getPosts({
+    filterBy: ["blog", "news"],
+  });
+  if (res.error || !res.data) throw new Error(res.error);
+
+  const posts = res.data.posts;
+
+  const paths = posts.map((post) => {
+    return {
+      params: { id: post.id.toString() },
+    };
+  });
+
+  // We'll pre-render only these paths at build time.
+  // { fallback: 'blocking' } will server-render pages
+  // on-demand if the path doesn't exist.
+  return { paths, fallback: "blocking" };
+}

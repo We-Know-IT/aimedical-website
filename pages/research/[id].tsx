@@ -1,11 +1,11 @@
 import { GetServerSideProps } from "next";
-import { getPost } from "../../services/api";
+import { getPost, getPosts } from "../../services/api";
 import { Post } from "../../services/types";
 import PostDetails from "../pressroom/[id]";
 
 export default PostDetails;
 
-export const getServerSideProps: GetServerSideProps<{
+export const getStaticProps: GetServerSideProps<{
   data: Post | null;
   error: string | null;
 }> = async (context) => {
@@ -24,5 +24,25 @@ export const getServerSideProps: GetServerSideProps<{
     throw res.error;
   }
 
-  return { props: res };
+  return { props: res, revalidate: 10 };
 };
+
+export async function getStaticPaths() {
+  const res = await getPosts({
+    filterBy: ["research"],
+  });
+  if (res.error || !res.data) throw new Error(res.error);
+
+  const posts = res.data.posts;
+
+  const paths = posts.map((post) => {
+    return {
+      params: { id: post.id.toString() },
+    };
+  });
+
+  // We'll pre-render only these paths at build time.
+  // { fallback: 'blocking' } will server-render pages
+  // on-demand if the path doesn't exist.
+  return { paths, fallback: "blocking" };
+}
