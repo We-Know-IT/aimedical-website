@@ -25,6 +25,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "res.cloudinary.com",
       },
+      {
+        protocol: "https",
+        hostname: "ai-medical-strapi-cms-content.s3.eu-north-1.amazonaws.com",
+      },
     ],
   },
   webpack: (config) => {
