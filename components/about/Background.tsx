@@ -29,7 +29,7 @@ export default function Background() {
           height={250}
           width={250}
           alt="company logo"
-          src={"/images/about/logo.png"}
+          src={"/images/about/logo.svg"}
         />
       </div>
       {/* </div> */}

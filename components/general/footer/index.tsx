@@ -1,10 +1,10 @@
-import LogoIcon from "../../icons/common/Logo";
 import Button from "../Button";
 import { useRef, useState } from "react";
 import { isValidEmail, isValidMessage } from "../../../utils/validation";
 import Link from "next/link";
 import ReCAPTCHA from "react-google-recaptcha";
 import ErrorIcon from "../../icons/common/Error";
+import Image from "next/image";
 
 const contactInformation = {
   email: "support@aimedtech.org",
@@ -198,146 +198,159 @@ export default function Footer() {
     <footer
       className="bg-gradient-to-br from-primary/[0.85] to-primary/50"
       id="contact">
-      <div className="container flex w-full flex-col space-y-20 py-16 md:flex-row-reverse md:justify-between md:space-y-0">
-        {/* Email contact form */}
-        <form className="flex flex-col space-y-4 md:w-1/2" onSubmit={onSubmit}>
-          <h3 className="text-2xl font-bold text-on-primary">
-            Send us a message
-          </h3>
-          <span className="h-1 w-32 rounded-full bg-background-primary" />
-          <div className="space-y-1">
-            <input
-              type="email"
-              id="email"
-              name="email"
-              onChange={onEmailChange}
-              onBlur={(e) => validateEmail(e.target.value)}
-              value={email}
-              placeholder="Email"
-              className={
-                "w-full rounded-xl p-4 " +
-                (emailErrorMsg ? inputErrorClasses : "")
-              }
-              required
-            />
-            {emailErrorMsg && <ErrorMessage message={emailErrorMsg} />}
-          </div>
-          <div>
-            <textarea
-              id="message"
-              name="message"
-              onChange={onMessageChange}
-              onBlur={(e) => validateMessage(e.target.value)}
-              value={message}
-              placeholder="Your message"
-              className={
-                "h-40 w-full resize-none rounded-xl p-4 " +
-                (messageErrorMsg ? inputErrorClasses : "")
-              }
-              required
-            />
-            {messageErrorMsg && <ErrorMessage message={messageErrorMsg} />}
-          </div>
-          <div className="flex flex-col space-y-1">
-            <div className="flex items-center space-x-2">
+      <div className="container py-16">
+        <div className=" flex w-full flex-col space-y-20  md:flex-row-reverse md:justify-between md:space-y-0">
+          {/* Email contact form */}
+          <form
+            className="flex flex-col space-y-4 md:w-1/2"
+            onSubmit={onSubmit}>
+            <h3 className="text-2xl font-bold text-on-primary">
+              Send us a message
+            </h3>
+            <span className="h-1 w-32 rounded-full bg-background-primary" />
+            <div className="space-y-1">
               <input
-                id="privacy-policy"
-                type="checkbox"
-                name="privacy-policy"
-                onChange={onPrivacyPolicyChange}
-                checked={privacyPolicy}
+                type="email"
+                id="email"
+                name="email"
+                onChange={onEmailChange}
+                onBlur={(e) => validateEmail(e.target.value)}
+                value={email}
+                placeholder="Email"
                 className={
-                  "h-4 w-4 bg-error " +
+                  "w-full rounded-xl p-4 " +
+                  (emailErrorMsg ? inputErrorClasses : "")
+                }
+                required
+              />
+              {emailErrorMsg && <ErrorMessage message={emailErrorMsg} />}
+            </div>
+            <div>
+              <textarea
+                id="message"
+                name="message"
+                onChange={onMessageChange}
+                onBlur={(e) => validateMessage(e.target.value)}
+                value={message}
+                placeholder="Your message"
+                className={
+                  "h-40 w-full resize-none rounded-xl p-4 " +
                   (messageErrorMsg ? inputErrorClasses : "")
                 }
                 required
               />
-              <p className="font-bold text-white">
-                I agree to the terms of use and{" "}
-                <Link
-                  href="privacy-policy"
-                  className=" text-on-primary underline hover:text-on-primary-hover">
-                  privacy policy
-                </Link>
-                .
-              </p>
+              {messageErrorMsg && <ErrorMessage message={messageErrorMsg} />}
             </div>
-            {privacyPolicyErrorMsg && (
-              <ErrorMessage message={privacyPolicyErrorMsg} />
-            )}
-          </div>
-          {captchaErrorMsg && <ErrorMessage message={captchaErrorMsg} />}
-          <div className="flex w-full flex-col space-y-4 lg:flex-row lg:items-center lg:space-y-0 lg:space-x-2">
-            <Button
-              isPrimary={false}
-              className="w-full"
-              disabled={!hasPassedValidation() || isSending}
-              type="submit">
-              {getButtonContent()}
-            </Button>
-            {isSent && (
-              <p className="flex items-center font-bold text-white lg:ml-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="24"
-                  width="24"
-                  className="mr-2 fill-white">
-                  <path d="M10.575 17.15 18.2 9.525l-1.95-1.95-5.675 5.675-2.825-2.825-1.925 1.95ZM12 22.875q-2.25 0-4.237-.85-1.988-.85-3.463-2.325t-2.325-3.462q-.85-1.988-.85-4.238 0-2.275.85-4.263.85-1.987 2.325-3.462t3.463-2.313Q9.75 1.125 12 1.125q2.275 0 4.262.837 1.988.838 3.463 2.313t2.313 3.462q.837 1.988.837 4.263t-.837 4.25q-.838 1.975-2.313 3.45t-3.463 2.325q-1.987.85-4.262.85Z" />
-                </svg>
-                Message sent
-              </p>
-            )}
-            {sendingErrorMsg && <ErrorMessage message={sendingErrorMsg} />}
-          </div>
-          <ReCAPTCHA
-            ref={recaptchaRef}
-            sitekey={
-              process.env.NEXT_PUBLIC_RECAPTCHA_EMAIL_SITE_KEY || "site-key"
-            }
-            size="invisible"
-          />
-        </form>
-
-        {/* Contact information */}
-        <section className="flex flex-col space-y-24">
-          <div className="flex flex-col space-y-4">
-            <h3 className="text-2xl font-bold text-on-primary">Contacts</h3>
-            <span className="h-1 w-16 rounded-full bg-background-primary" />
-            <p className="text-lg font-bold text-on-primary">
-              {contactInformation.phone}
-            </p>
-            <p className="text-lg text-on-primary">
-              <b>{contactInformation.address.street}</b>
-              <br />
-              {contactInformation.address.city} {contactInformation.address.zip}
-              , {contactInformation.address.country}
-            </p>
-            <p className="text-lg font-bold text-on-primary">
-              {contactInformation.email}
-            </p>
-          </div>
-
-          {/* Website information */}
-          <div className="flex items-center justify-between md:flex-col md:items-start md:space-y-32">
-            <div className="flex flex-col items-center justify-center space-y-4 md:flex-row md:space-y-0 md:space-x-8">
-              <LogoIcon w={69} h={69} />
-              <h2 className="text-xl font-bold text-on-primary">
-                AI Medical <br />
-                Technology
-              </h2>
+            <div className="flex flex-col space-y-1">
+              <div className="flex items-center space-x-2">
+                <input
+                  id="privacy-policy"
+                  type="checkbox"
+                  name="privacy-policy"
+                  onChange={onPrivacyPolicyChange}
+                  checked={privacyPolicy}
+                  className={
+                    "h-4 w-4 bg-error " +
+                    (messageErrorMsg ? inputErrorClasses : "")
+                  }
+                  required
+                />
+                <p className="font-bold text-white">
+                  I agree to the terms of use and{" "}
+                  <Link
+                    href="privacy-policy"
+                    className=" text-on-primary underline hover:text-on-primary-hover">
+                    privacy policy
+                  </Link>
+                  .
+                </p>
+              </div>
+              {privacyPolicyErrorMsg && (
+                <ErrorMessage message={privacyPolicyErrorMsg} />
+              )}
             </div>
-            <div>
-              <p className="text-sm text-on-primary">
-                <Link
-                  href="privacy-policy"
-                  className="text-on-primary hover:text-on-primary-hover">
-                  Website Privacy policy
-                </Link>{" "}
+            {captchaErrorMsg && <ErrorMessage message={captchaErrorMsg} />}
+            <div className="flex w-full flex-col space-y-4 lg:flex-row lg:items-center lg:space-y-0 lg:space-x-2">
+              <Button
+                isPrimary={false}
+                className="w-full"
+                disabled={!hasPassedValidation() || isSending}
+                type="submit">
+                {getButtonContent()}
+              </Button>
+              {isSent && (
+                <p className="flex items-center font-bold text-white lg:ml-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24"
+                    width="24"
+                    className="mr-2 fill-white">
+                    <path d="M10.575 17.15 18.2 9.525l-1.95-1.95-5.675 5.675-2.825-2.825-1.925 1.95ZM12 22.875q-2.25 0-4.237-.85-1.988-.85-3.463-2.325t-2.325-3.462q-.85-1.988-.85-4.238 0-2.275.85-4.263.85-1.987 2.325-3.462t3.463-2.313Q9.75 1.125 12 1.125q2.275 0 4.262.837 1.988.838 3.463 2.313t2.313 3.462q.837 1.988.837 4.263t-.837 4.25q-.838 1.975-2.313 3.45t-3.463 2.325q-1.987.85-4.262.85Z" />
+                  </svg>
+                  Message sent
+                </p>
+              )}
+              {sendingErrorMsg && <ErrorMessage message={sendingErrorMsg} />}
+            </div>
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              sitekey={
+                process.env.NEXT_PUBLIC_RECAPTCHA_EMAIL_SITE_KEY || "site-key"
+              }
+              size="invisible"
+            />
+          </form>
+
+          {/* Contact information */}
+          <section className="flex flex-col space-y-24">
+            <div className="flex flex-col space-y-4">
+              <h3 className="text-2xl font-bold text-on-primary">Contacts</h3>
+              <span className="h-1 w-16 rounded-full bg-background-primary" />
+              <p className="text-lg font-bold text-on-primary">
+                {contactInformation.phone}
+              </p>
+              <p className="text-lg text-on-primary">
+                <b>{contactInformation.address.street}</b>
                 <br />
-                Stockholm, Sweden <br /> © 2022 All rights reserved
+                {contactInformation.address.city}{" "}
+                {contactInformation.address.zip},{" "}
+                {contactInformation.address.country}
+              </p>
+              <p className="text-lg font-bold text-on-primary">
+                {contactInformation.email}
               </p>
             </div>
-          </div>
+
+            {/* Website information */}
+            <div className="flex flex-col justify-between space-y-12 md:items-start md:space-y-32">
+              <div className="relative h-full w-full">
+                <Image
+                  className="h-auto object-cover duration-200 ease-in-out"
+                  src={"/images/logo_text.svg"}
+                  width={200}
+                  height={0}
+                  alt="Logo"
+                />
+              </div>
+            </div>
+          </section>
+        </div>
+        <section className="mt-24 flex w-full justify-between md:mt-12">
+          <p className="text-sm text-on-primary">
+            <Link
+              href="privacy-policy"
+              className="text-on-primary hover:text-on-primary-hover">
+              Website Privacy policy
+            </Link>{" "}
+            <br />
+            Stockholm, Sweden <br /> © 2022 All rights reserved
+          </p>
+          <Image
+            src="/images/BSI_ISO.svg"
+            width={120}
+            height={61}
+            alt="BSI ISO"
+          />
         </section>
       </div>
     </footer>
