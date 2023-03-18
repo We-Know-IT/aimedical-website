@@ -31,7 +31,9 @@ export async function getStaticPaths() {
   const res = await getPosts({
     filterBy: ["research"],
   });
-  if (res.error || !res.data) throw new Error(res.error);
+  if (res.error || !res.data) {
+    throw res.error;
+  }
 
   const posts = res.data.posts;
 

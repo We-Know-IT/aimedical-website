@@ -27,6 +27,11 @@ const isVideoLink = (content: string) => {
   return content.toLowerCase().includes("video");
 };
 
+function safeNumber(value: string): number | undefined {
+  const parsedValue = parseInt(value);
+  return isNaN(parsedValue) ? undefined : parsedValue;
+}
+
 const getEmbedYoutubeLink = (url: string) => {
   const regExp =
     /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/|shorts\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
@@ -44,7 +49,6 @@ export default function PostDetails(props: ServiceResponse<Post>) {
     <>
       <Head>
         <title>AI Medical | Pressroom </title>
-        <meta name="description" content="News and blog from AI Medical" />
         {post && post.seo && (
           <MetaTags
             title={post.seo.metaTitle}
@@ -97,17 +101,21 @@ export default function PostDetails(props: ServiceResponse<Post>) {
               },
 
               img: (props) => {
+                const width = props.title;
+                const widthValue = width ? safeNumber(width) : 600;
                 return (
-                  <div className="relative my-4 aspect-video w-full">
+                  <div className="relative my-10 flex h-auto items-center justify-center">
                     <Image
                       src={props.src || ""}
                       alt={props.alt || ""}
-                      fill
-                      className="object-cover"
+                      width={widthValue}
+                      height={0}
+                      className="rounded-md object-cover"
                     />
                   </div>
                 );
               },
+
               p: (props) => {
                 // links are rendered inside <p></p> tags and we don't want the <video> element to be inside a p tag since it is invalid HTML syntax.
                 // The <a> element is valid to put inside <p> tags but the markdown parser is right now wrapping a single <a> inside <p> so we can remove that to!
@@ -126,7 +134,8 @@ export default function PostDetails(props: ServiceResponse<Post>) {
                 // suggested solution for linking videos in strapi is to check if the address is a youtube video and then render <iframe> and also check if
                 // the word "video" is included and in that case render a <video> element. A limitation here is that the user must add the word video in the link name or address if
                 // they upload local videos
-
+                const width = props.title;
+                const widthValue = width ? safeNumber(width) : 600;
                 const linkName = props.children[0];
                 const linkAddress = props.href;
                 if (!linkName || !linkAddress) return null;
@@ -135,7 +144,10 @@ export default function PostDetails(props: ServiceResponse<Post>) {
                   isVideoLink(linkAddress)
                 ) {
                   return (
-                    <video controls className="mb-4 aspect-video" width="100%">
+                    <video
+                      controls
+                      className="mb-4 aspect-video max-w-full"
+                      width={widthValue}>
                       <source src={props.href} type="video/mp4" />
                     </video>
                   );
@@ -145,8 +157,8 @@ export default function PostDetails(props: ServiceResponse<Post>) {
                 ) {
                   return (
                     <iframe
-                      className="mb-4 aspect-video"
-                      width="100%"
+                      className="mx-auto mb-4 aspect-video max-w-full"
+                      width={widthValue}
                       title={linkName?.toString() || ""}
                       src={getEmbedYoutubeLink(linkAddress.toString())}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -157,7 +169,9 @@ export default function PostDetails(props: ServiceResponse<Post>) {
                   !cookieConsent
                 ) {
                   return (
-                    <div className="mb-4 flex aspect-video h-full w-full flex-col items-center justify-center rounded-md bg-gray-100">
+                    <div
+                      className="max-w- mb-4 flex aspect-video h-full w-full flex-col items-center justify-center rounded-md bg-gray-100"
+                      style={{ width: widthValue }}>
                       <p className="text-lg text-on-bg-primary">
                         To be able to watch this video you need to allow
                         cookies.
@@ -199,6 +213,7 @@ export const getStaticProps: GetServerSideProps<{
     if (res.error === "Not Found") {
       return {
         notFound: true,
+        revalidate: 10,
       };
     }
 
@@ -214,7 +229,9 @@ export async function getStaticPaths() {
   const res = await getPosts({
     filterBy: ["blog", "news"],
   });
-  if (res.error || !res.data) throw new Error(res.error);
+  if (res.error || !res.data) {
+    throw new Error(res.error);
+  }
 
   const posts = res.data.posts;
 
