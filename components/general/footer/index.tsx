@@ -319,6 +319,15 @@ export default function Footer() {
               <p className="text-lg font-bold text-on-primary">
                 {contactInformation.email}
               </p>
+              <Link
+                href={"https://www.linkedin.com/company/aimedicaltechnology/"}>
+                <Image
+                  src="/images/linkedIn_white.svg"
+                  alt={"LinkedIn Logo"}
+                  height={23}
+                  width={23}
+                />
+              </Link>
             </div>
 
             {/* Website information */}
