@@ -170,7 +170,7 @@ export default function PostDetails(props: ServiceResponse<Post>) {
                 ) {
                   return (
                     <div
-                      className="max-w- mb-4 flex aspect-video h-full w-full flex-col items-center justify-center rounded-md bg-gray-100"
+                      className="mx-auto mb-4 flex aspect-video h-full w-full max-w-full flex-col items-center justify-center rounded-md bg-gray-100"
                       style={{ width: widthValue }}>
                       <p className="text-lg text-on-bg-primary">
                         To be able to watch this video you need to allow
