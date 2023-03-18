@@ -16,6 +16,7 @@ export const getStaticProps: GetServerSideProps<{
     if (res.error === "Not Found") {
       return {
         notFound: true,
+        revalidate: 10,
       };
     }
 
