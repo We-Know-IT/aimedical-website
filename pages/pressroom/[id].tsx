@@ -74,7 +74,8 @@ export default function PostDetails(props: ServiceResponse<Post>) {
                     <h3 className="my-6 text-4xl font-bold text-primary">
                       {props.children[0]}
                     </h3>
-                    <p className="mb-6 text-lg font-medium">{post.ingress}</p>
+                    {/* Could add the ingress after the main title, however, might be counter intuitive */}
+                    {/* <p className="mb-6 text-lg font-medium">{post.ingress}</p> */}
                   </>
                 );
               },
