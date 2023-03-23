@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next";
-import { getPost, getPosts } from "../../services/api";
+import { getPostBySlug, getPosts } from "../../services/api";
 import { Post } from "../../services/types";
-import PostDetails from "../pressroom/[id]";
+import PostDetails from "../pressroom/[slug]";
 
 export default PostDetails;
 
@@ -9,8 +9,20 @@ export const getStaticProps: GetServerSideProps<{
   data: Post | null;
   error: string | null;
 }> = async (context) => {
-  const postId = parseInt(context.params?.id as string);
-  const res = await getPost(postId);
+  const postSlug = context.params?.slug;
+  if (!postSlug) {
+    return {
+      notFound: true,
+      revalidate: 10,
+    };
+  }
+  if (Array.isArray(postSlug)) {
+    return {
+      notFound: true,
+      revalidate: 10,
+    };
+  }
+  const res = await getPostBySlug(postSlug);
 
   if (res.error) {
     if (res.error === "Not Found") {
@@ -40,7 +52,7 @@ export async function getStaticPaths() {
 
   const paths = posts.map((post) => {
     return {
-      params: { id: post.id.toString() },
+      params: { slug: post.slug },
     };
   });
 

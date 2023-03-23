@@ -37,7 +37,7 @@ export default function ResearchPostCard({ post }: Props) {
             {post?.ingress || <Skeleton count={4} />}
           </p>
           {post ? (
-            <Link href={`/research/${post.id}`}>
+            <Link href={`/research/${post.slug}`}>
               <Button isPrimary className="py-3 px-10">
                 Read more
               </Button>

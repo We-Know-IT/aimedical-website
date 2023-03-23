@@ -141,7 +141,7 @@ export default function PressRoom() {
               {posts.map((p) => {
                 return (
                   <li key={p.id} className="w-full">
-                    <Link href={"/pressroom/" + p.id}>
+                    <Link href={"/pressroom/" + p.slug}>
                       <PostCard post={p} />
                     </Link>
                   </li>

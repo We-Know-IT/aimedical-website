@@ -12,6 +12,7 @@ export interface Post {
   author?: string;
   postType: PostType;
   seo?: SEO;
+  slug: string;
 }
 
 export interface PostsMetaInformation {

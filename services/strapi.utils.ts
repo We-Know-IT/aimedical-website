@@ -10,6 +10,7 @@ function parseStrapiPostData(post: any): Post {
     updatedAt: post.attributes.updatedAt,
     publishedAt: post.attributes.publishedAt,
     postType: post.attributes.postType as PostType,
+    slug: post.attributes.slug,
   };
 
   if (post.attributes.listingImage) {
@@ -43,6 +44,7 @@ function parseStrapiPostData(post: any): Post {
       if (parsedPost.seo?.shareImage) delete parsedPost.seo.shareImage;
     }
   }
+
   return parsedPost;
 }
 
@@ -56,7 +58,6 @@ function parseStrapiImageData(image: any) {
   if (process.env.NODE_ENV === "development") {
     parsedImage.url = "http://localhost:1337" + parsedImage.url;
   }
-
   return parsedImage;
 }
 
