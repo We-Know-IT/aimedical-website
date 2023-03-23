@@ -62,6 +62,10 @@ export default function PressRoom() {
         imageUrl="/images/header.jpg"
         title="Pressroom"
         text="In our pressroom you can find our blog and press releases"
+        actionButton={{
+          text: "Download our press kit",
+          href: "/files/presskit.zip",
+        }}
       />
       <main className="bg-background-secondary">
         <div className="container py-10">
