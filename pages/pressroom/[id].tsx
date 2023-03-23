@@ -49,13 +49,13 @@ export default function PostDetails(props: ServiceResponse<Post>) {
     <>
       <Head>
         <title>AI Medical | Pressroom </title>
-        {post && post.seo && (
+        {post && (
           <MetaTags
-            title={post.seo.metaTitle}
-            description={post.seo.metaDescription}
-            image={post.seo.shareImage?.url}
-            keywords={post.seo.keywords}
-            preventIndexing={post.seo.preventIndexing}
+            title={post?.seo?.metaTitle || post.title}
+            description={post?.seo?.metaDescription || post.ingress}
+            image={post?.seo?.shareImage?.url || post.headerImage?.url}
+            keywords={post?.seo?.keywords}
+            preventIndexing={post?.seo?.preventIndexing}
           />
         )}
       </Head>
