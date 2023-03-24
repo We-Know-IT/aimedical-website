@@ -173,14 +173,14 @@ export default function PostDetails(props: ServiceResponse<Post>) {
                     <div
                       className="mx-auto mb-4 flex aspect-video h-full w-full max-w-full flex-col items-center justify-center rounded-md bg-gray-100"
                       style={{ width: widthValue }}>
-                      <p className="text-lg text-on-bg-primary">
+                      <p className="w-full text-center text-lg text-on-bg-primary">
                         To be able to watch this video you need to allow
-                        cookies.
+                        third-party cookies.
                       </p>
                       <button
                         className="mt-4 rounded-md bg-primary px-6 py-2 text-lg text-white hover:bg-primary-hover focus:bg-primary-hover active:bg-primary-active"
                         onClick={() => setConsent(true)}>
-                        Allow cookies
+                        Allow third-party cookies
                       </button>
                     </div>
                   );
