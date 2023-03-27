@@ -4,11 +4,10 @@ import { useCookieConsent } from "../../../context/cookieConsent";
 const cookiePolicyLink = "";
 
 export default function CookieConsent() {
-  const { cookieConsent, setConsent } = useCookieConsent();
-
-  let showBanner = true;
-  if (cookieConsent === true || cookieConsent === false) {
-    showBanner = false;
+  const { cookieConsent, setConsent, fetchingConsent } = useCookieConsent();
+  let showBanner = false;
+  if (cookieConsent === undefined && !fetchingConsent) {
+    showBanner = true;
   }
 
   if (!showBanner) {

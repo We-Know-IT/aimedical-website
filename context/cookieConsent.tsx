@@ -11,6 +11,7 @@ const CONSENT_COOKIE_EXPIRE_DATE = 365;
 interface CookieConsentType {
   cookieConsent: boolean | undefined;
   setConsent: (consent: boolean) => void;
+  fetchingConsent: boolean;
 }
 
 const CookieConsentContext = createContext<CookieConsentType>(
@@ -25,14 +26,18 @@ export function CookieConsentProvider({ children }: Props) {
   const [cookieConsent, setCookieConsent] = useState<boolean | undefined>(
     undefined
   );
+  const [fetchingConsent, setFetchingConsent] = useState(true);
 
   useEffect(() => {
+    setFetchingConsent(true);
     if (Cookies.get(CONSENT_COOKIE_KEY) === undefined) {
       setCookieConsent(undefined);
+      setFetchingConsent(false);
       return;
     }
     const hasConsented = Cookies.get(CONSENT_COOKIE_KEY) === "true";
     setCookieConsent(hasConsented);
+    setFetchingConsent(false);
   }, []);
 
   const setConsent = (consent: boolean) => {
@@ -43,7 +48,8 @@ export function CookieConsentProvider({ children }: Props) {
   };
 
   return (
-    <CookieConsentContext.Provider value={{ cookieConsent, setConsent }}>
+    <CookieConsentContext.Provider
+      value={{ cookieConsent, setConsent, fetchingConsent }}>
       {children}
     </CookieConsentContext.Provider>
   );
