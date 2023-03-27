@@ -6,7 +6,7 @@ let url = "http://127.0.0.1:1337";
 // let url = "http://16.170.92.57/";
 
 if (process.env.NODE_ENV === "production") {
-  url = "http://16.170.92.57/";
+  url = "https://api.aimedtech.com";
 }
 
 export const strapi = new Strapi({

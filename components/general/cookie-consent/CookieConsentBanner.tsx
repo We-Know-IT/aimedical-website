@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { useCookieConsent } from "../../../context/cookieConsent";
 
-const cookiePolicyLink = "";
+const cookiePolicyLink =
+  "https://www.freeprivacypolicy.com/live/01bdc586-6bc3-418e-b261-a4e428c21427";
 
 export default function CookieConsent() {
   const { cookieConsent, setConsent, fetchingConsent } = useCookieConsent();
