@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCookieConsent } from "../../context/cookieConsent";
 import MetaTags from "../../components/general/seo/MetaTags";
+import remarkGfm from "remark-gfm";
 
 function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -66,6 +67,7 @@ export default function PostDetails(props: ServiceResponse<Post>) {
       <main className="my-12 ml-auto mr-auto max-w-5xl px-6">
         {post && (
           <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
             components={{
               // map the headings in content that starts from "#/h1" to match structure on page where the "main heading" of the post should be h3 since h1 and h2 is added previously on page.
               h1: (props) => {
@@ -193,6 +195,20 @@ export default function PostDetails(props: ServiceResponse<Post>) {
                     </Link>
                   );
                 }
+              },
+              ul: (props) => {
+                return (
+                  <ul className="my-4 list-inside list-disc text-lg text-on-bg-primary">
+                    {props.children}
+                  </ul>
+                );
+              },
+              ol: (props) => {
+                return (
+                  <ol className="my-4 list-inside list-decimal text-lg text-on-bg-primary">
+                    {props.children}
+                  </ol>
+                );
               },
             }}>
             {post.content}
