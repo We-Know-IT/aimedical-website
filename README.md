@@ -39,13 +39,14 @@ See further details about the strapi server in the [aimedical-strapi repository]
 ### Deployed
 
 A strapi server is deployed at [render](render.com) and served on
-[strapi service](https://aimedical-strapi.onrender.com/). The first time requesting the site 
+[strapi service](https://aimedical-strapi.onrender.com/). The first time requesting the site
 can be slow since render will shut down inactive services. It can take up to 30 seconds for it to restart.
 
 Navigate to the [admin panel](https://aimedical-strapi.onrender.com/admin)
 to edit the added data.
 
 To run the website with the hosted strapi server go to /strap to edit the url and then start the website with the following command:
+
 ```
 npm run dev
 ```
@@ -54,12 +55,11 @@ npm run dev
 
 ### Production
 
-The Next.js web application is deployed on AWS Amplify. 
+The Next.js web application is deployed on AWS Amplify.
 
 The Strapi backend is deployed on AWS according to the design below.
 
 ![image](https://user-images.githubusercontent.com/48758319/222985802-71df690f-86c1-42c4-9019-23b7dd069212.png)
-
 
 ### During development
 
@@ -69,7 +69,9 @@ get feedback from customer.
 ## Data
 
 ### Employees
-The data for employees are stored staticly in JSON file located at [data/employees.json](/data/employees.json) and the corresponding images are stored in [public/images/employees](/public/images/employees).
+
+The data for employees are stored staticly in a JSON file located at [data/team.json](/data/team.json) and [data/board.json](/data/board.json). The corresponding images are stored in [public/images/employees](/public/images/employees).
 
 ### Posts
+
 The posts are stored in Strapi.
