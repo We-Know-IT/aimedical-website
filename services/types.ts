@@ -11,6 +11,8 @@ export interface Post {
   listingImage?: Image;
   author?: string;
   postType: PostType;
+  seo?: SEO;
+  slug: string;
 }
 
 export interface PostsMetaInformation {
@@ -62,4 +64,13 @@ export interface PostsRequestParams {
   pagination?: PaginationByOffset | PaginationByPage;
   filters?: Record<string, unknown>;
   filterBy?: PostType[];
+}
+
+export interface SEO {
+  id: number;
+  metaTitle?: string;
+  metaDescription?: string;
+  shareImage?: Image;
+  keywords?: string;
+  preventIndexing?: boolean;
 }

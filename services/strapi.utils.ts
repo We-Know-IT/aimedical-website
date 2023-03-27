@@ -10,6 +10,7 @@ function parseStrapiPostData(post: any): Post {
     updatedAt: post.attributes.updatedAt,
     publishedAt: post.attributes.publishedAt,
     postType: post.attributes.postType as PostType,
+    slug: post.attributes.slug,
   };
 
   if (post.attributes.listingImage) {
@@ -27,6 +28,23 @@ function parseStrapiPostData(post: any): Post {
   if (post.attributes.author) {
     parsedPost.author = post.attributes.author;
   }
+
+  if (post.attributes.seo) {
+    parsedPost.seo = post.attributes.seo;
+    if (
+      post.attributes.seo.shareImage &&
+      parsedPost.seo?.shareImage &&
+      post.attributes.seo.shareImage.data &&
+      post.attributes.seo.shareImage.data.attributes
+    ) {
+      parsedPost.seo.shareImage = parseStrapiImageData(
+        post.attributes.seo.shareImage.data
+      );
+    } else {
+      if (parsedPost.seo?.shareImage) delete parsedPost.seo.shareImage;
+    }
+  }
+
   return parsedPost;
 }
 
@@ -40,7 +58,6 @@ function parseStrapiImageData(image: any) {
   if (process.env.NODE_ENV === "development") {
     parsedImage.url = "http://localhost:1337" + parsedImage.url;
   }
-
   return parsedImage;
 }
 

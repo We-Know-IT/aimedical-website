@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CSSProperties, useEffect } from "react";
+import { CSSProperties } from "react";
 import Button from "./Button";
 
 type Props = {

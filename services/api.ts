@@ -13,18 +13,20 @@ import {
 
 async function getPosts({
   sort = "publishedAt:desc",
-  pagination = { start: 0, limit: 10 },
+  pagination,
   filterBy = ["blog", "news", "research"],
 }: PostsRequestParams = {}): Promise<ServiceResponse<PostsResponse>> {
+  const options = {
+    sort,
+    populate: ["listingImage"],
+    pagination,
+    filters: {
+      postType: filterBy,
+    },
+  };
+
   try {
-    const response = await strapi.find("posts", {
-      sort,
-      populate: ["listingImage"],
-      pagination,
-      filters: {
-        postType: filterBy,
-      },
-    });
+    const response = await strapi.find("posts", options);
     if (Array.isArray(response.data))
       return {
         data: {
@@ -39,12 +41,26 @@ async function getPosts({
   }
 }
 
-async function getPost(id: number): Promise<ServiceResponse<Post>> {
+async function getPostById(id: number): Promise<ServiceResponse<Post>> {
   try {
     const response = await strapi.findOne("posts", id, {
-      populate: ["headerImage"],
+      populate: ["headerImage", "seo", "seo.shareImage"],
     });
     return { data: parseStrapiPostData(response.data), error: null };
+  } catch (e) {
+    return getStrapiErrorResponse(e);
+  }
+}
+
+async function getPostBySlug(slug: string): Promise<ServiceResponse<Post>> {
+  try {
+    const response = await strapi.find("posts", {
+      filters: { slug },
+      populate: ["headerImage", "seo", "seo.shareImage"],
+    });
+    if (Array.isArray(response.data) && response.data.length > 0)
+      return { data: parseStrapiPostData(response.data[0]), error: null };
+    return { data: null, error: `Could not find the post with slug: ${slug}` };
   } catch (e) {
     return getStrapiErrorResponse(e);
   }
@@ -54,4 +70,4 @@ function setAbortSignal(signal: AbortSignal) {
   strapi.axios.defaults.signal = signal;
 }
 
-export { getPosts, getPost, setAbortSignal };
+export { getPosts, getPostById, setAbortSignal, getPostBySlug };

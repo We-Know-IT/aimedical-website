@@ -8,7 +8,7 @@ export default function LogoIcon({
   return (
     <Image
       className="duration-200 ease-in-out"
-      src={"/images/logo.png"}
+      src={"/images/logo.svg"}
       width={w}
       height={h}
       alt="Logo"

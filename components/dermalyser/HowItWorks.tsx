@@ -32,41 +32,39 @@ export default function How() {
   const [slideIdx, setSlideIdx] = useState(0);
 
   const nextSlide = () => {
-    if (slidesRef.current) {
-      slidesRef.current.scrollBy({
-        top: 0,
-        left: slidesRef.current.clientWidth,
-        behavior: "smooth",
-      });
-    }
-    setSlideIdx(slideIdx + 1);
+    setSlideIdx((prevSlide) => prevSlide + 1);
   };
 
   const returnToFirstSlide = () => {
-    if (slidesRef.current) {
-      slidesRef.current.scrollBy({
-        top: 0,
-        left: -slidesRef.current.clientWidth * (slides.length - 1),
-        behavior: "smooth",
-      });
-      setSlideIdx(0);
-    }
+    setSlideIdx(0);
   };
 
   const updateSlidesScrollOnResize = () => {
     if (slidesRef.current) {
       slidesRef.current.scrollTo({
         top: 0,
-        left: slidesRef.current.clientWidth * slideIdx,
+        left: slidesRef.current.offsetWidth * slideIdx,
       });
     }
   };
+
+  const updateSlidesScrollOnSlideChange = () => {
+    if (slidesRef.current) {
+      slidesRef.current.scrollTo({
+        top: 0,
+        left: slidesRef.current.offsetWidth * slideIdx,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  useEffect(updateSlidesScrollOnSlideChange, [slideIdx]);
 
   useEffect(updateSlidesScrollOnResize, [width]);
 
   return (
     <section className="bg-background-primary py-24 lg:py-32">
-      <div className="container max-w-xl lg:container">
+      <div className="max-w-xllg:container container">
         <ul ref={slidesRef} className={"flex flex-row overflow-x-hidden"}>
           {slides.map((s, i) => {
             if (i === slides.length - 1) {

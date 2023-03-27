@@ -2,14 +2,14 @@ import Bar from "./Bar";
 
 const bars = [
   {
-    text: "General\npractiotioner",
-    value: 0.91,
-    isHighlighted: false,
-  },
-  {
     text: "Dermalyser",
     value: 0.94,
     isHighlighted: true,
+  },
+  {
+    text: "General\npractiotioner",
+    value: 0.91,
+    isHighlighted: false,
   },
   {
     text: "Expert\ndermatologist",

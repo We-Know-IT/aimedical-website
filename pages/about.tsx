@@ -14,7 +14,8 @@ export type Employee = {
 };
 
 export default function About({
-  employees,
+  team,
+  board,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
@@ -29,16 +30,35 @@ export default function About({
       />
       <main>
         <Background />
-        <Team employees={employees} />
+        <Team
+          employees={team}
+          title="Meet our team "
+          text="We are a cross disciplinary team of computer scientists,
+              clinicians and entrepreneurs united by our passion to develop
+              solutions that harness the power of AI which enable healthcare
+              providers to provide easier, faster and more cost effective
+              diagnosis."
+        />
+        <Team employees={board} title="Meet our board " />
       </main>
     </>
   );
 }
 
 const isEmployeeType = (val: any) => {
-  return (
-    val.name && val.title && val.image && val.description && val.linkedInLink
-  );
+  const isValid =
+    val.name && val.title && val.image && val.description && val.linkedInLink;
+  if (!isValid) {
+    console.error("Invalid employee data: ", val);
+    console.log("Please ensure all employees have the following fields: ", {
+      name: "string",
+      title: "string",
+      image: "string",
+      description: "string",
+      linkedInLink: "string",
+    });
+  }
+  return isValid;
 };
 
 const isValidJsonEmployeeData = (json: any) => {
@@ -50,25 +70,31 @@ const isValidJsonEmployeeData = (json: any) => {
 };
 
 export const getStaticProps: GetStaticProps<{
-  employees: Employee[];
+  team: Employee[];
+  board: Employee[];
 }> = async () => {
-  const file = await fs.readFile("./data/employees.json");
+  const teamFile = await fs.readFile("./data/team.json");
+  const boardFile = await fs.readFile("./data/board.json");
 
-  if (file) {
-    const json = JSON.parse(file);
+  let board: Employee[] = [];
+  let team: Employee[] = [];
 
-    if (!isValidJsonEmployeeData(json)) {
-      return {
-        props: { employees: [] },
-      };
+  if (teamFile) {
+    const json = JSON.parse(teamFile);
+    if (isValidJsonEmployeeData(json)) {
+      team = json as Employee[];
     }
+  }
 
-    return {
-      props: { employees: json as Employee[] },
-    };
+  if (boardFile) {
+    const json = JSON.parse(boardFile);
+
+    if (isValidJsonEmployeeData(json)) {
+      board = json as Employee[];
+    }
   }
 
   return {
-    props: { employees: [] },
+    props: { board, team },
   };
 };

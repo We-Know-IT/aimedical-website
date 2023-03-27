@@ -25,7 +25,7 @@ export default function TwoColText({ title, text, actionButton, list }: Props) {
         {/* flex box */}
         <div className="flex flex-col justify-center space-y-10 p-4 xl:w-1/3">
           {/* left box */}
-          <h2 className="text-3xl font-semibold leading-10 text-primary lg:text-4xl">
+          <h2 className="text-3xl font-semibold leading-tight text-primary lg:text-4xl">
             {title}
           </h2>
           <p className="text-lg font-normal leading-[1.6rem] tracking-wider">

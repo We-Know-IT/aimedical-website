@@ -3,5 +3,8 @@
   "plugins": ["only-warn"],
   "globals": {
     "React": true
+  },
+  "rules": {
+    "no-console": "warn"
   }
 }

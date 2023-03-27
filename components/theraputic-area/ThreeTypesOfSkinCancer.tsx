@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { CSSProperties } from "react";
 import SkinCancer from "./SkinCancer";
 
@@ -7,13 +6,13 @@ const backgroundImageStyle: CSSProperties = {
   backgroundSize: "cover",
 };
 
-interface SkinCancer {
+interface ISkinCancer {
   textComponent: React.ReactNode;
   imageSrc: string;
   alt: string;
 }
 
-const skinCancers: SkinCancer[] = [
+const skinCancers: ISkinCancer[] = [
   {
     textComponent: (
       <>
@@ -112,14 +111,7 @@ export default function ThreeTypesOfSkinCancer() {
             className="absolute top-0 bottom-0 left-0 right-0 z-0 w-full rounded-xl blur-[1px]"
             style={backgroundImageStyle}></div>
           <div className="absolute top-0 bottom-0 left-0 right-0 z-0 rounded-xl bg-gradient-to-b from-primary/[0.85] to-primary/[0.42]"></div>
-          <div className="flex  flex-col items-center justify-center space-y-6 px-6 xl:max-w-sm">
-            <Image
-              src="/images/theraputic-area/icon_warning.svg"
-              height={96}
-              width={96}
-              alt=""
-              className="relative"
-            />
+          <div className="flex  flex-col items-center justify-center space-y-6 px-6 py-12 xl:max-w-sm">
             <p className="relative text-center text-lg font-bold leading-8 text-on-primary">
               Although malignant melanoma accounts for only a small percentage
               of skin cancer, it is far more dangerous than other skin cancers
