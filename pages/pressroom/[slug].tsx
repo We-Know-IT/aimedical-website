@@ -210,6 +210,13 @@ export default function PostDetails(props: ServiceResponse<Post>) {
                   </ol>
                 );
               },
+              blockquote: (props) => {
+                return (
+                  <blockquote className="my-4 rounded-md bg-gray-100 px-4 py-1  text-lg italic text-on-bg-primary">
+                    {props.children}
+                  </blockquote>
+                );
+              },
             }}>
             {post.content}
           </ReactMarkdown>
