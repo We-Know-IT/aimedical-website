@@ -110,7 +110,7 @@ export default function ThreeTypesOfSkinCancer() {
             {skinCancers.map((skinCancer, index) => (
               <SkinCancer key={index} {...skinCancer} />
             ))}
-            <div className="relative max-w-[600px] rounded-xl py-20">
+            <div className="relative max-w-[600px] rounded-xl py-20 px-12">
               <Image
                 src={"/images/skin-cancer/gloves.png"}
                 alt="Image of dermalyser in use"
@@ -120,7 +120,7 @@ export default function ThreeTypesOfSkinCancer() {
                 blurDataURL="/images/blur.jpg"
               />
               <div className="absolute top-0 bottom-0 left-0 right-0 z-0 rounded-xl bg-gradient-to-b from-primary/[0.85] to-primary/[0.42]"></div>
-              <div className="flex  flex-col items-center justify-center space-y-6 px-6 py-12">
+              <div className="flex  flex-col items-center justify-center space-y-6">
                 <p className="relative text-center text-lg font-bold leading-8 text-on-primary">
                   Although malignant melanoma accounts for only a small
                   percentage of skin cancer, it is far more dangerous than other
