@@ -7,7 +7,7 @@ const bars = [
     isHighlighted: true,
   },
   {
-    text: "General\npractiotioner",
+    text: "General\npractioner",
     value: 0.91,
     isHighlighted: false,
   },
