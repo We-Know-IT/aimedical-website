@@ -2,7 +2,7 @@ import { CSSProperties } from "react";
 import SkinCancer from "./SkinCancer";
 
 const backgroundImageStyle: CSSProperties = {
-  background: "url(/images/theraputic-area/gloves.png)  #fff",
+  background: "url(/images/skin-cancer/gloves.png)  #fff",
   backgroundSize: "cover",
 };
 
@@ -31,7 +31,7 @@ const skinCancers: ISkinCancer[] = [
         physical deformity.
       </>
     ),
-    imageSrc: "/images/theraputic-area/bcc.jpg",
+    imageSrc: "/images/skin-cancer/bcc.jpg",
     alt: "BCC",
   },
   {
@@ -47,7 +47,7 @@ const skinCancers: ISkinCancer[] = [
         prevent SCC from growing deep and spreading to other areas of the body.
       </>
     ),
-    imageSrc: "/images/theraputic-area/scc.jpg",
+    imageSrc: "/images/skin-cancer/scc.jpg",
     alt: "SCC",
   },
   {
@@ -74,7 +74,7 @@ const skinCancers: ISkinCancer[] = [
         and can be deadly.
       </>
     ),
-    imageSrc: "/images/theraputic-area/melanoma.jpg",
+    imageSrc: "/images/skin-cancer/melanoma.jpg",
     alt: "Melanoma",
   },
 ];

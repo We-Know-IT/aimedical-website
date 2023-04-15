@@ -22,7 +22,7 @@ export default function DermalyserHero() {
           Skin cancer is one of the most common cancers in the world, accounting
           for nearly half of all cancers
         </h2>
-        <Link href={"/theraputic-area"} className="z-20">
+        <Link href={"/skin-cancer"} className="z-20">
           <Button>Learn more</Button>
         </Link>
       </div>
