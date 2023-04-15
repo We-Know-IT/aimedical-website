@@ -3,7 +3,7 @@ import Header from "../components/general/Header";
 import TwoColText from "../components/general/start/TwoColText";
 import TwoColImg from "../components/general/start/TwoColImg";
 import Image from "next/image";
-import DermalyserHero from "../components/home/SkinCancerHero";
+import HeroSection from "../components/general/HeroSection";
 
 const buttonHeader = {
   text: "Learn more",
@@ -113,7 +113,16 @@ export default function Home() {
             src: "employees/christoffer.jpg",
             alt: "Christoffer Ekström",
           }}></TwoColImg>
-        <DermalyserHero />
+        <HeroSection
+          title={
+            "Skin cancer is one of the most common cancers in the world, accounting for nearly half of all cancers"
+          }
+          image={{
+            src: "/images/home/dermalyser_in_action.jpg",
+            alt: "Image of dermalyser in use",
+          }}
+          button={{ text: "Learn more", href: "/skin-cancer" }}
+        />
         <section className="flex w-full flex-col items-center space-y-6 bg-background-secondary py-24 px-6 md:px-0 lg:space-y-12">
           <h2 className="border-b-2 border-primary text-center text-3xl font-bold text-primary">
             Our Partners

@@ -3,6 +3,7 @@ import Header from "../components/general/Header";
 import TwoColImg from "../components/general/start/TwoColImg";
 import SoCommonThat from "../components/skin-cancer/SoCommonThat";
 import ThreeTypesOfSkinCancer from "../components/skin-cancer/ThreeTypesOfSkinCancer";
+import HeroSection from "../components/general/HeroSection";
 
 export default function SkinCancer() {
   return (
@@ -33,6 +34,15 @@ export default function SkinCancer() {
             src: "skin-cancer/sprint_track.png",
             alt: "Sprint track",
           }}
+        />
+        <HeroSection
+          title={"Not all skin cancers are made equal"}
+          image={{
+            src: "/images/dermalyser/header.png",
+            alt: "Dermalyser being used on a patient",
+          }}
+          subTitle={`Driving Fast, Accurate Diagnosis\nfor All Skin Cancers`}
+          button={{ text: "Learn About Dermalyser", href: "/dermalyser" }}
         />
       </main>
     </>
