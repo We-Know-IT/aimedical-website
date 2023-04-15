@@ -68,16 +68,19 @@ const columnText = [
     title: "Faster Diagnoses",
     text: "Our decision support tool enables diagnostic decisions in seconds, avoiding long waiting times and reducing anxiety for patients",
     img: "home/speed.svg",
+    imgAlt: "Speedometer icon",
   },
   {
     title: "Cost Efficient",
     text: "Supports reduction of unnecessary skin excisions thereby improving healthcare economics across multiple levels",
     img: "home/money.svg",
+    imgAlt: "Money icon",
   },
   {
     title: "Improved Performance",
     text: "AI powered by a database comprised of 100,000 images of skin lesions ensures fewer melanomas missed, and fewer incorrect diagnoses",
     img: "home/accuracy.svg",
+    imgAlt: "Crosshair icon",
   },
 ];
 

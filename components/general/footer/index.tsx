@@ -348,7 +348,7 @@ export default function Footer() {
                   src={"/images/logo_text.svg"}
                   width={200}
                   height={0}
-                  alt="Logo"
+                  alt="AI medical technology logo"
                 />
               </div>
             </div>
