@@ -76,7 +76,7 @@ const skinCancers: ISkinCancer[] = [
 
 export default function ThreeTypesOfSkinCancer() {
   return (
-    <section className="bg-background-secondary py-24 xl:py-32">
+    <section className="bg-background-secondary pt-24 pb-12 xl:pt-32 xl:pb-24">
       <div className="container flex  flex-col items-center justify-center  gap-12  xl:container xl:flex-row">
         <div className="flex flex-col items-center justify-center gap-4">
           <div className="mx-auto flex w-min flex-col gap-4">
