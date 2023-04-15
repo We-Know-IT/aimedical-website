@@ -6,7 +6,7 @@ export default function SoCommonThat() {
       <div className="container max-w-xl xl:container">
         <div className="mx-auto flex  scale-y-110 flex-col gap-4 rounded-[20px] bg-background-primary px-4 py-24 shadow-md  sm:px-6">
           <h2 className=" text-center  text-xl font-bold leading-6 text-primary md:text-3xl md:leading-10">
-            So common that:
+            Skin Cancer Prevalence
           </h2>
 
           <div className="mx-auto flex flex-col items-center  justify-center md:flex-row">
