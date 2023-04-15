@@ -256,7 +256,7 @@ export default function Footer() {
                   required
                 />
                 <p className="font-bold text-white">
-                  I agree to the terms of use and{" "}
+                  I agree to the{" "}
                   <Link
                     href="/privacy-policy"
                     className=" text-on-primary underline hover:text-on-primary-hover">
@@ -320,15 +320,25 @@ export default function Footer() {
                 {contactInformation.email}
               </p>
               <Link
-                href={"https://www.linkedin.com/company/aimedicaltechnology/"}>
+                href={"https://www.linkedin.com/company/aimedicaltechnology/"}
+                className="flex items-center space-x-4 text-on-primary hover:text-on-primary-hover">
                 <Image
                   src="/images/linkedIn_white.svg"
                   alt={"LinkedIn Logo"}
-                  height={23}
-                  width={23}
+                  height={40}
+                  width={40}
                 />
+                <p className="text-lg font-bold">Follow us on LinkedIn</p>
               </Link>
             </div>
+            {/* Instructions for use */}
+            <Link href={"/pdfs/Instructions_for_use.pdf"} legacyBehavior>
+              <a target="_blank" rel="noopener noreferrer">
+                <p className="text-on-primary underline hover:text-on-primary-hover">
+                  Dermalyser instructions for use
+                </p>
+              </a>
+            </Link>
 
             {/* Website information */}
             <div className="flex flex-col justify-between space-y-12 md:items-start md:space-y-32">
