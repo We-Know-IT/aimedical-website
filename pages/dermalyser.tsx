@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Advantages from "../components/dermalyser/Advantages";
 import DiagnosticsEmpowered from "../components/dermalyser/DiagnosticsEmpowered";
-import HowItWorks from "../components/dermalyser/HowItWorks";
+import HowItWorks from "../components/dermalyser/how-it-works/HowItWorks";
 import Performance from "../components/dermalyser/Performance";
 import Header from "../components/general/Header";
 
