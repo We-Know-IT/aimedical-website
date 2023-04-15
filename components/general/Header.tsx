@@ -49,17 +49,17 @@ export default function Header({
         <div className="animate-focus-in">
           {title && (
             <div className="w-fit">
-              <h2 className="relative w-fit text-xl font-bold text-on-primary">
+              <h1 className="relative w-fit text-xl font-bold text-on-primary">
                 {title}
-              </h2>
+              </h1>
               <div className="relative my-4 h-1 w-3/4 rounded bg-gray-800"></div>
             </div>
           )}
           {text &&
             (typeof text == "string" ? (
-              <p className="relative mb-6 whitespace-pre-wrap text-lg font-bold text-on-primary sm:text-xl lg:w-1/2 lg:text-2xl">
+              <h2 className="relative mb-6 whitespace-pre-wrap text-lg font-bold text-on-primary sm:text-xl lg:w-1/2 lg:text-2xl">
                 {text}
-              </p>
+              </h2>
             ) : (
               { ...text }
             ))}

@@ -3,6 +3,7 @@ import Header from "../components/general/Header";
 import TwoColText from "../components/general/start/TwoColText";
 import TwoColImg from "../components/general/start/TwoColImg";
 import Image from "next/image";
+import DermalyserHero from "../components/home/SkinCancerHero";
 
 const buttonHeader = {
   text: "Learn more",
@@ -92,7 +93,7 @@ export default function Home() {
         text={
           <p className="relative mb-6 animate-focus-in whitespace-pre-wrap text-2xl font-normal text-on-primary lg:text-5xl">
             {`Driving fast and accurate \ndiagnosis for all skin cancers - \n`}
-            <strong>All through AI</strong>
+            <strong>Through AI</strong>
           </p>
         }
         actionButton={buttonHeader}
@@ -108,7 +109,11 @@ export default function Home() {
           title="Our Mission"
           text="Our mission is to support healthcare providers with AI powered diagnostic solutions so that no patient should die due to delay or misdiagnosis of a condition."
           actionButton={buttonSection2}
-          image="home/man_crossed_arms.jpg"></TwoColImg>
+          image={{
+            src: "employees/christoffer.jpg",
+            alt: "Christoffer Ekström",
+          }}></TwoColImg>
+        <DermalyserHero />
         <section className="flex w-full flex-col items-center space-y-6 bg-background-secondary py-24 px-6 md:px-0 lg:space-y-12">
           <h2 className="border-b-2 border-primary text-center text-3xl font-bold text-primary">
             Our Partners

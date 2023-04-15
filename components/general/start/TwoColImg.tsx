@@ -3,10 +3,16 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useElementInViewPort } from "../../../utils/elementInViewPort";
 import Button from "../Button";
+
+type ImageProps = {
+  src: string;
+  alt: string;
+};
+
 type Props = {
   title?: string;
   text?: string;
-  image?: string;
+  image?: ImageProps;
   actionButton?: {
     text: string;
     onClick?: () => void;
@@ -36,8 +42,8 @@ export default function TwoColImg({ title, text, actionButton, image }: Props) {
         {/* left box */}
         <div className="relative aspect-square w-full xl:w-2/5">
           <Image
-            src={"/images/" + image}
-            alt="Doctor crossed arms"
+            src={"/images/" + image?.src}
+            alt={image?.alt || ""}
             fill
             className={
               "rounded-tl-xl rounded-tr-xl object-cover xl:rounded-bl-xl xl:rounded-tr-none"

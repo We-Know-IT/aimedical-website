@@ -29,7 +29,10 @@ export default function TheraputicArea() {
             text: "With us you can win the race",
             href: "/dermalyser",
           }}
-          image="theraputic-area/sprint_track.png"
+          image={{
+            src: "theraputic-area/sprint_track.png",
+            alt: "Sprint track",
+          }}
         />
       </main>
     </>

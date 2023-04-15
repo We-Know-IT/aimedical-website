@@ -34,7 +34,7 @@ export default function TwoColText({ title, text, actionButton, list }: Props) {
           {actionButton &&
             (actionButton.href ? (
               <Link href={actionButton.href}>
-                <Button onClick={actionButton.onClick}>
+                <Button onClick={actionButton.onClick} isPrimary>
                   {actionButton.text}
                 </Button>
               </Link>
