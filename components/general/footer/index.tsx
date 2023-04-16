@@ -217,6 +217,7 @@ export default function Footer() {
                 type="email"
                 id="email"
                 name="email"
+                autoComplete="email"
                 onChange={onEmailChange}
                 onBlur={(e) => validateEmail(e.target.value)}
                 value={email}

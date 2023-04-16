@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useElementInViewPort } from "../../../utils/elementInViewPort";
-import Button from "../Button";
+import Button, { LinkButton } from "../Button";
 
 type ImageProps = {
   src: string;
@@ -64,11 +64,9 @@ export default function TwoColImg({ title, text, actionButton, image }: Props) {
 
             {actionButton &&
               (actionButton.href ? (
-                <Link href={actionButton.href}>
-                  <Button onClick={actionButton.onClick}>
-                    {actionButton.text}
-                  </Button>
-                </Link>
+                <LinkButton href={actionButton.href}>
+                  {actionButton.text}
+                </LinkButton>
               ) : (
                 <Button onClick={actionButton.onClick}>
                   {actionButton.text}

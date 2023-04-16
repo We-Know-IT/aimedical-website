@@ -55,7 +55,8 @@ export default function CircleDiagram({
     <svg
       className={svgClasses}
       width={svgWidthAndHeight}
-      height={svgWidthAndHeight}>
+      height={svgWidthAndHeight}
+      aria-label={`Circle diagram showing the percentage ${fillPercentage}% with the text ${text}`}>
       <defs>
         <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="rgba(0,99, 175, 0.75)" />

@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CSSProperties } from "react";
-import Button from "./Button";
+import Button, { LinkButton } from "./Button";
 
 type Props = {
   title?: string;
   text?: string | React.ReactElement;
   content?: React.ReactElement;
   imageUrl: string;
+  imageAlt?: string;
   fullHeight?: boolean;
   actionButton?: {
     text: string;
@@ -23,6 +24,7 @@ export default function Header({
   text,
   actionButton,
   imageUrl,
+  imageAlt,
   fullHeight,
 }: Props) {
   const backgroundImageStyle: CSSProperties = {
@@ -38,7 +40,7 @@ export default function Header({
       id="header">
       <Image
         src={imageUrl}
-        alt="Header image"
+        alt={imageAlt || "Header image"}
         fill
         className={"object-cover"}
         placeholder="blur"
@@ -66,11 +68,9 @@ export default function Header({
 
           {actionButton &&
             (actionButton.href ? (
-              <Link href={actionButton.href}>
-                <Button className={buttonStyles} onClick={actionButton.onClick}>
-                  {actionButton.text}
-                </Button>
-              </Link>
+              <LinkButton className={buttonStyles} href={actionButton.href}>
+                {actionButton.text}
+              </LinkButton>
             ) : (
               <Button className={buttonStyles} onClick={actionButton.onClick}>
                 {actionButton.text}

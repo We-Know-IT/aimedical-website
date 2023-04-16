@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import Button from "./Button";
+import Button, { LinkButton } from "./Button";
 import Link from "next/link";
 
 type ImageProps = {
@@ -20,14 +20,6 @@ type Props = {
   image: ImageProps;
   button?: ButtonProps;
 };
-
-function LinkButton({ text, href, onClick }: ButtonProps) {
-  return (
-    <Link href={href || ""}>
-      <Button onClick={onClick}>{text}</Button>
-    </Link>
-  );
-}
 
 export default function HeroSection({ title, subTitle, image, button }: Props) {
   return (
@@ -58,7 +50,7 @@ export default function HeroSection({ title, subTitle, image, button }: Props) {
         {button && (
           <div className="z-20">
             {button.href ? (
-              <LinkButton {...button} />
+              <LinkButton href={button.href}>{button.text}</LinkButton>
             ) : (
               <Button onClick={button?.onClick}>{button.text}</Button>
             )}

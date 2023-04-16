@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Button from "../Button";
+import Button, { LinkButton } from "../Button";
 
 export interface INavLink {
   label: string;
@@ -19,13 +19,12 @@ export default function NavLink({ navLink, color = "white" }: Props) {
 
   if (navLink.isHightlighted) {
     return (
-      <Link href={navLink.path}>
-        <Button
-          className="font-bold md:px-8 md:py-2 md:text-lg xl:py-2"
-          isPrimary>
-          {navLink.label}
-        </Button>
-      </Link>
+      <LinkButton
+        className="font-bold md:px-8 md:py-2 md:text-lg xl:py-2"
+        isPrimary
+        href={navLink.path}>
+        {navLink.label}
+      </LinkButton>
     );
   }
 

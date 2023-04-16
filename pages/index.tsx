@@ -94,10 +94,10 @@ export default function Home() {
       <Header
         imageUrl="/images/header.jpg"
         text={
-          <p className="relative mb-6 animate-focus-in whitespace-pre-wrap text-2xl font-normal text-on-primary lg:text-5xl">
+          <h1 className="relative mb-6 animate-focus-in whitespace-pre-wrap text-2xl font-normal text-on-primary lg:text-5xl">
             {`Driving fast and accurate \ndiagnosis for all skin cancers - \n`}
             <strong>Through AI</strong>
-          </p>
+          </h1>
         }
         actionButton={buttonHeader}
         fullHeight={true}

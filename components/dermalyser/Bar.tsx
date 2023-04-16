@@ -5,9 +5,10 @@ import { useWindowDimensions } from "../../utils/resize";
 type Props = {
   text: string;
   value: number;
-  classes: string;
+  classes?: string;
   isHighlighted: boolean;
   valueText: string;
+  ariaLabel: string;
 };
 
 const layoutWidthBreakpoint = 1024; // same as tailwind "lg"
@@ -18,6 +19,7 @@ export default function Bar({
   classes,
   isHighlighted,
   valueText,
+  ariaLabel,
 }: Props) {
   const barRef = useRef<HTMLDivElement>(null);
   const [animateUp, setAnimateUp] = useState(false);
@@ -57,7 +59,8 @@ export default function Bar({
       className={
         " grid h-[400px] w-[70px] grid-cols-1 grid-rows-[2fr_1fr] items-end justify-center gap-4  lg:h-[70px] lg:w-full lg:grid-cols-[1fr_2fr]  lg:grid-rows-1 lg:items-center " +
         classes
-      }>
+      }
+      aria-label={ariaLabel}>
       <p className="row-start-2 row-end-2 origin-center -rotate-90 self-center whitespace-pre-wrap font-bold text-on-bg-primary lg:col-start-1 lg:col-end-1 lg:row-start-1 lg:row-end-1 lg:rotate-0 lg:text-lg">
         {text}
       </p>

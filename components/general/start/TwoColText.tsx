@@ -1,4 +1,4 @@
-import Button from "../Button";
+import Button, { LinkButton } from "../Button";
 import Image from "next/image";
 import Link from "next/link";
 type Props = {
@@ -34,11 +34,9 @@ export default function TwoColText({ title, text, actionButton, list }: Props) {
           </p>
           {actionButton &&
             (actionButton.href ? (
-              <Link href={actionButton.href}>
-                <Button onClick={actionButton.onClick} isPrimary>
-                  {actionButton.text}
-                </Button>
-              </Link>
+              <LinkButton isPrimary href={actionButton.href}>
+                {actionButton.text}
+              </LinkButton>
             ) : (
               <Button onClick={actionButton.onClick}>
                 {actionButton.text}

@@ -39,7 +39,7 @@ export default function Navbar() {
         (isNavbarOpen || hasScrolled
           ? "bg-surface-primary shadow-xl"
           : " bg-transparent") +
-        " fixed top-0 left-0 right-0 z-10 transition-all"
+        " fixed top-0 left-0 right-0 z-50 transition-all"
       }>
       {/* Top navbar */}
       <div

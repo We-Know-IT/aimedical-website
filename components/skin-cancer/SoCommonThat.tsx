@@ -2,10 +2,10 @@ import CircleDiagram from "./CircleDiagram";
 
 export default function SoCommonThat() {
   return (
-    <section className="bg-background-primary">
+    <section className="z-20 bg-background-primary">
       <div className="container max-w-xl xl:container">
-        <div className="mx-auto flex  scale-y-110 flex-col gap-4 rounded-[20px] bg-background-primary px-4 py-24 shadow-md  sm:px-6">
-          <h2 className=" text-center  text-xl font-bold leading-6 text-primary md:text-3xl md:leading-10">
+        <div className="mx-auto -my-6 flex flex-col gap-4 rounded-[20px] bg-background-primary px-4 py-24  shadow-md sm:px-6">
+          <h2 className=" text-center text-xl font-bold leading-6 text-primary md:text-3xl md:leading-10">
             Skin Cancer Prevalence
           </h2>
 
