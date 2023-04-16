@@ -47,11 +47,11 @@ export default function Navbar() {
           " duration-250 container relative z-10 mx-auto flex justify-between ease-in-out " +
           (hasScrolled ? "py-4" : "py-6")
         }>
-        <h1 aria-label="AI Medical" className="flex flex-col justify-center">
+        <h3 aria-label="AI Medical" className="flex flex-col justify-center">
           <Link href="/">
             <LogoIcon w={logoSize} h={logoSize} />
           </Link>
-        </h1>
+        </h3>
 
         <div className="flex items-center">
           {/* Hamburger menu */}

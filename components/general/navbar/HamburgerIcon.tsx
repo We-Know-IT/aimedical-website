@@ -8,28 +8,28 @@ export default function HamburgerIcon({
   color = "white",
 }: Props) {
   return (
-    <div className="space-y-2">
-      <div
+    <span className="flex flex-col space-y-2">
+      <span
         className={
           (isOpen ? "translate-y-1.5 rotate-45 " : "") +
           "h-0.5 w-8 transition-all" +
           (color === "black" ? "  bg-on-bg-primary" : " bg-on-primary")
         }
       />
-      <div
+      <span
         className={
           (isOpen ? "hidden " : "") +
           "h-0.5 w-8 transition-all" +
           (color === "black" ? "  bg-on-bg-primary" : " bg-on-primary")
         }
       />
-      <div
+      <span
         className={
           (isOpen ? "-translate-y-1 -rotate-45 " : "") +
           "h-0.5 w-8 transition-all" +
           (color === "black" ? "   bg-on-bg-primary" : " bg-on-primary")
         }
       />
-    </div>
+    </span>
   );
 }

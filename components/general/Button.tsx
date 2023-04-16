@@ -57,8 +57,7 @@ export function LinkButton({
   return (
     <Link
       className={getClassName(isPrimary) + commonStyles + className}
-      href={href}
-      type="button">
+      href={href}>
       {children}
     </Link>
   );
