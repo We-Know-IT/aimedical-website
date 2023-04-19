@@ -102,7 +102,7 @@ export default function Home() {
         imageUrl="/images/header.jpg"
         text={
           <h1 className="relative mb-6 animate-focus-in whitespace-pre-wrap text-2xl font-normal text-on-primary lg:text-5xl">
-            {`Driving fast and accurate \ndiagnosis for all skin cancers - \n`}
+            {`Driving Fast And Accurate \nDiagnosis For All Skin Cancers - \n`}
             <strong>Through AI</strong>
           </h1>
         }
