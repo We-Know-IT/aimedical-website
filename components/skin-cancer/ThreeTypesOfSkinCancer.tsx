@@ -103,7 +103,7 @@ export default function ThreeTypesOfSkinCancer() {
                 src="/images/skin-cancer/skin_cancer_divider.png"
                 alt="Doctor examining patient"
                 width={600}
-                height={0}
+                height={400}
                 className="rounded-md object-cover"
               />
             </div>
