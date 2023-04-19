@@ -152,7 +152,7 @@ export default function PressRoom() {
                   return <PostCard key={`skeleton-${i}`} />;
                 })}
             </ul>
-            {hasNextPosts && !error && !loadingPosts && !posts && (
+            {hasNextPosts && !error && !loadingPosts && (
               <div className="mt-12 flex flex-col items-center">
                 <Button onClick={onLoadMore} isPrimary>
                   Load more

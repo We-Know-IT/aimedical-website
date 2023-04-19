@@ -6,7 +6,7 @@ import { usePosts } from "../../hooks/usePosts";
 import { PostType } from "../../services/types";
 
 const researchSet = new Set<PostType>(["research"]);
-const pageSize = 3;
+const pageSize = 5;
 
 export default function Research() {
   const { posts, hasNextPosts, loadingPosts, error, loadMorePosts, initPosts } =
@@ -36,24 +36,27 @@ export default function Research() {
         title="Research"
         text="A collection of our research and third party research relevant to us"
       />
-      <main className="container">
-        <ul className="my-10 flex flex-col space-y-12">
-          {posts.map((post) => {
-            return (
-              <li key={post.id}>
-                <ResearchPostCard post={post} />
-              </li>
-            );
-          })}
-          {showSkeletons &&
-            [...Array(pageSize)].map((x, i) => {
-              return <ResearchPostCard key={`skeleton-${i}`} />;
+      <main className="container my-12">
+        {posts.length > 0 && (
+          <ul className="flex flex-col space-y-12">
+            {posts.map((post) => {
+              return (
+                <li key={post.id}>
+                  <ResearchPostCard post={post} />
+                </li>
+              );
             })}
-        </ul>
+            {showSkeletons &&
+              [...Array(pageSize)].map((x, i) => {
+                return <ResearchPostCard key={`skeleton-${i}`} />;
+              })}
+          </ul>
+        )}
+
         {/* If there are no posts to show, show a message. */}
         {posts.length === 0 && !error && !loadingPosts && (
           <p className="text-center text-xl font-bold text-primary">
-            No posts available.
+            No research posts available.
           </p>
         )}
         {/* If there is an error, show a message. */}
@@ -67,7 +70,7 @@ export default function Research() {
             </Button>
           </div>
         )}
-        {hasNextPosts && !error && !loadingPosts && !posts && (
+        {hasNextPosts && !error && !loadingPosts && (
           <div className="my-12 flex flex-col items-center">
             <Button onClick={onLoadMore} isPrimary>
               Load more
