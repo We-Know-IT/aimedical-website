@@ -45,7 +45,6 @@ export default function PostDetails(props: ServiceResponse<Post>) {
   const post = props.data;
 
   const { cookieConsent, setConsent } = useCookieConsent();
-
   return (
     <>
       <Head>
@@ -122,15 +121,27 @@ export default function PostDetails(props: ServiceResponse<Post>) {
               p: (props) => {
                 // links are rendered inside <p></p> tags and we don't want the <video> element to be inside a p tag since it is invalid HTML syntax.
                 // The <a> element is valid to put inside <p> tags but the markdown parser is right now wrapping a single <a> inside <p> so we can remove that to!
-                if (props.node.children[0].type === "text") {
+
+                if (
+                  props.node.children[0].type === "text" ||
+                  (props.node.children[0].type === "element" &&
+                    props.node.children[0].tagName === "strong")
+                ) {
                   return (
                     <p className="my-4 whitespace-pre-wrap text-lg text-on-bg-primary">
-                      {props.children[0]}
+                      {props.children}
                     </p>
                   );
                 } else {
                   return <>{props.children[0]}</>;
                 }
+              },
+              strong: (props) => {
+                return (
+                  <strong className="my-4 whitespace-pre-wrap text-lg font-bold text-on-bg-primary">
+                    {props.children}
+                  </strong>
+                );
               },
 
               a: (props) => {

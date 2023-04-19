@@ -24,7 +24,7 @@ export default function SkinCancer() {
         <SoCommonThat />
         <ThreeTypesOfSkinCancer />
         <HeroSection
-          title={"Not all skin cancers are made equal"}
+          title={"Not all skin cancers are equal"}
           image={{
             src: "/images/dermalyser/header.png",
             alt: "Dermalyser being used on a patient",
