@@ -63,6 +63,13 @@ const partners = [
   },
 ];
 
+const sahlgrenska = {
+  src: "home/partner_sahlgrenska.png",
+  alt: "Sahlgrenska Logo",
+  height: 50,
+  width: 400,
+};
+
 const columnText = [
   {
     title: "Faster Diagnoses",
@@ -146,6 +153,16 @@ export default function Home() {
                 />
               </li>
             ))}
+          </ul>
+          <ul>
+            <li key={sahlgrenska.alt} className={"h-12"}>
+              <Image
+                src={"/images/" + sahlgrenska.src}
+                alt={sahlgrenska.alt}
+                height={sahlgrenska.height}
+                width={sahlgrenska.width}
+              />
+            </li>
           </ul>
         </section>
       </main>
