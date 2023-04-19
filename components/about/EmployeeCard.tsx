@@ -18,8 +18,9 @@ export default function EmployeeCard({ employee }: Props) {
       <Image
         className="clip-path-image flex h-[300px] w-full items-center justify-center rounded-t-xl object-cover"
         src={employee.image}
-        width={300}
-        height={300}
+        width={600}
+        height={600}
+        quality={100}
         alt={employee.name + " " + employee.title}
       />
 
