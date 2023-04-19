@@ -127,7 +127,7 @@ export default function PressRoom() {
             {/* If there are no posts to show, show a message. */}
             {posts.length === 0 && !error && !loadingPosts && (
               <p className="text-center text-xl font-bold text-primary">
-                Looks like there are no posts to show.
+                No posts available.
               </p>
             )}
             {/* If there are posts to show, show them. */}
@@ -152,7 +152,7 @@ export default function PressRoom() {
                   return <PostCard key={`skeleton-${i}`} />;
                 })}
             </ul>
-            {hasNextPosts && !error && !loadingPosts && (
+            {hasNextPosts && !error && !loadingPosts && !posts && (
               <div className="mt-12 flex flex-col items-center">
                 <Button onClick={onLoadMore} isPrimary>
                   Load more

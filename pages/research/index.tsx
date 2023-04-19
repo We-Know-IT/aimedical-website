@@ -53,7 +53,7 @@ export default function Research() {
         {/* If there are no posts to show, show a message. */}
         {posts.length === 0 && !error && !loadingPosts && (
           <p className="text-center text-xl font-bold text-primary">
-            Looks like there are no posts to show.
+            No posts available.
           </p>
         )}
         {/* If there is an error, show a message. */}
@@ -67,7 +67,7 @@ export default function Research() {
             </Button>
           </div>
         )}
-        {hasNextPosts && !error && !loadingPosts && (
+        {hasNextPosts && !error && !loadingPosts && !posts && (
           <div className="my-12 flex flex-col items-center">
             <Button onClick={onLoadMore} isPrimary>
               Load more
