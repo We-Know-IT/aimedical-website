@@ -14,13 +14,13 @@ export default function DiagnosticsEmpowered() {
           quality-controlled dermatoscopic images of patients’ skin lesions
           together with associated patient data.
         </p>
-        <div className="mx-auto aspect-video w-full overflow-hidden rounded-lg shadow-lg lg:max-w-2xl">
+        {/* <div className="mx-auto aspect-video w-full overflow-hidden rounded-lg shadow-lg lg:max-w-2xl">
           <iframe
             className="h-full w-full"
             title="Dermalyser User guide"
             src="https://player.vimeo.com/video/711636240?h=c1d894c848?dnt=true"
             allowFullScreen></iframe>
-        </div>
+        </div> */}
       </div>
     </section>
   );
