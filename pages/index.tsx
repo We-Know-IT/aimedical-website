@@ -122,7 +122,8 @@ export default function Home() {
           image={{
             src: "employees/christoffer.jpg",
             alt: "Christoffer Ekström",
-          }}></TwoColImg>
+          }}
+          imageText="Christoffer Ekström, CEO"></TwoColImg>
         <HeroSection
           title={
             "Skin cancer is one of the most common cancers in the world, accounting for nearly half of all cancers"
