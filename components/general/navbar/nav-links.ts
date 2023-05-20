@@ -18,8 +18,8 @@ export const navLinks: INavLink[] = [
     path: "/about",
   },
   {
-    label: "Research",
-    path: "/research",
+    label: " Clinical Validation",
+    path: "/clinical-validation",
   },
   {
     label: "Pressroom",

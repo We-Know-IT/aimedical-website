@@ -81,3 +81,10 @@ export default function Research() {
     </>
   );
 }
+
+export function getStaticProps() {
+  return {
+    // Set this to false or remove the function to enable the page.
+    notFound: true,
+  };
+}

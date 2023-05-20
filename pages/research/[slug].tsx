@@ -9,6 +9,8 @@ export const getStaticProps: GetServerSideProps<{
   data: Post | null;
   error: string | null;
 }> = async (context) => {
+  // Remove this line if you want to use this page
+  return { notFound: true };
   const postSlug = context.params?.slug;
   if (!postSlug) {
     return {
