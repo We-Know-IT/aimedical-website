@@ -15,13 +15,15 @@ function StudyDetails() {
         <div className="flex-1">
           <h4 className="text-lg font-bold">Number of Subjects</h4>
           <p className="text-lg leading-7">
-            241 subjects from 37 primary care centres in Sweden Diagnosis
+            241 subjects from 37 primary care centres in Sweden.
           </p>
         </div>
         <div className="flex-1">
-          <h4 className="text-lg font-bold leading-7">Eligibility Criteria</h4>
+          <h4 className="text-lg font-bold leading-7">
+            Diagnosis and main eligibility criteria
+          </h4>
           <ul className="ml-4 list-disc gap-6 text-lg font-normal leading-7">
-            <li>Patients ≥18 years</li>
+            <li>Patients ≥18 years.</li>
             <li>
               Patients attending a primary care facility with at least 1
               suspicious skin lesion where MM cannot be ruled out.
@@ -72,7 +74,7 @@ function StudyOverview() {
             alt={"Doctor showing dermalyser."}
             width={2048}
             height={1365}
-            className="h-full w-full rounded-lg object-cover"
+            className="h-full w-full rounded-lg object-cover shadow-md"
           />
         </div>
       </div>
