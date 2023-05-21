@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "../../components/general/Header";
 import { usePosts } from "../../hooks/usePosts";
+import MetaTags from "../../components/general/seo/MetaTags";
 
 const threeColsXLWidth = false;
 const pageSize = 6;
@@ -57,6 +58,11 @@ export default function PressRoom() {
       <Head>
         <title>AI Medical | Pressroom </title>
         <meta name="description" content="News and blog from AI Medical" />
+        <MetaTags
+          image="/images/header.jpg"
+          title="Pressroom"
+          description="News and blog from AI Medical"
+        />
       </Head>
       <Header
         imageUrl="/images/header.jpg"

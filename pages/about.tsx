@@ -3,6 +3,7 @@ import Head from "next/head";
 import Background from "../components/about/Background";
 import Team from "../components/about/Team";
 import Header from "../components/general/Header";
+import MetaTags from "../components/general/seo/MetaTags";
 const fs = require("fs").promises;
 
 export type Employee = {
@@ -21,7 +22,11 @@ export default function About({
     <>
       <Head>
         <title>AI Medical | About </title>
-        <meta name="description" content="Information about AI Medical" />
+        <MetaTags
+          image="/images/about/header.png"
+          title="About us"
+          description="We are dedicated to developing AI powered diagnostic solutions that enable frontline healthcare practitioners to make easier, faster and more reliable diagnoses for their patients."
+        />
       </Head>
       <Header
         imageUrl="/images/about/header.png"

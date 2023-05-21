@@ -4,15 +4,17 @@ import DiagnosticsEmpowered from "../components/dermalyser/DiagnosticsEmpowered"
 import HowItWorks from "../components/dermalyser/how-it-works/HowItWorks";
 import Performance from "../components/dermalyser/Performance";
 import Header from "../components/general/Header";
+import MetaTags from "../components/general/seo/MetaTags";
 
 export default function Dermalyser() {
   return (
     <>
       <Head>
         <title>AI Medical | Dermalyser </title>
-        <meta
-          name="description"
-          content="Information about dermalyser from AI Medical"
+        <MetaTags
+          image="/images/dermalyser/header.png"
+          title="Dermalyser"
+          description="Driving Fast, Accurate Diagnosis for all Skin Cancers"
         />
       </Head>
       <Header

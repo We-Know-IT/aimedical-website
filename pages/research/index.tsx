@@ -84,7 +84,7 @@ export default function Research() {
 
 export function getStaticProps() {
   return {
-    // Set this to false or remove the function to enable the page.
+    // Set this to false or remove the function to enable/display the page.
     notFound: true,
   };
 }

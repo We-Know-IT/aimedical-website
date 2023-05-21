@@ -4,6 +4,7 @@ import TwoColText from "../components/general/start/TwoColText";
 import TwoColImg from "../components/general/start/TwoColImg";
 import Image from "next/image";
 import HeroSection from "../components/general/HeroSection";
+import MetaTags from "../components/general/seo/MetaTags";
 
 const buttonHeader = {
   text: "Learn more",
@@ -97,6 +98,11 @@ export default function Home() {
       <Head>
         <title>AI Medical</title>
         <meta name="description" content="AI Medical" />
+        <MetaTags
+          description="Driving Fast And Accurate \nDiagnosis For All Skin Cancers - Through AI"
+          title="AI Medical"
+          image="/images/home/header.jpg"
+        />
       </Head>
       <Header
         imageUrl="/images/home/header.jpg"
