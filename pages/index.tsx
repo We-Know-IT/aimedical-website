@@ -99,7 +99,7 @@ export default function Home() {
         <meta name="description" content="AI Medical" />
       </Head>
       <Header
-        imageUrl="/images/header.jpg"
+        imageUrl="/images/home/header.jpg"
         text={
           <h1 className="relative mb-6 animate-focus-in whitespace-pre-wrap text-2xl font-normal text-on-primary lg:text-5xl">
             {`Driving Fast And Accurate \nDiagnosis For All Skin Cancers - \n`}
@@ -129,7 +129,7 @@ export default function Home() {
             "Skin cancer is one of the most common cancers in the world, accounting for nearly half of all cancers"
           }
           image={{
-            src: "/images/home/dermalyser_in_action.jpg",
+            src: "/images/home/skin_cancer_header.jpg",
             alt: "Image of dermalyser in use",
           }}
           button={{ text: "Learn more", href: "/skin-cancer" }}

@@ -28,7 +28,7 @@ export default function HeroSection({ title, subTitle, image, button }: Props) {
         src={image.src}
         alt={image.alt}
         fill
-        className={"z-0 object-cover"}
+        className={"z-0 object-cover object-top"}
         placeholder="blur"
         blurDataURL="/images/blur.jpg"
       />
