@@ -30,11 +30,11 @@ export default function CookieConsent() {
           <p className="text-md text-primary">
             We use third-party cookies to improve your experience on our
             website. By browsing this website, you agree to our use of cookies.
-            You can read more about our cookie policy{" "}
+            Read more about our{" "}
             <Link
               href={cookiePolicyLink}
               className="underline hover:text-primary-hover">
-              here
+              Cookie Policy
             </Link>
             .
           </p>
