@@ -24,6 +24,7 @@ export const navLinks: INavLink[] = [
   {
     label: "Pressroom",
     path: "/pressroom",
+    highlightNestedPaths: true,
   },
   {
     label: "Contact us",

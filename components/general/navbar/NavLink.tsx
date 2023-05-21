@@ -6,6 +6,7 @@ export interface INavLink {
   label: string;
   path: string;
   isHightlighted?: boolean;
+  highlightNestedPaths?: boolean;
 }
 
 interface Props {
@@ -15,7 +16,9 @@ interface Props {
 
 export default function NavLink({ navLink, color = "white" }: Props) {
   const router = useRouter();
-  const isActive = router.pathname === navLink.path;
+  const isActive = navLink.highlightNestedPaths
+    ? router.pathname.startsWith(navLink.path)
+    : router.pathname === navLink.path;
 
   if (navLink.isHightlighted) {
     return (
