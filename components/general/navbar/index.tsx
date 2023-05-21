@@ -61,6 +61,7 @@ export default function Navbar() {
             aria-controls="mobile-menu"
             name="mobile-menu"
             onClick={toggleNavbar}
+            aria-label="Open navigation menu button"
             aria-expanded={isNavbarOpen}>
             <HamburgerIcon
               isOpen={isNavbarOpen}
