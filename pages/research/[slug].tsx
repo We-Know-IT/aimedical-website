@@ -9,6 +9,10 @@ export const getStaticProps: GetServerSideProps<{
   data: Post | null;
   error: string | null;
 }> = async (context) => {
+  // Remove this line  and uncomment the code below. if you want to use this page
+  return { notFound: true };
+
+  /* ------Uncomment this-------
   const postSlug = context.params?.slug;
   if (!postSlug) {
     return {
@@ -38,6 +42,7 @@ export const getStaticProps: GetServerSideProps<{
   }
 
   return { props: res, revalidate: 10 };
+  */
 };
 
 export async function getStaticPaths() {

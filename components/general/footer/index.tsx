@@ -203,16 +203,21 @@ export default function Footer() {
           {/* Email contact form */}
           <form
             className="flex flex-col space-y-4 md:w-1/2"
-            onSubmit={onSubmit}>
+            onSubmit={onSubmit}
+            aria-label="Contact form">
             <h3 className="text-2xl font-bold text-on-primary">
               Send us a message
             </h3>
             <span className="h-1 w-32 rounded-full bg-background-primary" />
             <div className="space-y-1">
+              <label htmlFor="email" className="sr-only">
+                Email
+              </label>
               <input
                 type="email"
                 id="email"
                 name="email"
+                autoComplete="email"
                 onChange={onEmailChange}
                 onBlur={(e) => validateEmail(e.target.value)}
                 value={email}
@@ -221,11 +226,15 @@ export default function Footer() {
                   "w-full rounded-xl p-4 " +
                   (emailErrorMsg ? inputErrorClasses : "")
                 }
+                aria-label="Enter your email"
                 required
               />
               {emailErrorMsg && <ErrorMessage message={emailErrorMsg} />}
             </div>
             <div>
+              <label htmlFor="message" className="sr-only">
+                Your message
+              </label>
               <textarea
                 id="message"
                 name="message"
@@ -237,6 +246,7 @@ export default function Footer() {
                   "h-40 w-full resize-none rounded-xl p-4 " +
                   (messageErrorMsg ? inputErrorClasses : "")
                 }
+                aria-label="Enter your message"
                 required
               />
               {messageErrorMsg && <ErrorMessage message={messageErrorMsg} />}
@@ -253,17 +263,20 @@ export default function Footer() {
                     "h-4 w-4 bg-error " +
                     (messageErrorMsg ? inputErrorClasses : "")
                   }
+                  aria-label="Agree to privacy policy"
                   required
                 />
-                <p className="font-bold text-white">
-                  I agree to the terms of use and{" "}
+                <label
+                  htmlFor="privacy-policy"
+                  className="font-bold text-white">
+                  I agree to the{" "}
                   <Link
                     href="/privacy-policy"
                     className=" text-on-primary underline hover:text-on-primary-hover">
                     privacy policy
                   </Link>
                   .
-                </p>
+                </label>
               </div>
               {privacyPolicyErrorMsg && (
                 <ErrorMessage message={privacyPolicyErrorMsg} />
@@ -298,6 +311,7 @@ export default function Footer() {
                 process.env.NEXT_PUBLIC_RECAPTCHA_EMAIL_SITE_KEY || "site-key"
               }
               size="invisible"
+              aria-label="reCAPTCHA to prevent spam"
             />
           </form>
 
@@ -320,15 +334,25 @@ export default function Footer() {
                 {contactInformation.email}
               </p>
               <Link
-                href={"https://www.linkedin.com/company/aimedicaltechnology/"}>
+                href={"https://www.linkedin.com/company/aimedicaltechnology/"}
+                className="flex items-center space-x-4 text-on-primary hover:text-on-primary-hover">
                 <Image
                   src="/images/linkedIn_white.svg"
                   alt={"LinkedIn Logo"}
-                  height={23}
-                  width={23}
+                  height={40}
+                  width={40}
                 />
+                <p className="text-lg font-bold">Follow us on LinkedIn</p>
               </Link>
             </div>
+            {/* Instructions for use */}
+            <Link href={"/pdfs/Instructions_for_use.pdf"} legacyBehavior>
+              <a target="_blank" rel="noopener noreferrer">
+                <p className="text-on-primary underline hover:text-on-primary-hover">
+                  Dermalyser instructions for use
+                </p>
+              </a>
+            </Link>
 
             {/* Website information */}
             <div className="flex flex-col justify-between space-y-12 md:items-start md:space-y-32">
@@ -338,7 +362,7 @@ export default function Footer() {
                   src={"/images/logo_text.svg"}
                   width={200}
                   height={0}
-                  alt="Logo"
+                  alt="AI medical technology logo"
                 />
               </div>
             </div>

@@ -39,7 +39,7 @@ export default function Navbar() {
         (isNavbarOpen || hasScrolled
           ? "bg-surface-primary shadow-xl"
           : " bg-transparent") +
-        " fixed top-0 left-0 right-0 z-10 transition-all"
+        " fixed top-0 left-0 right-0 z-50 transition-all"
       }>
       {/* Top navbar */}
       <div
@@ -47,11 +47,11 @@ export default function Navbar() {
           " duration-250 container relative z-10 mx-auto flex justify-between ease-in-out " +
           (hasScrolled ? "py-4" : "py-6")
         }>
-        <h1 aria-label="AI Medical" className="flex flex-col justify-center">
+        <h3 aria-label="AI Medical" className="flex flex-col justify-center">
           <Link href="/">
             <LogoIcon w={logoSize} h={logoSize} />
           </Link>
-        </h1>
+        </h3>
 
         <div className="flex items-center">
           {/* Hamburger menu */}
@@ -61,6 +61,7 @@ export default function Navbar() {
             aria-controls="mobile-menu"
             name="mobile-menu"
             onClick={toggleNavbar}
+            aria-label="Open navigation menu button"
             aria-expanded={isNavbarOpen}>
             <HamburgerIcon
               isOpen={isNavbarOpen}

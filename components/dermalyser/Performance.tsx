@@ -7,7 +7,7 @@ const bars = [
     isHighlighted: true,
   },
   {
-    text: "General\npractiotioner",
+    text: "General\npractioner",
     value: 0.91,
     isHighlighted: false,
   },
@@ -32,14 +32,14 @@ const getvalue = (value: number) => {
 
 export default function Performance() {
   return (
-    <section className="bg-background-primary">
+    <section className="z-20 bg-background-primary">
       <div className="container max-w-xl lg:container">
-        <div className="mx-auto flex scale-y-110 flex-col gap-4 rounded-[20px] bg-background-primary px-4 py-24 shadow-md sm:px-6 lg:max-w-5xl lg:scale-y-125 lg:px-0">
-          <h2 className="scale-y-[0.9] text-center text-xl font-bold leading-6 text-primary lg:scale-y-[0.8] lg:text-3xl lg:leading-10">
+        <div className="mx-auto -my-8 flex flex-col gap-4 rounded-[20px] bg-background-primary px-4 py-24 shadow-md sm:px-6 lg:-my-12 lg:max-w-5xl lg:px-0">
+          <h2 className="text-center text-xl font-bold leading-6 text-primary  lg:text-3xl lg:leading-10">
             AUC Performance of Dermalyser
           </h2>
-          <div className="mx-auto h-[3px] w-1/4 scale-y-[0.9] bg-background-secondary-dark lg:scale-y-[0.8]"></div>
-          <p className="mx-auto max-w-sm scale-y-[0.9] text-center text-lg  font-medium leading-7 text-on-bg-primary lg:max-w-xl lg:scale-y-[0.8]">
+          <div className="mx-auto h-[3px] w-1/4 bg-background-secondary-dark "></div>
+          <p className="mx-auto max-w-sm text-center text-lg  font-medium leading-7 text-on-bg-primary lg:max-w-xl ">
             In a test with more than 6000 unseen images, our AI achieved an AUC
             score of 0.94 which significantly outperforms Expert Dermatologists
             and General Practitioners.
@@ -52,7 +52,9 @@ export default function Performance() {
                   {...bar}
                   value={getvalue(bar.value)}
                   valueText={bar.value.toFixed(2)}
-                  classes="scale-y-[0.9] lg:scale-y-[0.8] "
+                  ariaLabel={`AUC score of ${bar.value.toFixed(2)} for ${
+                    bar.text
+                  }`}
                 />
               </li>
             ))}

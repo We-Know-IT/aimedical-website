@@ -3,6 +3,8 @@ import Header from "../components/general/Header";
 import TwoColText from "../components/general/start/TwoColText";
 import TwoColImg from "../components/general/start/TwoColImg";
 import Image from "next/image";
+import HeroSection from "../components/general/HeroSection";
+import MetaTags from "../components/general/seo/MetaTags";
 
 const buttonHeader = {
   text: "Learn more",
@@ -62,21 +64,31 @@ const partners = [
   },
 ];
 
+const sahlgrenska = {
+  src: "home/partner_sahlgrenska.png",
+  alt: "Sahlgrenska Logo",
+  height: 50,
+  width: 400,
+};
+
 const columnText = [
   {
     title: "Faster Diagnoses",
     text: "Our decision support tool enables diagnostic decisions in seconds, avoiding long waiting times and reducing anxiety for patients",
     img: "home/speed.svg",
+    imgAlt: "Speedometer icon",
   },
   {
     title: "Cost Efficient",
     text: "Supports reduction of unnecessary skin excisions thereby improving healthcare economics across multiple levels",
     img: "home/money.svg",
+    imgAlt: "Money icon",
   },
   {
     title: "Improved Performance",
     text: "AI powered by a database comprised of 100,000 images of skin lesions ensures fewer melanomas missed, and fewer incorrect diagnoses",
     img: "home/accuracy.svg",
+    imgAlt: "Crosshair icon",
   },
 ];
 
@@ -86,14 +98,19 @@ export default function Home() {
       <Head>
         <title>AI Medical</title>
         <meta name="description" content="AI Medical" />
+        <MetaTags
+          description="Driving Fast And Accurate \nDiagnosis For All Skin Cancers - Through AI"
+          title="AI Medical"
+          image="/images/home/header.jpg"
+        />
       </Head>
       <Header
-        imageUrl="/images/header.jpg"
+        imageUrl="/images/home/header.jpg"
         text={
-          <p className="relative mb-6 animate-focus-in whitespace-pre-wrap text-2xl font-normal text-on-primary lg:text-5xl">
-            {`Driving fast and accurate \ndiagnosis for all skin cancers - \n`}
-            <strong>All through AI</strong>
-          </p>
+          <h1 className="relative mb-6 animate-focus-in whitespace-pre-wrap text-2xl font-normal text-on-primary lg:text-5xl">
+            {`Driving Fast And Accurate \nDiagnosis For All Skin Cancers - \n`}
+            <strong>Through AI</strong>
+          </h1>
         }
         actionButton={buttonHeader}
         fullHeight={true}
@@ -108,7 +125,21 @@ export default function Home() {
           title="Our Mission"
           text="Our mission is to support healthcare providers with AI powered diagnostic solutions so that no patient should die due to delay or misdiagnosis of a condition."
           actionButton={buttonSection2}
-          image="home/man_crossed_arms.jpg"></TwoColImg>
+          image={{
+            src: "employees/christoffer.jpg",
+            alt: "Christoffer Ekström",
+          }}
+          imageText="Christoffer Ekström, CEO"></TwoColImg>
+        <HeroSection
+          title={
+            "Skin cancer is one of the most common cancers in the world, accounting for nearly half of all cancers"
+          }
+          image={{
+            src: "/images/home/skin_cancer_header.jpg",
+            alt: "Image of dermalyser in use",
+          }}
+          button={{ text: "Learn more", href: "/skin-cancer" }}
+        />
         <section className="flex w-full flex-col items-center space-y-6 bg-background-secondary py-24 px-6 md:px-0 lg:space-y-12">
           <h2 className="border-b-2 border-primary text-center text-3xl font-bold text-primary">
             Our Partners
@@ -129,6 +160,16 @@ export default function Home() {
                 />
               </li>
             ))}
+          </ul>
+          <ul>
+            <li key={sahlgrenska.alt} className={"h-12"}>
+              <Image
+                src={"/images/" + sahlgrenska.src}
+                alt={sahlgrenska.alt}
+                height={sahlgrenska.height}
+                width={sahlgrenska.width}
+              />
+            </li>
           </ul>
         </section>
       </main>

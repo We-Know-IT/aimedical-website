@@ -56,7 +56,7 @@ const usePosts = (filters: Set<PostType>, pageSize: number) => {
       return;
     }
     setError("");
-    const total = res.data.meta.pagination?.total || Infinity;
+    const total = res.data.meta.pagination?.total || 0;
     setHasNextPosts(posts.length + res.data.posts.length < total);
     setPosts([...posts, ...res.data.posts]);
     setLoadingPosts(false);

@@ -6,6 +6,7 @@ type Props = {
   title: string;
   text: string;
   image: string;
+  imageAlt: string;
   onClick: () => void;
   buttonText: string;
   buttonIcon: ReactElement;
@@ -16,6 +17,7 @@ export default function HowSlide({
   title,
   text,
   image,
+  imageAlt,
   onClick,
   buttonText,
   buttonIcon,
@@ -24,7 +26,7 @@ export default function HowSlide({
   return (
     <div className="relative flex w-full flex-col items-center justify-between gap-6 lg:flex-row">
       <div className=" relative flex w-full flex-col items-center gap-6 lg:flex-row">
-        <Image src={image} width={312} height={524} alt="" />
+        <Image src={image} width={312} height={524} alt={imageAlt} />
 
         <div className="mt-6 space-y-6  lg:mt-0">
           <div className="w-fit lg:absolute lg:top-0">

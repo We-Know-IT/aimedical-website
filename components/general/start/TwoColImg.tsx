@@ -1,19 +1,31 @@
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useElementInViewPort } from "../../../utils/elementInViewPort";
-import Button from "../Button";
+import Button, { LinkButton } from "../Button";
+
+type ImageProps = {
+  src: string;
+  alt: string;
+};
+
 type Props = {
   title?: string;
   text?: string;
-  image?: string;
+  image?: ImageProps;
   actionButton?: {
     text: string;
     onClick?: () => void;
     href?: string;
   };
+  imageText?: string;
 };
-export default function TwoColImg({ title, text, actionButton, image }: Props) {
+export default function TwoColImg({
+  title,
+  text,
+  actionButton,
+  image,
+  imageText,
+}: Props) {
   const sectionRef = useRef<HTMLElement>(null);
   const [animate, setAnimate] = useState(false);
 
@@ -36,8 +48,8 @@ export default function TwoColImg({ title, text, actionButton, image }: Props) {
         {/* left box */}
         <div className="relative aspect-square w-full xl:w-2/5">
           <Image
-            src={"/images/" + image}
-            alt="Doctor crossed arms"
+            src={"/images/" + image?.src}
+            alt={image?.alt || ""}
             fill
             className={
               "rounded-tl-xl rounded-tr-xl object-cover xl:rounded-bl-xl xl:rounded-tr-none"
@@ -45,6 +57,11 @@ export default function TwoColImg({ title, text, actionButton, image }: Props) {
             placeholder="blur"
             blurDataURL="/images/blur.jpg"
           />
+          {imageText && (
+            <div className="absolute bottom-0 flex h-1/4 w-full items-end justify-end bg-gradient-to-t from-black/70 to-transparent p-6 text-lg font-bold text-on-primary xl:rounded-bl-xl">
+              <p>{imageText}</p>
+            </div>
+          )}
         </div>
         {/* right box */}
         <div
@@ -58,11 +75,9 @@ export default function TwoColImg({ title, text, actionButton, image }: Props) {
 
             {actionButton &&
               (actionButton.href ? (
-                <Link href={actionButton.href}>
-                  <Button onClick={actionButton.onClick}>
-                    {actionButton.text}
-                  </Button>
-                </Link>
+                <LinkButton href={actionButton.href}>
+                  {actionButton.text}
+                </LinkButton>
               ) : (
                 <Button onClick={actionButton.onClick}>
                   {actionButton.text}

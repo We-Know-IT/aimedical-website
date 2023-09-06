@@ -1,4 +1,4 @@
-import Button from "../Button";
+import Button, { LinkButton } from "../Button";
 import Image from "next/image";
 import Link from "next/link";
 type Props = {
@@ -13,6 +13,7 @@ type Props = {
     title: string;
     text: string;
     img: string;
+    imgAlt: string;
   }[];
 };
 
@@ -33,11 +34,9 @@ export default function TwoColText({ title, text, actionButton, list }: Props) {
           </p>
           {actionButton &&
             (actionButton.href ? (
-              <Link href={actionButton.href}>
-                <Button onClick={actionButton.onClick}>
-                  {actionButton.text}
-                </Button>
-              </Link>
+              <LinkButton isPrimary href={actionButton.href}>
+                {actionButton.text}
+              </LinkButton>
             ) : (
               <Button onClick={actionButton.onClick}>
                 {actionButton.text}
@@ -54,7 +53,7 @@ export default function TwoColText({ title, text, actionButton, list }: Props) {
                 <div className="flex h-full w-1/5 items-center justify-center">
                   <Image
                     src={"/images/" + data.img}
-                    alt={""}
+                    alt={data.imgAlt}
                     width={48}
                     height={48}
                   />
