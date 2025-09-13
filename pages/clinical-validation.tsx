@@ -4,31 +4,42 @@ import Header from "../components/general/Header";
 import MetaTags from "../components/general/seo/MetaTags";
 import Image from "next/image";
 import Link from "next/link";
+import Typography from "../components/common/Typography";
 
 function StudyDetails() {
   return (
     <>
-      <h3 className="mt-6 mb-2 text-xl font-semibold text-primary lg:text-2xl">
+      <Typography variant="h3" className="mt-6 mb-2">
         Study Details
-      </h3>
+      </Typography>
       <div className="flex flex-col gap-4">
         <div className="flex-1">
-          <h4 className="text-lg font-bold">Number of Subjects</h4>
-          <p className="text-lg leading-7">
-            241 subjects from 37 primary care centres in Sweden.
-          </p>
+          <Typography variant="p" className="font-medium">
+            Number of Subjects
+          </Typography>
+          <Typography variant="p">
+            250 subjects from 37 primary care centres in Sweden.
+          </Typography>
         </div>
         <div className="flex-1">
-          <h4 className="text-lg font-bold leading-7">
+          <Typography variant="p" className="font-medium">
             Diagnosis and main eligibility criteria
-          </h4>
-          <ul className="ml-4 list-disc gap-6 text-lg font-normal leading-7">
-            <li>Patients ≥18 years.</li>
+          </Typography>
+          <ul className="ml-4 list-disc gap-6">
             <li>
-              Patients attending a primary care facility with at least 1
-              suspicious skin lesion where MM cannot be ruled out.
+              <Typography variant="p">Patients ≥18 years.</Typography>
             </li>
-            <li>Willingness and ability to provide informed consent.</li>
+            <li>
+              <Typography variant="p">
+                Patients attending a primary care facility with at least 1
+                suspicious skin lesion where melanoma cannot be ruled out.
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="p">
+                Willingness and ability to provide informed consent.
+              </Typography>
+            </li>
           </ul>
         </div>
       </div>
@@ -39,34 +50,35 @@ function StudyDetails() {
 function StudyOverview() {
   return (
     <>
-      <h2 className="mb-6 text-2xl font-semibold text-primary lg:text-3xl">
-        Clinical Study Overview
-      </h2>
+      <Typography variant="h2" className="mb-2">
+        Clinical Study #1
+      </Typography>
       <div className="flex flex-col gap-12 lg:flex-row">
-        <div className="flex flex-1 flex-col gap-6 text-lg font-normal leading-7 text-on-bg-primary">
-          <p>
+        <div className="flex flex-1 flex-col text-lg font-normal text-on-bg-primary">
+          <Typography variant="h3">Background & Aim</Typography>
+          <Typography variant="p" className="pt-3">
             The study&apos;s primary objective was to determine the diagnostic
             precision of the AI-based medical device Dermalyser by answering at
             which level Dermalyser can identify melanomas among cutaneous
             lesions assessed in clinical use due to any degree of malignancy
             suspicion.
-          </p>
-          <p>
+          </Typography>
+          <Typography variant="p" className="pt-3">
             The primary endpoint was measured by testing if Dermalyser gives
             correct results as compared with the final diagnosis of the lesion
             analysis (the final classification by histopathology (PAD) and/or
-            Dermatologist assessment) in at least a certain proportion (π) of
+            Dermatologist assessment) in at least a certain proportion of
             the analyses.
-          </p>
-          <p>
-            A secondary objective was to evaluate the usability and
+          </Typography>
+          <Typography variant="p" className="pt-3">
+            In addition, one of the secondary objectives was to evaluate the usability and
             applicability in the clinical practice of Dermalyser by medical
             professionals and to gain an increased knowledge and understanding
             of how digital tools enhanced by AI can assist physicians with the
             proper support for an earlier diagnosis of melanoma. Towards this
             goal, users were asked to rate Dermalyser via a series of questions,
             including a System Usability Scale.
-          </p>
+          </Typography>
         </div>
         <div className="flex-1">
           <Image
@@ -85,25 +97,26 @@ function StudyOverview() {
 function StudySummary() {
   return (
     <>
-      <h3 className="mt-6 mb-2 text-xl font-semibold text-primary lg:text-2xl">
+      <Typography variant="h3" className="mt-6 mb-2">
         Summary of Results
-      </h3>
-      <div className="flex flex-col gap-6 text-lg font-normal leading-7">
-        <p>
+      </Typography>
+      <div className="flex flex-col gap-6 text-lg font-normal">
+        <Typography variant="p">
           The study demonstrates an AUC of 0.96, and after threshold
           calibration, the result from the clinical investigation demonstrates
-          an AI performance of 95% sensitivity and 85.5% specificity.
-        </p>
-        <p>
-          To read further details of the study, visit:
+          an AI performance of 95% sensitivity and 80% specificity. <br /> <br />
+          The fast response/outcome from Dermalyser compared to the time to the diagnosis from dermatologist and PAD combined with the app safety profile and high sensitivity, indicates that Dermalyser can have a significant positive impact on the early detection and diagnosis of cutaneous malignant melanoma. 
+        </Typography>
+        <Typography variant="p">
+          No adverse events were reported. To read further details of the study, visit:
           <br />
           <a
             href="https://clinicaltrials.gov/ct2/show/NCT05172232?term=AI&cond=Melanoma&draw=2&rank=1"
             className="text-primary hover:text-primary-hover">
-            https://clinicaltrials.gov/ct2/show/NCT05172232?term=AI&cond=Melanoma&draw=2&rank=1
+            https://clinicaltrials.gov/
           </a>
-        </p>
-        <p>
+        </Typography>
+        <Typography variant="p">
           For any questions about the study or to learn more about Dermalyser,
           please{" "}
           <Link
@@ -112,7 +125,7 @@ function StudySummary() {
             contact us
           </Link>
           .
-        </p>
+        </Typography>
       </div>
     </>
   );
@@ -134,8 +147,9 @@ export default function ClinicalValidation() {
         title="Clinical Validation"
         imageAlt="Image of a doctor using dermalyser"
         text="Dermalyser has been evaluated in an independent clinical study run across 37 primary care facilities in Sweden"
+        imagePosition="70%"
       />
-      <main className="container my-24">
+      <main className="container mt-10 mb-24">
         <div>
           <StudyOverview />
           <div className="flex flex-col gap-2 lg:flex-row lg:gap-12">

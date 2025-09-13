@@ -9,6 +9,8 @@ import Link from "next/link";
 import { useCookieConsent } from "../../context/cookieConsent";
 import MetaTags from "../../components/general/seo/MetaTags";
 import remarkGfm from "remark-gfm";
+import Typography from "../../components/common/Typography";
+import VideoPlaceholder from "../../components/general/cookie-consent/VideoPlaceholder";
 
 function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -72,9 +74,9 @@ export default function PostDetails(props: ServiceResponse<Post>) {
               h1: (props) => {
                 return (
                   <>
-                    <h3 className="my-6 text-xl font-bold text-primary lg:text-2xl">
+                    <Typography variant="h2" className="mt-6">
                       {props.children[0]}
-                    </h3>
+                    </Typography>
                     {/* Could add the ingress after the main title, however, might be counter intuitive */}
                     {/* <p className="mb-6 text-lg font-medium">{post.ingress}</p> */}
                   </>
@@ -82,23 +84,23 @@ export default function PostDetails(props: ServiceResponse<Post>) {
               },
               h2: (props) => {
                 return (
-                  <h4 className="textl-lg my-4 font-bold text-on-bg-primary lg:text-xl">
+                  <Typography variant="h3" className="mt-4">
                     {props.children[0]}
-                  </h4>
+                  </Typography>
                 );
               },
               h3: (props) => {
                 return (
-                  <h5 className="my-4 text-lg font-bold text-on-bg-primary">
+                  <Typography variant="h4" className="mt-4">
                     {props.children[0]}
-                  </h5>
+                  </Typography>
                 );
               },
               h4: (props) => {
                 return (
-                  <h6 className="my-4 text-lg text-on-bg-primary">
+                  <Typography variant="h5" className="mt-4">
                     {props.children[0]}
-                  </h6>
+                  </Typography>
                 );
               },
 
@@ -125,23 +127,24 @@ export default function PostDetails(props: ServiceResponse<Post>) {
                 if (
                   props.node.children[0].type === "text" ||
                   (props.node.children[0].type === "element" &&
-                    props.node.children[0].tagName === "strong")
+                    props.node.children[0].tagName === "strong") ||
+                  (props.node.children[0].type === "element" &&
+                    props.node.children[0].tagName === "em")
                 ) {
                   return (
-                    <p className="my-4 whitespace-pre-wrap text-lg text-on-bg-primary">
+                    <Typography
+                      variant="p"
+                      className="my-2 whitespace-pre-wrap">
                       {props.children}
-                    </p>
+                    </Typography>
                   );
                 } else {
                   return <>{props.children[0]}</>;
                 }
               },
+
               strong: (props) => {
-                return (
-                  <strong className="my-4 whitespace-pre-wrap text-lg font-bold text-on-bg-primary">
-                    {props.children}
-                  </strong>
-                );
+                return <strong>{props.children}</strong>;
               },
 
               a: (props) => {
@@ -182,21 +185,7 @@ export default function PostDetails(props: ServiceResponse<Post>) {
                   isYoutubeLink(linkAddress.toString()) &&
                   !cookieConsent
                 ) {
-                  return (
-                    <div
-                      className="mx-auto mb-4 flex aspect-video h-full w-full max-w-full flex-col items-center justify-center rounded-md bg-gray-100"
-                      style={{ width: widthValue }}>
-                      <p className="w-full text-center text-lg text-on-bg-primary">
-                        To be able to watch this video you need to allow
-                        third-party cookies.
-                      </p>
-                      <button
-                        className="mt-4 rounded-md bg-primary px-6 py-2 text-lg text-white hover:bg-primary-hover focus:bg-primary-hover active:bg-primary-active"
-                        onClick={() => setConsent(true)}>
-                        Allow third-party cookies
-                      </button>
-                    </div>
-                  );
+                  return <VideoPlaceholder width={width} />;
                 } else {
                   return (
                     <Link
@@ -209,14 +198,23 @@ export default function PostDetails(props: ServiceResponse<Post>) {
               },
               ul: (props) => {
                 return (
-                  <ul className="my-4 list-inside list-disc text-lg text-on-bg-primary">
+                  <ul className="mb-2 list-inside list-disc">
                     {props.children}
                   </ul>
                 );
               },
+              li: (props) => {
+                return (
+                  <li>
+                    <Typography variant="p" className="inline-block">
+                      {props.children}
+                    </Typography>
+                  </li>
+                );
+              },
               ol: (props) => {
                 return (
-                  <ol className="my-4 list-inside list-decimal text-lg text-on-bg-primary">
+                  <ol className="mb-2 list-inside list-decimal">
                     {props.children}
                   </ol>
                 );

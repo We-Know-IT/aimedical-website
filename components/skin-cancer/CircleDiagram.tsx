@@ -59,14 +59,25 @@ export default function CircleDiagram({
       aria-label={`Circle diagram showing the percentage ${fillPercentage}% with the text ${text}`}>
       <defs>
         <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="rgba(0,99, 175, 0.75)" />
+          <stop offset="0%" stopColor="rgba(0,99, 175, 0.9)" />
           <stop offset="100%" stopColor="rgba(0,99,175,1.0)" />
         </linearGradient>
       </defs>
 
       <circle
+        className={
+          " origin-center fill-transparent  stroke-[#D8DCE2] stroke-[50%]"
+        }
+        cx="50%"
+        cy="50%"
+        r={radius}
+        style={{
+          strokeDasharray: circumference,
+        }}
+      />
+      <circle
         ref={circleRef}
-        className={" origin-center fill-transparent stroke-[50%]"}
+        className={" origin-center fill-transparent  stroke-[50%]"}
         cx="50%"
         cy="50%"
         r={radius}
@@ -78,7 +89,7 @@ export default function CircleDiagram({
         }}
       />
       <text
-        x="10%"
+        x="15%"
         y="50%"
         className={
           "translate-y-[0.5rem]  fill-on-primary stroke-on-primary" +

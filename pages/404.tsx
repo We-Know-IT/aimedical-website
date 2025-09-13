@@ -2,7 +2,7 @@ import Head from "next/head";
 import Header from "../components/general/Header";
 
 const actionButton = {
-  text: "Go back home",
+  children: "Go back home",
   href: "/",
 };
 
@@ -15,7 +15,7 @@ export default function NotFound() {
       <Header
         imageUrl="/images/header.jpg"
         title="404 Not found"
-        text="Wow looks like you got lost, but don't worry we can help you get back home."
+        text="Looks like you got lost, but don't worry we can help you get back home."
         fullHeight
         actionButton={actionButton}
       />

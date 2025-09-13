@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { useWindowDimensions } from "../../../utils/resize";
 import InstructionSlide from "../InstructionSlide";
 import { HowItWorksSlide } from "./HowItWorks";
+import { Button } from "../../general/Button";
+import { BsArrowLeftShort, BsArrowRightShort } from "react-icons/bs";
 
 type Props = {
   slides: HowItWorksSlide[];
@@ -15,6 +17,10 @@ export default function HowItWorksSlider({ slides }: Props) {
 
   const nextSlide = () => {
     setSlideIdx((prevSlide) => prevSlide + 1);
+  };
+
+  const previousSlide = () => {
+    setSlideIdx((prevSlide) => prevSlide - 1);
   };
 
   const returnToFirstSlide = () => {
@@ -45,34 +51,49 @@ export default function HowItWorksSlider({ slides }: Props) {
   useEffect(updateSlidesScrollOnResize, [width]);
 
   return (
-    <ul ref={slidesRef} className={"flex flex-row overflow-x-hidden"}>
-      {slides.map((s, i) => {
-        if (i === slides.length - 1) {
-          return (
-            <li key={s.title} className="w-full shrink-0">
-              <InstructionSlide
-                {...s}
-                onClick={returnToFirstSlide}
-                buttonText="Return"
-                buttonIcon={<>&lsaquo;</>}
-                iconPosition="left"
-              />
-            </li>
-          );
-        } else {
-          return (
-            <li key={s.title} className="w-full shrink-0">
-              <InstructionSlide
-                {...s}
-                onClick={nextSlide}
-                buttonText="Next"
-                buttonIcon={<>&rsaquo; </>}
-                iconPosition="right"
-              />
-            </li>
-          );
-        }
-      })}
-    </ul>
+    <>
+      <ul ref={slidesRef} className={"-mt-16 flex flex-row overflow-x-hidden"}>
+        {slides.map((s, i) => {
+          if (i === slides.length - 1) {
+            return (
+              <li key={s.title} className="w-full shrink-0">
+                <InstructionSlide {...s} />
+              </li>
+            );
+          } else {
+            return (
+              <li key={s.title} className="w-full shrink-0">
+                <InstructionSlide {...s} />
+              </li>
+            );
+          }
+        })}
+      </ul>
+      <div className="mx-auto mt-8 flex w-full max-w-sm gap-2">
+        <div className="w-1/2">
+          {slideIdx > 0 && (
+            <Button
+              className="flex w-full animate-fade-in items-center justify-center"
+              onClick={previousSlide}
+              intent="white">
+              <>
+                <BsArrowLeftShort size={20} className="mr-2" /> Previous
+              </>
+            </Button>
+          )}
+        </div>
+        <div className="w-1/2">
+          {slideIdx < slides.length - 1 && (
+            <Button
+              className="flex w-full animate-fade-in items-center justify-center"
+              onClick={nextSlide}>
+              <>
+                Next <BsArrowRightShort size={20} className="ml-2" />
+              </>
+            </Button>
+          )}
+        </div>
+      </div>
+    </>
   );
 }

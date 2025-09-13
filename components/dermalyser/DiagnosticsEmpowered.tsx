@@ -1,26 +1,18 @@
+import Typography from "../common/Typography";
+
 export default function DiagnosticsEmpowered() {
   return (
-    <section className="bg-background-secondary py-24 lg:py-32">
-      <div className="container flex max-w-xl flex-col gap-12 lg:container">
-        <h2 className="text-center text-xl font-bold leading-6 text-primary lg:text-3xl lg:leading-10">
-          Diagnostics empowered with AI
-        </h2>
-        <p className="mx-auto text-center text-lg font-medium leading-7 text-on-bg-primary lg:max-w-2xl">
-          Dermalyser is a diagnostic decision support system empowered with
-          advanced artificial intelligence. The primary function is to classify
-          skin cancer such as malignant melanoma using image analysis combined
-          with deep learning. <br /> <br />
-          The artificial intelligence is developed and trained based on
-          quality-controlled dermatoscopic images of patients’ skin lesions
-          together with associated patient data.
-        </p>
-        {/* <div className="mx-auto aspect-video w-full overflow-hidden rounded-lg shadow-lg lg:max-w-2xl">
-          <iframe
-            className="h-full w-full"
-            title="Dermalyser User guide"
-            src="https://player.vimeo.com/video/711636240?h=c1d894c848?dnt=true"
-            allowFullScreen></iframe>
-        </div> */}
+    <section className="bg-background-secondary pt-10 pb-20 lg:pb-24">
+      <div className="container flex max-w-xl flex-col gap-6 lg:container">
+        <Typography variant="h2" className="sm:self-center">
+          Empowered with <strong>AI</strong>
+        </Typography>
+        <Typography
+          variant="p"
+          className="text-on-bg-primary sm:mx-auto lg:max-w-4xl">
+          Dermalyser is a stand-alone Medical Device Software (MDSW) application empowered with Artificial Intelligence (AI). It functions as a decision-support system for medical professionals when assessing suspected lesions for Melanoma. <br /> <br />
+          The application is developed and trained on quality-controlled dermatoscopic images of skin lesions, together with associated patient data.
+        </Typography>
       </div>
     </section>
   );

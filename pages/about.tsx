@@ -17,6 +17,7 @@ export type Employee = {
 export default function About({
   team,
   board,
+  advisoryBoard,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
@@ -30,6 +31,7 @@ export default function About({
       </Head>
       <Header
         imageUrl="/images/about/header.png"
+        imagePosition="60% 20%"
         title="About us"
         text="We are dedicated to developing AI powered diagnostic solutions that enable frontline healthcare practitioners to make easier, faster and more reliable diagnoses for their patients."
       />
@@ -45,6 +47,7 @@ export default function About({
               diagnosis."
         />
         <Team employees={board} title="Meet our board " />
+        <Team employees={advisoryBoard} title="Meet our advisory board " />
       </main>
     </>
   );
@@ -77,12 +80,15 @@ const isValidJsonEmployeeData = (json: any) => {
 export const getStaticProps: GetStaticProps<{
   team: Employee[];
   board: Employee[];
+  advisoryBoard: Employee[];
 }> = async () => {
   const teamFile = await fs.readFile("./data/team.json");
   const boardFile = await fs.readFile("./data/board.json");
+  const adivsoryBoardFile = await fs.readFile("./data/advisory_board.json");
 
   let board: Employee[] = [];
   let team: Employee[] = [];
+  let advisoryBoard: Employee[] = [];
 
   if (teamFile) {
     const json = JSON.parse(teamFile);
@@ -93,13 +99,19 @@ export const getStaticProps: GetStaticProps<{
 
   if (boardFile) {
     const json = JSON.parse(boardFile);
-
     if (isValidJsonEmployeeData(json)) {
       board = json as Employee[];
     }
   }
 
+  if (adivsoryBoardFile) {
+    const json = JSON.parse(adivsoryBoardFile);
+    if (isValidJsonEmployeeData(json)) {
+      advisoryBoard = json as Employee[];
+    }
+  }
+
   return {
-    props: { board, team },
+    props: { board, team, advisoryBoard },
   };
 };

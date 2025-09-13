@@ -4,6 +4,7 @@ import Tag from "../general/Tag";
 import { getDateString } from "../../utils/date";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import Typography from "../common/Typography";
 
 type Props = {
   post?: Post;
@@ -13,12 +14,12 @@ export default function PostCard({ post }: Props) {
   return (
     <div className="group flex h-full max-w-xl flex-col justify-between rounded-xl bg-surface-primary p-9 shadow-lg duration-200 hover:-translate-y-1 hover:shadow-2xl">
       <div className="my-2 mb-2 flex flex-col space-y-2">
-        <h3 className="text-xl text-primary  group-hover:underline">
+        <Typography variant="h2" className="group-hover:underline">
           {post?.title || <Skeleton />}
-        </h3>
-        <p className="text-base line-clamp-3 ">
+        </Typography>
+        <Typography variant="p" className="line-clamp-3 ">
           {post?.ingress || <Skeleton count={3} />}
-        </p>
+        </Typography>
       </div>
       <div className="flex flex-col">
         {post?.listingImage && (
@@ -35,13 +36,13 @@ export default function PostCard({ post }: Props) {
         {!post && <Skeleton height={200} />}
 
         <div className="flex flex-row items-center justify-between">
-          <p className="flex text-sm text-on-surface-primary">
+          <Typography variant="p" className="flex text-on-surface-primary">
             {post ? (
               getDateString(new Date(post.publishedAt))
             ) : (
               <Skeleton width={60} />
             )}
-          </p>
+          </Typography>
           {post ? (
             <Tag text={post.postType} />
           ) : (

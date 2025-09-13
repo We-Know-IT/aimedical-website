@@ -1,3 +1,5 @@
+import Typography from "../common/Typography";
+
 type Props = {
   title: string;
   text: string;
@@ -5,10 +7,11 @@ type Props = {
 
 export default function AdvantageCard({ title, text }: Props) {
   return (
-    <div className="flex flex-col gap-4">
-      <h3 className="text-lg font-bold text-primary">{title}</h3>
-
-      <p className="text-on-bg-primary">{text}</p>
+    <div className=" flex h-full  flex-col justify-between items-center max-w-2xl">
+      <Typography variant="h3" className=" text-on-secondary self-start w-full">
+        {title}
+      </Typography>
+      <Typography variant="p" className="self-start w-full">{text}</Typography>
     </div>
   );
 }

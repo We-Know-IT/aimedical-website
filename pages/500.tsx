@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Header from "../components/general/Header";
 const actionButton = {
-  text: "Go back home",
+  children: "Go back home",
   href: "/",
 };
 

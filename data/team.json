@@ -3,43 +3,70 @@
     "name": "Christoffer Ekström",
     "title": "CEO / Co-Founder",
     "description": "Christoffer Ekström is one of the founders of AI Medical Technology and is the company’s CEO and one of the board members. He is a serial entrepreneur and holds a Master’s degree in immersive technologies (M.Sc.) from Stockholm University and finalising a bachelor’s degree in business administration (BBA) at Uppsala University. Christoffer is an experienced climber and adventurer.",
-    "image": "/images/employees/christoffer.jpg",
+    "image": "/images/employees/Christoffer.png",
     "linkedInLink": "https://www.linkedin.com/in/ekstrom1/"
+  },
+  {
+    "name": "Haleh Davanian",
+    "title": "Chief Business Development Officer",
+    "description": "Haleh holds a PhD in Medicine and is Business Development Officer at AI Medical Technology. She drives strategic partnerships, leads the salesforce, and develops commercial opportunities. Haleh collaborates with university hospitals, healthcare providers, and industry partners to advance the clinical use of AI in dermatology, combining her medical expertise with strong business acumen.",
+    "image": "/images/employees/Haleh.png",
+    "linkedInLink": "https://www.linkedin.com/in/halehdavanianmohaghegh/"
   },
   {
     "name": "Fredrik Paulsson",
     "title": "CTO",
     "description": "Fredrik has a PhD in computer science from the Royal Institute of Technology (KTH) and a background as Associate Professor (docent) at Umeå University. He has long experience as an entrepreneur and CTO of both startups and from larger and, more mature companies. Besides a great interest in technology, Fredrik is also an avid skier and motorcyclist.",
-    "image": "/images/employees/fredrik.jpg",
+    "image": "/images/employees/Fredrik.png",
     "linkedInLink": "https://www.linkedin.com/in/frepa/"
   },
-
+  {
+    "name": "Niya Thomas",
+    "title": "Quality Assurance and Regulatory Affairs",
+    "description": "Niya Thomas is our Quality and Regulatory Affairs manager. She holds her global masters degree in Bio-entrepreneurship from Karolinska Institutet and a dual BS-MS degree in biological sciences from Indian Institute of Science Education and Research Thiruvananthapuram. A young culinary aficionado at heart, Niya enjoys her weekends going on culinary jaunts with her friends, exploring Stockholm’s diverse food scene.",
+    "image": "/images/employees/Niya.png",
+    "linkedInLink": "https://www.linkedin.com/in/niyathomas/"
+  },
   {
     "name": "Jonatan Helenason",
     "title": "Software Developer / Co-founder",
     "description": "Jonatan Helenason is one of the founders of AI Medical Technology, and besides working as a lead developer, he is the company’s Supply Manager. He holds a Master’s degree in immersive technologies (M.Sc.) from Stockholm University. While Jonatan enjoys travelling, he is, in the most positive sense, a nerd at heart and loves everything about programming, popular science and new technology.",
-    "image": "/images/employees/jonatan.jpg",
+    "image": "/images/employees/Jonatan.png",
     "linkedInLink": "https://www.linkedin.com/in/jonatan-helenason-68707b1bb/"
   },
   {
     "name": "Jens Dolve",
     "title": "CFO / Co-Founder",
     "description": "Jens Dolve is one of the founders of AI Medical Technology and is the company’s CFO. Previous experience includes Ernst & Young, Capgemini within Assurance, Transaction Advisory and Finance Transformation. Jens holds a M.Sc. in Economics and Business Administration from Lund’s University and studies in Financial Management at Sydney University.",
-    "image": "/images/employees/jens.png",
+    "image": "/images/employees/Jens.png",
     "linkedInLink": "https://www.linkedin.com/in/jens-dolve-031b9232/"
   },
   {
     "name": "Panos Papachristou",
-    "title": "Co-Founder",
+    "title": "Chief Medical Officer/ Co-Founder",
     "description": "Panos Papachristou is a co-founder of AI Medical Technology. He is a specialist physician in Family Medicine with a broad background from the fields of Biomedicine and Medicine. He holds a PhD from Karolinska Institutet where he is affiliated to continued research. Panos is a passionate serial house renovator.",
-    "image": "/images/employees/panos.jpg",
+    "image": "/images/employees/Panos.png",
     "linkedInLink": "https://www.linkedin.com/"
   },
   {
-    "name": "Niya Thomas",
-    "title": "Quality Assurance and Regulatory Affairs",
-    "description": "Niya Thomas is our Quality and Regulatory Affairs manager. She holds her global masters degree in Bio-entrepreneurship from Karolinska Institutet and a dual BS-MS degree in biological sciences from Indian Institute of Science Education and Research Thiruvananthapuram. A young culinary aficionado at heart, Niya enjoys her weekends going on culinary jaunts with her friends, exploring Stockholm’s diverse food scene.",
-    "image": "/images/employees/niya.jpg",
-    "linkedInLink": "https://www.linkedin.com/in/niyathomas/"
+    "name": "Magnus Falk",
+    "title": "Principal Investigator",
+    "description": "Magnus Falk is a general practitioner and associate professor in general practice at Linköping University. He has broad and long-time experience as a clinical researcher in the field of skin cancer diagnosis and prevention, with specific emphasis on primary care, including methods to improve early skin cancer detection. Besides his scientific publications, he also enjoys writing novels in his leisure time.",
+    "image": "/images/employees/Magnus.png",
+    "linkedInLink": "https://aimedtech.com/about/#"
+  },
+  {
+    "name": "Reenal Boddul",
+    "title": "AI Engineer",
+    "description": "Reenal Boddul is an experienced AI Engineer at AI Medical Technology, with a solid background in software development and data science, holding an M.Tech from Pune University. She contributes significantly to the development of Dermalyser, a cutting-edge AI diagnostic tool in dermatology. Reenal is skilled in data analysis, machine learning, and AI applications in healthcare. Outside of work, she is passionate about mentoring, public speaking, and cricket coaching.",
+    "image": "/images/employees/Reenal.png",
+    "linkedInLink": "https://www.linkedin.com/in/reenal-zampal-boddul/"
+  },
+  {
+    "name": "Erik Sandström",
+    "title": "Frontend Developer",
+    "description": "Erik Sandström is a frontend developer at AI Medical Technology, specializing in Flutter development. His work focuses on creating intuitive and responsive user interfaces that meet medical technology standards. With a passion for modern app development, Erik ensures that the user experience is both seamless and accessible. When he’s not coding, he enjoys staying up to date with the latest tech trends and traveling to new places.",
+    "image": "/images/employees/Erik.png",
+    "linkedInLink": "https://www.linkedin.com/in/erik-sandstr%C3%B6m-225553112/"
   }
 ]

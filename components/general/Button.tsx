@@ -1,64 +1,57 @@
+import { VariantProps, cva } from "class-variance-authority";
 import Link from "next/link";
 
-type ButtonProps = {
-  isPrimary?: boolean;
-  className?: string;
-  children: React.ReactElement | string;
-  onClick?: () => void;
-  disabled?: boolean;
-  type?: "button" | "submit" | "reset";
-};
-
-type LinkButtonProps = Omit<ButtonProps, "onClick" | "disabled" | "type"> & {
-  href: string;
-};
-
-const commonStyles =
-  " rounded-full text-base px-6 py-1.5 xl:py-3.5  md:px-12 md:py-2.5 transition-colors duration-200 flex flex-row items-center justify-center shadow-md sm:w-fit ";
-
-const getClassName = (isPrimary: boolean) => {
-  if (isPrimary) {
-    return " bg-primary text-on-primary hover:bg-primary-hover active:bg-primary-active ";
+export const button = cva(
+  "rounded-full font-normal font-haasGrotDisplay font-extralight disabled:opacity-50 disabled:cursor-default",
+  {
+    variants: {
+      intent: {
+        primary:
+          "bg-primary text-on-primary hover:bg-primary-hover active:bg-primary-active",
+        secondary:
+          "bg-secondary hover:bg-secondary-hover text-on-secondary active:bg-secondary-active",
+        white:
+          "bg-white border border-gray-500 hover:bg-gray-200 text-on-bg-primary active:bg-gray-300",
+      },
+      size: {
+        small: "py-2 px-6 text-sm",
+        medium: "py-[15px] px-10 text-sm lg:text-base",
+      },
+    },
+    defaultVariants: {
+      intent: "primary",
+      size: "medium",
+    },
   }
+);
 
-  return " bg-white text-on-bg-primary hover:bg-gray-200 active:bg-gray-300 focus:bg-gray-200 ";
-};
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof button> {}
 
-export default function Button({
-  children,
-  onClick,
-  className = "",
-  isPrimary = false,
-  disabled = false,
-  type = "button",
-}: ButtonProps) {
-  return (
-    <button
-      className={
-        getClassName(isPrimary) +
-        commonStyles +
-        className +
-        (disabled ? " cursor-default opacity-50 " : "")
-      }
-      disabled={disabled}
-      onClick={onClick}
-      type={type}>
-      {children}
-    </button>
-  );
+export const Button: React.FC<ButtonProps> = ({
+  className,
+  intent,
+  size,
+  ...props
+}) => <button className={button({ intent, size, className })} {...props} />;
+
+export interface LinkButtonProps
+  extends React.AnchorHTMLAttributes<HTMLAnchorElement>,
+    VariantProps<typeof button> {
+  href: string;
 }
 
-export function LinkButton({
-  isPrimary = false,
-  className = "",
-  children,
+export const LinkButton: React.FC<LinkButtonProps> = ({
+  className,
+  intent,
+  size,
   href,
-}: LinkButtonProps) {
-  return (
-    <Link
-      className={getClassName(isPrimary) + commonStyles + className}
-      href={href}>
-      {children}
-    </Link>
-  );
-}
+  ...props
+}) => (
+  <Link
+    href={href}
+    className={button({ intent, size, className })}
+    {...props}
+  />
+);

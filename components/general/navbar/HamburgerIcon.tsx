@@ -13,21 +13,21 @@ export default function HamburgerIcon({
         className={
           (isOpen ? "translate-y-1.5 rotate-45 " : "") +
           "h-0.5 w-8 transition-all" +
-          (color === "black" ? "  bg-on-bg-primary" : " bg-on-primary")
+          (color === "black" ? "  bg-on-bg-primary" : " bg-on-bg-primary")
         }
       />
       <span
         className={
-          (isOpen ? "hidden " : "") +
+          (isOpen ? "hidden " : "hidden") +
           "h-0.5 w-8 transition-all" +
-          (color === "black" ? "  bg-on-bg-primary" : " bg-on-primary")
+          (color === "black" ? "  bg-on-bg-primary" : " bg-on-bg-primary")
         }
       />
       <span
         className={
           (isOpen ? "-translate-y-1 -rotate-45 " : "") +
           "h-0.5 w-8 transition-all" +
-          (color === "black" ? "   bg-on-bg-primary" : " bg-on-primary")
+          (color === "black" ? "   bg-on-bg-primary" : " bg-on-bg-primary")
         }
       />
     </span>

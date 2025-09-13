@@ -27,7 +27,7 @@ export const navLinks: INavLink[] = [
     highlightNestedPaths: true,
   },
   {
-    label: "Contact us",
+    label: "Book a demo",
     path: "#contact",
     isHightlighted: true,
   },

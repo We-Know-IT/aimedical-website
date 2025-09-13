@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
-import { CSSProperties } from "react";
-import Button, { LinkButton } from "./Button";
+import React, { CSSProperties, useState, useEffect } from "react";
+import { LinkButton, Button } from "./Button";
+import Typography from "../common/Typography";
 
 type Props = {
   title?: string;
@@ -11,13 +11,14 @@ type Props = {
   imageAlt?: string;
   fullHeight?: boolean;
   actionButton?: {
-    text: string;
+    children: React.ReactElement | string;
     onClick?: () => void;
     href?: string;
   };
+  imagePosition?: string;
 };
 
-const buttonStyles = "z-1 relative";
+const buttonStyles = "z-1 relative flex justify-center items-center w-fit font-haasGrot font-extralight text-sm px-4 py-2";
 
 export default function Header({
   title,
@@ -26,56 +27,103 @@ export default function Header({
   imageUrl,
   imageAlt,
   fullHeight,
+  imagePosition = "center",
 }: Props) {
-  const backgroundImageStyle: CSSProperties = {
-    backgroundImage: `url("/images/blur.jpg")`,
-  };
+  const cyclingTexts = [
+    "From doubt to diagnosis - guides clinical decision.",
+    "Detect melanoma earlier, Reduce referrals, Improve clinical outcomes.",
+    "Smarter, Safe, Faster skin cancer detection."
+  ];
+
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [previousTextIndex, setPreviousTextIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPreviousTextIndex(currentTextIndex);
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentTextIndex((prev) => (prev + 1) % cyclingTexts.length);
+        setTimeout(() => {
+          setIsTransitioning(false);
+        }, 50);
+      }, 250);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [currentTextIndex]);
 
   return (
     <header
-      className={
-        "relative w-full bg-cover " + (fullHeight ? "h-[100vh]" : "h-[600px]")
-      }
-      style={backgroundImageStyle}
+      className="relative h-[70vh] max-h-[55vh] w-full pt-32"
       id="header">
-      <Image
-        src={imageUrl}
-        alt={imageAlt || "Header image"}
-        fill
-        className={"object-cover"}
-        placeholder="blur"
-        blurDataURL="/images/blur.jpg"
-      />
-      <div className="container flex h-full flex-col justify-center">
-        <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-r from-primary/[0.85]"></div>
-        <div className="animate-focus-in">
-          {title && (
-            <div className="w-fit">
-              <h1 className="relative w-fit text-xl font-bold text-on-primary">
-                {title}
-              </h1>
-              <div className="relative my-4 h-1 w-3/4 rounded bg-gray-800"></div>
-            </div>
-          )}
-          {text &&
-            (typeof text == "string" ? (
-              <h2 className="relative mb-6 whitespace-pre-wrap text-lg font-bold text-on-primary sm:text-xl lg:w-1/2 lg:text-2xl">
-                {text}
-              </h2>
-            ) : (
-              { ...text }
-            ))}
+      <div className="container flex h-full justify-center">
+        <div className="relative w-full max-w-2xl overflow-hidden rounded-xl xl:container xl:max-w-none">
+          <Image
+            src={imageUrl}
+            alt={imageAlt || "Header image"}
+            fill
+            className="object-cover"
+            style={{ objectPosition: imagePosition }}
+            placeholder="blur"
+            blurDataURL="/images/blur.jpg"
+          />
+          <div className="relative flex h-full flex-col items-center justify-center p-8 text-center">
+            <div className="animate-focus-in">
+              {title && (
+                <div className="w-fit">
+                  <Typography
+                    variant="h1"
+                    className="relative w-fit font-haasGrot font-thin text-on-primary">
+                    {title}
+                  </Typography>
+                  <div className="relative mb-4 mt-2 h-1 w-full rounded bg-secondary"></div>
+                </div>
+              )}
+              {/* Static Dermalyser text */}
+              <div className="flex justify-center w-full mb-0">
+                <Typography
+                  variant="p"
+                  className="text-on-primary text-[12px] lg:text-[14px] font-haasGrotDisplay font-thin tracking-wider">
+                  Dermalyser
+                </Typography>
+              </div>
+              
+              {/* Cycling text */}
+              <div className="relative mb-6 h-16 flex items-center justify-center w-full max-w-4xl px-8">
+                <Typography
+                  variant="p"
+                  className={`whitespace-pre-wrap text-[16px] text-on-primary lg:text-[20px] transition-all duration-500 text-center w-full font-haasGrot font-extralight ${
+                    isTransitioning 
+                      ? 'opacity-0 transform translate-y-4' 
+                      : 'opacity-100 transform translate-y-0'
+                  }`}>
+                  {cyclingTexts[currentTextIndex]}
+                </Typography>
+              </div>
 
-          {actionButton &&
-            (actionButton.href ? (
-              <LinkButton className={buttonStyles} href={actionButton.href}>
-                {actionButton.text}
-              </LinkButton>
-            ) : (
-              <Button className={buttonStyles} onClick={actionButton.onClick}>
-                {actionButton.text}
-              </Button>
-            ))}
+              {actionButton && (
+                <div className="flex justify-center w-full">
+                  {actionButton.href ? (
+                    <LinkButton
+                      className={buttonStyles}
+                      href={actionButton.href}
+                      intent="primary">
+                      {actionButton.children}
+                    </LinkButton>
+                  ) : (
+                    <Button
+                      className={buttonStyles}
+                      onClick={actionButton.onClick}
+                      intent="primary">
+                      {actionButton.children}
+                    </Button>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </header>

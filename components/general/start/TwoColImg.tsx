@@ -1,19 +1,16 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useElementInViewPort } from "../../../utils/elementInViewPort";
-import Button, { LinkButton } from "../Button";
-
-type ImageProps = {
-  src: string;
-  alt: string;
-};
+import { LinkButton, Button } from "../Button";
+import Typography from "../../common/Typography";
+import { ImageProps } from "next/image";
 
 type Props = {
   title?: string;
   text?: string;
   image?: ImageProps;
   actionButton?: {
-    text: string;
+    children: React.ReactNode | string;
     onClick?: () => void;
     href?: string;
   };
@@ -38,16 +35,17 @@ export default function TwoColImg({
   }, [sectionInViewportState, animate]);
 
   return (
-    <section ref={sectionRef} className="bg-background-primary py-24">
+    <section ref={sectionRef} className="bg-background-primary py-10">
       {/* Container */}
       <div
         className={
-          "container flex max-w-xl flex-col xl:container xl:flex-row " +
+          "container flex max-w-2xl flex-col xl:container xl:flex-row " +
           (animate ? " animate-fade-up " : " invisible animate-fade-down")
         }>
         {/* left box */}
         <div className="relative aspect-square w-full xl:w-2/5">
           <Image
+            {...image}
             src={"/images/" + image?.src}
             alt={image?.alt || ""}
             fill
@@ -58,29 +56,35 @@ export default function TwoColImg({
             blurDataURL="/images/blur.jpg"
           />
           {imageText && (
-            <div className="absolute bottom-0 flex h-1/4 w-full items-end justify-end bg-gradient-to-t from-black/70 to-transparent p-6 text-lg font-bold text-on-primary xl:rounded-bl-xl">
-              <p>{imageText}</p>
+            <div className="absolute bottom-0 flex h-1/4 w-full items-end bg-gradient-to-t from-black/70 to-transparent p-4 xl:justify-end xl:rounded-bl-xl">
+              <Typography variant="h3" className="text-white">
+                {imageText}
+              </Typography>
             </div>
           )}
         </div>
         {/* right box */}
-        <div
-          className="flex grow flex-col items-center justify-center space-y-6  rounded-bl-xl rounded-br-xl bg-gradient-to-br from-primary to-primary/50 px-6 
-        py-12 xl:rounded-bl-none xl:rounded-tr-xl xl:rounded-br-xl">
-          <div className="item-center flex  flex-col space-y-6">
-            <h3 className="text-3xl font-semibold text-on-primary">{title}</h3>
-            <p className="max-w-md text-lg tracking-wide text-on-primary">
+        <div className="flex grow flex-col items-center justify-center rounded-bl-xl rounded-br-xl bg-[#E6E6E6] p-4 xl:rounded-bl-none xl:rounded-tr-xl xl:rounded-br-xl">
+          <div className="item-center flex  flex-col">
+            <Typography variant="h2" className="mb-2">
+              {title}
+            </Typography>
+            <Typography variant="p" className="mb-6 max-w-md">
               {text}
-            </p>
+            </Typography>
 
             {actionButton &&
               (actionButton.href ? (
-                <LinkButton href={actionButton.href}>
-                  {actionButton.text}
+                <LinkButton
+                  href={actionButton.href}
+                  className="flex items-center justify-center xl:w-fit">
+                  {actionButton.children}
                 </LinkButton>
               ) : (
-                <Button onClick={actionButton.onClick}>
-                  {actionButton.text}
+                <Button
+                  onClick={actionButton.onClick}
+                  className="flex items-center justify-center xl:w-fit">
+                  {actionButton.children}
                 </Button>
               ))}
           </div>

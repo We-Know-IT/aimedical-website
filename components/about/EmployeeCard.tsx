@@ -1,6 +1,7 @@
 import { Employee } from "../../pages/about";
 import Image from "next/image";
 import { useState } from "react";
+import Typography from "../common/Typography";
 
 type Props = {
   employee: Employee;
@@ -14,48 +15,62 @@ export default function EmployeeCard({ employee }: Props) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-y-4 rounded-xl pb-6 shadow-xl">
-      <Image
-        className="clip-path-image flex h-[300px] w-full items-center justify-center rounded-t-xl object-cover"
-        src={employee.image}
-        width={600}
-        height={600}
-        quality={100}
-        alt={employee.name + " " + employee.title}
-      />
-
-      <a href={employee.linkedInLink}>
+    <div className="flex flex-col items-center justify-center gap-y-4 rounded-xl shadow-xl">
+      <div className="clip-path-image aspect-square h-[200px] w-full bg-primary/[2%] pt-10">
         <Image
-          src="/images/about/linkedin_logo.png"
-          width={42}
-          height={42}
-          alt="linked in link"
+          className="h-full rounded-t-xl  object-contain"
+          src={employee.image}
+          width={600}
+          height={600}
+          quality={100}
+          alt={employee.name + " " + employee.title}
+          style={{ objectPosition: "center 0%" }}
         />
-      </a>
+      </div>
 
-      <div className="mx-auto h-[2px] w-1/4 bg-primary " />
+      <div className="flex h-full flex-col items-center justify-between px-6">
+        <div className="flex h-[140px] flex-col items-center justify-between">
+          <a
+            href={employee.linkedInLink}
+            target="_blank"
+            rel="noopener noreferrer">
+            <Image
+              src="/images/about/linkedin_logo.png"
+              width={42}
+              height={42}
+              alt="linked in link"
+            />
+          </a>
 
-      <h3 className=" text-lg font-bold text-primary">{employee.name}</h3>
-      <p className="text-on-bg-primary/50">{employee.title}</p>
+          <div className="mx-auto h-[2px] w-1/4 bg-primary " />
 
-      <p
-        className={
-          "origin-top px-6 text-center text-lg text-on-bg-primary transition-all duration-300 ease-out" +
-          (isDesciptionVisibile
-            ? " max-h-[2000px] scale-y-100 opacity-100"
-            : " max-h-0 scale-y-0 opacity-0")
-        }>
-        {employee.description}
-      </p>
-      <button onClick={toggleDescriptionVisibility}>
-        <Image
-          className={isDesciptionVisibile ? "rotate-180" : ""}
-          src="/images/about/arrow_down.svg"
-          height={24}
-          width={24}
-          alt="read more"
-        />
-      </button>
+          <h3 className=" text-center text-[16px] font-bold text-primary">
+            {employee.name}
+          </h3>
+          <p className="text-center text-[16px] text-on-bg-primary">
+            {employee.title}
+          </p>
+        </div>
+        <Typography
+          variant="p"
+          className={
+            " origin-top transition-all duration-300 ease-out " +
+            (isDesciptionVisibile
+              ? " max-h-[2000px] scale-y-100 pt-4 opacity-100"
+              : " max-h-0 scale-y-0 opacity-0")
+          }>
+          {employee.description}
+        </Typography>
+        <button onClick={toggleDescriptionVisibility} className="p-6">
+          <Image
+            className={isDesciptionVisibile ? "rotate-180" : ""}
+            src="/images/about/arrow_down.svg"
+            height={24}
+            width={24}
+            alt="read more"
+          />
+        </button>
+      </div>
     </div>
   );
 }

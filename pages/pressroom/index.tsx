@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useState } from "react";
-import Button from "../../components/general/Button";
+import { Button } from "../../components/general/Button";
 import PostCard from "../../components/pressroom/PostCard";
 import { PostType } from "../../services/types";
 import Image from "next/image";
@@ -8,6 +8,7 @@ import Link from "next/link";
 import Header from "../../components/general/Header";
 import { usePosts } from "../../hooks/usePosts";
 import MetaTags from "../../components/general/seo/MetaTags";
+import Typography from "../../components/common/Typography";
 
 const threeColsXLWidth = false;
 const pageSize = 6;
@@ -65,27 +66,29 @@ export default function PressRoom() {
         />
       </Head>
       <Header
-        imageUrl="/images/header.jpg"
+        imageUrl="/images/pressroom/header.jpg"
         title="Pressroom"
         text="In our pressroom you can find our blog and press releases"
         actionButton={{
-          text: "Download our press kit",
+          children: "Download our press kit",
           href: "/files/presskit.zip",
         }}
+        imagePosition="center 75%"
       />
       <main className="bg-background-secondary">
         <div className="container py-10">
           <section className="ml-auto mr-auto flex flex-row items-center justify-center gap-x-4 md:gap-x-8 ">
-            <p className="hidden text-xl font-bold text-primary md:block">
-              Filter posts:
-            </p>
+            <Typography variant="h2" className="hidden md:block">
+              Filter
+            </Typography>
             <Button
-              isPrimary={displayFilters.has("blog")}
+              className="flex items-center justify-center"
+              intent={displayFilters.has("blog") ? "primary" : "white"}
               onClick={toggleBlogsFilter}
               disabled={error ? true : false}>
               <>
                 Blogs
-                {displayFilters.has("blog") ? (
+                {displayFilters.has("blog") && (
                   <Image
                     className="ml-1 h-auto w-4 "
                     src="/images/icons/cancel_icon.png"
@@ -93,18 +96,17 @@ export default function PressRoom() {
                     width={16}
                     height={16}
                   />
-                ) : (
-                  <div className="ml-1 h-4 w-4"></div>
                 )}
               </>
             </Button>
             <Button
-              isPrimary={displayFilters.has("news")}
+              className="flex items-center justify-center"
+              intent={displayFilters.has("news") ? "primary" : "white"}
               onClick={togglePressReleasesFilter}
               disabled={error ? true : false}>
               <>
                 News
-                {displayFilters.has("news") ? (
+                {displayFilters.has("news") && (
                   <Image
                     className="ml-1  h-auto w-4"
                     src="/images/icons/cancel_icon.png"
@@ -112,8 +114,6 @@ export default function PressRoom() {
                     width={16}
                     height={16}
                   />
-                ) : (
-                  <div className="ml-1 h-4 w-4"></div>
                 )}
               </>
             </Button>
@@ -122,19 +122,19 @@ export default function PressRoom() {
             {/* If there is an error, show a message. */}
             {error && (
               <div className="mb-8 flex flex-col items-center gap-14">
-                <p className="text-center text-xl font-bold text-error-dark">
+                <Typography
+                  variant="h2"
+                  className="text-center text-error-dark">
                   {error}
-                </p>
-                <Button onClick={tryAgain} isPrimary>
-                  Try again
-                </Button>
+                </Typography>
+                <Button onClick={tryAgain}>Try again</Button>
               </div>
             )}
             {/* If there are no posts to show, show a message. */}
             {posts.length === 0 && !error && !loadingPosts && (
-              <p className="text-center text-xl font-bold text-primary">
+              <Typography variant="h2" className="text-center">
                 No posts available.
-              </p>
+              </Typography>
             )}
             {/* If there are posts to show, show them. */}
             <ul
@@ -160,9 +160,7 @@ export default function PressRoom() {
             </ul>
             {hasNextPosts && !error && !loadingPosts && (
               <div className="mt-12 flex flex-col items-center">
-                <Button onClick={onLoadMore} isPrimary>
-                  Load more
-                </Button>
+                <Button onClick={onLoadMore}>Load more</Button>
               </div>
             )}
           </section>
