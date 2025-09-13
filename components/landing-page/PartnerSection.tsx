@@ -1,0 +1,86 @@
+import React from "react";
+import Image from "next/image";
+import Typography from "../common/Typography";
+import { twMerge } from "tailwind-merge";
+
+const partners = [
+  {
+    src: "home/partners/ai.svg",
+    alt: "AI Sweden Logo Black",
+    height: 200,
+    width: 200,
+    cols: "col-span-1",
+  },
+  {
+    src: "home/partners/ki.svg",
+    alt: "Karolinska Institutet Logo Plum",
+    height: 200,
+    width: 400,
+    cols: "col-span-1",
+  },
+  {
+    src: "home/partners/liu.svg",
+    alt: "Linköping University Logo Black",
+    height: 200,
+    width: 400,
+    cols: "col-span-1",
+  },
+  {
+    src: "home/partners/aida.svg",
+    alt: "AIDA Logo",
+    height: 200,
+    width: 400,
+    cols: "col-span-1",
+  },
+  {
+    src: "home/partners/ki.svg",
+    alt: "Karolinska Institutet Logo Plum",
+    height: 200,
+    width: 400,
+    cols: "col-span-1",
+  },
+  {
+    src: "home/partners/liu.svg",
+    alt: "Linköping University Logo Black",
+    height: 200,
+    width: 400,
+    cols: "col-span-1",
+  }
+];
+
+export default function PartnerSection() {
+  return (
+    <section className="flex w-full flex-col items-center space-y-3 py-10 pb-24 md:px-0 lg:space-y-6">
+      <Typography variant="h2" className="font-haasGrotDisplay font-normal">Our Partners</Typography>
+      <ul className="container flex grid-cols-6 items-center gap-8">
+        {partners.map((img, i) => (
+          <li
+            key={i}
+              className={twMerge(
+                "relative h-20 rounded-lg bg-background-secondary py-4 px-2 sm:h-24 sm:py-6 sm:px-4 w-80",
+                img.cols
+              )}>
+            <Image
+              src={"/images/" + img.src}
+              alt={img.alt}
+              height={img.height}
+              width={img.width}
+              className="h-full w-full object-contain"
+            />
+          </li>
+        ))}
+      </ul>
+      {/* <ul>
+        <li key={sahlgrenska.alt} className={"h-12"}>
+          <Image
+            src={"/images/" + sahlgrenska.src}
+            alt={sahlgrenska.alt}
+            height={sahlgrenska.height}
+            width={sahlgrenska.width}
+            quality={100}
+          />
+        </li>
+      </ul> */}
+    </section>
+  );
+}

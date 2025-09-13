@@ -1,0 +1,16 @@
+{
+  "name": "AI Medical Technology",
+  "short_name": "AI Medical",
+  "description": "AI Medical Technology - Driving Fast, Accurate Diagnosis for Melanoma",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ]
+}
