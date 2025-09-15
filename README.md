@@ -23,7 +23,7 @@ Both parts can be found in separate repositories on aimedtech’s gitlab.
 
 Ensure you have Node.js installed on your computer. Download it from [nodejs.org](https://nodejs.org) if necessary.
 
-### Backend Setup
+### Backend Setup 
 
 - **Clone** the AI Medical Strapi repository from gitlab.
 - Ensure **PostgreSQL** is installed on your computer, then create a database and user.
