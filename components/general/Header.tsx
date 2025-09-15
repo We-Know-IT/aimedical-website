@@ -59,7 +59,7 @@ export default function Header({
       className="relative h-[70vh] max-h-[55vh] w-full pt-32"
       id="header">
       <div className="container flex h-full justify-center">
-        <div className="relative w-full max-w-2xl overflow-hidden rounded-xl xl:container xl:max-w-none">
+        <div className="relative w-full overflow-hidden rounded-xl xl:container xl:max-w-none">
           <Image
             src={imageUrl}
             alt={imageAlt || "Header image"}
