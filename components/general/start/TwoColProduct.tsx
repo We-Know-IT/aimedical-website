@@ -26,7 +26,7 @@ export default function TwoColProduct({ title, text, actionButton, list, image }
 
   return (
     /* Container */
-    <section className="py-10">
+    <section className="pb-10">
       {/* Container */}
       <div className="container flex flex-col items-center justify-between xl:flex-row xl:h-[400px] space-y-6 xl:space-y-0 xl:gap-6">
         {/* flex box */}

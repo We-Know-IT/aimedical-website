@@ -33,11 +33,13 @@ const ErrorMessage = ({ message }: { message: string }) => {
 };
 
 export default function Footer() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  const [nameErrorMsg, setNameErrorMsg] = useState("");
   const [emailErrorMsg, setEmailErrorMsg] = useState("");
   const [messageErrorMsg, setMessageErrorMsg] = useState("");
   const [sendingErrorMsg, setSendingErrorMsg] = useState("");
@@ -45,6 +47,13 @@ export default function Footer() {
   const [captchaErrorMsg, setCaptchaErrorMsg] = useState("");
 
   const recaptchaRef = useRef<ReCAPTCHA>(null);
+
+  const onNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+    if (nameErrorMsg) {
+      validateName(e.target.value);
+    }
+  };
 
   const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -121,6 +130,14 @@ export default function Footer() {
     setIsSending(false);
   };
 
+  const validateName = (name: string) => {
+    if (!name.trim()) {
+      setNameErrorMsg("Name is required");
+      return;
+    }
+    setNameErrorMsg("");
+  };
+
   const validateEmail = (email: string) => {
     if (!email) {
       setEmailErrorMsg("Email is required");
@@ -149,6 +166,7 @@ export default function Footer() {
 
   const hasPassedValidation = () => {
     return (
+      !nameErrorMsg &&
       !emailErrorMsg &&
       !messageErrorMsg &&
       !privacyPolicyErrorMsg &&
@@ -196,240 +214,239 @@ export default function Footer() {
     }
     return (
       <span className="flex items-center justify-center">
-        Send <BsArrowRightShort className="ml-2" size={25} />
+        Send request
       </span>
     );
   };
 
   return (
     <footer
-      className="bg-gradient-to-tr from-primary/[95] to-primary"
+      className=""
       id="contact">
-      <div className="container py-10">
-        <div className="mb-12 flex flex-col items-center justify-between md:hidden">
-          <Image
-            className="h-auto object-cover duration-200 ease-in-out"
-            src={"/images/logo_text.svg"}
-            width={200}
-            height={0}
-            style={{ width: "auto", height: "auto" }}
-            alt="AI medical technology logo"
-          />
-        </div>
-        <div className=" flex w-full flex-col  md:flex-row-reverse md:justify-between md:space-y-0">
-          {/* Email contact form */}
-          <form
-            className="flex flex-col space-y-4 md:w-1/2"
-            onSubmit={onSubmit}
-            aria-label="Contact form">
-            <Typography variant="h2" className="text-on-primary">
-              Send us a message
+      <div className="container">
+        {/* Book a demo section */}
+        <div className="mb-8 flex flex-col bg-darkgray rounded-lg p-8 items-start justify-between lg:flex-row lg:space-x-12">
+          {/* Left side - Text content */}
+          <div className="mb-8 lg:mb-0 lg:w-1/2 flex flex-col items-start">
+            <Typography variant="h3" className="lg:mb-20 sm:mb-12 font-haasGrotDisplay font-extralight text-sm text-darkgray-active">
+              Book a demo
             </Typography>
-            <div className="space-y-1">
-              <label htmlFor="email" className="sr-only">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                autoComplete="email"
-                onChange={onEmailChange}
-                onBlur={(e) => validateEmail(e.target.value)}
-                value={email}
-                placeholder="Email"
-                className={
-                  "w-full rounded-lg p-4 " +
-                  (emailErrorMsg ? inputErrorClasses : "")
-                }
-                aria-label="Enter your email"
-                required
-              />
-              {emailErrorMsg && <ErrorMessage message={emailErrorMsg} />}
-            </div>
-            <div>
-              <label htmlFor="message" className="sr-only">
-                Your message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                onChange={onMessageChange}
-                onBlur={(e) => validateMessage(e.target.value)}
-                value={message}
-                placeholder="Your message"
-                className={
-                  "h-40 w-full resize-none rounded-lg p-4 " +
-                  (messageErrorMsg ? inputErrorClasses : "")
-                }
-                aria-label="Enter your message"
-                required
-              />
-              {messageErrorMsg && <ErrorMessage message={messageErrorMsg} />}
-            </div>
-            <div className="flex flex-col space-y-1">
-              <div className="flex items-center space-x-2">
-                <input
-                  id="privacy-policy"
-                  type="checkbox"
-                  name="privacy-policy"
-                  onChange={onPrivacyPolicyChange}
-                  checked={privacyPolicy}
+            <Typography variant="p" className="text-on-primary font-haasGrotDisplay font-extralight text-lg">
+            Discover how Dermalyser doctors in detecting melanoma quickly and accurately. Leave your details, and we’ll arrange a demo at a time that works for you.
+            </Typography>
+          </div>
+          
+          {/* Right side - Contact form */}
+          <div className="w-full lg:w-1/2">
+            <form
+              className="flex flex-col space-y-4 font-haasGrotDisplay font-extralight"
+              onSubmit={onSubmit}
+              aria-label="Contact form">
+              <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+                <div className="flex-1 space-y-1">
+                    <input
+                      type="text"
+                      id="fullname"
+                      name="fullname"
+                      value={name}
+                      onChange={onNameChange}
+                      onBlur={(e) => validateName(e.target.value)}
+                      className={
+                        "w-full rounded-3xl bg-white/5 p-3 text-white placeholder-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" +
+                        (nameErrorMsg ? " border-red-500" : "")
+                      }
+                      placeholder="Full name *"
+                      required
+                    />
+                  {nameErrorMsg && <ErrorMessage message={nameErrorMsg} />}
+                </div>
+                <div className="flex-1 space-y-1">
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    autoComplete="email"
+                    onChange={onEmailChange}
+                    onBlur={(e) => validateEmail(e.target.value)}
+                    value={email}
+                    placeholder="Email address *"
+                    className={
+                      "w-full rounded-3xl bg-white/5 p-3 text-white placeholder-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" +
+                      (emailErrorMsg ? "border-red-500" : "")
+                    }
+                    aria-label="Enter your email"
+                    required
+                  />
+                  {emailErrorMsg && <ErrorMessage message={emailErrorMsg} />}
+                </div>
+              </div>
+              <div className="space-y-1">
+                <textarea
+                  id="message"
+                  name="message"
+                  onChange={onMessageChange}
+                  onBlur={(e) => validateMessage(e.target.value)}
+                  value={message}
+                  placeholder="Message"
                   className={
-                    "h-4 w-4 bg-error " +
-                    (messageErrorMsg ? inputErrorClasses : "")
+                    "h-32 w-full resize-none rounded-3xl bg-white/5 p-3 text-white placeholder-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary " +
+                    (messageErrorMsg ? "border-red-500" : "")
                   }
-                  aria-label="Agree to Privacy Policy"
+                  aria-label="Enter your message"
                   required
                 />
-                <label htmlFor="privacy-policy" className="text-white">
-                  I agree to the{" "}
-                  <Link href="/privacy-policy" legacyBehavior>
-                    <a
-                      className="text-on-primary underline hover:text-on-primary-hover"
-                      target="_blank"
-                      rel="noopener noreferrer">
-                      Privacy Policy
-                    </a>
-                  </Link>
-                  .
-                </label>
+                {messageErrorMsg && <ErrorMessage message={messageErrorMsg} />}
               </div>
-              {privacyPolicyErrorMsg && (
-                <ErrorMessage message={privacyPolicyErrorMsg} />
-              )}
-            </div>
-            {captchaErrorMsg && <ErrorMessage message={captchaErrorMsg} />}
-            <div className="flex w-full flex-col space-y-4 lg:flex-row lg:items-center lg:space-y-0 lg:space-x-2">
-              <Button
-                className="w-full"
-                disabled={!hasPassedValidation() || isSending}
-                type="submit"
-                intent="secondary">
-                {getButtonContent()}
-              </Button>
-              {isSent && (
-                <Typography
-                  variant="p"
-                  className="flex items-center font-bold text-on-primary">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="24"
-                    width="24"
-                    className="mr-2 fill-white">
-                    <path d="M10.575 17.15 18.2 9.525l-1.95-1.95-5.675 5.675-2.825-2.825-1.925 1.95ZM12 22.875q-2.25 0-4.237-.85-1.988-.85-3.463-2.325t-2.325-3.462q-.85-1.988-.85-4.238 0-2.275.85-4.263.85-1.987 2.325-3.462t3.463-2.313Q9.75 1.125 12 1.125q2.275 0 4.262.837 1.988.838 3.463 2.313t2.313 3.462q.837 1.988.837 4.263t-.837 4.25q-.838 1.975-2.313 3.45t-3.463 2.325q-1.987.85-4.262.85Z" />
-                  </svg>
-                  Message sent
-                </Typography>
-              )}
-              {sendingErrorMsg && <ErrorMessage message={sendingErrorMsg} />}
-            </div>
-            <ReCAPTCHA
-              ref={recaptchaRef}
-              sitekey={
-                process.env.NEXT_PUBLIC_RECAPTCHA_EMAIL_SITE_KEY || "site-key"
-              }
-              size="invisible"
-              aria-label="reCAPTCHA to prevent spam"
-            />
-          </form>
-
-          {/* Contact information */}
-          <section className="flex flex-col space-y-12">
-            <div className="hidden flex-col items-center justify-between md:flex">
-              <Image
-                className="h-auto object-cover duration-200 ease-in-out"
-                src={"/images/logo_text.svg"}
-                width={200}
-                height={0}
-                style={{ width: "auto", height: "auto" }}
-                alt="AI medical technology logo"
+              <div className="flex flex-col space-y-1">
+                <div className="flex items-center space-x-2">
+                  <input
+                    id="privacy-policy"
+                    type="checkbox"
+                    name="privacy-policy"
+                    onChange={onPrivacyPolicyChange}
+                    checked={privacyPolicy}
+                    className={
+                      "h-4 w-4 rounded border-gray-300 bg-white" +
+                      (privacyPolicyErrorMsg ? "border-red-500" : "")
+                    }
+                    aria-label="Agree to Privacy Policy"
+                    required
+                  />
+                  <label htmlFor="privacy-policy" className="text-sm text-on-primary">
+                    I agree to the{" "}
+                    <Link href="/privacy-policy" legacyBehavior>
+                      <a
+                        className="text-on-primary underline hover:text-on-primary-hover"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        Privacy Policy
+                      </a>
+                    </Link>
+                  </label>
+                </div>
+                {privacyPolicyErrorMsg && (
+                  <ErrorMessage message={privacyPolicyErrorMsg} />
+                )}
+              </div>
+              {captchaErrorMsg && <ErrorMessage message={captchaErrorMsg} />}
+              <div className="flex w-full flex-col space-y-4">
+                <Button
+                  className="sm:w-full lg:w-1/4 rounded-full bg-white px-2 py-3 text-darkblue hover:bg-gray-100"
+                  disabled={!hasPassedValidation() || isSending}
+                  type="submit">
+                  {getButtonContent()}
+                </Button>
+                {isSent && (
+                  <Typography
+                    variant="p"
+                    className="flex items-center justify-center font-bold text-on-primary">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="24"
+                      width="24"
+                      className="mr-2 fill-white">
+                      <path d="M10.575 17.15 18.2 9.525l-1.95-1.95-5.675 5.675-2.825-2.825-1.925 1.95ZM12 22.875q-2.25 0-4.237-.85-1.988-.85-3.463-2.325t-2.325-3.462q-.85-1.988-.85-4.238 0-2.275.85-4.263.85-1.987 2.325-3.462t3.463-2.313Q9.75 1.125 12 1.125q2.275 0 4.262.837 1.988.838 3.463 2.313t2.313 3.462q.837 1.988.837 4.263t-.837 4.25q-.838 1.975-2.313 3.45t-3.463 2.325q-1.987.85-4.262.85Z" />
+                    </svg>
+                    Message sent
+                  </Typography>
+                )}
+                {sendingErrorMsg && <ErrorMessage message={sendingErrorMsg} />}
+              </div>
+              <ReCAPTCHA
+                ref={recaptchaRef}
+                sitekey={
+                  process.env.NEXT_PUBLIC_RECAPTCHA_EMAIL_SITE_KEY || "site-key"
+                }
+                size="invisible"
+                aria-label="reCAPTCHA to prevent spam"
               />
-            </div>
-            <div className="flex flex-col space-y-4">
-              <Typography variant="h2" className=" text-on-primary">
-                Contact
-              </Typography>
-              {/* <span className="h-1 w-16 rounded-full bg-background-primary" /> */}
-              <Typography
-                variant="p"
-                className="flex items-center font-medium text-on-primary">
-                <BsTelephone className="mr-2" size={15} />
-                {contactInformation.phone}
-              </Typography>
-              <Typography
-                variant="p"
-                className="flex items-center font-medium text-on-primary hover:text-on-primary-hover">
-                <FiMail className="mr-2" size={15} />
-                <a href={`mailto:${contactInformation.email}`}>
-                  {contactInformation.email}
-                </a>
-              </Typography>
-              <div className="flex items-center">
-                <FiMapPin className="mr-2 text-on-primary" />
-                <Typography
-                  variant="p"
-                  className="items-center text-on-primary">
-                  <b>{contactInformation.address.street}</b>
-                  <br />
-                  {contactInformation.address.city}{" "}
-                  {contactInformation.address.zip},{" "}
-                  {contactInformation.address.country}
-                </Typography>
-              </div>
-            </div>
-            <div className="flex flex-col space-y-4">
-              <Typography variant="h2" className="text-on-primary">
-                Socials
-              </Typography>
-              <Link
-                href={"https://www.linkedin.com/company/aimedicaltechnology/"}
-                className="flex items-center space-x-2 text-on-primary hover:text-on-primary-hover">
-                <Image
-                  src="/images/linkedIn_white.svg"
-                  alt={"LinkedIn Logo"}
-                  height={15}
-                  width={15}
-                />
-                <Typography
-                  variant="p"
-                  className="text-on-primary hover:text-on-primary-hover">
-                  Follow us on LinkedIn
-                </Typography>
-              </Link>
-            </div>
-            {/* Instructions for use */}
-            <Link href={"/dermalyser/#ifu"}>
-              <Typography
-                variant="p"
-                className="font-semibold text-on-primary hover:text-on-primary-hover">
-                Dermalyser instructions for use
-              </Typography>
-            </Link>
-          </section>
+            </form>
+          </div>
         </div>
-        {/* Website information */}
-        <section className="mt-24 flex w-full justify-between md:mt-12">
-          <p className="text-sm text-on-primary">
-            <Link href="/privacy-policy" legacyBehavior>
-              <a
-                href="/privacy-policy"
-                className="text-on-primary hover:text-on-primary-hover"
-                target="_blank"
-                rel="noopener noreferrer">
-                Website Privacy Policy
-              </a>
-            </Link>
-            <br />
-            Stockholm, Sweden <br /> © 2023 All rights reserved
-          </p>
-          <Image
-            src="/images/BSI_ISO.svg"
-            width={120}
-            height={61}
-            alt="BSI ISO"
-          />
-        </section>
+
+        {/* Footer content */}
+        <div className="bg-background-secondary mb-8 flex flex-col gap-8 p-12 rounded-lg">
+          {/* First row - Contact */}
+          <div className="flex flex-col md:flex-row space-y-12 md:space-y-0 border-b border-gray-300 pb-8">
+            <Typography variant="h3" className="text-darkblue-page-active font-haasGrotDisplay font-normal md:w-1/2">
+              Contact
+            </Typography>
+             <div className="flex flex-col md:flex-row space-y-3 md:space-y-0 md:w-1/2">
+               <div className="space-y-0 md:w-1/2">
+                 <Typography
+                   variant="p"
+                   className="flex items-center text-on-darkblue font-haasGrotDisplay font-extralight hover:text-on-primary-hover">
+                   <a href={`tel:${contactInformation.phone}`}>
+                     {contactInformation.phone}
+                   </a>
+                 </Typography>
+                 <Typography
+                   variant="p"
+                   className="flex items-center text-on-darkblue font-haasGrotDisplay font-extralight hover:text-on-primary-hover">
+                   <a href={`mailto:${contactInformation.email}`}>
+                     {contactInformation.email}
+                   </a>
+                 </Typography>
+               </div>
+               <div className="flex items-start md:w-1/2">
+                 <Typography variant="p" className="text-on-darkblue font-haasGrotDisplay font-extralight">
+                   {contactInformation.address.street}<br />
+                   {contactInformation.address.city} {contactInformation.address.zip}, {contactInformation.address.country}
+                 </Typography>
+               </div>
+             </div>
+          </div>
+
+          {/* Second row - Navigation */}
+          <div className="flex flex-col md:flex-row space-y-12 md:space-y-0 border-b border-gray-300 pb-8">
+            <Typography variant="h3" className="text-darkblue-page-active font-haasGrotDisplay font-normal md:w-1/2">
+              Explore website
+            </Typography>
+            <nav className="flex flex-col md:flex-row space-y-3 md:space-y-0 md:w-1/2">
+              <div className="space-y-1 md:w-1/2">
+                <Link href="/dermalyser" className="block text-on-darkblue font-haasGrotDisplay font-extralight hover:text-on-primary-hover">
+                  Product
+                </Link>
+                <Link href="/clinical-validation" className="block text-on-darkblue font-haasGrotDisplay font-extralight hover:text-on-primary-hover">
+                  Clinical Studies
+                </Link>
+                <Link href="/about" className="block text-on-darkblue font-haasGrotDisplay font-extralight hover:text-on-primary-hover">
+                  About us
+                </Link>
+                <Link href="/pressroom" className="block text-on-darkblue font-haasGrotDisplay font-extralight hover:text-on-primary-hover">
+                  News
+                </Link>
+              </div>
+              <div className="space-y-1 md:w-1/2">
+                <Link href="/privacy-policy" className="block text-on-darkblue font-haasGrotDisplay font-extralight hover:text-on-primary-hover">
+                  Integritetspolicy
+                </Link>
+                <Link
+                  href={"https://www.linkedin.com/company/aimedicaltechnology/"}
+                  className="text-on-darkblue font-haasGrotDisplay font-extralight inline-flex items-center hover:text-on-primary-hover">
+                  LinkedIn
+                </Link>
+              </div>
+            </nav>
+          </div>
+
+          {/* Bottom row - Additional info */}
+          <div className="flex flex-col md:flex-row space-y-3 md:space-y-0">
+            <div className="space-y-3 md:w-1/2">
+               <Typography variant="p" className="text-darkblue-page-active font-haasGrotDisplay font-normal">
+              All rights reserved AI Medical Technology, 2025
+              </Typography>
+
+            </div>
+            
+            <div className="space-y-3 md:w-1/2">
+            <Typography variant="p" className="text-on-darkblue font-haasGrotDisplay font-extralight">
+            Trusted by doctors, built on clinical evidence.
+            </Typography>
+
+            </div>
+          </div>
+        </div>
       </div>
     </footer>
   );

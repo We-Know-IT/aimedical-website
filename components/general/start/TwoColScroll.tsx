@@ -42,6 +42,9 @@ export default function TwoColScroll({ title, text, actionButton, list, video, s
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   
+  // Debug mode - set to true to see scroll values in console
+  const DEBUG_SCROLL = false;
+  
   // Scroll effect for color transitions and image changes
   useEffect(() => {
     const handleScroll = () => {
@@ -54,17 +57,40 @@ export default function TwoColScroll({ title, text, actionButton, list, video, s
         const isInView = rect.top < windowHeight && rect.bottom > 0;
         
         if (isInView) {
-          // Calculate scroll progress (0 to 1) - mobile optimized
+          // Mobile-optimized scroll progress calculation
           const elementTop = rect.top;
           const elementHeight = rect.height;
           
-          const viewportTop = windowHeight * 0.6; // Start when 80% of viewport is above element
-          const viewportBottom = windowHeight * 0.10; // End when 25% of viewport is above element
+          // Use more mobile-friendly viewport calculations
+          const isMobile = window.innerWidth <= 768;
+          const startThreshold = isMobile ? windowHeight * 0.4 : windowHeight * 0.6;
+          const endThreshold = isMobile ? windowHeight * -0.4 : windowHeight * 0.1;
           
-          // Calculate progress with more aggressive range
-          const progress = Math.max(0, Math.min(1, (viewportTop - elementTop) / (viewportTop - viewportBottom)));
+          // Calculate progress based on element position in viewport
+          let progress = 0;
+          
+          if (elementTop <= startThreshold && elementTop >= endThreshold) {
+            // Element is in the active scroll range
+            progress = Math.max(0, Math.min(1, (startThreshold - elementTop) / (startThreshold - endThreshold)));
+          } else if (elementTop < endThreshold) {
+            // Element has scrolled past the end threshold
+            progress = 1;
+          }
           
           setScrollProgress(progress);
+          
+          // Debug logging for mobile troubleshooting
+          if (DEBUG_SCROLL) {
+            console.log('Scroll Debug:', {
+              isMobile: isMobile,
+              elementTop: elementTop,
+              startThreshold: startThreshold,
+              endThreshold: endThreshold,
+              progress: progress,
+              windowHeight: windowHeight,
+              windowWidth: window.innerWidth
+            });
+          }
           
           // Calculate which image should be active based on scroll progress
           if (scrollImages && scrollImages.length > 0) {
@@ -91,14 +117,27 @@ export default function TwoColScroll({ title, text, actionButton, list, video, s
       }
     };
 
-    // Add both scroll and touchmove events for better mobile support
+    // Enhanced mobile scroll support
+    const handleScrollWithRAF = () => {
+      requestAnimationFrame(handleScroll);
+    };
+
+    // Add multiple event listeners for comprehensive mobile support
     window.addEventListener('scroll', throttledHandleScroll, { passive: true });
     window.addEventListener('touchmove', throttledHandleScroll, { passive: true });
-    handleScroll(); // Initial call
+    window.addEventListener('wheel', throttledHandleScroll, { passive: true });
+    
+    // Add resize listener to handle orientation changes
+    window.addEventListener('resize', handleScrollWithRAF, { passive: true });
+    
+    // Initial call with a slight delay to ensure DOM is ready
+    setTimeout(handleScroll, 100);
     
     return () => {
       window.removeEventListener('scroll', throttledHandleScroll);
       window.removeEventListener('touchmove', throttledHandleScroll);
+      window.removeEventListener('wheel', throttledHandleScroll);
+      window.removeEventListener('resize', handleScrollWithRAF);
     };
   }, [scrollImages]);
 
@@ -146,7 +185,7 @@ export default function TwoColScroll({ title, text, actionButton, list, video, s
       {/* Container */}
       <div className="container flex flex-col gap-4 xl:flex-row xl:gap-6">
         {/* Left side - Changing PNG */}
-        <div className="bg-beige rounded-xl flex-1 flex items-center justify-center xl:sticky xl:top-20">
+        <div className="bg-beige rounded-xl flex-1 flex items-center justify-center xl:sticky xl:top-20 lg:top-16">
           {scrollImages && scrollImages.length > 0 ? (
             <div className="relative w-full h-64 xl:h-80">
               {scrollImages.map((image, index) => (

@@ -140,6 +140,11 @@ module.exports = {
           DEFAULT: "#F1EDE9",
           active: "#EAf4FB",
         },
+        darkgray: {
+          DEFAULT: "#333333",
+          active:"#FFFFFF99",
+          
+        },
         lightblue: {
           DEFAULT: "#F4F9FD",
           active: "#EAf4FB",
