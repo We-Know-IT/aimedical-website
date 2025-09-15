@@ -1,72 +1,88 @@
-# AI Medical
-
-A company website for AI Medical
+# Aimedtech website
 
 ## Tech stack
 
 The project is built with [Next.js](https://nextjs.org/).
 [Tailwind CSS](https://tailwindcss.com/) is used for styling.
-[Strapi](https://strapi.io/) is used as CMS for blogs and news.
+[Strapi](https://strapi.io/) is used as CMS for blogs and news. The rest of the data on the website is static.
 
 The project is deployed on AWS and Vercel.
 
-## Development
+### Local Development
 
-### Local
+### Overview
 
-To run the project locally you first need to configure and start a postgreSQL database and the strapi server:
+The project is split into two parts:
 
-- Download the [aimedical-strapi repository](https://github.com/We-Know-IT/aimedical-strapi).
-- Make sure that you have postgreSQL installed on your computer and create a database and user to access it.
-- Update /config/database.ts in the strapi project.
+- **Frontend**: A Next.js project
+- **Backend**: A StrapiCMS project
 
-After this is set up you can start the strapi server by running the following command in the root of the project:
+Both parts can be found in separate repositories on aimedtech’s gitlab.
+
+### Prerequisites
+
+Ensure you have Node.js installed on your computer. Download it from [nodejs.org](https://nodejs.org) if necessary.
+
+### Backend Setup
+
+- **Clone** the AI Medical Strapi repository from gitlab.
+- Ensure **PostgreSQL** is installed on your computer, then create a database and user.
+- Create a `.env` file containing all variables used in `/config/*.ts`.
+- Update `/config/database.ts` in the Strapi project to match your local database configuration or update the .env variables used by database config file.
+
+### Image Upload Configuration
+
+To upload images locally instead of to AWS S3:
+
+- Refer to the Strapi upload documentation.
+- Make necessary changes to `/config/plugins.ts` and `/config/middleware.ts`.
+
+### Running Backend Locally
+
+Clone the repository and install dependencies in the repository's root with the following command:
+
+```
+npm install
+```
+
+Start the Strapi server by running
 
 ```
 npm run develop
 ```
 
-Finally start the website by using the following command in the root of this project:
+Open [http://localhost:1337/admin](http://localhost:1337/admin) to view the Strapi admin panel.
+
+### Frontend Setup
+
+**Clone** the frontend repository (this repository) from gitlab.
+
+Install dependencies with `npm install` in the root of the project.
+
+```
+npm install
+```
+
+Start the server using `npm run dev`.
 
 ```
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-See further details about the strapi server in the [aimedical-strapi repository](https://github.com/We-Know-IT/aimedical-strapi).
+**Note**: Without the backend running locally on `localhost:1337`, fetching blogs and news will result in an error.
 
-### Staging Environment
+#### Contact Form Configuration
 
-A strapi server is deployed at [render](render.com) and served on
-[strapi service](https://aimedical-strapi.onrender.com/). The first time requesting the site
-can be slow since render will shut down inactive services. It can take up to 30 seconds for it to restart.
+To use the contact form, setup an email server by defining environment variables in a `.env` file in the root of the project. This setup will use the Nodemailer library to send emails. See the `.env.example` file for required variables, including Google Recaptcha.
 
-Navigate to the [admin panel](https://aimedical-strapi.onrender.com/admin)
-to edit the added data.
+## Production deployment
 
-To run the website with the hosted strapi server go to /strap to edit the url and then start the website with the following command:
+The Next.js web application is deployed on Vercel, which was last setup with an account made by Jonatan Helanason. The production website can be reached at can be reached at [aimedtech.com](https://aimedtech.com). The deployment is set up to automatically deploy the website when changes are pushed to the main branch of the repository. Each branch is also deployed to a unique URL on Vercel which can be used for testing.
 
-```
-npm run dev
-```
+The Strapi backend is deployed on AWS according to the design below. The production environment for the backend can be found here [https://api.aimedtech.com/admin](https://api.aimedtech.com/admin). The deployment is set up to rebuild and deploy when changes are pushed to the main branch of the repository using webhooks as described in the [Strapi deployment guide](https://docs.strapi.io/dev-docs/deployment/amazon-aws).
 
-## Deployment
+The deployment setup of the backend follows the guidelines in the [Strapi deployment guide](https://docs.strapi.io/dev-docs/deployment/amazon-aws) which essentially means that the Strapi server is deployed on an EC2 instance (linux server) with an RDS database and an S3 bucket for media files.
 
-### Production
-
-The Next.js web application is deployed on Vercel. It can be reached at [aimedtech.com](https://aimedtech.com)
-
-The Strapi backend is deployed on AWS according to the design below. It can be reached at [https://api.aimedtech.com/admin](https://api.aimedtech.com/admin)
-
-<img width="756" alt="image" src="https://github.com/We-Know-IT/aimedical-website/assets/48758319/fa660aae-1b59-4a5d-923b-27e1a1c6b7c6">
-
-## Data
-
-### Employees
-
-The data for employees are stored staticly in a JSON file located at [data/team.json](/data/team.json) and [data/board.json](/data/board.json). The corresponding images are stored in [public/images/employees](/public/images/employees).
-
-### Posts
-
-The posts are stored in Strapi.
+<img width="756" alt="image" src="https://i.ibb.co/6H4BvjH/266033419-fa660aae-1b59-4a5d-923b-27e1a1c6b7c6.png">

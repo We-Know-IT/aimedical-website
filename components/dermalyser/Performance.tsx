@@ -1,19 +1,20 @@
+import Typography from "../common/Typography";
 import Bar from "./Bar";
 
 const bars = [
   {
     text: "Dermalyser",
-    value: 0.94,
+    value: 0.96,
     isHighlighted: true,
   },
   {
-    text: "General\npractioner",
-    value: 0.91,
+    text: "Expert\ndermatologist",
+    value: 0.85,
     isHighlighted: false,
   },
   {
-    text: "Expert\ndermatologist",
-    value: 0.83,
+    text: "General\npractitioner",
+    value: 0.7,
     isHighlighted: false,
   },
 ];
@@ -34,18 +35,20 @@ export default function Performance() {
   return (
     <section className="z-20 bg-background-primary">
       <div className="container max-w-xl lg:container">
-        <div className="mx-auto -my-8 flex flex-col gap-4 rounded-[20px] bg-background-primary px-4 py-24 shadow-md sm:px-6 lg:-my-12 lg:max-w-5xl lg:px-0">
-          <h2 className="text-center text-xl font-bold leading-6 text-primary  lg:text-3xl lg:leading-10">
-            AUC Performance of Dermalyser
-          </h2>
-          <div className="mx-auto h-[3px] w-1/4 bg-background-secondary-dark "></div>
-          <p className="mx-auto max-w-sm text-center text-lg  font-medium leading-7 text-on-bg-primary lg:max-w-xl ">
-            In a test with more than 6000 unseen images, our AI achieved an AUC
-            score of 0.94 which significantly outperforms Expert Dermatologists
-            and General Practitioners.
-          </p>
+        <div className="mx-auto -my-8 flex flex-col gap-4 rounded-[20px] bg-background-primary px-4 py-5 shadow-md sm:px-6 lg:-my-12 lg:max-w-5xl lg:px-0">
+          <Typography variant="h2" className="sm:text-center">
+            AUC Performance of <strong>Dermalyser</strong>
+          </Typography>
+          <Typography
+            variant="p"
+            className="mx-auto max-w-sm text-on-bg-primary sm:text-center lg:max-w-xl ">
+            In our first clinical investigation, our AI achieved an AUC score of 0.96
+            which is higher than shown for Expert Dermatologists and General
+            Practitioners. <br /><br />
+            Dermalyser is an easy-to-use, clinically validated AI decision support tool enabling faster and more accurate diagnosis of Melanoma.
+          </Typography>
 
-          <ul className="mx-auto flex w-[80%] flex-row  justify-center gap-4 lg:flex-col">
+          <ul className="mx-auto mb-4 flex w-full flex-col justify-center gap-4 sm:w-[80%]">
             {bars.map((bar, i) => (
               <li key={i}>
                 <Bar
@@ -59,6 +62,14 @@ export default function Performance() {
               </li>
             ))}
           </ul>
+          <Typography variant="p" className="mx-auto max-w-sm text-on-bg-primary sm:text-center lg:max-w-xl ">
+            For further details, visit: {"\t"}
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/38234043/"
+              className="text-primary hover:text-primary-hover">
+              https://pubmed.ncbi.nlm.nih.gov/
+            </a>
+          </Typography>
         </div>
       </div>
     </section>

@@ -9,20 +9,13 @@ import { navLinks } from "./nav-links";
 
 export default function Navbar() {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
-  const [logoSize, setLogoSize] = useState(56);
   const {
     scrollPosition: { scrollY },
   } = useWindowScrollPositions();
   const router = useRouter();
   const hasScrolled = scrollY > 0;
 
-  useEffect(() => {
-    if (hasScrolled) {
-      setLogoSize(34);
-    } else {
-      setLogoSize(56);
-    }
-  }, [hasScrolled]);
+  const logoSize = hasScrolled ? 48 : 56; // Shrink logo when scrolled
 
   const toggleNavbar = () => {
     setIsNavbarOpen(!isNavbarOpen);
@@ -32,26 +25,38 @@ export default function Navbar() {
       setIsNavbarOpen(false);
     }
   }, [router.asPath]);
+  
 
   return (
     <nav
-      className={
-        (isNavbarOpen || hasScrolled
-          ? "bg-surface-primary shadow-xl"
-          : " bg-transparent") +
-        " fixed top-0 left-0 right-0 z-50 transition-all"
-      }>
+      className={`bg-surface-primary fixed top-0 left-0 right-0 z-50 transition-all duration-300`}>
       {/* Top navbar */}
       <div
-        className={
-          " duration-250 container relative z-10 mx-auto flex justify-between ease-in-out " +
-          (hasScrolled ? "py-4" : "py-6")
-        }>
-        <h3 aria-label="AI Medical" className="flex flex-col justify-center">
-          <Link href="/">
-            <LogoIcon w={logoSize} h={logoSize} />
+        className={`container relative z-10 mx-auto flex justify-between transition-all duration-300 ease-in-out ${
+          hasScrolled ? "py-4" : "py-6"
+        }`}>
+        <div className="flex items-center space-x-4">
+          <Link href="/" className="flex items-center">
+            <LogoIcon 
+              w={logoSize} 
+              h={logoSize} 
+            />
           </Link>
-        </h3>
+          {/* AI Medical Technology text with vertical bar */}
+          <div className="hidden lg:flex items-center space-x-3">
+            <span className="text-darkblue font-haasGrot font-light text-lg">Ai Medical Technology</span>
+            <div className="w-[1px] h-6 bg-darkblue"></div>
+          </div>
+          {/* Home link next to logo */}
+          <div className="flex flex-1 items-center justify-center lg:items-stretch lg:justify-start">
+          <div className="hidden lg:block">
+            <NavLink
+              navLink={navLinks[0]}
+              color="white"
+             />
+          </div>
+          </div>
+        </div>
 
         <div className="flex items-center">
           {/* Hamburger menu */}
@@ -65,19 +70,19 @@ export default function Navbar() {
             aria-expanded={isNavbarOpen}>
             <HamburgerIcon
               isOpen={isNavbarOpen}
-              color={isNavbarOpen || hasScrolled ? "black" : "white"}
+              color="white"
             />
           </button>
           {/* Desktop links */}
           <div className="flex flex-1 items-center justify-center lg:items-stretch lg:justify-start">
             <div className="hidden lg:ml-6 lg:block">
               <ul className="flex items-center space-x-6">
-                {navLinks.map((link) => {
+                {navLinks.slice(1).map((link) => {
                   return (
                     <li key={link.path}>
                       <NavLink
                         navLink={link}
-                        color={hasScrolled ? "black" : "white"}
+                        color="white"
                       />
                     </li>
                   );
@@ -89,17 +94,27 @@ export default function Navbar() {
       </div>
       {/* Mobile drop down menu */}
       <div
-        className={
-          "relative z-10 " + (!isNavbarOpen ? "hidden " : "") + "lg:hidden"
-        }
+        className={`relative z-10 lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          isNavbarOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        }`}
         id="mobile-menu">
-        <ul className="flex flex-col items-center space-y-1 px-2 pt-2 pb-8">
-          {navLinks.map((link) => {
+        <ul className="flex flex-col items-center space-y-1 px-2 pt-2 pb-8 bg-surface-primary">
+          {navLinks.map((link, index) => {
             return (
-              <li key={link.path} className="py-2">
+              <li 
+                key={link.path} 
+                className={`py-2 transition-all duration-300 ease-in-out transform ${
+                  isNavbarOpen 
+                    ? "translate-y-0 opacity-100" 
+                    : "translate-y-4 opacity-0"
+                }`}
+                style={{
+                  transitionDelay: isNavbarOpen ? `${index * 100}ms` : "0ms"
+                }}
+              >
                 <NavLink
                   navLink={link}
-                  color={isNavbarOpen ? "black" : "white"}
+                  color="white"
                 />
               </li>
             );

@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Post } from "../../services/types";
 import Skeleton from "react-loading-skeleton";
-import Button, { LinkButton } from "../general/Button";
+import { Button, LinkButton } from "../general/Button";
 import Link from "next/link";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -37,10 +37,7 @@ export default function ResearchPostCard({ post }: Props) {
             {post?.ingress || <Skeleton count={4} />}
           </p>
           {post ? (
-            <LinkButton
-              isPrimary
-              className="py-3 px-10"
-              href={`/research/${post.slug}`}>
+            <LinkButton className="py-3 px-10" href={`/research/${post.slug}`}>
               Read more
             </LinkButton>
           ) : (

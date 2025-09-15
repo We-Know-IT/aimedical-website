@@ -1,11 +1,12 @@
-import Button, { LinkButton } from "../Button";
+import { LinkButton, Button } from "../Button";
 import Image from "next/image";
-import Link from "next/link";
+import Typography from "../../common/Typography";
+import { useRef, useEffect } from "react";
 type Props = {
-  title?: string;
+  title?: React.ReactNode | string;
   text?: string;
   actionButton: {
-    text: string;
+    children: React.ReactNode | string;
     onClick?: () => void;
     href?: string;
   };
@@ -15,59 +16,152 @@ type Props = {
     img: string;
     imgAlt: string;
   }[];
+  video?: {
+    src: string;
+    poster?: string;
+    title?: string;
+    controls?: boolean;
+    autoPlay?: boolean;
+    muted?: boolean;
+    loop?: boolean;
+  };
 };
 
-export default function TwoColText({ title, text, actionButton, list }: Props) {
+export default function TwoColText({ title, text, actionButton, list, video }: Props) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    const video = videoRef.current;
+    const overlay = overlayRef.current;
+    
+    if (video && overlay) {
+      const handlePause = () => {
+        video.controls = false;
+        overlay.classList.remove('hidden');
+      };
+      
+      const handlePlay = () => {
+        video.controls = true;
+        overlay.classList.add('hidden');
+      };
+      
+      video.addEventListener('pause', handlePause);
+      video.addEventListener('play', handlePlay);
+      
+      return () => {
+        video.removeEventListener('pause', handlePause);
+        video.removeEventListener('play', handlePlay);
+      };
+    }
+  }, [video]);
+  
   return (
     /* Container */
-    <section className="bg-background-secondary py-24">
+    <section className="py-10">
       {/* Container */}
-      <div className="container flex max-w-xl flex-col items-center justify-between xl:container xl:flex-row">
+      <div className="container flex flex-col items-center justify-between xl:flex-row xl:h-[400px] space-y-6 xl:space-y-0 xl:gap-6">
         {/* flex box */}
-        <div className="flex flex-col justify-center space-y-10 p-4 xl:w-1/3">
+        <div className="flex w-full flex-col justify-between rounded-xl bg-background-secondary px-8 xl:pr-36 py-12 lg:items-start xl:w-1/2 xl:h-full">
           {/* left box */}
-          <h2 className="text-3xl font-semibold leading-tight text-primary lg:text-4xl">
+          <Typography variant="p" className="text-darkblue-page-active font-haasGrotDisplay font-thin">
             {title}
-          </h2>
-          <p className="text-lg font-normal leading-[1.6rem] tracking-wider">
-            {text}
-          </p>
-          {actionButton &&
-            (actionButton.href ? (
-              <LinkButton isPrimary href={actionButton.href}>
-                {actionButton.text}
-              </LinkButton>
-            ) : (
-              <Button onClick={actionButton.onClick}>
-                {actionButton.text}
-              </Button>
-            ))}
+          </Typography>
+          <div className="flex flex-col items-start">
+            <Typography variant="p" className="mb-4 text-darkblue font-haasGrotDisplay font-extralight xl:text-lg">
+              {text}
+            </Typography>
+            {actionButton &&
+              (actionButton.href ? (
+                <LinkButton
+                  href={actionButton.href}
+                  size="small"
+                  className="flex items-center justify-center">
+                  {actionButton.children}
+                </LinkButton>
+              ) : (
+                <Button
+                  onClick={actionButton.onClick}
+                  size="small"
+                  className="flex items-center justify-center">
+                  {actionButton.children}
+                </Button>
+              ))}
+          </div>
         </div>
-        <div className="flex flex-col justify-center gap-y-6 space-y-8 rounded-xl bg-gradient-to-br from-primary/50 to-primary px-4 py-20 lg:items-center lg:justify-evenly lg:gap-y-0 xl:w-1/2">
-          {/*  bg-gradient-to-r from-primary/[50] to-primary*/}
-          {list &&
+        <div className="flex w-full flex-col justify-center rounded-xl lg:items-center lg:justify-evenly xl:w-1/2 xl:h-full">
+          {/*  right box */}
+          {video ? (
+            <div className="w-full h-full relative">
+              <video
+                ref={videoRef}
+                src={video.src}
+                poster={video.poster}
+                title={video.title}
+                controls={false}
+                autoPlay={video.autoPlay}
+                muted={true}
+                loop={video.loop}
+                playsInline
+                className="w-full h-full object-cover rounded-lg"
+              >
+                Your browser does not support the video tag.
+              </video>
+              {/* Custom play button overlay */}
+              <div ref={overlayRef} className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 rounded-lg">
+                <button
+                  onClick={async (e) => {
+                    if (videoRef.current && overlayRef.current) {
+                      try {
+                        // Ensure video is muted for autoplay
+                        videoRef.current.muted = true;
+                        await videoRef.current.play();
+                        // Event listener will handle showing controls and hiding overlay
+                      } catch (error) {
+                        // Fallback: try to play without await
+                        videoRef.current.play().catch(() => {});
+                      }
+                    }
+                  }}
+                  className="w-20 h-20 backdrop-blur-md bg-white bg-opacity-30 rounded-full flex items-center justify-center hover:bg-opacity-40 transition-all duration-200 shadow-lg border border-white border-opacity-20"
+                >
+                  <svg
+                    className="w-8 h-8 text-white ml-1"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          ) : list ? (
             list.map((data) => (
               <div
-                className="flex w-full items-center justify-center lg:w-2/3"
+                className="flex w-full justify-center space-x-2 mb-6 last:mb-0"
                 key={data.title}>
-                <div className="flex h-full w-1/5 items-center justify-center">
+                <div className="flex h-full w-[36px] flex-shrink-0 sm:w-[48px]">
                   <Image
                     src={"/images/" + data.img}
                     alt={data.imgAlt}
-                    width={48}
-                    height={48}
+                    width={36}
+                    height={36}
+                    className=""
                   />
                 </div>
-                <div className="w-4/5">
-                  <h3 className="3lg:text-3xl py-2 text-2xl font-semibold  text-on-primary">
+                <div className="flex max-w-[300px] flex-col">
+                  <Typography
+                    variant="h3"
+                    className="font-bold text-on-primary">
                     {data.title}
-                  </h3>
-                  <p className="3lg:text-xl text-lg leading-snug tracking-wide  text-on-primary">
+                  </Typography>
+                  <Typography variant="p" className="text-on-primary">
                     {data.text}
-                  </p>
+                  </Typography>
                 </div>
               </div>
-            ))}
+            ))
+          ) : null}
         </div>
       </div>
     </section>

@@ -3,35 +3,28 @@
     "name": "Pär Nordström",
     "title": "Chairman of the Board",
     "description": "Pär Nordström holds a Master’s degree in engineering physics from KTH. With more than three decades in the global medical device industry, then serving as an Investment manager at Almi Invest, he has gained extensive experience in Medical devices, board work and startups. He currently serves on the board of three medical technology startups. Apart from his engagement in Medtech startups, he enjoys spending time in his house and on the golf courses in Southern Sweden.",
-    "image": "/images/employees/pär.jpg",
+    "image": "/images/employees/Par.png",
     "linkedInLink": "https://www.linkedin.com/in/p%C3%A4r-nordstrom-7a399b9/"
   },
   {
     "name": "Agneta Franksson",
     "title": "Member of the Board",
     "description": "Agneta Franksson holds an MBA from Uppsala University and a Master’s degree from KTH, Stockholm. She has more than 25 years of experience in R&D, including clinical trials, product development, sales, marketing and CEO roles. Recently she has served as Sales Director at Tieto Healthcare & Welfare. Agneta has worked on about twenty boards since 2012. Her board experience spans both owner-managed and public companies, and she has received the national award “Supergasell 2016”, Dagens Industri.",
-    "image": "/images/employees/agneta.jpg",
+    "image": "/images/employees/Agneta.png",
     "linkedInLink": "https://www.linkedin.com/in/agneta-franksson-8647a210/"
   },
   {
-    "name": "Björn Ursing",
+    "name": "Emil Billbäck",
     "title": "Member of the Board",
-    "description": "Björn Ursing is a member of the board and also heads a life science initiative at The Netherlands Embassy in Stockholm, connecting the life science sectors in Sweden and The Netherlands. Björn has a broad life science background with experience as an Associate professor at Karolinska Institutet, a senior scientist in pharma, a COO in Danish biotech and consultant. Björn has mainly been engaged in MDR’s implications for startups in supporting roles. When not in the office, Björn enjoys playing golf and skiing.",
-    "image": "/images/employees/björn.jpg",
-    "linkedInLink": "https://www.linkedin.com/in/ursing/"
+    "description": "Over 30 years of experience within the Life Science industry, with several recent senior positions in private equity environment. Emil was recently Senior Advisor to the merged BSN Medical/SCA unit. Before the merger, he was Chief Commercial Officer. Emil is CEO of Bonesupport, a medical technology company listed on NASDAQ Stockholm.",
+    "image": "/images/employees/Emil.png",
+    "linkedInLink": "https://www.linkedin.com/in/emil-billbaeck-57033a4/"
   },
   {
-    "name": "Viktoria Hellstrand",
+    "name": "Peter Löwendahl",
     "title": "Member of the Board",
-    "description": "Victoria Hellstrand has many years of experience in the Life Science and Medtech industries working with sales, medical marketing, pharmaceutical development, and clinical trial management. Victoria manages cross-functional teams, specialising in the launch of rare diseases, orphan drugs, and lifecycle management of mature products. She is committed to the patient perspective and collaborations together with patient organisations. Victoria loves spending time with family and friends, and being outdoors with her dogs.",
-    "image": "/images/employees/victoria.jpg",
-    "linkedInLink": "https://www.linkedin.com/in/victoria-hellstrand-2843126b/"
-  },
-  {
-    "name": "Magnus Falk",
-    "title": "Clinical Advisory",
-    "description": "Magnus Falk is a general practitioner and associate professor in general practice at Linköping University. He has broad and long-time experience as a clinical researcher in the field of skin cancer diagnosis and prevention, with specific emphasis on primary care, including methods to improve early skin cancer detection. Besides his scientific publications, he also enjoys writing novels in his leisure time.",
-    "image": "/images/employees/magnus.png",
-    "linkedInLink": "https://aimedtech.org/about/#"
+    "description": "More than 30 years of experience in ensuring predictable and sustainable market access globally in Life Science. Spent 15 years in senior global leadership roles within Elekta and GE Healthcare. Peter serves as a senior advisor to more than 15 medical device companies.",
+    "image": "/images/employees/Peter.png",
+    "linkedInLink": "https://www.linkedin.com/in/peter-l%C3%B6wendahl-328281a/"
   }
 ]

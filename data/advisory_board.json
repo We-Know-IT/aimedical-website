@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Olle Larkö",
+    "title": "Member of the Advisory Board",
+    "description": "A board member for the European Academy of Dermatology and Venereology. Olle is also part of the Swedish Medicines Agency's scientific council, and is part of the Medical Law Council, consisting of professionals, private and public care management representatives.",
+    "image": "/images/employees/Olle.png",
+    "linkedInLink": "https://www.linkedin.com/in/olle-lark%C3%B6-8175109a/"
+  },
+  {
+    "name": "Harald Kittler",
+    "title": "Member of the Advisory Board",
+    "description": "Professor Kittler is an internationally well-known dual medical specialist in Dermatology and skin pathology.  He is a senior researcher interested in dermoscopy and dermatopathology at Vienna University. Prof Kittler is the author of several books on dermoscopy and melanoma.",
+    "image": "/images/employees/Harald.png",
+    "linkedInLink": "https://www.linkedin.com/in/harald-kittler-2a831423/"
+  },
+  {
+    "name": "Gustav Ullenhag",
+    "title": "Member of the Advisory Board",
+    "description": "The chief physician at Uppsala Academic Hospital’s oncology clinic. Gustav is the group manager for malignant melanoma at Uppsala Academic Hospital’s oncology clinic and also represents the Central Swedish region in the national care program group for malignant melanoma and is in the steering group for the SweMR. and SMSG.",
+    "image": "/images/employees/Gustav.png",
+    "linkedInLink": "https://www.linkedin.com/in/gustav-ullenhag-0130325/"
+  },
+  {
+    "name": "Sam Polesie",
+    "title": "Member of the Advisory Board",
+    "description": "Sam is a specialist physician and an associate professor at the Department of Dermatology and Venereology at Sahlgrenska University Hospital, Sweden. He is an academic researcher with a special interest and a long track record in AI and Dermatology.",
+    "image": "/images/employees/Sam.png",
+    "linkedInLink": "https://www.linkedin.com/in/sam-polesie-262924114/"
+  }
+]

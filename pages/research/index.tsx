@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Button from "../../components/general/Button";
+import { Button } from "../../components/general/Button";
 import Header from "../../components/general/Header";
 import ResearchPostCard from "../../components/research/ResearchPostCard";
 import { usePosts } from "../../hooks/usePosts";
@@ -65,14 +65,14 @@ export default function Research() {
             <p className="text-center text-xl font-bold text-error-dark">
               {error}
             </p>
-            <Button onClick={tryAgain} isPrimary>
+            <Button onClick={tryAgain} intent="primary">
               Try again
             </Button>
           </div>
         )}
         {hasNextPosts && !error && !loadingPosts && (
           <div className="my-12 flex flex-col items-center">
-            <Button onClick={onLoadMore} isPrimary>
+            <Button onClick={onLoadMore} intent="primary">
               Load more
             </Button>
           </div>

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Button, { LinkButton } from "../Button";
+import { LinkButton, Button } from "../Button";
+import Typography from "../../common/Typography";
+import { twMerge } from "tailwind-merge";
 
 export interface INavLink {
   label: string;
@@ -23,8 +25,7 @@ export default function NavLink({ navLink, color = "white" }: Props) {
   if (navLink.isHightlighted) {
     return (
       <LinkButton
-        className="font-bold md:px-8 md:py-2 md:text-lg xl:py-2"
-        isPrimary
+        className="py-2 text-lg font-haasGrot font-thin md:py-2 md:px-6 lg:py-3"
         href={navLink.path}>
         {navLink.label}
       </LinkButton>
@@ -36,20 +37,20 @@ export default function NavLink({ navLink, color = "white" }: Props) {
       return " text-primary active:text-primary-active hover:text-primary-hover ";
     }
     if (isActive && color === "white") {
-      return " border-b-2 border-white text-on-primary hover:text-on-primary-hover active:text-on-primary-active";
+      return " border-b-2 border-white text-darkblue-page-active hover:text-darkblue-hover active:text-darkblue-active";
     }
     if (color === "black") {
-      return "font-semibold text-on-surface-primary hover:text-on-surface-primary-hover active:text-on-surface-primary-active";
+      return "font-normal text-on-surface-primary hover:text-on-surface-primary-hover active:text-on-surface-primary-active";
     }
     if (color === "white") {
-      return "font-semibold text-on-primary hover:text-on-primary-hover active:text-on-primary-active";
+      return "font-haasGrot font-light text-darkblue hover:text-darkblue-hover active:text-darkblue-active";
     }
   };
   return (
-    <Link
-      href={navLink.path}
-      className={"h-full text-lg font-semibold " + getStyle()}>
-      {navLink.label}
-    </Link>
+    <Typography
+      variant="p"
+      className={twMerge("h-full text-lg font-haasGrot font-light", getStyle())}>
+      <Link href={navLink.path}>{navLink.label}</Link>
+    </Typography>
   );
 }

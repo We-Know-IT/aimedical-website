@@ -62,6 +62,9 @@ function parseStrapiImageData(image: any) {
 }
 
 function getStrapiErrorResponse(e: any) {
+  if (e == undefined) {
+    return { error: "error", data: null };
+  }
   return { error: (e as StrapiError).error?.message || "error", data: null };
 }
 

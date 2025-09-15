@@ -1,14 +1,17 @@
-import Button from "../Button";
+import { Button } from "../Button";
 import { useRef, useState } from "react";
 import { isValidEmail, isValidMessage } from "../../../utils/validation";
 import Link from "next/link";
 import ReCAPTCHA from "react-google-recaptcha";
 import ErrorIcon from "../../icons/common/Error";
 import Image from "next/image";
+import Typography from "../../common/Typography";
+import { BsArrowRightShort, BsTelephone } from "react-icons/bs";
+import { FiMail, FiMapPin } from "react-icons/fi";
 
 const contactInformation = {
-  email: "support@aimedtech.org",
-  phone: "+46 721748339",
+  email: "support@aimedtech.com",
+  phone: "(+46) 08 522 351 91",
   address: {
     street: "Universitetsvägen 8",
     city: "Stockholms County",
@@ -191,24 +194,37 @@ export default function Footer() {
         </>
       );
     }
-    return <span>Submit</span>;
+    return (
+      <span className="flex items-center justify-center">
+        Send <BsArrowRightShort className="ml-2" size={25} />
+      </span>
+    );
   };
 
   return (
     <footer
-      className="bg-gradient-to-br from-primary/[0.85] to-primary/50"
+      className="bg-gradient-to-tr from-primary/[95] to-primary"
       id="contact">
-      <div className="container py-16">
-        <div className=" flex w-full flex-col space-y-20  md:flex-row-reverse md:justify-between md:space-y-0">
+      <div className="container py-10">
+        <div className="mb-12 flex flex-col items-center justify-between md:hidden">
+          <Image
+            className="h-auto object-cover duration-200 ease-in-out"
+            src={"/images/logo_text.svg"}
+            width={200}
+            height={0}
+            style={{ width: "auto", height: "auto" }}
+            alt="AI medical technology logo"
+          />
+        </div>
+        <div className=" flex w-full flex-col  md:flex-row-reverse md:justify-between md:space-y-0">
           {/* Email contact form */}
           <form
             className="flex flex-col space-y-4 md:w-1/2"
             onSubmit={onSubmit}
             aria-label="Contact form">
-            <h3 className="text-2xl font-bold text-on-primary">
+            <Typography variant="h2" className="text-on-primary">
               Send us a message
-            </h3>
-            <span className="h-1 w-32 rounded-full bg-background-primary" />
+            </Typography>
             <div className="space-y-1">
               <label htmlFor="email" className="sr-only">
                 Email
@@ -223,7 +239,7 @@ export default function Footer() {
                 value={email}
                 placeholder="Email"
                 className={
-                  "w-full rounded-xl p-4 " +
+                  "w-full rounded-lg p-4 " +
                   (emailErrorMsg ? inputErrorClasses : "")
                 }
                 aria-label="Enter your email"
@@ -243,7 +259,7 @@ export default function Footer() {
                 value={message}
                 placeholder="Your message"
                 className={
-                  "h-40 w-full resize-none rounded-xl p-4 " +
+                  "h-40 w-full resize-none rounded-lg p-4 " +
                   (messageErrorMsg ? inputErrorClasses : "")
                 }
                 aria-label="Enter your message"
@@ -263,17 +279,18 @@ export default function Footer() {
                     "h-4 w-4 bg-error " +
                     (messageErrorMsg ? inputErrorClasses : "")
                   }
-                  aria-label="Agree to privacy policy"
+                  aria-label="Agree to Privacy Policy"
                   required
                 />
-                <label
-                  htmlFor="privacy-policy"
-                  className="font-bold text-white">
+                <label htmlFor="privacy-policy" className="text-white">
                   I agree to the{" "}
-                  <Link
-                    href="/privacy-policy"
-                    className=" text-on-primary underline hover:text-on-primary-hover">
-                    privacy policy
+                  <Link href="/privacy-policy" legacyBehavior>
+                    <a
+                      className="text-on-primary underline hover:text-on-primary-hover"
+                      target="_blank"
+                      rel="noopener noreferrer">
+                      Privacy Policy
+                    </a>
                   </Link>
                   .
                 </label>
@@ -285,14 +302,16 @@ export default function Footer() {
             {captchaErrorMsg && <ErrorMessage message={captchaErrorMsg} />}
             <div className="flex w-full flex-col space-y-4 lg:flex-row lg:items-center lg:space-y-0 lg:space-x-2">
               <Button
-                isPrimary={false}
                 className="w-full"
                 disabled={!hasPassedValidation() || isSending}
-                type="submit">
+                type="submit"
+                intent="secondary">
                 {getButtonContent()}
               </Button>
               {isSent && (
-                <p className="flex items-center font-bold text-white lg:ml-4">
+                <Typography
+                  variant="p"
+                  className="flex items-center font-bold text-on-primary">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     height="24"
@@ -301,7 +320,7 @@ export default function Footer() {
                     <path d="M10.575 17.15 18.2 9.525l-1.95-1.95-5.675 5.675-2.825-2.825-1.925 1.95ZM12 22.875q-2.25 0-4.237-.85-1.988-.85-3.463-2.325t-2.325-3.462q-.85-1.988-.85-4.238 0-2.275.85-4.263.85-1.987 2.325-3.462t3.463-2.313Q9.75 1.125 12 1.125q2.275 0 4.262.837 1.988.838 3.463 2.313t2.313 3.462q.837 1.988.837 4.263t-.837 4.25q-.838 1.975-2.313 3.45t-3.463 2.325q-1.987.85-4.262.85Z" />
                   </svg>
                   Message sent
-                </p>
+                </Typography>
               )}
               {sendingErrorMsg && <ErrorMessage message={sendingErrorMsg} />}
             </div>
@@ -316,67 +335,93 @@ export default function Footer() {
           </form>
 
           {/* Contact information */}
-          <section className="flex flex-col space-y-24">
+          <section className="flex flex-col space-y-12">
+            <div className="hidden flex-col items-center justify-between md:flex">
+              <Image
+                className="h-auto object-cover duration-200 ease-in-out"
+                src={"/images/logo_text.svg"}
+                width={200}
+                height={0}
+                style={{ width: "auto", height: "auto" }}
+                alt="AI medical technology logo"
+              />
+            </div>
             <div className="flex flex-col space-y-4">
-              <h3 className="text-2xl font-bold text-on-primary">Contacts</h3>
-              <span className="h-1 w-16 rounded-full bg-background-primary" />
-              <p className="text-lg font-bold text-on-primary">
+              <Typography variant="h2" className=" text-on-primary">
+                Contact
+              </Typography>
+              {/* <span className="h-1 w-16 rounded-full bg-background-primary" /> */}
+              <Typography
+                variant="p"
+                className="flex items-center font-medium text-on-primary">
+                <BsTelephone className="mr-2" size={15} />
                 {contactInformation.phone}
-              </p>
-              <p className="text-lg text-on-primary">
-                <b>{contactInformation.address.street}</b>
-                <br />
-                {contactInformation.address.city}{" "}
-                {contactInformation.address.zip},{" "}
-                {contactInformation.address.country}
-              </p>
-              <p className="text-lg font-bold text-on-primary">
-                {contactInformation.email}
-              </p>
+              </Typography>
+              <Typography
+                variant="p"
+                className="flex items-center font-medium text-on-primary hover:text-on-primary-hover">
+                <FiMail className="mr-2" size={15} />
+                <a href={`mailto:${contactInformation.email}`}>
+                  {contactInformation.email}
+                </a>
+              </Typography>
+              <div className="flex items-center">
+                <FiMapPin className="mr-2 text-on-primary" />
+                <Typography
+                  variant="p"
+                  className="items-center text-on-primary">
+                  <b>{contactInformation.address.street}</b>
+                  <br />
+                  {contactInformation.address.city}{" "}
+                  {contactInformation.address.zip},{" "}
+                  {contactInformation.address.country}
+                </Typography>
+              </div>
+            </div>
+            <div className="flex flex-col space-y-4">
+              <Typography variant="h2" className="text-on-primary">
+                Socials
+              </Typography>
               <Link
                 href={"https://www.linkedin.com/company/aimedicaltechnology/"}
-                className="flex items-center space-x-4 text-on-primary hover:text-on-primary-hover">
+                className="flex items-center space-x-2 text-on-primary hover:text-on-primary-hover">
                 <Image
                   src="/images/linkedIn_white.svg"
                   alt={"LinkedIn Logo"}
-                  height={40}
-                  width={40}
+                  height={15}
+                  width={15}
                 />
-                <p className="text-lg font-bold">Follow us on LinkedIn</p>
+                <Typography
+                  variant="p"
+                  className="text-on-primary hover:text-on-primary-hover">
+                  Follow us on LinkedIn
+                </Typography>
               </Link>
             </div>
             {/* Instructions for use */}
-            <Link href={"/pdfs/Instructions_for_use.pdf"} legacyBehavior>
-              <a target="_blank" rel="noopener noreferrer">
-                <p className="text-on-primary underline hover:text-on-primary-hover">
-                  Dermalyser instructions for use
-                </p>
-              </a>
+            <Link href={"/dermalyser/#ifu"}>
+              <Typography
+                variant="p"
+                className="font-semibold text-on-primary hover:text-on-primary-hover">
+                Dermalyser instructions for use
+              </Typography>
             </Link>
-
-            {/* Website information */}
-            <div className="flex flex-col justify-between space-y-12 md:items-start md:space-y-32">
-              <div className="relative h-full w-full">
-                <Image
-                  className="h-auto object-cover duration-200 ease-in-out"
-                  src={"/images/logo_text.svg"}
-                  width={200}
-                  height={0}
-                  alt="AI medical technology logo"
-                />
-              </div>
-            </div>
           </section>
         </div>
+        {/* Website information */}
         <section className="mt-24 flex w-full justify-between md:mt-12">
           <p className="text-sm text-on-primary">
-            <Link
-              href="/privacy-policy"
-              className="text-on-primary hover:text-on-primary-hover">
-              Website Privacy policy
-            </Link>{" "}
+            <Link href="/privacy-policy" legacyBehavior>
+              <a
+                href="/privacy-policy"
+                className="text-on-primary hover:text-on-primary-hover"
+                target="_blank"
+                rel="noopener noreferrer">
+                Website Privacy Policy
+              </a>
+            </Link>
             <br />
-            Stockholm, Sweden <br /> © 2022 All rights reserved
+            Stockholm, Sweden <br /> © 2023 All rights reserved
           </p>
           <Image
             src="/images/BSI_ISO.svg"

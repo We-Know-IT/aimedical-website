@@ -25,7 +25,7 @@ const usePosts = (filters: Set<PostType>, pageSize: number) => {
    */
   const handleError = (error: string) => {
     console.error(error);
-    setError("Whoops! Looks like there was an error fetching the posts.");
+    setError("There was an error fetching the posts.");
   };
 
   /**

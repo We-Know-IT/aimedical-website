@@ -10,8 +10,8 @@ module.exports = {
       center: true,
       padding: {
         DEFAULT: "1.25rem",
-        xl: "5rem",
-        "2xl": "13rem",
+        xl: "2rem",
+        "2xl": "4rem",
       },
     },
     extend: {
@@ -56,6 +56,61 @@ module.exports = {
             filter: "blur(0)",
           },
         },
+        "bounce-down": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(40px)" },
+        },
+        "bounce-up": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-40px)" },
+        },
+        "flow-down": {
+          "0%": { 
+            transform: "translateY(-50%)",
+            opacity: 1
+          },
+          "100%": { 
+            transform: "translateY(50%)",
+            opacity: 1
+          },
+        },
+        "flow-up": {
+          "0%": { 
+            transform: "translateY(50%)",
+            opacity: 1
+          },
+          "100%": { 
+            transform: "translateY(-50%)",
+            opacity: 1
+          },
+        },
+        "flow-alternate": {
+          "0%": { 
+            transform: "translateY(-10%)",
+            opacity: 1
+          },
+          "50%": { 
+            transform: "translateY(10%)",
+            opacity: 1
+          },
+          "100%": { 
+            transform: "translateY(-10%)",
+            opacity: 1
+          },
+        },
+        "marquee-vertical": {
+          "100%": { 
+            transform: "translateY(-50%)"
+          },
+        },
+        "marquee-vertical2": {
+          "0%": { 
+            transform: "translateY(-25%)"
+          },
+          "100%": { 
+            transform: "translateY(25%)"
+          },
+        },
       },
       animation: {
         right: "right 0.5s ease-out",
@@ -64,14 +119,43 @@ module.exports = {
         "fade-up": "fade-in 1.25s ease-out , translate-up 0.75s ease-out ",
         "fade-down": "fade-out 1.25s ease-in , translate-down 0.75s linear",
         "focus-in": "focus-in 500ms cubic-bezier(0.11, 0, 0.5, 0) 1",
+        "bounce-down": "bounce-down 3s ease-in-out infinite",
+        "bounce-up": "bounce-up 3s ease-in-out infinite",
+        "flow-down": "flow-down 8s linear infinite",
+        "flow-up": "flow-up 8s linear infinite",
+        "flow-alternate": "flow-alternate 8s ease-in-out infinite",
+        "marquee-vertical": "marquee-vertical var(--marquee-duration) linear infinite",
+        "marquee-vertical2": "marquee-vertical2 var(--marquee-duration) linear infinite",
       },
 
       colors: {
+        darkblue: {
+          DEFAULT: "#012C46",
+          hover: "#0163AE",
+          light: "#008cf7",
+          active: "#0163AE",
+          "page-active": "#91908F",
+        },
+        beige: {
+          DEFAULT: "#F1EDE9",
+          active: "#EAf4FB",
+        },
+        lightblue: {
+          DEFAULT: "#F4F9FD",
+          active: "#EAf4FB",
+        },  
         primary: {
           DEFAULT: "#0063AF",
           hover: "#004275",
           light: "#008cf7",
           active: "#013054",
+        },
+
+        secondary: {
+          DEFAULT: "#00EBC8",
+          hover: "#00c7a6",
+          light: "#00f7e3",
+          active: "#00b38f",
         },
 
         error: {
@@ -106,7 +190,7 @@ module.exports = {
           hover: "rgba(235, 235, 235, 0.9)",
         },
         "on-bg-primary": {
-          DEFAULT: colors.black,
+          DEFAULT: "#494949",
           hover: colors.gray[500],
           active: colors.gray[600],
         },
@@ -125,9 +209,18 @@ module.exports = {
           active: colors.gray[300],
           DEFAULT: colors.white,
         },
+        "on-secondary": {
+          DEFAULT: "#4A4A4A",
+          hover: "#4A4A4A",
+          active: "#4A4A4A",
+        },
       },
       fontFamily: {
         lato: ['"Lato"', "Arial", "Sans-serif"],
+        openSans: ['"Open Sans"', "Arial", "Sans-serif"],
+        haasGrot: ['"Neue Haas Grotesk"', '"Inter"', '"Helvetica Neue"', "Arial", "Sans-serif"],
+        haasGrotDisplay: ['"Neue Haas Grotesk Display"', '"Inter"', '"Helvetica Neue"', "Arial", "Sans-serif"],
+        sans: ['"Neue Haas Grotesk"', '"Inter"', '"Helvetica Neue"', "Arial", "Sans-serif"],
       },
 
       fontSize: {
