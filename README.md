@@ -17,7 +17,7 @@ The project is split into two parts:
 - **Frontend**: A Next.js project
 - **Backend**: A StrapiCMS project
 
-Both parts can be found in separate repositories on aimedtech’s gitlab.
+Both parts can be found in separate repositories on aimedtech’s gitlab. 
 
 ### Prerequisites
 
