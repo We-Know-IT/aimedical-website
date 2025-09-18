@@ -15,7 +15,7 @@ export default function EmployeeCard({ employee }: Props) {
   };
 
   return (
-    <div className="bg-beige-dark flex flex-col items-center justify-center gap-y-4 rounded-xl">
+    <div className="bg-beige-dark flex flex-col items-center justify-center gap-y-4 rounded-xl min-h-[340px]">
       <div className="flex justify-center w-full pt-10">
         <div className="aspect-square h-[180px] w-[180px]">
           <Image
@@ -31,10 +31,10 @@ export default function EmployeeCard({ employee }: Props) {
 
       <div className="flex h-full flex-col items-start justify-between px-6 w-full">
         <div className="flex flex-col items-start justify-start space-y-0 w-full">
-          <h3 className="font-haasGrotDisplay font-normal text-left text-[16px] text-darkblue">
+          <h3 className="font-haasGrotDisplay font-normal text-left text-[14px] text-darkblue">
             {employee.name}
           </h3>
-          <p className="font-haasGrotDisplay text-left text-[16px] text-darkblue">
+          <p className="font-haasGrotDisplay text-left text-[14px] text-darkblue">
             {employee.title}
           </p>
         </div>
@@ -49,7 +49,7 @@ export default function EmployeeCard({ employee }: Props) {
           {employee.description}
         </Typography>
         <button onClick={toggleDescriptionVisibility} className="py-6 hover:text-primary-hover transition-colors">
-          <Typography variant="p" className="font-haasGrotDisplay text-primary underline hover:text-primary-hover">Read more</Typography>
+          <Typography variant="p" className="font-haasGrotDisplay text-primary underline hover:text-primary-hover text-[12px]">Read more</Typography>
         </button>
       </div>
     </div>

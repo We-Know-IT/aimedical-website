@@ -39,14 +39,22 @@ export default function TwoColProduct({ title, text, actionButton, list, image }
             <Typography variant="p" className="mb-4 text-darkblue font-haasGrotDisplay font-extralight xl:text-lg">
               {text}
             </Typography>
-            {actionButton && (
-              <LinkButton
-                href="/about"
-                size="small"
-                className="flex items-center justify-center">
-                {actionButton.children}
-              </LinkButton>
-            )}
+            {actionButton && (actionButton.href || actionButton.onClick) &&
+              (actionButton.href ? (
+                <LinkButton
+                  href={actionButton.href}
+                  size="small"
+                  className="flex items-center justify-center">
+                  {actionButton.children}
+                </LinkButton>
+              ) : (
+                <Button
+                  onClick={actionButton.onClick}
+                  size="small"
+                  className="flex items-center justify-center">
+                  {actionButton.children}
+                </Button>
+              ))}
           </div>
         </div>
         <div className="flex w-full flex-col justify-center rounded-xl lg:items-center lg:justify-evenly xl:w-1/2 xl:h-full">
