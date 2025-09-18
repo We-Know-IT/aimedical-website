@@ -55,9 +55,13 @@ function parseStrapiImageData(image: any) {
     height: image.attributes.height,
     url: image.attributes.url,
   };
-  if (process.env.NODE_ENV === "development") {
+  
+  // Only prepend localhost if the URL is relative (doesn't start with http/https)
+  // This handles both local development with relative URLs and production with absolute URLs
+  if (process.env.NODE_ENV === "development" && !parsedImage.url.startsWith('http')) {
     parsedImage.url = "http://localhost:1337" + parsedImage.url;
   }
+  
   return parsedImage;
 }
 

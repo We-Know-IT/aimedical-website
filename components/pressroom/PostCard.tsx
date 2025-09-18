@@ -12,19 +12,12 @@ type Props = {
 
 export default function PostCard({ post }: Props) {
   return (
-    <div className="group flex h-full max-w-xl flex-col justify-between rounded-xl bg-surface-primary p-9 shadow-lg duration-200 hover:-translate-y-1 hover:shadow-2xl">
-      <div className="my-2 mb-2 flex flex-col space-y-2">
-        <Typography variant="h2" className="group-hover:underline">
-          {post?.title || <Skeleton />}
-        </Typography>
-        <Typography variant="p" className="line-clamp-3 ">
-          {post?.ingress || <Skeleton count={3} />}
-        </Typography>
-      </div>
-      <div className="flex flex-col">
-        {post?.listingImage && (
+    <div className="group flex h-full max-w-xl flex-col bg-white rounded-lg duration-200 hover:shadow-md">
+      {/* Image at the top */}
+      <div className="w-full h-48 bg-gray-100 rounded-lg overflow-hidden">
+        {post?.listingImage ? (
           <Image
-            className="mb-2 max-h-64 w-auto rounded object-cover"
+            className="w-full h-full object-cover"
             src={post.listingImage?.url || ""}
             width={post.listingImage?.width}
             height={post.listingImage?.height}
@@ -32,23 +25,40 @@ export default function PostCard({ post }: Props) {
             placeholder="blur"
             blurDataURL="/images/blur.jpg"
           />
+        ) : (
+          <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+            {!post && <Skeleton height={192} width="100%" />}
+          </div>
         )}
-        {!post && <Skeleton height={200} />}
+      </div>
 
-        <div className="flex flex-row items-center justify-between">
-          <Typography variant="p" className="flex text-on-surface-primary">
+      {/* Content section */}
+      <div className="flex font-haasGrotDisplay flex-col p-6 space-y-0">
+        {/* Content type indicator */}
+        <div className="flex items-center space-x-2">
+          <div className="w-2 h-2 bg-cyan rounded-full"></div>
+          <span className="text-sm font-light text-darkblue">
             {post ? (
-              getDateString(new Date(post.publishedAt))
+              post.postType === "news" ? "Press release" : "Article"
             ) : (
-              <Skeleton width={60} />
+              <Skeleton width={80} />
             )}
-          </Typography>
-          {post ? (
-            <Tag text={post.postType} />
-          ) : (
-            <Skeleton width={80} height={25} borderRadius={100} />
-          )}
+          </span>
         </div>
+
+        {/* Date */}
+        <Typography variant="p" className="text-sm font-light text-darkblue-page-active !mb-4">
+          {post ? (
+            getDateString(new Date(post.publishedAt))
+          ) : (
+            <Skeleton width={80} />
+          )}
+        </Typography>
+
+        {/* Title */}
+        <Typography variant="h3" className="text-sm font-light text-darkblue line-clamp-3 transition-colors">
+          {post?.title || <Skeleton count={2} />}
+        </Typography>
       </div>
     </div>
   );

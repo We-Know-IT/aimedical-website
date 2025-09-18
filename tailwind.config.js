@@ -136,9 +136,13 @@ module.exports = {
           active: "#0163AE",
           "page-active": "#91908F",
         },
+        cyan: {
+          DEFAULT: "#00EAC8",
+        },
         beige: {
           DEFAULT: "#F1EDE9",
           active: "#EAf4FB",
+          dark: "#FAF9F7",
         },
         darkgray: {
           DEFAULT: "#333333",

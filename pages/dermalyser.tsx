@@ -1,21 +1,29 @@
 import Head from "next/head";
-import Advantages from "../components/dermalyser/Advantages";
-import DiagnosticsEmpowered from "../components/dermalyser/DiagnosticsEmpowered";
 import HowItWorks from "../components/dermalyser/how-it-works/HowItWorks";
 import Performance from "../components/dermalyser/Performance";
 import Header from "../components/general/Header";
 import MetaTags from "../components/general/seo/MetaTags";
 import InstructionsForUse from "../components/dermalyser/instructions-for-use/InstructionsForUse";
+import TwoColText from "../components/general/start/TwoColText";
+import Background from "../components/about/Background";
+import TwoColRef from "../components/general/start/TwoColRef";
+import TwoColInstructions from "../components/dermalyser/TwoColInstructions";
 
 import path from "path";
 import fs from "fs";
 import { GetStaticProps } from "next";
+const buttonSectionAbout = {
+  children: "Read more",
+  href: "/about",
+};
 
 export const getStaticProps: GetStaticProps = async () => {
   const engIfuDir = path.join(process.cwd(), "public/pdfs/ifu/eng");
   const sweIfuDir = path.join(process.cwd(), "public/pdfs/ifu/swe");
   const engPiDir = path.join(process.cwd(), "public/pdfs/pi/eng");
   const engVugDir = path.join(process.cwd(), "public/pdfs/vug/eng");
+
+  
 
   let engIfuPdfs = fs.readdirSync(engIfuDir).filter((file) => file.endsWith(".pdf"));
   let sweIfuPdfs = fs.readdirSync(sweIfuDir).filter((file) => file.endsWith(".pdf"));
@@ -57,23 +65,83 @@ export default function Dermalyser({ engIfuPdfs, sweIfuPdfs, engPiPdfs, engVugPd
           description="Driving Fast, Accurate Diagnosis for Melanoma"
         />
       </Head>
-      <Header
-        imageUrl="/images/dermalyser/header.jpg"
-        title="Dermalyser"
-        text="Driving Fast, Accurate Diagnosis for Melanoma"
-        imagePosition="75%"
-      />
-      <main className="flex flex-col">
-        <DiagnosticsEmpowered />
-        <Performance />
-        <Advantages />
+      <main className="flex flex-col pt-32">
+      <TwoColText
+          text="AI support for faster, more confident skin cancer assessments."
+          textClassName="!mb-4 mt-10 lg:mt-24 text-darkblue font-haasGrotDisplay font-normal text-3xl leading-tight"
+          actionButton={{
+            children: "Book a demo",
+            onClick: () => {
+              const element = document.getElementById('contact');
+              if (element) {
+                const navbarHeight = 80;
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: 'smooth'
+                });
+              }
+            }
+          }}
+          video={{
+            src: "https://www.w3schools.com/html/mov_bbb.mp4",
+            title: "AI Medical Dermalyser Demo",
+            controls: false,
+            autoPlay: false,
+            muted: true,
+            poster: "/images/home/header.jpg"
+          }}></TwoColText>
+        <Background
+          header="Dermalyser"
+          text="As a primary care doctor, you face difficult choices when assessing suspicious skin lesions. Dermalyser is a CE-marked app that provides AI-driven decision support in just seconds, by analysing a dermoscopic image captured with your smartphone. Our goal is to support you — not replace you — by improving confidence, reducing unnecessary referrals, and reassuring patients."
+          list={{
+            items: [
+              "Reliable AI support, built on clinical validation and real-world evidence.",
+              "Faster decisions – AI support in seconds, right in the consultation.",
+              "Fewer unnecessary referrals – Improves efficiency and reduces patient anxiety."
+            ]
+          }}
+          engVugPdfs={engVugPdfs}
+        />
         <HowItWorks />
-        <InstructionsForUse 
+        <TwoColRef
+          title={"“"}
+          text="Dermalyser isn’t replacing my judgement, but it gives me a second opinion that I can rely on. It’s especially useful when I’m in doubt, and it’s helped cut down on unnecessary referrals."
+          name="Kalle Appelkvist"
+          position="Clinic specialist Company."
+          image={{
+            src: "home/header.jpg",
+            alt: "AI Medical Dermalyser Demo",
+            quality: 100
+          }}></TwoColRef>
+          <TwoColInstructions
+          title={
+            <>
+              Supporting Melanoma Assessment with AI
+            </>
+          }
+          text="For many GPs, assessing suspicious skin lesions is one of the most challenging parts of daily practice. Subtle features of melanoma are easily missed, and the pressure of limited consultation time adds to the difficulty. Dermalyser fits seamlessly into this workflow.Dermalyser is designed to support this process. By analysing dermoscopic images in just seconds — evidence-based, CE-marked,
+it provides clinically validated decision support that complements your judgement — helping you feel more confident in difficult cases, reduce unnecessary referrals, and"
+          image={{
+            src: "home/header.jpg",
+            alt: "Dermalyser",
+            quality: 100,
+          }}
+          videoPopup={{
+            buttonText: "Instructions video",
+            videoSrc: "https://www.w3schools.com/html/mov_bbb.mp4",
+            videoTitle: "Dermalyser",
+          }}
+          ></TwoColInstructions>
+        <Performance />
+        {/* DELETE <Advantages /> */}
+        {/* <InstructionsForUse 
           engIfuPdfs={engIfuPdfs} 
           sweIfuPdfs={sweIfuPdfs}
           engPiPdfs={engPiPdfs}
           engVugPdfs={engVugPdfs}
-        />
+        /> */}
       </main>
     </>
   );

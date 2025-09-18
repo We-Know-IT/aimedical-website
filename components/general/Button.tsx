@@ -7,11 +7,11 @@ export const button = cva(
     variants: {
       intent: {
         primary:
-          "bg-primary text-on-primary hover:bg-primary-hover active:bg-primary-active",
+          "bg-primary text-on-primary hover:bg-primary-hover transition-colors active:bg-primary-active",
         secondary:
-          "bg-secondary hover:bg-secondary-hover text-on-secondary active:bg-secondary-active",
+          "bg-secondary hover:bg-secondary-hover transition-colors text-on-secondary active:bg-secondary-active",
         white:
-          "bg-white border border-gray-500 hover:bg-gray-200 text-on-bg-primary active:bg-gray-300",
+          "bg-white border border-gray-500 hover:bg-gray-200 transition-colors text-on-bg-primary active:bg-gray-300",
       },
       size: {
         small: "py-2 px-6 text-sm",

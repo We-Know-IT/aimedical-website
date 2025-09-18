@@ -15,60 +15,41 @@ export default function EmployeeCard({ employee }: Props) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-y-4 rounded-xl shadow-xl">
-      <div className="clip-path-image aspect-square h-[200px] w-full bg-primary/[2%] pt-10">
-        <Image
-          className="h-full rounded-t-xl  object-contain"
-          src={employee.image}
-          width={600}
-          height={600}
-          quality={100}
-          alt={employee.name + " " + employee.title}
-          style={{ objectPosition: "center 0%" }}
-        />
+    <div className="bg-beige-dark flex flex-col items-center justify-center gap-y-4 rounded-xl">
+      <div className="flex justify-center w-full pt-10">
+        <div className="aspect-square h-[180px] w-[180px]">
+          <Image
+            className="h-full w-full rounded-full object-cover"
+            src={employee.image}
+            width={600}
+            height={600}
+            quality={100}
+            alt={employee.name + " " + employee.title}
+          />
+        </div>
       </div>
 
-      <div className="flex h-full flex-col items-center justify-between px-6">
-        <div className="flex h-[140px] flex-col items-center justify-between">
-          <a
-            href={employee.linkedInLink}
-            target="_blank"
-            rel="noopener noreferrer">
-            <Image
-              src="/images/about/linkedin_logo.png"
-              width={42}
-              height={42}
-              alt="linked in link"
-            />
-          </a>
-
-          <div className="mx-auto h-[2px] w-1/4 bg-primary " />
-
-          <h3 className=" text-center text-[16px] font-bold text-primary">
+      <div className="flex h-full flex-col items-start justify-between px-6 w-full">
+        <div className="flex flex-col items-start justify-start space-y-0 w-full">
+          <h3 className="font-haasGrotDisplay font-normal text-left text-[16px] text-darkblue">
             {employee.name}
           </h3>
-          <p className="text-center text-[16px] text-on-bg-primary">
+          <p className="font-haasGrotDisplay text-left text-[16px] text-darkblue">
             {employee.title}
           </p>
         </div>
         <Typography
           variant="p"
           className={
-            " origin-top transition-all duration-300 ease-out " +
+            "font-haasGrotDisplay origin-top transition-all duration-500 ease-in-out overflow-hidden " +
             (isDesciptionVisibile
-              ? " max-h-[2000px] scale-y-100 pt-4 opacity-100"
-              : " max-h-0 scale-y-0 opacity-0")
+              ? " max-h-[500px] scale-y-100 pt-4 opacity-100"
+              : " max-h-0 scale-y-95 pt-0 opacity-0")
           }>
           {employee.description}
         </Typography>
-        <button onClick={toggleDescriptionVisibility} className="p-6">
-          <Image
-            className={isDesciptionVisibile ? "rotate-180" : ""}
-            src="/images/about/arrow_down.svg"
-            height={24}
-            width={24}
-            alt="read more"
-          />
+        <button onClick={toggleDescriptionVisibility} className="py-6 hover:text-primary-hover transition-colors">
+          <Typography variant="p" className="font-haasGrotDisplay text-primary underline hover:text-primary-hover">Read more</Typography>
         </button>
       </div>
     </div>

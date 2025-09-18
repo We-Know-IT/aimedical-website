@@ -2,8 +2,10 @@ import Strapi from "strapi-sdk-js";
 
 // https://aimedical-strapi.onrender.com/
 //127.0.0.1:1337
-let url = "http://127.0.0.1:1337";
+//let url = "http://127.0.0.1:1337";
 // let url = "http://16.170.92.57/";
+
+let url = "https://api.aimedtech.com";
 
 if (process.env.NODE_ENV === "production") {
   url = "https://api.aimedtech.com";

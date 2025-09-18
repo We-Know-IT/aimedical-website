@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 import { useWindowScrollPositions } from "../../../utils/scroll";
 import LogoIcon from "../../icons/common/Logo";
 import HamburgerIcon from "./HamburgerIcon";
-import NavLink from "./NavLink";
-import { navLinks } from "./nav-links";
+import { twMerge } from "tailwind-merge";
 
 export default function Navbar() {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+  const [isDermalyserDropdownOpen, setIsDermalyserDropdownOpen] = useState(false);
   const {
     scrollPosition: { scrollY },
   } = useWindowScrollPositions();
@@ -20,11 +20,50 @@ export default function Navbar() {
   const toggleNavbar = () => {
     setIsNavbarOpen(!isNavbarOpen);
   };
+
+  const toggleDermalyserDropdown = () => {
+    setIsDermalyserDropdownOpen(!isDermalyserDropdownOpen);
+  };
+
   useEffect(() => {
     if (isNavbarOpen) {
       setIsNavbarOpen(false);
     }
+    if (isDermalyserDropdownOpen) {
+      setIsDermalyserDropdownOpen(false);
+    }
   }, [router.asPath]);
+
+  // Helper function to check if a path is active
+  const isActivePath = (path: string, highlightNested = false) => {
+    return highlightNested
+      ? router.pathname.startsWith(path)
+      : router.pathname === path;
+  };
+
+  // Helper function to get link styles
+  const getLinkStyles = (path: string, highlightNested = false) => {
+    const isActive = isActivePath(path, highlightNested);
+    return twMerge(
+      "font-haasGrot font-light text-darkblue hover:text-darkblue-hover active:text-darkblue-active transition-colors text-base",
+      isActive && "border-b-2 border-white text-darkblue-page-active"
+    );
+  };
+
+  // Smooth scroll to contact section
+  const scrollToContact = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const element = document.getElementById('contact');
+    if (element) {
+      const navbarHeight = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
   
 
   return (
@@ -44,21 +83,39 @@ export default function Navbar() {
           </Link>
           {/* AI Medical Technology text with vertical bar */}
           <div className="hidden lg:flex items-center space-x-3">
-            <span className="text-darkblue font-haasGrot font-light text-lg">Ai Medical Technology</span>
+            <span className="text-darkblue font-haasGrot font-light text-base">Ai Medical Technology</span>
             <div className="w-[1px] h-6 bg-darkblue"></div>
           </div>
           {/* Home link next to logo */}
-          <div className="flex flex-1 items-center justify-center lg:items-stretch lg:justify-start">
-          <div className="hidden lg:block">
-            <NavLink
-              navLink={navLinks[0]}
-              color="white"
-             />
-          </div>
+          <div className="flex flex-1 items-center justify-center !ml-3 lg:items-stretch lg:justify-start">
+            <div className="hidden lg:block">
+              <Link href="/" className={getLinkStyles("/")}>
+                Home
+              </Link>
+            </div>
           </div>
         </div>
 
         <div className="flex items-center">
+          {/* Book a demo button - mobile only */}
+          <Link
+            href="/#contact"
+            className="mr-4 lg:hidden bg-darkblue-hover text-white px-6 py-2 rounded-full text-sm font-haasGrotDisplay font-extralight hover:bg-darkblue transition-colors"
+            onClick={(e) => {
+              e.preventDefault();
+              const element = document.getElementById('contact');
+              if (element) {
+                const navbarHeight = 80; // Approximate navbar height
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: 'smooth'
+                });
+              }
+            }}>
+            Book a demo
+          </Link>
           {/* Hamburger menu */}
           <button
             type="button"
@@ -77,16 +134,87 @@ export default function Navbar() {
           <div className="flex flex-1 items-center justify-center lg:items-stretch lg:justify-start">
             <div className="hidden lg:ml-6 lg:block">
               <ul className="flex items-center space-x-6">
-                {navLinks.slice(1).map((link) => {
-                  return (
-                    <li key={link.path}>
-                      <NavLink
-                        navLink={link}
-                        color="white"
-                      />
-                    </li>
-                  );
-                })}
+                {/* Dermalyser dropdown */}
+                <li 
+                  className="relative"
+                  onMouseEnter={() => setIsDermalyserDropdownOpen(true)}
+                  onMouseLeave={() => setIsDermalyserDropdownOpen(false)}
+                >
+                  <button
+                    className={twMerge(
+                      "flex items-center space-x-1",
+                      getLinkStyles("/dermalyser", true)
+                    )}
+                    onClick={toggleDermalyserDropdown}
+                  >
+                    <span>Products</span>
+                    <svg
+                      className={`w-4 h-4 transition-transform duration-200 ${
+                        isDermalyserDropdownOpen ? "rotate-180" : ""
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  {/* Dropdown menu */}
+                  <div
+                    className={`absolute top-full left-0 pt-2 w-48 transition-all duration-300 ease-in-out ${
+                      isDermalyserDropdownOpen
+                        ? "opacity-100 translate-y-0 pointer-events-auto"
+                        : "opacity-0 -translate-y-2 pointer-events-none"
+                    }`}
+                  >
+                    <div className="bg-white rounded-md shadow-lg border border-gray-200 overflow-hidden">
+                      <Link
+                        href="/dermalyser"
+                        className="block px-4 py-3 text-sm font-haasGrot font-light text-darkblue hover:bg-gray-50 hover:text-primary transition-colors"
+                      >
+                        Dermalyser
+                      </Link>
+                      <Link
+                        href="/dermalyser-2"
+                        className="block px-4 py-3 text-sm font-haasGrot font-light text-darkblue hover:bg-gray-50 hover:text-primary transition-colors"
+                      >
+                        Dermalyser 2.0
+                      </Link>
+                    </div>
+                  </div>
+                </li>
+
+                {/* Clinical Validation */}
+                <li>
+                  <Link href="/clinical-validation" className={getLinkStyles("/clinical-validation")}>
+                    Clinical Studies
+                  </Link>
+                </li>
+                
+                {/* About us */}
+                <li>
+                  <Link href="/about" className={getLinkStyles("/about")}>
+                    About us
+                  </Link>
+                </li>
+                
+                
+                {/* Pressroom */}
+                <li>
+                  <Link href="/pressroom" className={getLinkStyles("/pressroom", true)}>
+                    News
+                  </Link>
+                </li>
+                
+                {/* Book a demo */}
+                <li>
+                  <button
+                    className="py-2 text-base font-haasGrot font-extralight md:py-2 md:px-6 lg:py-2 text-white bg-primary rounded-full hover:bg-primary-hover transition-colors"
+                    onClick={scrollToContact}
+                  >
+                    Book a demo
+                  </button>
+                </li>
               </ul>
             </div>
           </div>
@@ -98,27 +226,131 @@ export default function Navbar() {
           isNavbarOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
         id="mobile-menu">
-        <ul className="flex flex-col items-center space-y-1 px-2 pt-2 pb-8 bg-surface-primary">
-          {navLinks.map((link, index) => {
-            return (
-              <li 
-                key={link.path} 
-                className={`py-2 transition-all duration-300 ease-in-out transform ${
-                  isNavbarOpen 
-                    ? "translate-y-0 opacity-100" 
-                    : "translate-y-4 opacity-0"
-                }`}
-                style={{
-                  transitionDelay: isNavbarOpen ? `${index * 100}ms` : "0ms"
-                }}
+        <ul className="flex flex-col items-start w-full space-y-1 px-4 pt-2 pb-8 bg-surface-primary">
+          {/* Home */}
+          <li 
+            className={`py-0 px-6 w-full transition-all duration-300 ease-in-out transform ${
+              isNavbarOpen 
+                ? "translate-y-0 opacity-100" 
+                : "translate-y-4 opacity-0"
+            }`}
+            style={{
+              transitionDelay: isNavbarOpen ? "0ms" : "0ms"
+            }}
+          >
+            <div className="text-lg">
+              <Link href="/" className="font-haasGrot font-light text-darkblue hover:text-darkblue-hover text-xl">
+                Home
+              </Link>
+            </div>
+          </li>
+
+          {/* Dermalyser with mobile dropdown */}
+          <li 
+            className={`py-0 px-6 w-full transition-all duration-300 ease-in-out transform ${
+              isNavbarOpen 
+                ? "translate-y-0 opacity-100" 
+                : "translate-y-4 opacity-0"
+            }`}
+            style={{
+              transitionDelay: isNavbarOpen ? "100ms" : "0ms"
+            }}
+          >
+            <div className="text-lg">
+              <button
+                className="flex items-center justify-between w-full font-haasGrot font-light text-darkblue hover:text-darkblue-hover text-xl"
+                onClick={toggleDermalyserDropdown}
               >
-                <NavLink
-                  navLink={link}
-                  color="white"
-                />
-              </li>
-            );
-          })}
+                <span>Products</span>
+                <svg
+                  className={`w-4 h-4 transition-transform duration-200 ${
+                    isDermalyserDropdownOpen ? "rotate-180" : ""
+                  }`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {/* Mobile Dermalyser dropdown */}
+              <div
+                className={`ml-4 space-y-2 transition-all duration-300 ease-in-out overflow-hidden ${
+                  isDermalyserDropdownOpen
+                    ? "opacity-100 max-h-32 mt-2"
+                    : "opacity-0 max-h-0 mt-0"
+                }`}
+              >
+                <Link
+                  href="/dermalyser"
+                  className="block font-haasGrot font-light text-darkblue hover:text-darkblue-hover text-lg"
+                >
+                  Dermalyser
+                </Link>
+                <Link
+                  href="/dermalyser-2"
+                  className="block font-haasGrot font-light text-darkblue hover:text-darkblue-hover text-lg"
+                >
+                  Dermalyser 2.0
+                </Link>
+              </div>
+            </div>
+          </li>
+
+          {/* Clinical Validation */}
+          <li 
+            className={`py-0 px-6 w-full transition-all duration-300 ease-in-out transform ${
+              isNavbarOpen 
+                ? "translate-y-0 opacity-100" 
+                : "translate-y-4 opacity-0"
+            }`}
+            style={{
+              transitionDelay: isNavbarOpen ? "200ms" : "0ms"
+            }}
+          >
+            <div className="text-lg">
+              <Link href="/clinical-validation" className="font-haasGrot font-light text-darkblue hover:text-darkblue-hover text-xl">
+                Clinical studies
+              </Link>
+            </div>
+          </li>
+
+          {/* About us */}
+          <li 
+            className={`py-0 px-6 w-full transition-all duration-300 ease-in-out transform ${
+              isNavbarOpen 
+                ? "translate-y-0 opacity-100" 
+                : "translate-y-4 opacity-0"
+            }`}
+            style={{
+              transitionDelay: isNavbarOpen ? "300ms" : "0ms"
+            }}
+          >
+            <div className="text-lg">
+              <Link href="/about" className="font-haasGrot font-light text-darkblue hover:text-darkblue-hover text-xl">
+                About us
+              </Link>
+            </div>
+          </li>
+
+
+          {/* Pressroom */}
+          <li 
+            className={`py-0 px-6 w-full transition-all duration-300 ease-in-out transform ${
+              isNavbarOpen 
+                ? "translate-y-0 opacity-100" 
+                : "translate-y-4 opacity-0"
+            }`}
+            style={{
+              transitionDelay: isNavbarOpen ? "400ms" : "0ms"
+            }}
+          >
+            <div className="text-lg">
+              <Link href="/pressroom" className="font-haasGrot font-light text-darkblue hover:text-darkblue-hover text-xl">
+                News
+              </Link>
+            </div>
+          </li>
         </ul>
       </div>
       {isNavbarOpen && (
