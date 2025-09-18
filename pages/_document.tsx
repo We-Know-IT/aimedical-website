@@ -8,6 +8,29 @@ export default function Document() {
   return (
     <Html>
       <Head>
+        {/* Preload critical Haas Grotesk fonts */}
+        <link
+          rel="preload"
+          href="/fonts/haas-grotesk/neuehaasgrotdisp-45light-trial.otf"
+          as="font"
+          type="font/otf"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/haas-grotesk/neuehaasgrotdisp-55roman-trial.otf"
+          as="font"
+          type="font/otf"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/haas-grotesk/neuehaasgrotdisp-65medium-trial.otf"
+          as="font"
+          type="font/otf"
+          crossOrigin="anonymous"
+        />
+        
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"

@@ -227,9 +227,9 @@ module.exports = {
       fontFamily: {
         lato: ['"Lato"', "Arial", "Sans-serif"],
         openSans: ['"Open Sans"', "Arial", "Sans-serif"],
-        haasGrot: ['"Neue Haas Grotesk"', '"Inter"', '"Helvetica Neue"', "Arial", "Sans-serif"],
-        haasGrotDisplay: ['"Neue Haas Grotesk Display"', '"Inter"', '"Helvetica Neue"', "Arial", "Sans-serif"],
-        sans: ['"Neue Haas Grotesk"', '"Inter"', '"Helvetica Neue"', "Arial", "Sans-serif"],
+        haasGrot: ['"Neue Haas Grotesk"', '"Inter"', '"Helvetica Neue"', '"Helvetica"', '"Arial Unicode MS"', "Arial", "Sans-serif"],
+        haasGrotDisplay: ['"Neue Haas Grotesk Display"', '"Inter"', '"Helvetica Neue"', '"Helvetica"', '"Arial Unicode MS"', "Arial", "Sans-serif"],
+        sans: ['"Neue Haas Grotesk"', '"Inter"', '"Helvetica Neue"', '"Helvetica"', '"Arial Unicode MS"', "Arial", "Sans-serif"],
       },
 
       fontSize: {

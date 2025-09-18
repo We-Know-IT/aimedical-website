@@ -85,7 +85,7 @@ export default function Header({
               <div className="flex justify-center w-full mb-0">
                 <Typography
                   variant="p"
-                  className="text-on-primary text-[12px] lg:text-[14px] font-haasGrotDisplay font-thin tracking-wider">
+                  className="text-on-primary text-[14px] lg:text-[16px] font-haasGrotDisplay font-normal tracking-wider">
                   Dermalyser
                 </Typography>
               </div>
@@ -94,7 +94,7 @@ export default function Header({
               <div className="relative mb-6 h-16 flex items-center justify-center w-full max-w-4xl px-0 lg:px-8">
                 <Typography
                   variant="p"
-                  className={`whitespace-pre-wrap text-[20px] text-on-primary lg:text-[24px] transition-all duration-500 text-center w-full font-haasGrot font-extralight ${
+                  className={`whitespace-pre-wrap text-[20px] text-on-primary lg:text-[26px] transition-all duration-500 text-center w-full font-haasGrot font-normal ${
                     isTransitioning 
                       ? 'opacity-0 transform translate-y-4' 
                       : 'opacity-100 transform translate-y-0'

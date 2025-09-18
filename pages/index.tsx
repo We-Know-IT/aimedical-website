@@ -115,7 +115,7 @@ export default function Home() {
             </>
           }
           text="Dermalyser is a CE-marked app that provides AI-driven decision support in just seconds, by analysing a dermoscopic image captured with your smartphone."
-          textClassName="mb-4 text-darkblue font-haasGrotDisplay font-extralight xl:text-[20px] whitespace-pre-line"
+          textClassName="mb-4 text-darkblue font-haasGrotDisplay font-normal xl:text-[20px] whitespace-pre-line"
           actionButton={buttonSection1}
           video={{
             src: "https://www.w3schools.com/html/mov_bbb.mp4",

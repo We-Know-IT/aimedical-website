@@ -30,11 +30,11 @@ export default function EmployeeCard({ employee }: Props) {
       </div>
 
       <div className="flex h-full flex-col items-start justify-between px-6 w-full">
-        <div className="flex flex-col items-start justify-start space-y-0 w-full">
+        <div className="flex flex-col items-start justify-start space-y-0 w-full min-h-[60px]">
           <h3 className="font-haasGrotDisplay font-normal text-left text-[14px] text-darkblue">
             {employee.name}
           </h3>
-          <p className="font-haasGrotDisplay text-left text-[14px] text-darkblue">
+          <p className="font-haasGrotDisplay text-left text-[14px] text-darkblue leading-tight">
             {employee.title}
           </p>
         </div>

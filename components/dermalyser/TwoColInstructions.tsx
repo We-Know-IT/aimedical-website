@@ -195,7 +195,7 @@ export default function TwoColText({ title, text, videoPopup, list, image, leftC
             {title}
           </Typography>
           <div className="flex flex-col items-start">
-            <Typography variant="p" className="mb-4 text-darkblue font-haasGrotDisplay font-extralight text-base">
+            <Typography variant="p" className="mb-4 text-darkblue font-haasGrotDisplay font-normal text-base">
               {text}
             </Typography>
             
@@ -203,7 +203,7 @@ export default function TwoColText({ title, text, videoPopup, list, image, leftC
             {videoPopup && (
               <button
                 onClick={openVideo}
-                className="flex items-center justify-center bg-primary text-white hover:bg-primary-hover active:bg-primary-active rounded-full px-6 py-3 font-haasGrotDisplay font-extralight transition-colors cursor-pointer"
+                className="flex items-center justify-center bg-primary text-white hover:bg-primary-hover active:bg-primary-active rounded-full px-6 py-3 font-haasGrotDisplay font-normal transition-colors cursor-pointer"
               >
                 {videoPopup.buttonText}
               </button>

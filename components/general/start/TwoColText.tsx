@@ -77,12 +77,12 @@ export default function TwoColText({ title, titleClassName, text, textClassName,
         <div className="flex w-full flex-col justify-between rounded-xl bg-background-secondary px-8 py-12 space-y-12 lg:space-y-0 lg:items-start xl:w-1/2 xl:h-full order-2 xl:order-1">
           {/* left box */}
           {title && (
-            <Typography variant="p" className={titleClassName || "text-darkblue-page-active font-haasGrotDisplay font-thin"}>
+            <Typography variant="p" className={titleClassName || "text-darkblue-page-active font-haasGrotDisplay font-normal"}>
               {title}
             </Typography>
           )}
           <div className="flex flex-col items-start">
-            <Typography variant="p" className={textClassName || "mb-4 text-darkblue font-haasGrotDisplay font-extralight xl:text-lg"}>
+            <Typography variant="p" className={textClassName || "mb-4 text-darkblue font-haasGrotDisplay font-normal xl:text-lg"}>
               {text}
             </Typography>
             {actionButton && (actionButton.href || actionButton.onClick) &&

@@ -46,7 +46,7 @@ export default function Navbar() {
   const getLinkStyles = (path: string, highlightNested = false) => {
     const isActive = isActivePath(path, highlightNested);
     return twMerge(
-      "font-haasGrot font-light text-darkblue hover:text-darkblue-hover active:text-darkblue-active transition-colors text-base",
+      "font-haasGrot font-normal text-darkblue hover:text-darkblue-hover active:text-darkblue-active transition-colors text-sm",
       isActive && "border-b-2 border-white text-darkblue-page-active"
     );
   };
@@ -100,7 +100,7 @@ export default function Navbar() {
           </Link>
           {/* AI Medical Technology text with vertical bar */}
           <div className="hidden lg:flex items-center space-x-3">
-            <Link href="/" className="text-darkblue font-haasGrot font-light text-base">
+            <Link href="/" className="text-darkblue font-haasGrot font-normal text-sm">
               Ai Medical Technology
             </Link>
             <div className="w-[1px] h-6 bg-darkblue"></div>
@@ -108,7 +108,7 @@ export default function Navbar() {
           {/* Current page name next to logo */}
           <div className="flex flex-1 items-center justify-center !ml-3 lg:items-stretch lg:justify-start">
             <div className="hidden lg:block">
-              <span className="font-haasGrot font-light text-darkblue-page-active text-base">
+              <span className="font-haasGrot font-normal text-darkblue-page-active text-sm">
                 {getCurrentPageName()}
               </span>
             </div>
@@ -119,7 +119,7 @@ export default function Navbar() {
           {/* Book a demo button - mobile only */}
           <Link
             href="/#contact"
-            className="mr-4 lg:hidden bg-primary text-white px-6 py-2 rounded-full text-sm font-haasGrotDisplay font-extralight hover:bg-primary-hover transition-colors"
+            className="mr-4 lg:hidden bg-primary text-white px-6 py-2 rounded-full text-sm font-haasGrotDisplay font-normal hover:bg-primary-hover transition-colors"
             onClick={(e) => {
               e.preventDefault();
               // Close hamburger menu if it's open
@@ -193,13 +193,13 @@ export default function Navbar() {
                     <div className="bg-white rounded-md shadow-lg border border-gray-200 overflow-hidden">
                       <Link
                         href="/dermalyser"
-                        className="block px-4 py-3 text-sm font-haasGrot font-light text-darkblue hover:bg-gray-50 hover:text-primary transition-colors"
+                        className="block px-4 py-3 text-sm font-haasGrot font-normal text-darkblue hover:bg-gray-50 hover:text-primary transition-colors"
                       >
                         Dermalyser
                       </Link>
                       <Link
                         href="/dermalyser-2"
-                        className="block px-4 py-3 text-sm font-haasGrot font-light text-darkblue hover:bg-gray-50 hover:text-primary transition-colors"
+                        className="block px-4 py-3 text-sm font-haasGrot font-normal text-darkblue hover:bg-gray-50 hover:text-primary transition-colors"
                       >
                         Dermalyser 2.0
                       </Link>
@@ -232,7 +232,7 @@ export default function Navbar() {
                 {/* Book a demo */}
                 <li>
                   <button
-                    className="py-2 text-base font-haasGrot font-extralight md:py-2 md:px-6 lg:py-2 text-white bg-primary rounded-full hover:bg-primary-hover transition-colors"
+                    className="py-2 text-sm font-haasGrot font-normal md:py-2 md:px-6 lg:py-2 text-white bg-primary rounded-full hover:bg-primary-hover transition-colors"
                     onClick={scrollToContact}
                   >
                     Book a demo
