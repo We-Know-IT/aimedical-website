@@ -4,7 +4,7 @@ import Typography from "../../common/Typography";
 type Props = {
   title?: React.ReactNode | string;
   text?: string;
-  actionButton: {
+  actionButton?: {
     children: React.ReactNode | string;
     onClick?: () => void;
     href?: string;
@@ -20,26 +20,28 @@ type Props = {
     alt: string;
     quality?: number;
   };
+  leftColumnClassName?: string;
+  leftColumnImageClassName?: string;
 };
 
-export default function TwoColText({ title, text, actionButton, list, image }: Props) {
+export default function TwoColText({ title, text, actionButton, list, image, leftColumnClassName, leftColumnImageClassName }: Props) {
 
   return (
     /* Container */
-    <section className="py-10">
+    <section className="pb-10">
       {/* Container */}
       <div className="container flex flex-col items-center justify-between xl:flex-row xl:h-[400px] space-y-6 xl:space-y-0 xl:gap-6">
-        <div className="flex w-full flex-col justify-center rounded-xl lg:items-center lg:justify-evenly xl:w-1/2 xl:h-full">
+        <div className="flex w-full flex-col justify-center bg-beige rounded-xl lg:items-center lg:justify-evenly xl:w-1/2 xl:h-full">
           {/*  left box - static image */}
           {image ? (
-            <div className="w-full h-full relative">
+            <div className={leftColumnClassName ||"w-full h-full relative"}>
               <Image
                 src={"/images/" + image.src}
                 alt={image.alt}
                 width={600}
                 height={400}
                 quality={image.quality || 100}
-                className="w-full h-full object-cover rounded-lg"
+                className={leftColumnImageClassName || "w-full h-full object-cover rounded-lg"}
               />
             </div>
           ) : list ? (
@@ -71,7 +73,7 @@ export default function TwoColText({ title, text, actionButton, list, image }: P
           ) : null}
         </div>
         {/* flex box */}
-        <div className="flex w-full flex-col justify-between rounded-xl bg-background-secondary px-8 py-12 lg:items-start xl:w-1/2 xl:h-full">
+        <div className="flex w-full flex-col justify-between rounded-xl bg-background-secondary px-8 py-12 space-y-12 lg:items-start xl:w-1/2 xl:h-full">
           {/* right box */}
           <Typography variant="p" className="text-darkblue-page-active font-haasGrotDisplay font-thin">
             {title}
@@ -80,14 +82,22 @@ export default function TwoColText({ title, text, actionButton, list, image }: P
             <Typography variant="p" className="mb-4 text-darkblue font-haasGrotDisplay font-extralight xl:text-lg">
               {text}
             </Typography>
-            {actionButton && (
-              <LinkButton
-                href="/about"
-                size="small"
-                className="flex items-center justify-center">
-                {actionButton.children}
-              </LinkButton>
-            )}
+            {actionButton && (actionButton.href || actionButton.onClick) &&
+              (actionButton.href ? (
+                <LinkButton
+                  href={actionButton.href}
+                  size="small"
+                  className="flex items-center justify-center">
+                  {actionButton.children}
+                </LinkButton>
+              ) : (
+                <Button
+                  onClick={actionButton.onClick}
+                  size="small"
+                  className="flex items-center justify-center">
+                  {actionButton.children}
+                </Button>
+              ))}
           </div>
         </div>
       </div>

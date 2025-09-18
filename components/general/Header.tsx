@@ -18,7 +18,7 @@ type Props = {
   imagePosition?: string;
 };
 
-const buttonStyles = "z-1 relative flex justify-center items-center w-fit font-haasGrot font-extralight text-sm px-4 py-2";
+const buttonStyles = "z-1 relative flex justify-center items-center w-fit font-haasGrotDisplay font-extralight text-sm px-7 py-3";
 
 export default function Header({
   title,
@@ -56,7 +56,7 @@ export default function Header({
 
   return (
     <header
-      className="relative h-[70vh] max-h-[55vh] w-full pt-32"
+      className="relative h-[70vh] max-h-[55vh] w-full pt-32 pb-12"
       id="header">
       <div className="container flex h-full justify-center">
         <div className="relative w-full overflow-hidden rounded-xl xl:container xl:max-w-none">
@@ -72,13 +72,13 @@ export default function Header({
           <div className="relative flex h-full flex-col items-center justify-center p-8 text-center">
             <div className="animate-focus-in">
               {title && (
-                <div className="w-fit">
+                <div className="flex flex-col items-center">
                   <Typography
                     variant="h1"
-                    className="relative w-fit font-haasGrot font-thin text-on-primary">
+                    className="relative font-haasGrot font-extralight text-on-primary text-center">
                     {title}
                   </Typography>
-                  <div className="relative mb-4 mt-2 h-1 w-full rounded bg-secondary"></div>
+                  <div className="relative mb-4 mt-2 h-1 w-full max-w-xs rounded bg-darkblue-hover"></div>
                 </div>
               )}
               {/* Static Dermalyser text */}

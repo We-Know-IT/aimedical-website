@@ -1,35 +1,67 @@
 import Image from "next/image";
 import Typography from "../common/Typography";
+import { Button } from "../general/Button";
+import PDFDownloadButton from "../dermalyser/instructions-for-use/PDFDownloadButton";
 
-export default function Background() {
+
+interface BackgroundProps {
+  header: string;
+  text: string;
+  list?: {
+    items: string[];
+    className?: string;
+  };
+  engVugPdfs?: string[];
+
+}
+
+export default function Background({ 
+  header,
+  text,
+  list,
+  engVugPdfs
+}: BackgroundProps) {
   return (
-    <section className="bg-background-secondary py-10">
-      {/* <div className="container flex-col items-center gap-12   xl:flex-row xl:justify-between"> */}
-      <div className="container flex max-w-2xl flex-col items-center justify-center space-y-12 xl:container xl:flex-row xl:space-y-0 xl:space-x-12">
-        <div className="flex flex-col gap-6">
-          <Typography variant="h2">Our Background</Typography>
-          {/* <div className=" h-[2px] w-2/4 bg-primary " /> */}
-          <Typography variant="p" className="mx-auto text-left">
-            AI Medical Technology is a company operating in the
-            interdisciplinary fields of Artificial Intelligence, software development, 
-            Medicine and Life Sciences. Founded by a diverse team of driven, passionate tech
-            entrepreneurs, software developers and clinicians, we are dedicated
-            to developing AI powered diagnostic solutions that enable frontline
-            healthcare practitioners to make easier, faster, more cost effective
-            and more reliable diagnoses for their patients. <br /> <br />
-            Having secured initial funding in 2021, we have now completed the clinical investigation for our first solution, Dermalyser. We are currently undergoing the CE marking process to bring the product to market.
+    <section className="pb-10">
+      <div className="container flex flex-col items-start justify-center space-y-6 xl:flex-row xl:items-start xl:space-y-0 xl:space-x-12">
+        <div className="xl:w-1/2 flex flex-col items-start">
+          <Typography variant="h2" className="font-haasGrotDisplay font-normal !text-left">
+            {header}
           </Typography>
         </div>
-
-        <Image
-          className="max-w-[250px] xl:max-w-none"
-          height={250}
-          width={250}
-          alt="company logo"
-          src={"/images/about/logo.svg"}
-        />
+        <div className="xl:w-1/2 mt-0 space-y-6">
+          <Typography variant="p" className="text-left text-darkblue font-haasGrotDisplay font-light text-lg">
+            {text}
+          </Typography>
+          
+          {/* Conditional List */}
+          {list && (
+            <div className="mt-4">
+              <ul className={`space-y-2 ${list.className || ''}`}>
+                {list.items.map((item, index) => (
+                  <li 
+                    key={index} 
+                    className="flex items-start text-black font-haasGrotDisplay font-light text-lg"
+                  >
+                    <span className="mr-3 mt-2 h-1 w-1 bg-cyan rounded-full flex-shrink-0"></span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {/* Conditional Button */}
+          {engVugPdfs && (
+            <div className="flex justify-start">
+              <PDFDownloadButton 
+                pdfFiles={engVugPdfs} 
+                directory="pdfs/vug/eng"
+                buttonText="Download PDF"
+              />
+            </div>
+          )}
+        </div>
       </div>
-      {/* </div> */}
     </section>
   );
 }

@@ -30,7 +30,7 @@ export default function TwoColProduct({ title, text, actionButton, list, image }
       {/* Container */}
       <div className="container flex flex-col items-center justify-between xl:flex-row xl:h-[400px] space-y-6 xl:space-y-0 xl:gap-6">
         {/* flex box */}
-        <div className="flex w-full flex-col justify-between rounded-xl bg-background-secondary px-8 xl:pr-36 py-12 lg:items-start xl:w-1/2 xl:h-full">
+        <div className="flex w-full flex-col justify-between rounded-xl bg-background-secondary px-8 py-12 space-y-12 lg:space-y-0 lg:items-start xl:w-1/2 xl:h-full">
           {/* left box */}
           <Typography variant="p" className="text-darkblue-page-active font-haasGrotDisplay font-thin">
             {title}

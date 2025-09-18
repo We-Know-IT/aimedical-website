@@ -1,4 +1,4 @@
-export type PostType = "news" | "blog" | "research";
+export type PostType = "news" | "blog" | "research" | "clinical-studies";
 
 export interface Post {
   id: number;

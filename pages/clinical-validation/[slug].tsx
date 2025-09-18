@@ -10,7 +10,7 @@ import MetaTags from "../../components/general/seo/MetaTags";
 import remarkGfm from "remark-gfm";
 import Typography from "../../components/common/Typography";
 import VideoPlaceholder from "../../components/general/cookie-consent/VideoPlaceholder";
-import PostCard from "../../components/pressroom/PostCard";
+import ResearchPostCard from "../../components/research/ResearchPostCard";
 import { getDateString } from "../../utils/date";
 
 function capitalizeFirstLetter(string: string) {
@@ -44,15 +44,15 @@ const getEmbedYoutubeLink = (url: string) => {
   return `https://www.youtube.com/embed/${videoId}`;
 };
 
-export default function PostDetails(props: ServiceResponse<Post> & { relatedPosts?: Post[] }) {
+export default function ClinicalStudyDetails(props: ServiceResponse<Post> & { relatedStudies?: Post[] }) {
   const post = props.data;
-  const relatedPosts = props.relatedPosts || [];
+  const relatedStudies = props.relatedStudies || [];
 
   const { cookieConsent, setConsent } = useCookieConsent();
   return (
     <>
       <Head>
-        <title>AI Medical | Pressroom </title>
+        <title>AI Medical | Clinical Validation</title>
         {post && (
           <MetaTags
             title={post?.seo?.metaTitle || post.title}
@@ -73,8 +73,8 @@ export default function PostDetails(props: ServiceResponse<Post> & { relatedPost
           <div className="container flex h-full justify-center">
             <div className="relative w-full overflow-hidden rounded-xl xl:container xl:max-w-none">
               <Image
-                src={post.headerImage?.url || post.listingImage?.url || "/images/header.jpg"}
-                alt={post.headerImage?.alternativeText || post.listingImage?.alternativeText || "Article header image"}
+                src={post.headerImage?.url || post.listingImage?.url || "/images/clinical-validation/header.jpg"}
+                alt={post.headerImage?.alternativeText || post.listingImage?.alternativeText || "Clinical study header image"}
                 fill
                 className="object-cover"
                 style={{ objectPosition: "center" }}
@@ -87,9 +87,9 @@ export default function PostDetails(props: ServiceResponse<Post> & { relatedPost
       )}
         <div className="container mx-auto py-8 relative">
           {/* Back Button */}
-          <div className="absolute left-5 xl:left-8 2xl:left-16 hidden md:block">
+          <div className="absolute left-5 xl:left-8 2xl:left-16">
             <Link 
-              href="/pressroom" 
+              href="/clinical-validation" 
               className="text-primary hover:text-darkblue font-haasGrotDisplay font-normal transition-colors flex items-center"
             >
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -99,20 +99,20 @@ export default function PostDetails(props: ServiceResponse<Post> & { relatedPost
             </Link>
           </div>
 
-          {/* Article Content */}
+          {/* Study Content */}
           <div className="max-w-2xl mx-auto">
             <article className="prose prose-lg mb-12">
-              {/* Article Title */}
+              {/* Study Title */}
               <Typography variant="h3" className="text-lg md:text-xl font-haasGrotDisplay font-medium text-primary mb-4 leading-tight">
                 {post?.title}
               </Typography>
               
-              {/* Article Metadata */}
+              {/* Study Metadata */}
               <div className="flex flex-col items-start mb-8">
                 <div className="flex items-center space-x-2">
                   <div className="w-2 h-2 bg-cyan rounded-full"></div>
                   <span className="text-sm font-medium text-gray-600">
-                    {post?.postType === "news" ? "Press release" : "Article"}
+                    Clinical Study
                   </span>
                 </div>
                 <Typography variant="p" className="text-sm font-light text-darkblue-page-active">
@@ -124,7 +124,7 @@ export default function PostDetails(props: ServiceResponse<Post> & { relatedPost
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
-              // Article content headings - hide H1 since we already have the title
+              // Study content headings - hide H1 since we already have the title
               h1: (props) => {
                 return null;
               },
@@ -280,16 +280,16 @@ export default function PostDetails(props: ServiceResponse<Post> & { relatedPost
           </div>
 
           {/* More like this section */}
-          {relatedPosts.length > 0 && (
+          {relatedStudies.length > 0 && (
             <section className="mt-16">
               <Typography variant="h3" className="text-xl font-haasGrotDisplay font-medium text-primary mb-8">
-                More like this
+                More studies
               </Typography>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {relatedPosts.slice(0, 3).map((relatedPost) => (
-                  <Link key={relatedPost.id} href={`/pressroom/${relatedPost.slug}`}>
-                    <PostCard post={relatedPost} />
+                {relatedStudies.slice(0, 3).map((relatedStudy) => (
+                  <Link key={relatedStudy.id} href={`/clinical-validation/${relatedStudy.slug}`}>
+                    <ResearchPostCard post={relatedStudy} />
                   </Link>
                 ))}
               </div>
@@ -304,22 +304,22 @@ export default function PostDetails(props: ServiceResponse<Post> & { relatedPost
 export const getStaticProps: GetServerSideProps<{
   data: Post | null;
   error: string | null;
-  relatedPosts?: Post[];
+  relatedStudies?: Post[];
 }> = async (context) => {
-  const postSlug = context.params?.slug;
-  if (!postSlug) {
+  const studySlug = context.params?.slug;
+  if (!studySlug) {
     return {
       notFound: true,
       revalidate: 10,
     };
   }
-  if (Array.isArray(postSlug)) {
+  if (Array.isArray(studySlug)) {
     return {
       notFound: true,
       revalidate: 10,
     };
   }
-  const res = await getPostBySlug(postSlug);
+  const res = await getPostBySlug(studySlug);
 
   if (res.error) {
     if (res.error === "Not Found") {
@@ -334,25 +334,25 @@ export const getStaticProps: GetServerSideProps<{
     throw res.error;
   }
 
-  // Fetch related posts (excluding current post)
-  let relatedPosts: Post[] = [];
+  // Fetch related studies (excluding current study)
+  let relatedStudies: Post[] = [];
   try {
     const relatedRes = await getPosts({
-      filterBy: ["blog", "news"],
+      filterBy: ["clinical-studies"],
       pagination: { start: 0, limit: 4 }
     });
     
     if (relatedRes.data) {
-      relatedPosts = relatedRes.data.posts.filter(post => post.slug !== postSlug).slice(0, 3);
+      relatedStudies = relatedRes.data.posts.filter(post => post.slug !== studySlug).slice(0, 3);
     }
   } catch (error) {
-    console.error("Error fetching related posts:", error);
+    console.error("Error fetching related studies:", error);
   }
 
   return { 
     props: { 
       ...res, 
-      relatedPosts 
+      relatedStudies 
     }, 
     revalidate: 10 
   };
@@ -360,17 +360,17 @@ export const getStaticProps: GetServerSideProps<{
 
 export async function getStaticPaths() {
   const res = await getPosts({
-    filterBy: ["blog", "news"],
+    filterBy: ["clinical-studies"],
   });
   if (res.error || !res.data) {
     throw new Error(res.error);
   }
 
-  const posts = res.data.posts;
+  const studies = res.data.posts;
 
-  const paths = posts.map((post) => {
+  const paths = studies.map((study) => {
     return {
-      params: { slug: post.slug },
+      params: { slug: study.slug },
     };
   });
 

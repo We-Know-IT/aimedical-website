@@ -26,7 +26,7 @@ export default function TwoColRef({ title, text, name, position, image }: Props)
           <div className="w-full h-96 md:h-full flex justify-evenly items-center overflow-x-visible">
             {/* Left Column - Vertical marquee */}
             <div className="overflow-hidden h-full p-4 w-32 xl:w-36">
-              <div className="flex flex-col gap-4 pb-4 h-[150%] animate-marquee-vertical" style={{'--marquee-duration': '10000ms'} as React.CSSProperties}>
+              <div className="flex flex-col gap-4 pb-4 h-[150%] animate-marquee-vertical" style={{'--marquee-duration': '20000ms'} as React.CSSProperties}>
                 {/* First set of squares */}
                 <div className="flex flex-col flex-1 gap-4 h-1/2">
                   <div className="w-28 h-28 xl:w-32 xl:h-32 bg-lightblue rounded-lg mx-auto flex-shrink-0"></div>
@@ -59,7 +59,7 @@ export default function TwoColRef({ title, text, name, position, image }: Props)
             
             {/* Right Column - Vertical marquee */}
             <div className="overflow-hidden h-full p-4 w-32 xl:w-36 flex flex-col justify-end">
-              <div className="flex flex-col gap-4 pb-4 h-[150%] animate-marquee-vertical2" style={{'--marquee-duration': '10000ms'} as React.CSSProperties}>
+              <div className="flex flex-col gap-4 pb-4 h-[150%] animate-marquee-vertical2" style={{'--marquee-duration': '20000ms'} as React.CSSProperties}>
                 {/* First set of squares */}
                 <div className="flex flex-col flex-1 gap-4 h-1/2">
                   <div className="w-28 h-28 xl:w-32 xl:h-32 bg-lightblue rounded-lg mx-auto flex-shrink-0"></div>
@@ -92,7 +92,7 @@ export default function TwoColRef({ title, text, name, position, image }: Props)
               </svg>
             </div>
             <div className="flex flex-col items-start py-4">
-            <Typography variant="p" className="mb-4 text-darkblue font-haasGrotDisplay font-light xl:text-lg">
+            <Typography variant="p" className="mb-8 text-darkblue font-haasGrotDisplay font-light xl:text-lg">
               {text}
             </Typography>
             <Typography variant="p" className="mb-0 text-darkblue font-haasGrotDisplay font-normal xl:text-xs">

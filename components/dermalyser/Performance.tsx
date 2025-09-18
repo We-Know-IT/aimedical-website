@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Typography from "../common/Typography";
 import Bar from "./Bar";
 
@@ -8,12 +9,12 @@ const bars = [
     isHighlighted: true,
   },
   {
-    text: "Expert\ndermatologist",
+    text: "Expert dermatologist",
     value: 0.85,
     isHighlighted: false,
   },
   {
-    text: "General\npractitioner",
+    text: "General practitioner",
     value: 0.7,
     isHighlighted: false,
   },
@@ -33,22 +34,46 @@ const getvalue = (value: number) => {
 
 export default function Performance() {
   return (
-    <section className="z-20 bg-background-primary">
-      <div className="container max-w-xl lg:container">
-        <div className="mx-auto -my-8 flex flex-col gap-4 rounded-[20px] bg-background-primary px-4 py-5 shadow-md sm:px-6 lg:-my-12 lg:max-w-5xl lg:px-0">
-          <Typography variant="h2" className="sm:text-center">
-            AUC Performance of <strong>Dermalyser</strong>
-          </Typography>
-          <Typography
-            variant="p"
-            className="mx-auto max-w-sm text-on-bg-primary sm:text-center lg:max-w-xl ">
-            In our first clinical investigation, our AI achieved an AUC score of 0.96
-            which is higher than shown for Expert Dermatologists and General
-            Practitioners. <br /><br />
-            Dermalyser is an easy-to-use, clinically validated AI decision support tool enabling faster and more accurate diagnosis of Melanoma.
-          </Typography>
+    <section className="pb-10">
+      <div className="container flex flex-col items-center justify-between xl:flex-row-reverse xl:h-[400px] space-y-6 xl:space-y-0 xl:gap-6">
 
-          <ul className="mx-auto mb-4 flex w-full flex-col justify-center gap-4 sm:w-[80%]">
+        {/* Left Column - Text Content */}
+        <div className="flex w-full flex-col justify-between rounded-xl bg-background-secondary px-8 py-12 lg:items-start xl:w-1/2 xl:h-full">
+          <Typography variant="p" className="text-darkblue-page-active font-haasGrotDisplay font-thin">
+          AUC Performance in Melanoma Detection
+          </Typography>
+          
+          <div className="flex flex-col items-start space-y-4 flex-1 justify-center">
+            <Typography variant="h2" className="text-primary font-haasGrotDisplay font-extralight text-lg lg:text-[20px]">
+            Clinically Proven Accuracy
+            </Typography>
+            
+            <Typography
+              variant="p"
+              className="text-darkblue font-haasGrotDisplay font-extralight text-sm lg:text-base">
+In clinical evaluation, Dermalyser reached an AUC score of 0.96, confirming strong performance in melanoma detection. This high level of accuracy is designed to support GPs in everyday practice, providing fast and reliable decision support that complements — never replaces — clinical expertise.
+"Backed by rigorous trials, CE-marked approval, and a study published in the British Journal of Dermatology, Dermalyser provides evidence-based decision support you can trust. Learn more in our clinical studies.
+            </Typography>
+            
+            {/* Button */}
+            
+            {/*
+            <button
+              onClick={() => window.open("https://pubmed.ncbi.nlm.nih.gov/38234043/", "_blank")}
+              className="flex items-center justify-center bg-primary text-white hover:bg-primary-hover active:bg-primary-active rounded-full px-4 py-2 lg:px-6 lg:py-3 font-haasGrotDisplay font-extralight transition-colors cursor-pointer text-sm lg:text-base mt-2"
+            >
+              Clinical Studies
+            </button>
+              */}
+            <Link href="/clinical-validation" className="flex items-center justify-center bg-primary text-white hover:bg-primary-hover active:bg-primary-active rounded-full px-4 py-2 lg:px-6 lg:py-3 font-haasGrotDisplay font-extralight transition-colors cursor-pointer text-sm lg:text-base mt-2">
+              Clinical Studies
+            </Link>
+          </div>
+        </div>
+
+                {/* Right Column - Bar Graph */}
+                <div className="flex w-full flex-col justify-center items-start bg-gradient-to-l from-beige-dark to-transparent rounded-xl xl:w-1/2 xl:h-full px-8 py-12 relative">
+          <ul className="flex w-full flex-col justify-center gap-1">
             {bars.map((bar, i) => (
               <li key={i}>
                 <Bar
@@ -58,18 +83,11 @@ export default function Performance() {
                   ariaLabel={`AUC score of ${bar.value.toFixed(2)} for ${
                     bar.text
                   }`}
+                  barIndex={i}
                 />
               </li>
             ))}
           </ul>
-          <Typography variant="p" className="mx-auto max-w-sm text-on-bg-primary sm:text-center lg:max-w-xl ">
-            For further details, visit: {"\t"}
-            <a
-              href="https://pubmed.ncbi.nlm.nih.gov/38234043/"
-              className="text-primary hover:text-primary-hover">
-              https://pubmed.ncbi.nlm.nih.gov/
-            </a>
-          </Typography>
         </div>
       </div>
     </section>

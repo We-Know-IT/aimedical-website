@@ -27,7 +27,7 @@ const ErrorMessage = ({ message }: { message: string }) => {
   return (
     <div className="flex items-center space-x-2">
       <ErrorIcon h={24} w={24} />
-      <p className="font-bold text-error-dark">{message}</p>
+      <p className="font-haasGrotDisplay font-semibold text-error-dark">{message}</p>
     </div>
   );
 };
@@ -252,7 +252,7 @@ export default function Footer() {
                       onChange={onNameChange}
                       onBlur={(e) => validateName(e.target.value)}
                       className={
-                        "w-full rounded-3xl bg-white/5 p-3 text-white placeholder-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" +
+                        "font-haasGrotDisplay font-extralight w-full rounded-3xl bg-white/5 p-3 px-4 text-white placeholder-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" +
                         (nameErrorMsg ? " border-red-500" : "")
                       }
                       placeholder="Full name *"
@@ -271,7 +271,7 @@ export default function Footer() {
                     value={email}
                     placeholder="Email address *"
                     className={
-                      "w-full rounded-3xl bg-white/5 p-3 text-white placeholder-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" +
+                      "font-haasGrotDisplay font-extralight w-full rounded-3xl bg-white/5 p-3 px-4 text-white placeholder-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" +
                       (emailErrorMsg ? "border-red-500" : "")
                     }
                     aria-label="Enter your email"
@@ -289,7 +289,7 @@ export default function Footer() {
                   value={message}
                   placeholder="Message"
                   className={
-                    "h-32 w-full resize-none rounded-3xl bg-white/5 p-3 text-white placeholder-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary " +
+                    "font-haasGrotDisplay font-extralight h-32 w-full resize-none rounded-3xl bg-white/5 p-3 px-4 text-white placeholder-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary " +
                     (messageErrorMsg ? "border-red-500" : "")
                   }
                   aria-label="Enter your message"
@@ -331,7 +331,8 @@ export default function Footer() {
               {captchaErrorMsg && <ErrorMessage message={captchaErrorMsg} />}
               <div className="flex w-full flex-col space-y-4">
                 <Button
-                  className="sm:w-full lg:w-1/4 rounded-full bg-white px-2 py-3 text-darkblue hover:bg-gray-100"
+                  intent="white"
+                  className="sm:w-full lg:w-1/4 px-2 py-3"
                   disabled={!hasPassedValidation() || isSending}
                   type="submit">
                   {getButtonContent()}
@@ -375,21 +376,21 @@ export default function Footer() {
                <div className="space-y-0 md:w-1/2">
                  <Typography
                    variant="p"
-                   className="flex items-center text-on-darkblue font-haasGrotDisplay font-extralight hover:text-on-primary-hover">
+                   className="flex items-center text-primary underline font-haasGrotDisplay font-extralight hover:text-darkblue">
                    <a href={`tel:${contactInformation.phone}`}>
                      {contactInformation.phone}
                    </a>
                  </Typography>
                  <Typography
                    variant="p"
-                   className="flex items-center text-on-darkblue font-haasGrotDisplay font-extralight hover:text-on-primary-hover">
+                   className="flex items-center text-primary underline font-haasGrotDisplay font-extralight hover:text-darkblue">
                    <a href={`mailto:${contactInformation.email}`}>
                      {contactInformation.email}
                    </a>
                  </Typography>
                </div>
                <div className="flex items-start md:w-1/2">
-                 <Typography variant="p" className="text-on-darkblue font-haasGrotDisplay font-extralight">
+                 <Typography variant="p" className="text-darkblue font-haasGrotDisplay font-extralight">
                    {contactInformation.address.street}<br />
                    {contactInformation.address.city} {contactInformation.address.zip}, {contactInformation.address.country}
                  </Typography>
@@ -404,26 +405,26 @@ export default function Footer() {
             </Typography>
             <nav className="flex flex-col md:flex-row space-y-3 md:space-y-0 md:w-1/2">
               <div className="space-y-1 md:w-1/2">
-                <Link href="/dermalyser" className="block text-on-darkblue font-haasGrotDisplay font-extralight hover:text-on-primary-hover">
+                <Link href="/dermalyser" className="block text-darkblue font-haasGrotDisplay font-extralight hover:text-primary">
                   Product
                 </Link>
-                <Link href="/clinical-validation" className="block text-on-darkblue font-haasGrotDisplay font-extralight hover:text-on-primary-hover">
-                  Clinical Studies
+                <Link href="/clinical-validation" className="block text-darkblue font-haasGrotDisplay font-extralight hover:text-primary">
+                  Clinical Studies  
                 </Link>
-                <Link href="/about" className="block text-on-darkblue font-haasGrotDisplay font-extralight hover:text-on-primary-hover">
+                <Link href="/about" className="block text-darkblue font-haasGrotDisplay font-extralight hover:text-primary">
                   About us
                 </Link>
-                <Link href="/pressroom" className="block text-on-darkblue font-haasGrotDisplay font-extralight hover:text-on-primary-hover">
+                <Link href="/pressroom" className="block text-darkblue font-haasGrotDisplay font-extralight hover:text-primary">
                   News
                 </Link>
               </div>
               <div className="space-y-1 md:w-1/2">
-                <Link href="/privacy-policy" className="block text-on-darkblue font-haasGrotDisplay font-extralight hover:text-on-primary-hover">
+                <Link href="/privacy-policy" className="block text-darkblue font-haasGrotDisplay font-extralight hover:text-primary">
                   Integritetspolicy
                 </Link>
                 <Link
                   href={"https://www.linkedin.com/company/aimedicaltechnology/"}
-                  className="text-on-darkblue font-haasGrotDisplay font-extralight inline-flex items-center hover:text-on-primary-hover">
+                  className="text-darkblue font-haasGrotDisplay font-extralight inline-flex items-center hover:text-primary">
                   LinkedIn
                 </Link>
               </div>
@@ -440,7 +441,7 @@ export default function Footer() {
             </div>
             
             <div className="space-y-3 md:w-1/2">
-            <Typography variant="p" className="text-on-darkblue font-haasGrotDisplay font-extralight">
+            <Typography variant="p" className="text-darkblue font-haasGrotDisplay font-extralight">
             Trusted by doctors, built on clinical evidence.
             </Typography>
 

@@ -1,22 +1,23 @@
-import HowItWorksSlider from "./HowItWorksSlider";
-import HowItWorksSteps from "./HowItWorksSteps";
+import React from "react";
+import Image from "next/image";
+import Typography from "../../common/Typography";
 
 const slides = [
   {
-    title: "1. Download the App",
-    text: "Easily download the Dermalyser app on to your mobile device. The app works on both Android and iOS.",
+    title: "Step 1, Download and get started",
+    text: "Install the Dermalyser app on your smartphone. Works on both iOS and Android.",
     image: "/images/dermalyser/slide_1.png",
     imageAlt: "Dermalyser app on a mobile device",
   },
   {
-    title: "2. Take a Picture",
-    text: "Attach your dermatoscope to the mobile phone and take a picture of the lesion. ",
+    title: "Step 2, One Image",
+    text: "Attach your dermatoscope, take a dermoscopic image, and upload it securely.",
     image: "/images/dermalyser/slide_2.png",
     imageAlt: "Dermascope being used to take a picture of a skin lesion",
   },
   {
-    title: "3. Receive Results",
-    text: "Our AI processes the image to deliver real-time analysis and assess the risk of malignancy. ",
+    title: "Step 3, Receive instant diagnostic support",
+    text: "Dermalyser analyses the image in seconds and provides AI-driven decision support to guide your next step.",
     image: "/images/dermalyser/slide_3.png",
     imageAlt: "Results being displayed on the app",
   },
@@ -29,16 +30,31 @@ export interface HowItWorksSlide {
   imageAlt: string;
 }
 
-export default function How() {
+type HowItWorksStepProps = {
+  slide: HowItWorksSlide;
+};
+
+function HowItWorksStep({ slide }: HowItWorksStepProps) {
   return (
-    <section className="bg-background-primary pb-10 lg:py-12">
+    <div className="bg-background-secondary flex flex-col items-center gap-8 rounded-lg p-6 md:p-12">
+      <Typography variant="h3" className="font-haasGrotDisplay font-light text-primary self-start text-left text-sm">{slide.title}</Typography>
+      <Image src={slide.image} width={312/2} height={524/2} alt={slide.imageAlt} />
+      <Typography variant="p" className="max-w-sm font-haasGrotDisplay font-light text-darkblue text-sm">
+        {slide.text}
+      </Typography>
+    </div>
+  );
+}
+
+export default function HowItWorks() {
+  return (
+    <section className="bg-background-primary pb-12 ">
       <div className="container max-w-xl lg:container">
-        <div className="hidden lg:block">
-          <HowItWorksSteps slides={slides} />
-        </div>
-        <div className="block lg:hidden">
-          <HowItWorksSlider slides={slides} />
-        </div>
+        <div className="flex flex-col md:flex-row items-center gap-6">
+              {slides.map((slide, index) => (
+                <HowItWorksStep key={index} slide={slide} />
+              ))}
+          </div>
       </div>
     </section>
   );

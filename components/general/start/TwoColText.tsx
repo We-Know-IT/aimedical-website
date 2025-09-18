@@ -4,8 +4,10 @@ import Typography from "../../common/Typography";
 import { useRef, useEffect } from "react";
 type Props = {
   title?: React.ReactNode | string;
+  titleClassName?: string;
   text?: string;
-  actionButton: {
+  textClassName?: string;
+  actionButton?: {
     children: React.ReactNode | string;
     onClick?: () => void;
     href?: string;
@@ -27,7 +29,7 @@ type Props = {
   };
 };
 
-export default function TwoColText({ title, text, actionButton, list, video }: Props) {
+export default function TwoColText({ title, titleClassName, text, textClassName, actionButton, list, video }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   
@@ -36,14 +38,24 @@ export default function TwoColText({ title, text, actionButton, list, video }: P
     const overlay = overlayRef.current;
     
     if (video && overlay) {
+      // Initial setup to ensure consistent sizing
+      video.style.height = '100%';
+      video.style.objectFit = 'cover';
+      
       const handlePause = () => {
         video.controls = false;
         overlay.classList.remove('hidden');
+        // Ensure video maintains its size
+        video.style.height = '100%';
+        video.style.objectFit = 'cover';
       };
       
       const handlePlay = () => {
         video.controls = true;
         overlay.classList.add('hidden');
+        // Ensure video maintains its size
+        video.style.height = '100%';
+        video.style.objectFit = 'cover';
       };
       
       video.addEventListener('pause', handlePause);
@@ -58,20 +70,22 @@ export default function TwoColText({ title, text, actionButton, list, video }: P
   
   return (
     /* Container */
-    <section className="py-10">
+    <section className="pb-10">
       {/* Container */}
-      <div className="container flex flex-col items-center justify-between xl:flex-row xl:h-[400px] space-y-6 xl:space-y-0 xl:gap-6">
+      <div className="container flex flex-col items-center justify-between xl:flex-row xl:h-[400px] space-y-6 xl:space-y-0 gap-6">
         {/* flex box */}
-        <div className="flex w-full flex-col justify-between rounded-xl bg-background-secondary px-8 xl:pr-36 py-12 lg:items-start xl:w-1/2 xl:h-full">
+        <div className="flex w-full flex-col justify-between rounded-xl bg-background-secondary px-8 py-12 space-y-12 lg:space-y-0 lg:items-start xl:w-1/2 xl:h-full order-2 xl:order-1">
           {/* left box */}
-          <Typography variant="p" className="text-darkblue-page-active font-haasGrotDisplay font-thin">
-            {title}
-          </Typography>
+          {title && (
+            <Typography variant="p" className={titleClassName || "text-darkblue-page-active font-haasGrotDisplay font-thin"}>
+              {title}
+            </Typography>
+          )}
           <div className="flex flex-col items-start">
-            <Typography variant="p" className="mb-4 text-darkblue font-haasGrotDisplay font-extralight xl:text-lg">
+            <Typography variant="p" className={textClassName || "mb-4 text-darkblue font-haasGrotDisplay font-extralight xl:text-lg"}>
               {text}
             </Typography>
-            {actionButton &&
+            {actionButton && (actionButton.href || actionButton.onClick) &&
               (actionButton.href ? (
                 <LinkButton
                   href={actionButton.href}
@@ -89,10 +103,10 @@ export default function TwoColText({ title, text, actionButton, list, video }: P
               ))}
           </div>
         </div>
-        <div className="flex w-full flex-col justify-center rounded-xl lg:items-center lg:justify-evenly xl:w-1/2 xl:h-full">
+        <div className="flex w-full flex-col justify-center rounded-xl lg:items-center lg:justify-evenly xl:w-1/2 xl:h-full order-1 xl:order-2">
           {/*  right box */}
           {video ? (
-            <div className="w-full h-full relative">
+            <div className="w-full h-full relative min-h-[200px] sm:min-h-[250px] lg:min-h-[300px]">
               <video
                 ref={videoRef}
                 src={video.src}
@@ -103,7 +117,7 @@ export default function TwoColText({ title, text, actionButton, list, video }: P
                 muted={true}
                 loop={video.loop}
                 playsInline
-                className="w-full h-full object-cover rounded-lg"
+                className="w-full h-full object-cover rounded-lg absolute inset-0"
               >
                 Your browser does not support the video tag.
               </video>
