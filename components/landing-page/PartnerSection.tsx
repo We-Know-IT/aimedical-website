@@ -67,7 +67,7 @@ export default function PartnerSection() {
     <section className="flex w-full flex-col items-center space-y-3 py-10 pb-24 md:px-0 lg:space-y-6">
       <Typography variant="h2" className="font-haasGrotDisplay font-normal pb-4">Our Partners</Typography>
       {/* Mobile marquee */}
-      <div className="w-full overflow-hidden md:hidden">
+      <div className="w-full overflow-hidden md:hidden relative">
         <div className="flex animate-marquee gap-4 whitespace-nowrap" style={{ width: '390.4px' }}>
           {/* First set of logos */}
           {partners.map((img, i) => (
@@ -98,15 +98,19 @@ export default function PartnerSection() {
             </div>
           ))}
         </div>
+        {/* Left vignette */}
+        <div className="absolute left-0 top-0 h-full w-12 bg-gradient-to-r from-white via-white/80 to-transparent pointer-events-none z-10"></div>
+        {/* Right vignette */}
+        <div className="absolute right-0 top-0 h-full w-12 bg-gradient-to-l from-white via-white/80 to-transparent pointer-events-none z-10"></div>
       </div>
       
       {/* Desktop grid */}
-      <div className="hidden md:block w-full overflow-hidden">
+      <div className="hidden md:block w-full overflow-hidden relative">
         <div className="flex animate-marquee-desktop gap-4 whitespace-nowrap" style={{ width: '390.4px' }}>
           {/* First set of logos */}
           {partners.map((img, i) => (
             <div
-              key={`mobile-first-${i}`}
+              key={`desktop-first-${i}`}
               className="relative h-20 flex-shrink-0 rounded-lg bg-background-secondary py-4 px-2 w-48">
               <Image
                 src={"/images/" + img.src}
@@ -120,7 +124,7 @@ export default function PartnerSection() {
           {/* Duplicate set for seamless loop */}
           {partners.map((img, i) => (
             <div
-              key={`mobile-second-${i}`}
+              key={`desktop-second-${i}`}
               className="relative h-20 flex-shrink-0 rounded-lg bg-background-secondary py-4 px-2 w-48">
               <Image
                 src={"/images/" + img.src}
@@ -132,6 +136,10 @@ export default function PartnerSection() {
             </div>
           ))}
         </div>
+        {/* Left vignette */}
+        <div className="absolute left-0 top-0 h-full w-48 bg-gradient-to-r from-white via-white/80 to-transparent pointer-events-none z-10"></div>
+        {/* Right vignette */}
+        <div className="absolute right-0 top-0 h-full w-48 bg-gradient-to-l from-white via-white/80 to-transparent pointer-events-none z-10"></div>
       </div>
 
       {/* <ul>
