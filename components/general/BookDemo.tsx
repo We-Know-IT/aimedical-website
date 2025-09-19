@@ -223,7 +223,7 @@ export default function BookDemo({ theme = defaultTheme }: Props) {
       );
     }
     return (
-      <span className="flex items-center justify-center">
+      <span className="flex items-center justify-center font-normal">
         Send request
       </span>
     );
@@ -233,10 +233,10 @@ export default function BookDemo({ theme = defaultTheme }: Props) {
     <div className={`mb-8 flex flex-col ${theme.containerBg} rounded-lg p-8 items-start justify-between lg:flex-row lg:space-x-12`}>
       {/* Left side - Text content */}
       <div className="mb-8 lg:mb-0 lg:w-1/2 flex flex-col items-start">
-        <Typography variant="h3" className={`lg:mb-20 mb-12 font-haasGrotDisplay font-extralight text-sm ${theme.titleColor}`}>
+        <Typography variant="h3" className={`lg:mb-20 mb-12 font-haasGrotDisplay font-normal text-sm ${theme.titleColor}`}>
           Book a demo
         </Typography>
-        <Typography variant="p" className={`${theme.textColor} font-haasGrotDisplay font-extralight text-lg`}>
+        <Typography variant="p" className={`${theme.textColor} font-haasGrotDisplay font-normal text-lg`}>
           Discover how Dermalyser doctors in detecting melanoma quickly and accurately. Leave your details, and we'll arrange a demo at a time that works for you.
         </Typography>
       </div>
@@ -345,7 +345,7 @@ export default function BookDemo({ theme = defaultTheme }: Props) {
             {isSent && (
               <Typography
                 variant="p"
-                className={`flex items-center justify-center font-bold ${theme.textColor}`}>
+                className={`flex items-center justify-center font-normal ${theme.textColor}`}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   height="24"

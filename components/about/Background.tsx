@@ -30,7 +30,7 @@ export default function Background({
           </Typography>
         </div>
         <div className="xl:w-1/2 mt-0 space-y-6">
-          <Typography variant="p" className="text-left text-darkblue font-haasGrotDisplay font-light text-lg">
+          <Typography variant="p" className="text-left text-darkblue font-haasGrotDisplay font-normal text-lg">
             {text}
           </Typography>
           
@@ -41,7 +41,7 @@ export default function Background({
                 {list.items.map((item, index) => (
                   <li 
                     key={index} 
-                    className="flex items-start text-black font-haasGrotDisplay font-light text-lg"
+                    className="flex items-start text-black font-haasGrotDisplay font-normal text-lg"
                   >
                     <span className="mr-3 mt-2 h-1 w-1 bg-cyan rounded-full flex-shrink-0"></span>
                     {item}

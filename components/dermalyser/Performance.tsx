@@ -39,7 +39,7 @@ export default function Performance() {
 
         {/* Left Column - Text Content */}
         <div className="flex w-full flex-col justify-between rounded-xl bg-background-secondary px-8 py-12 lg:items-start xl:w-1/2 xl:h-full">
-          <Typography variant="p" className="text-darkblue-page-active font-haasGrotDisplay font-thin">
+          <Typography variant="p" className="text-darkblue-page-active font-haasGrotDisplay font-normal">
           AUC Performance in Melanoma Detection
           </Typography>
           

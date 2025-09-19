@@ -191,7 +191,7 @@ export default function TwoColText({ title, text, videoPopup, list, image, leftC
         {/* flex box */}
         <div className="flex w-full flex-col justify-between rounded-xl bg-background-secondary px-8 py-12 space-y-12 lg:items-start xl:w-1/2 xl:h-full">
           {/* right box */}
-          <Typography variant="p" className="text-darkblue-page-active font-haasGrotDisplay font-thin">
+          <Typography variant="p" className="text-darkblue-page-active font-haasGrotDisplay font-normal">
             {title}
           </Typography>
           <div className="flex flex-col items-start">
