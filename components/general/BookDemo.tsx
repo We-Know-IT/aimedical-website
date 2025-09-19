@@ -334,10 +334,10 @@ export default function BookDemo({ theme = defaultTheme }: Props) {
             )}
           </div>
           {captchaErrorMsg && <ErrorMessage message={captchaErrorMsg} />}
-          <div className="flex w-full flex-col space-y-4">
+          <div className="flex flex-col space-y-4 items-start">
             <Button
               intent={theme.buttonIntent}
-              className="sm:w-full lg:w-1/4 px-2 py-3"
+              className="px-6 py-3 whitespace-nowrap"
               disabled={!hasPassedValidation() || isSending}
               type="submit">
               {getButtonContent()}
