@@ -9,6 +9,7 @@ type Props = {
 
 export default function EmployeeCard({ employee }: Props) {
   const [isDesciptionVisibile, setIsDiscriptionVisible] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   const toggleDescriptionVisibility = () => {
     setIsDiscriptionVisible((prev) => !prev);
@@ -18,14 +19,25 @@ export default function EmployeeCard({ employee }: Props) {
     <div className="bg-beige-dark flex flex-col items-center justify-center gap-y-4 rounded-xl min-h-[340px]">
       <div className="flex justify-center w-full pt-10">
         <div className="aspect-square h-[180px] w-[180px]">
-          <Image
-            className="h-full w-full rounded-full object-cover"
-            src={employee.image}
-            width={600}
-            height={600}
-            quality={100}
-            alt={employee.name + " " + employee.title}
-          />
+          {!imageError ? (
+            <Image
+              className="h-full w-full rounded-full object-cover"
+              src={employee.image}
+              width={600}
+              height={600}
+              quality={100}
+              alt={employee.name + " " + employee.title}
+              onError={() => setImageError(true)}
+              unoptimized={true}
+              priority={false}
+            />
+          ) : (
+            <div className="h-full w-full rounded-full bg-gray-300 flex items-center justify-center">
+              <span className="text-gray-600 text-sm font-medium">
+                {employee.name.split(' ').map(n => n[0]).join('')}
+              </span>
+            </div>
+          )}
         </div>
       </div>
 

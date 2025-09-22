@@ -56,7 +56,7 @@ export default function Header({
 
   return (
     <header
-      className="relative h-[70vh] max-h-[55vh] w-full pt-32 pb-12"
+      className="relative h-[70vh] max-h-[55vh] 2xl:max-h-[75vh] w-full pt-32 pb-12"
       id="header">
       <div className="container flex h-full justify-center">
         <div className="relative w-full overflow-hidden rounded-xl xl:container xl:max-w-none">
