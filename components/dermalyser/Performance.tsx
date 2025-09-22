@@ -39,18 +39,18 @@ export default function Performance() {
 
         {/* Left Column - Text Content */}
         <div className="flex w-full flex-col justify-between rounded-xl bg-background-secondary px-8 py-12 lg:items-start xl:w-1/2 xl:h-full">
-          <Typography variant="p" className="text-darkblue-page-active font-haasGrotDisplay font-thin">
+          <Typography variant="p" className="text-darkblue-page-active font-haasGrotDisplay font-normal">
           AUC Performance in Melanoma Detection
           </Typography>
           
           <div className="flex flex-col items-start space-y-4 flex-1 justify-center">
-            <Typography variant="h2" className="text-primary font-haasGrotDisplay font-extralight text-lg lg:text-[20px]">
+            <Typography variant="h2" className="text-primary font-haasGrotDisplay font-normal text-lg lg:text-[20px]">
             Clinically Proven Accuracy
             </Typography>
             
             <Typography
               variant="p"
-              className="text-darkblue font-haasGrotDisplay font-extralight text-sm lg:text-base">
+              className="text-darkblue font-haasGrotDisplay font-normal text-sm lg:text-base">
 In clinical evaluation, Dermalyser reached an AUC score of 0.96, confirming strong performance in melanoma detection. This high level of accuracy is designed to support GPs in everyday practice, providing fast and reliable decision support that complements — never replaces — clinical expertise.
 "Backed by rigorous trials, CE-marked approval, and a study published in the British Journal of Dermatology, Dermalyser provides evidence-based decision support you can trust. Learn more in our clinical studies.
             </Typography>

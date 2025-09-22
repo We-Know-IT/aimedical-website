@@ -122,7 +122,7 @@ export default function Dermalyser({ engIfuPdfs, sweIfuPdfs, engPiPdfs, engVugPd
             </>
           }
           text="For many GPs, assessing suspicious skin lesions is one of the most challenging parts of daily practice. Subtle features of melanoma are easily missed, and the pressure of limited consultation time adds to the difficulty. Dermalyser fits seamlessly into this workflow.Dermalyser is designed to support this process. By analysing dermoscopic images in just seconds — evidence-based, CE-marked,
-it provides clinically validated decision support that complements your judgement — helping you feel more confident in difficult cases, reduce unnecessary referrals, and"
+it provides clinically validated decision support that complements your judgement — helping you feel more confident in difficult cases, reduce unnecessary referrals"
           image={{
             src: "home/header.jpg",
             alt: "Dermalyser",

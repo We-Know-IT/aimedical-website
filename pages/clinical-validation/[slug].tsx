@@ -86,8 +86,8 @@ export default function ClinicalStudyDetails(props: ServiceResponse<Post> & { re
         </header>
       )}
         <div className="container mx-auto py-8 relative">
-          {/* Back Button */}
-          <div className="absolute left-5 xl:left-8 2xl:left-16">
+          {/* Back Button - Hidden on mobile */}
+          <div className="hidden md:block absolute left-5 xl:left-8 2xl:left-16">
             <Link 
               href="/clinical-validation" 
               className="text-primary hover:text-darkblue font-haasGrotDisplay font-normal transition-colors flex items-center"

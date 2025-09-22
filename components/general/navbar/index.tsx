@@ -5,6 +5,7 @@ import { useWindowScrollPositions } from "../../../utils/scroll";
 import LogoIcon from "../../icons/common/Logo";
 import HamburgerIcon from "./HamburgerIcon";
 import { twMerge } from "tailwind-merge";
+import BookDemo from "../BookDemo";
 
 export default function Navbar() {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
@@ -45,9 +46,25 @@ export default function Navbar() {
   const getLinkStyles = (path: string, highlightNested = false) => {
     const isActive = isActivePath(path, highlightNested);
     return twMerge(
-      "font-haasGrot font-light text-darkblue hover:text-darkblue-hover active:text-darkblue-active transition-colors text-base",
+      "font-haasGrot font-normal text-darkblue hover:text-darkblue-hover active:text-darkblue-active transition-colors text-sm",
       isActive && "border-b-2 border-white text-darkblue-page-active"
     );
+  };
+
+  // Get current page name based on router path
+  const getCurrentPageName = () => {
+    const path = router.pathname;
+    
+    if (path === '/') return 'Home';
+    if (path === '/about') return 'About us';
+    if (path === '/dermalyser') return 'Dermalyser';
+    if (path === '/dermalyser-2') return 'Dermalyser 2.0';
+    if (path === '/clinical-validation' || path.startsWith('/clinical-validation/')) return 'Clinical Studies';
+    if (path === '/pressroom' || path.startsWith('/pressroom/')) return 'News';
+    if (path === '/privacy-policy') return 'Privacy Policy';
+    
+    // Default fallback
+    return 'Home';
   };
 
   // Smooth scroll to contact section
@@ -83,15 +100,17 @@ export default function Navbar() {
           </Link>
           {/* AI Medical Technology text with vertical bar */}
           <div className="hidden lg:flex items-center space-x-3">
-            <span className="text-darkblue font-haasGrot font-light text-base">Ai Medical Technology</span>
+            <Link href="/" className="text-darkblue font-haasGrot font-normal text-sm">
+              Ai Medical Technology
+            </Link>
             <div className="w-[1px] h-6 bg-darkblue"></div>
           </div>
-          {/* Home link next to logo */}
+          {/* Current page name next to logo */}
           <div className="flex flex-1 items-center justify-center !ml-3 lg:items-stretch lg:justify-start">
             <div className="hidden lg:block">
-              <Link href="/" className={getLinkStyles("/")}>
-                Home
-              </Link>
+              <span className="font-haasGrot font-normal text-darkblue-page-active text-sm">
+                {getCurrentPageName()}
+              </span>
             </div>
           </div>
         </div>
@@ -100,12 +119,16 @@ export default function Navbar() {
           {/* Book a demo button - mobile only */}
           <Link
             href="/#contact"
-            className="mr-4 lg:hidden bg-darkblue-hover text-white px-6 py-2 rounded-full text-sm font-haasGrotDisplay font-extralight hover:bg-darkblue transition-colors"
+            className="mr-4 lg:hidden bg-primary text-white px-6 py-2 rounded-full text-sm font-haasGrotDisplay font-normal hover:bg-primary-hover transition-colors"
             onClick={(e) => {
               e.preventDefault();
+              // Close hamburger menu if it's open
+              if (isNavbarOpen) {
+                setIsNavbarOpen(false);
+              }
               const element = document.getElementById('contact');
               if (element) {
-                const navbarHeight = 80; // Approximate navbar height
+                const navbarHeight = 80;
                 const elementPosition = element.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
                 window.scrollTo({
@@ -170,13 +193,13 @@ export default function Navbar() {
                     <div className="bg-white rounded-md shadow-lg border border-gray-200 overflow-hidden">
                       <Link
                         href="/dermalyser"
-                        className="block px-4 py-3 text-sm font-haasGrot font-light text-darkblue hover:bg-gray-50 hover:text-primary transition-colors"
+                        className="block px-4 py-3 text-sm font-haasGrot font-normal text-darkblue hover:bg-gray-50 hover:text-primary transition-colors"
                       >
                         Dermalyser
                       </Link>
                       <Link
                         href="/dermalyser-2"
-                        className="block px-4 py-3 text-sm font-haasGrot font-light text-darkblue hover:bg-gray-50 hover:text-primary transition-colors"
+                        className="block px-4 py-3 text-sm font-haasGrot font-normal text-darkblue hover:bg-gray-50 hover:text-primary transition-colors"
                       >
                         Dermalyser 2.0
                       </Link>
@@ -209,7 +232,7 @@ export default function Navbar() {
                 {/* Book a demo */}
                 <li>
                   <button
-                    className="py-2 text-base font-haasGrot font-extralight md:py-2 md:px-6 lg:py-2 text-white bg-primary rounded-full hover:bg-primary-hover transition-colors"
+                    className="py-2 text-sm font-haasGrot font-normal md:py-2 md:px-6 lg:py-2 text-white bg-primary rounded-full hover:bg-primary-hover transition-colors"
                     onClick={scrollToContact}
                   >
                     Book a demo
@@ -222,28 +245,16 @@ export default function Navbar() {
       </div>
       {/* Mobile drop down menu */}
       <div
-        className={`relative z-10 lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          isNavbarOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        className={`relative z-10 lg:hidden transition-all duration-300 ease-in-out ${
+          isNavbarOpen ? "max-h-screen opacity-100 overflow-y-auto" : "max-h-0 opacity-0 overflow-hidden"
         }`}
-        id="mobile-menu">
-        <ul className="flex flex-col items-start w-full space-y-1 px-4 pt-2 pb-8 bg-surface-primary">
-          {/* Home */}
-          <li 
-            className={`py-0 px-6 w-full transition-all duration-300 ease-in-out transform ${
-              isNavbarOpen 
-                ? "translate-y-0 opacity-100" 
-                : "translate-y-4 opacity-0"
-            }`}
-            style={{
-              transitionDelay: isNavbarOpen ? "0ms" : "0ms"
-            }}
-          >
-            <div className="text-lg">
-              <Link href="/" className="font-haasGrot font-light text-darkblue hover:text-darkblue-hover text-xl">
-                Home
-              </Link>
-            </div>
-          </li>
+        id="mobile-menu"
+        style={{
+          maxHeight: isNavbarOpen ? 'calc(100vh - 80px)' : '0'
+        }}>
+        <div className="bg-surface-primary">
+        <ul className="flex flex-col items-start w-full space-y-1 px-4 py-16 pb-12">
+
 
           {/* Dermalyser with mobile dropdown */}
           <li 
@@ -352,6 +363,31 @@ export default function Navbar() {
             </div>
           </li>
         </ul>
+        
+        {/* BookDemo section in mobile menu */}
+        <div 
+          className={`px-4 pb-8 transition-all duration-300 ease-in-out transform ${
+            isNavbarOpen 
+              ? "translate-y-0 opacity-100" 
+              : "translate-y-4 opacity-0"
+          }`}
+          style={{
+            transitionDelay: isNavbarOpen ? "500ms" : "0ms"
+          }}
+        >
+          <BookDemo 
+            theme={{
+              containerBg: "bg-beige-dark",
+              titleColor: "text-darkblue-page-active",
+              textColor: "text-darkblue",
+              inputBg: "bg-beige",
+              inputText: "text-darkblue",
+              inputPlaceholder: "placeholder-gray-500",
+              buttonIntent: "primary"
+            }}
+          />
+        </div>
+        </div>
       </div>
       {isNavbarOpen && (
         <div

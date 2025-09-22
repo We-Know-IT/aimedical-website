@@ -36,10 +36,10 @@ type HowItWorksStepProps = {
 
 function HowItWorksStep({ slide }: HowItWorksStepProps) {
   return (
-    <div className="bg-background-secondary flex flex-col items-center gap-8 rounded-lg p-6 md:p-12">
-      <Typography variant="h3" className="font-haasGrotDisplay font-light text-primary self-start text-left text-sm">{slide.title}</Typography>
+    <div className="bg-background-secondary flex flex-col items-center gap-8 rounded-lg p-6 md:p-12 min-h-[400px] md:min-h-[450px]">
+      <Typography variant="h3" className="font-haasGrotDisplay font-normal text-primary self-start text-left text-sm">{slide.title}</Typography>
       <Image src={slide.image} width={312/2} height={524/2} alt={slide.imageAlt} />
-      <Typography variant="p" className="max-w-sm font-haasGrotDisplay font-light text-darkblue text-sm">
+      <Typography variant="p" className="max-w-sm font-haasGrotDisplay font-normal text-darkblue text-sm text-left">
         {slide.text}
       </Typography>
     </div>
@@ -50,7 +50,7 @@ export default function HowItWorks() {
   return (
     <section className="bg-background-primary pb-12 ">
       <div className="container max-w-xl lg:container">
-        <div className="flex flex-col md:flex-row items-center gap-6">
+        <div className="flex flex-col md:flex-row items-stretch gap-6">
               {slides.map((slide, index) => (
                 <HowItWorksStep key={index} slide={slide} />
               ))}

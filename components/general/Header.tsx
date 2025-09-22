@@ -56,7 +56,7 @@ export default function Header({
 
   return (
     <header
-      className="relative h-[70vh] max-h-[55vh] w-full pt-32 pb-12"
+      className="relative h-[70vh] max-h-[55vh] 2xl:max-h-[75vh] w-full pt-32 pb-12"
       id="header">
       <div className="container flex h-full justify-center">
         <div className="relative w-full overflow-hidden rounded-xl xl:container xl:max-w-none">
@@ -69,7 +69,7 @@ export default function Header({
             placeholder="blur"
             blurDataURL="/images/blur.jpg"
           />
-          <div className="relative flex h-full flex-col items-center justify-center p-8 text-center">
+          <div className="relative flex h-full flex-col items-center justify-center p-4 lg:p-8 text-center">
             <div className="animate-focus-in">
               {title && (
                 <div className="flex flex-col items-center">
@@ -85,16 +85,16 @@ export default function Header({
               <div className="flex justify-center w-full mb-0">
                 <Typography
                   variant="p"
-                  className="text-on-primary text-[12px] lg:text-[14px] font-haasGrotDisplay font-thin tracking-wider">
+                  className="text-on-primary text-[14px] lg:text-[16px] font-haasGrotDisplay font-normal tracking-wider">
                   Dermalyser
                 </Typography>
               </div>
               
               {/* Cycling text */}
-              <div className="relative mb-6 h-16 flex items-center justify-center w-full max-w-4xl px-8">
+              <div className="relative mb-6 h-16 flex items-center justify-center w-full max-w-4xl px-0 lg:px-8">
                 <Typography
                   variant="p"
-                  className={`whitespace-pre-wrap text-[16px] text-on-primary lg:text-[20px] transition-all duration-500 text-center w-full font-haasGrot font-extralight ${
+                  className={`whitespace-pre-wrap text-[19px] text-on-primary lg:text-[26px] transition-all duration-500 text-center w-full font-haasGrot font-normal ${
                     isTransitioning 
                       ? 'opacity-0 transform translate-y-4' 
                       : 'opacity-100 transform translate-y-0'

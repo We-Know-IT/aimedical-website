@@ -80,7 +80,7 @@ export default function TwoColRef({ title, text, name, position, image }: Props)
           <div 
             className="absolute -inset-4 pointer-events-none rounded-xl"
             style={{
-              background: 'radial-gradient(circle, transparent 30%, rgba(255,255,255,0.8) 40%, white 100%)'
+              background: 'radial-gradient(circle, transparent 40%, rgba(255,255,255,0.8) 70%, white 100%)'
             }}
           ></div>
         </div>

@@ -8,6 +8,16 @@
   letter-spacing: 0.065em;
 }
 
+/* Ensure consistent font rendering for Swedish characters */
+.font-haasGrot,
+.font-haasGrotDisplay,
+.font-sans {
+  font-feature-settings: "kern" 1, "liga" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
 /* Neue Haas Grotesk Font Faces - Based on available fonts */
 
 /* 15xx Thin */
@@ -158,7 +168,7 @@
 }
 
 .animate-marquee {
-  animation: marquee 20s linear infinite;
+  animation: marquee 30s linear infinite;
 }
 .animate-marquee-desktop {
   animation: marquee 40s linear infinite;
