@@ -33,7 +33,7 @@ export default function PostCard({ post }: Props) {
       </div>
 
       {/* Content section */}
-      <div className="flex font-haasGrotDisplay flex-col p-6 space-y-0">
+      <div className="flex font-robotoFlex flex-col p-6 space-y-0">
         {/* Content type indicator */}
         <div className="flex items-center space-x-2">
           <div className="w-2 h-2 bg-cyan rounded-full"></div>

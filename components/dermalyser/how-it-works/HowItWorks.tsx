@@ -37,9 +37,9 @@ type HowItWorksStepProps = {
 function HowItWorksStep({ slide }: HowItWorksStepProps) {
   return (
     <div className="bg-background-secondary flex flex-col items-center gap-8 rounded-lg p-6 md:p-12 min-h-[400px] md:min-h-[450px]">
-      <Typography variant="h3" className="font-haasGrotDisplay font-normal text-primary self-start text-left text-sm">{slide.title}</Typography>
+      <Typography variant="h3" className="font-robotoFlex font-normal text-primary self-start text-left text-sm">{slide.title}</Typography>
       <Image src={slide.image} width={312/2} height={524/2} alt={slide.imageAlt} />
-      <Typography variant="p" className="max-w-sm font-haasGrotDisplay font-normal text-darkblue text-sm text-left">
+      <Typography variant="p" className="max-w-sm font-robotoFlex font-normal text-darkblue text-sm text-left">
         {slide.text}
       </Typography>
     </div>

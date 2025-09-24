@@ -25,12 +25,12 @@ export default function Background({
     <section className="pb-10">
       <div className="container flex flex-col items-start justify-center space-y-6 xl:flex-row xl:items-start xl:space-y-0 xl:space-x-12">
         <div className="xl:w-1/2 flex flex-col items-start">
-          <Typography variant="h2" className="font-haasGrotDisplay font-normal !text-left">
+          <Typography variant="h2" className="font-robotoFlex font-normal !text-left">
             {header}
           </Typography>
         </div>
         <div className="xl:w-1/2 mt-0 space-y-6">
-          <Typography variant="p" className="text-left text-darkblue font-haasGrotDisplay font-normal text-lg">
+          <Typography variant="p" className="text-left text-darkblue font-robotoFlex font-normal text-lg">
             {text}
           </Typography>
           
@@ -41,7 +41,7 @@ export default function Background({
                 {list.items.map((item, index) => (
                   <li 
                     key={index} 
-                    className="flex items-start text-black font-haasGrotDisplay font-normal text-lg"
+                    className="flex items-start text-black font-robotoFlex font-normal text-lg"
                   >
                     <span className="mr-3 mt-2 h-1 w-1 bg-cyan rounded-full flex-shrink-0"></span>
                     {item}

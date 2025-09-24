@@ -72,17 +72,17 @@ export default function TwoColText({ title, titleClassName, text, textClassName,
     /* Container */
     <section className="pb-10">
       {/* Container */}
-      <div className="container flex flex-col items-center justify-between xl:flex-row xl:h-[400px] space-y-6 xl:space-y-0 gap-6">
+      <div className="container flex flex-col items-center justify-between xl:flex-row xl:h-[440px] space-y-6 xl:space-y-0 gap-6">
         {/* flex box */}
         <div className="flex w-full flex-col justify-between rounded-xl bg-background-secondary px-8 py-12 space-y-12 lg:space-y-0 lg:items-start xl:w-1/2 xl:h-full order-2 xl:order-1">
           {/* left box */}
           {title && (
-            <Typography variant="p" className={titleClassName || "text-darkblue-page-active font-haasGrotDisplay font-normal"}>
+            <Typography variant="p" className={titleClassName || "text-darkblue-page-active font-robotoFlex font-normal"}>
               {title}
             </Typography>
           )}
           <div className="flex flex-col items-start">
-            <Typography variant="p" className={textClassName || "mb-4 text-darkblue font-haasGrotDisplay font-normal xl:text-lg"}>
+            <Typography variant="p" className={textClassName || "mb-4 text-darkblue font-robotoFlex font-normal xl:text-lg"}>
               {text}
             </Typography>
             {actionButton && (actionButton.href || actionButton.onClick) &&
@@ -106,7 +106,7 @@ export default function TwoColText({ title, titleClassName, text, textClassName,
         <div className="flex w-full flex-col justify-center rounded-xl lg:items-center lg:justify-evenly xl:w-1/2 xl:h-full order-1 xl:order-2">
           {/*  right box */}
           {video ? (
-            <div className="w-full h-full relative min-h-[200px] sm:min-h-[250px] lg:min-h-[300px]">
+            <div className="w-full h-80 sm:h-96 lg:h-full relative">
               <video
                 ref={videoRef}
                 src={video.src}

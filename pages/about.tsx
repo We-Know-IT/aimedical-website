@@ -32,10 +32,10 @@ export default function About({
           description="We are dedicated to developing AI powered diagnostic solutions that enable frontline healthcare practitioners to make easier, faster and more reliable diagnoses for their patients."
         />
       </Head>
-      <main className="pt-32">
+      <main className="pt-28">
       <TwoColText
           text="We are doctors, scientists, and innovators united by one purpose, saving lives through earlier melanoma detection."
-          textClassName="!mb-4 mt-10 lg:mt-14 text-darkblue font-haasGrotDisplay font-normal text-3xl leading-tight"
+          textClassName="!mb-4 mt-10 lg:mt-14 text-darkblue font-robotoFlex font-normal text-3xl leading-tight"
           actionButton={{
             children: "Book a demo",
             onClick: () => {
@@ -57,7 +57,7 @@ export default function About({
             controls: false,
             autoPlay: false,
             muted: true,
-            poster: "/images/home/header.jpg"
+            poster: "/images/home/header.png"
           }}></TwoColText>
         <Background 
           header="Our purpose"
@@ -71,7 +71,7 @@ export default function About({
             alt: "Christoffer Ekström",
             quality: 100,
           }}
-          leftColumnClassName="w-full h-full flex items-center justify-center p-0 pt-32 px-6 md:p-24 pb-0 md:pb-0"
+          leftColumnClassName="w-full h-full flex items-center justify-center p-0 pt-28 px-6 md:p-24 pb-0 md:pb-0"
           leftColumnImageClassName="w-full h-full md:max-h-xs object-cover md:object-contain rounded-lg"
         />
         <TwoColAbout
@@ -82,7 +82,7 @@ export default function About({
             alt: "Panos Papachristou",
             quality: 100,
           }}
-          leftColumnClassName="w-full h-full flex items-center justify-center p-0 pt-32 px-6 md:p-24 pb-0 md:pb-0"
+          leftColumnClassName="w-full h-full flex items-center justify-center p-0 pt-28 px-6 md:p-24 pb-0 md:pb-0"
           leftColumnImageClassName="w-full h-full md:max-h-xs object-cover md:object-contain rounded-lg"
         />
         <Team

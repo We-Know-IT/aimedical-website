@@ -30,11 +30,11 @@ export default function TwoColText({ title, text, actionButton, list, image, lef
     /* Container */
     <section className="pb-10">
       {/* Container */}
-      <div className="container flex flex-col items-center justify-between xl:flex-row xl:h-[400px] space-y-6 xl:space-y-0 xl:gap-6">
+      <div className="container flex flex-col items-center justify-between xl:flex-row xl:h-[440px] space-y-6 xl:space-y-0 xl:gap-6">
         <div className="flex w-full flex-col justify-center bg-beige rounded-xl lg:items-center lg:justify-evenly xl:w-1/2 xl:h-full">
           {/*  left box - static image */}
           {image ? (
-            <div className={leftColumnClassName ||"w-full h-full relative"}>
+            <div className={leftColumnClassName ||"w-full h-80 sm:h-96 lg:h-full relative"}>
               <Image
                 src={"/images/" + image.src}
                 alt={image.alt}
@@ -75,25 +75,27 @@ export default function TwoColText({ title, text, actionButton, list, image, lef
         {/* flex box */}
         <div className="flex w-full flex-col justify-between rounded-xl bg-background-secondary px-8 py-12 space-y-12 lg:items-start xl:w-1/2 xl:h-full">
           {/* right box */}
-          <Typography variant="p" className="text-darkblue-page-active font-haasGrotDisplay font-normal">
+          <Typography variant="p" className="text-darkblue-page-active font-robotoFlex font-normal">
             {title}
           </Typography>
           <div className="flex flex-col items-start">
-            <Typography variant="p" className="mb-4 text-darkblue font-haasGrotDisplay font-normal xl:text-lg">
+            <Typography variant="p" className="mb-4 text-darkblue font-robotoFlex font-normal xl:text-[20px] xl:leading-[26px]">
               {text}
             </Typography>
             {actionButton && (actionButton.href || actionButton.onClick) &&
               (actionButton.href ? (
                 <LinkButton
                   href={actionButton.href}
-                  size="small"
+                  size="medium"
+                  intent="transparentblue"
                   className="flex items-center justify-center">
                   {actionButton.children}
                 </LinkButton>
               ) : (
                 <Button
                   onClick={actionButton.onClick}
-                  size="small"
+                  size="medium"
+                  intent="secondary"
                   className="flex items-center justify-center">
                   {actionButton.children}
                 </Button>

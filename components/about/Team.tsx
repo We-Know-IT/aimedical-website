@@ -32,7 +32,7 @@ export default function Team({ employees, title }: Props) {
     <section className="container mt-6 mb-24 bg-background-primary">
       <div className="flex flex-col items-center justify-center gap-y-4 sm:gap-y-8">
         <div className="flex w-full flex-col items-start space-y-4">
-          <Typography variant="h3" className="sm:text-start font-haasGrotDisplay font-normal text-[20px] lg:text-xl text-primary">
+          <Typography variant="h3" className="sm:text-start font-robotoFlex font-normal text-[20px] lg:text-xl text-primary">
             {title}
           </Typography>
         </div>
@@ -68,7 +68,7 @@ export default function Team({ employees, title }: Props) {
             <div className="flex justify-center mt-6">
               <button
                 onClick={() => setShowAllMembers(true)}
-                className="bg-white text-primary w-full px-6 py-3 border border-primary rounded-full font-haasGrotDisplay font-light hover:bg-primary-hover transition-colors">
+                className="bg-white text-primary w-full px-6 py-3 border border-primary rounded-full font-robotoFlex font-light hover:bg-primary-hover transition-colors">
                 View full team
               </button>
             </div>

@@ -8,29 +8,7 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        {/* Preload critical Haas Grotesk fonts */}
-        <link
-          rel="preload"
-          href="/fonts/haas-grotesk/neuehaasgrotdisp-45light-trial.otf"
-          as="font"
-          type="font/otf"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/haas-grotesk/neuehaasgrotdisp-55roman-trial.otf"
-          as="font"
-          type="font/otf"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/haas-grotesk/neuehaasgrotdisp-65medium-trial.otf"
-          as="font"
-          type="font/otf"
-          crossOrigin="anonymous"
-        />
-        
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -38,14 +16,10 @@ export default function Document() {
           crossOrigin="true"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..900&display=swap"
           rel="stylesheet"
         />
 
-        <link
-          href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
-          rel="stylesheet"
-        />
 
         <link rel="icon" type="image/x-icon" href="/favicon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />

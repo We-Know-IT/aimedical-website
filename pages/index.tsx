@@ -16,7 +16,7 @@ import PartnerSection from "../components/landing-page/PartnerSection";
 import TwoColAbout from "../components/general/start/TwoColAbout";
 
 const buttonHeader = {
-  children: "Explore Dermalyser",
+  children: "About Dermalyser",
   onClick: () => {
     document.getElementById('home-section1')?.scrollIntoView({ behavior: 'smooth' });
   },
@@ -61,16 +61,16 @@ const columnText = [
 
 const scrollRows = [
   {
-    title: "Faster, more confident decisions at the point of care.",
-    text: "Dermalyser delivers accurate diagnostic support in seconds, reducing waiting times and giving healthcare practitioners (- peace of mind)."
+    title: "Faster, more confident decisions at the point of care",
+    text: "Dermalyser delivers accurate diagnostic support in seconds, reducing waiting times and giving healthcare practitioners"
   },
   {
-    title: "Reduce unnecessary excisions and referrals.",
-    text: "By improving diagnostic accuracy, Dermalyser lowers the number of avoidable procedures and optimises healthcare resources across multiple levels."
+    title: "Reduce unnecessary excisions and referrals",
+    text: "By improving diagnostic accuracy, Dermalyser lowers the number of avoidable procedures and optimises healthcare resources across multiple levels"
   },
   {
     title: "Proven accuracy – outperforming existing methods",
-    text: "Validated in clinical trials, Dermalyser reaches 95% sensitivity in melanoma detection. Significantly benefit general practit-ioners and helping general practitioners in clinical decisions."
+    text: "Validated in clinical trials, Dermalyser reaches 95% sensitivity in melanoma detection. Significantly benefit general practit-ioners and helping general practitioners in clinical decisions"
   }
 ];
 
@@ -98,16 +98,18 @@ export default function Home() {
         <MetaTags
           description="Driving Fast And Accurate \nDiagnosis Through AI"
           title="AI Medical"
-          image="/images/home/header.jpg"
+          image="/images/home/header.png"
         />
       </Head>
       <Header
-        imageUrl="/images/home/header.jpg"
+        imageUrl="/images/home/header.png"
         text=""
         actionButton={buttonHeader}
         fullHeight={true}
       />
+
       <main id="home-section1">
+        <PartnerSection />
         <TwoColText
           title={
             <>
@@ -115,15 +117,14 @@ export default function Home() {
             </>
           }
           text="Dermalyser is a CE-marked app that provides AI-driven decision support in just seconds, by analysing a dermoscopic image captured with your smartphone."
-          textClassName="mb-4 text-darkblue font-haasGrotDisplay font-normal xl:text-[20px] whitespace-pre-line"
-          actionButton={buttonSection1}
+          textClassName="mb-4 text-darkblue font-robotoFlex font-normal xl:text-[24px] whitespace-pre-line"
           video={{
             src: "https://www.w3schools.com/html/mov_bbb.mp4",
             title: "AI Medical Dermalyser Demo",
             controls: false,
             autoPlay: false,
             muted: true,
-            poster: "/images/home/header.jpg"
+            poster: "/images/home/header.png"
           }}></TwoColText>
         <TwoColScroll
           scrollRows={scrollRows}
@@ -131,17 +132,16 @@ export default function Home() {
         />
         <TwoColRef
           title={"“"}
-          text="We’ve been using Dermalyser for a while now and it’s been really helpful. It’s quick to use and gives me more certainty when I’m not completely sure about a mole. Patients like that they get an answer right away."
-          name="Kalle Appelkvist"
-          position="Clinic specialist Company."
+          text="It is an exciting time in skin cancer care – AI diagnostic support, grounded in solid science and CE-marked, can not only raise the quality of care but also improve the working environment for healthcare professionals."
+          name="Sam Polesie"
+          position="MD, Associate Professor, Adjunct Senior Lecturer"
           image={{
-            src: "home/header.jpg",
+            src: "home/header.png",
             alt: "AI Medical Dermalyser Demo",
             quality: 100
           }}></TwoColRef>
 
 
-        <PartnerSection />
         <TwoColAbout
           title={
             <>
@@ -151,7 +151,7 @@ export default function Home() {
           text="Our purpose is to support frontline healthcare in Skin Cancer diagnosis. Dermalyser helps healthcare professionals deliver faster and more reliable skin cancer assessments, reducing uncertainty and improving outcomes for patients."
           actionButton={buttonSectionAbout}
           image={{
-            src: "home/header.jpg",
+            src: "home/header.png",
             alt: "Dermalyser",
             quality: 100,
           }}></TwoColAbout>
@@ -164,7 +164,7 @@ export default function Home() {
           text="Dermalyser is a mobile app that gives general practitioners fast, reliable AI support for the early detection of melanoma. By simply taking an image with a smartphone and dermatoscope, doctors receive decision support in just a few seconds — helping them make quicker, more accurate assessments, reduce unnecessary referrals, and improve care for patients."
           actionButton={buttonSection1}
           image={{
-            src: "home/header.jpg",
+            src: "home/header.png",
             alt: "Dermalyser",
             quality: 100,
           }}></TwoColProduct>

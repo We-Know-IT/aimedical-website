@@ -60,15 +60,15 @@ export default function Dermalyser({ engIfuPdfs, sweIfuPdfs, engPiPdfs, engVugPd
         <title>AI Medical | Dermalyser </title>
         <link rel="icon" href="/favicon.png" />
         <MetaTags
-          image="/images/dermalyser/header.jpg"
+          image="/images/dermalyser/header.png"
           title="Dermalyser"
           description="Driving Fast, Accurate Diagnosis for Melanoma"
         />
       </Head>
-      <main className="flex flex-col pt-32">
+      <main className="flex flex-col pt-28">
       <TwoColText
           text="AI support for faster, more confident skin cancer assessments."
-          textClassName="!mb-4 mt-10 lg:mt-24 text-darkblue font-haasGrotDisplay font-normal text-3xl leading-tight"
+          textClassName="!mb-4 mt-10 lg:mt-24 text-darkblue font-robotoFlex font-normal text-3xl leading-tight"
           actionButton={{
             children: "Book a demo",
             onClick: () => {
@@ -90,7 +90,7 @@ export default function Dermalyser({ engIfuPdfs, sweIfuPdfs, engPiPdfs, engVugPd
             controls: false,
             autoPlay: false,
             muted: true,
-            poster: "/images/home/header.jpg"
+            poster: "/images/home/header.png"
           }}></TwoColText>
         <Background
           header="Dermalyser"
@@ -111,7 +111,7 @@ export default function Dermalyser({ engIfuPdfs, sweIfuPdfs, engPiPdfs, engVugPd
           name="Kalle Appelkvist"
           position="Clinic specialist Company."
           image={{
-            src: "home/header.jpg",
+            src: "home/header.png",
             alt: "AI Medical Dermalyser Demo",
             quality: 100
           }}></TwoColRef>
@@ -124,7 +124,7 @@ export default function Dermalyser({ engIfuPdfs, sweIfuPdfs, engPiPdfs, engVugPd
           text="For many GPs, assessing suspicious skin lesions is one of the most challenging parts of daily practice. Subtle features of melanoma are easily missed, and the pressure of limited consultation time adds to the difficulty. Dermalyser fits seamlessly into this workflow.Dermalyser is designed to support this process. By analysing dermoscopic images in just seconds — evidence-based, CE-marked,
 it provides clinically validated decision support that complements your judgement — helping you feel more confident in difficult cases, reduce unnecessary referrals"
           image={{
-            src: "home/header.jpg",
+            src: "home/header.png",
             alt: "Dermalyser",
             quality: 100,
           }}
@@ -197,13 +197,13 @@ it provides clinically validated decision support that complements your judgemen
 //       <Head>
 //         <title>AI Medical | Dermalyser </title>
 //         <MetaTags
-//           image="/images/dermalyser/header.jpg"
+//           image="/images/dermalyser/header.png"
 //           title="Dermalyser"
 //           description="Driving Fast, Accurate Diagnosis for Melanoma"
 //         />
 //       </Head>
 //       <Header
-//         imageUrl="/images/dermalyser/header.jpg"
+//         imageUrl="/images/dermalyser/header.png"
 //         title="Dermalyser"
 //         text="Driving Fast, Accurate Diagnosis for Melanoma"
 //         imagePosition="75%"

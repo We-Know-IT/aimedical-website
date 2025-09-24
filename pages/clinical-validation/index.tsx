@@ -54,14 +54,14 @@ export default function ClinicalValidation() {
         <title>AI Medical | Clinical Validation</title>
         <meta name="description" content="Clinical validation studies for Dermalyser" />
         <MetaTags
-          image="/images/clinical-validation/header.jpg"
+          image="/images/clinical-validation/header.png"
           title="Clinical Validation"
           description="Clinical validation studies for Dermalyser"
         />
       </Head>
-      <main className="pt-32">
+      <main className="pt-28">
         <div className="container pt-10">
-          <h3 className="text-darkblue font-haasGrotDisplay font-normal text-3xl">Clinical Studies</h3>
+          <h3 className="text-darkblue font-robotoFlex font-normal text-3xl">Clinical Studies</h3>
           <section className="py-10">
             {/* If there is an error, show a message. */}
             {error && (

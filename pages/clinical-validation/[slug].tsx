@@ -68,12 +68,12 @@ export default function ClinicalStudyDetails(props: ServiceResponse<Post> & { re
       <main className="min-h-screen bg-white">
       {post && (post.headerImage?.url || post.listingImage?.url) && (
         <header
-          className="relative h-[70vh] max-h-[55vh] w-full pt-32 pb-12"
+          className="relative h-[70vh] max-h-[55vh] w-full pt-28 pb-12"
           id="header">
           <div className="container flex h-full justify-center">
             <div className="relative w-full overflow-hidden rounded-xl xl:container xl:max-w-none">
               <Image
-                src={post.headerImage?.url || post.listingImage?.url || "/images/clinical-validation/header.jpg"}
+                src={post.headerImage?.url || post.listingImage?.url || "/images/clinical-validation/header.png"}
                 alt={post.headerImage?.alternativeText || post.listingImage?.alternativeText || "Clinical study header image"}
                 fill
                 className="object-cover"
@@ -90,7 +90,7 @@ export default function ClinicalStudyDetails(props: ServiceResponse<Post> & { re
           <div className="hidden md:block absolute left-5 xl:left-8 2xl:left-16">
             <Link 
               href="/clinical-validation" 
-              className="text-primary hover:text-darkblue font-haasGrotDisplay font-normal transition-colors flex items-center"
+              className="text-primary hover:text-darkblue font-robotoFlex font-normal transition-colors flex items-center"
             >
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
@@ -103,7 +103,7 @@ export default function ClinicalStudyDetails(props: ServiceResponse<Post> & { re
           <div className="max-w-2xl mx-auto">
             <article className="prose prose-lg mb-12">
               {/* Study Title */}
-              <Typography variant="h3" className="text-lg md:text-xl font-haasGrotDisplay font-medium text-primary mb-4 leading-tight">
+              <Typography variant="h3" className="text-lg md:text-xl font-robotoFlex font-medium text-primary mb-4 leading-tight">
                 {post?.title}
               </Typography>
               
@@ -130,21 +130,21 @@ export default function ClinicalStudyDetails(props: ServiceResponse<Post> & { re
               },
               h2: (props) => {
                 return (
-                  <Typography variant="h3" className="mt-4 text-base md:text-base font-haasGrotDisplay font-medium text-primary">
+                  <Typography variant="h3" className="mt-4 text-base md:text-base font-robotoFlex font-medium text-primary">
                     {props.children[0]}
                   </Typography>
                 );
               },
               h3: (props) => {
                 return (
-                  <Typography variant="h4" className="mt-4 text-base md:text-base font-haasGrotDisplay font-medium text-primary">
+                  <Typography variant="h4" className="mt-4 text-base md:text-base font-robotoFlex font-medium text-primary">
                     {props.children[0]}
                   </Typography>
                 );
               },
               h4: (props) => {
                 return (
-                  <Typography variant="h5" className="mt-4 text-base md:text-base font-haasGrotDisplay font-medium text-primary">
+                  <Typography variant="h5" className="mt-4 text-base md:text-base font-robotoFlex font-medium text-primary">
                     {props.children[0]}
                   </Typography>
                 );
@@ -180,7 +180,7 @@ export default function ClinicalStudyDetails(props: ServiceResponse<Post> & { re
                   return (
                     <Typography
                       variant="p"
-                      className="my-4 text-darkblue font-haasGrotDisplay font-light leading-relaxed">
+                      className="my-4 text-darkblue font-robotoFlex font-light leading-relaxed">
                       {props.children}
                     </Typography>
                   );
@@ -282,7 +282,7 @@ export default function ClinicalStudyDetails(props: ServiceResponse<Post> & { re
           {/* More like this section */}
           {relatedStudies.length > 0 && (
             <section className="mt-16">
-              <Typography variant="h3" className="text-xl font-haasGrotDisplay font-medium text-primary mb-8">
+              <Typography variant="h3" className="text-xl font-robotoFlex font-medium text-primary mb-8">
                 More studies
               </Typography>
               

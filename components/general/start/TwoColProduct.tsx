@@ -28,29 +28,31 @@ export default function TwoColProduct({ title, text, actionButton, list, image }
     /* Container */
     <section className="pb-10">
       {/* Container */}
-      <div className="container flex flex-col items-center justify-between xl:flex-row xl:h-[400px] space-y-6 xl:space-y-0 xl:gap-6">
+      <div className="container flex flex-col items-center justify-between xl:flex-row xl:h-[440px] space-y-6 xl:space-y-0 xl:gap-6">
         {/* flex box */}
         <div className="flex w-full flex-col justify-between rounded-xl bg-background-secondary px-8 py-12 space-y-12 lg:space-y-0 lg:items-start xl:w-1/2 xl:h-full">
           {/* left box */}
-          <Typography variant="p" className="text-darkblue-page-active font-haasGrotDisplay font-normal">
+          <Typography variant="p" className="text-darkblue-page-active font-robotoFlex font-normal">
             {title}
           </Typography>
           <div className="flex flex-col items-start">
-            <Typography variant="p" className="mb-4 text-darkblue font-haasGrotDisplay font-normal xl:text-lg">
-              {text}
+          <Typography variant="p" className="mb-4 text-darkblue font-robotoFlex font-normal xl:text-[20px] xl:leading-[26px]">
+          {text}
             </Typography>
             {actionButton && (actionButton.href || actionButton.onClick) &&
               (actionButton.href ? (
                 <LinkButton
                   href={actionButton.href}
-                  size="small"
+                  intent="transparentblue"
+                  size="medium"
                   className="flex items-center justify-center">
                   {actionButton.children}
                 </LinkButton>
               ) : (
                 <Button
                   onClick={actionButton.onClick}
-                  size="small"
+                  intent="transparentblue"
+                  size="medium"
                   className="flex items-center justify-center">
                   {actionButton.children}
                 </Button>
@@ -60,7 +62,7 @@ export default function TwoColProduct({ title, text, actionButton, list, image }
         <div className="flex w-full flex-col justify-center rounded-xl lg:items-center lg:justify-evenly xl:w-1/2 xl:h-full">
           {/*  right box - static image */}
           {image ? (
-            <div className="w-full h-full relative">
+            <div className="w-full h-80 sm:h-96 lg:h-full relative">
               <Image
                 src={"/images/" + image.src}
                 alt={image.alt}

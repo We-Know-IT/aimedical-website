@@ -43,17 +43,17 @@ export default function EmployeeCard({ employee }: Props) {
 
       <div className="flex h-full flex-col items-start justify-between px-6 w-full">
         <div className="flex flex-col items-start justify-start space-y-0 w-full min-h-[60px]">
-          <h3 className="font-haasGrotDisplay font-normal text-left text-[14px] text-darkblue">
+          <h3 className="font-robotoFlex font-normal text-left text-[14px] text-darkblue">
             {employee.name}
           </h3>
-          <p className="font-haasGrotDisplay text-left text-[14px] text-darkblue leading-tight">
+          <p className="font-robotoFlex text-left text-[14px] text-darkblue leading-tight">
             {employee.title}
           </p>
         </div>
         <Typography
           variant="p"
           className={
-            "font-haasGrotDisplay origin-top transition-all duration-500 ease-in-out overflow-hidden " +
+            "font-robotoFlex origin-top transition-all duration-500 ease-in-out overflow-hidden " +
             (isDesciptionVisibile
               ? " max-h-[500px] scale-y-100 pt-4 opacity-100"
               : " max-h-0 scale-y-95 pt-0 opacity-0")
@@ -61,7 +61,7 @@ export default function EmployeeCard({ employee }: Props) {
           {employee.description}
         </Typography>
         <button onClick={toggleDescriptionVisibility} className="py-6 hover:text-primary-hover transition-colors">
-          <Typography variant="p" className="font-haasGrotDisplay text-primary underline hover:text-primary-hover text-[12px]">Read more</Typography>
+          <Typography variant="p" className="font-robotoFlex text-primary underline hover:text-primary-hover text-[12px]">Read more</Typography>
         </button>
       </div>
     </div>

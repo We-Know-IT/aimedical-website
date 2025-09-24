@@ -19,7 +19,7 @@ export default function TwoColRef({ title, text, name, position, image }: Props)
     /* Container */
     <section className="pb-10">
       {/* Container */}
-      <div className="container flex flex-col items-center justify-between xl:flex-row xl:h-[400px] space-y-6 xl:space-y-0 xl:gap-6">
+      <div className="container flex flex-col items-center justify-between xl:flex-row xl:h-[440px] space-y-6 xl:space-y-0 xl:gap-6">
         {/* flex box */}
         <div className="flex w-full flex-col justify-center rounded-xl lg:items-center lg:justify-evenly xl:w-2/5 xl:h-full relative">
           {/* Three Columns with Continuous Flowing Squares */}
@@ -92,13 +92,13 @@ export default function TwoColRef({ title, text, name, position, image }: Props)
               </svg>
             </div>
             <div className="flex flex-col items-start py-4">
-            <Typography variant="p" className="mb-8 text-darkblue font-haasGrotDisplay font-light xl:text-lg">
+            <Typography variant="p" className="mb-8 text-darkblue font-robotoFlex font-light xl:text-[24px] xl:leading-[32px]">
               {text}
             </Typography>
-            <Typography variant="p" className="mb-0 text-darkblue font-haasGrotDisplay font-normal xl:text-xs">
+            <Typography variant="p" className="mb-0 text-darkblue font-robotoFlex font-normal xl:text-sm">
               {name}
             </Typography>
-            <Typography variant="p" className="mb-0 text-darkblue-page-active font-haasGrotDisplay font-light xl:text-xs">
+            <Typography variant="p" className="mb-0 text-darkblue-page-active font-robotoFlex font-normal xl:text-sm">
               {position}
             </Typography>
           </div>

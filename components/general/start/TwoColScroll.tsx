@@ -171,7 +171,7 @@ export default function TwoColScroll({ title, text, actionButton, list, video, s
     return (
       <section className="py-20 min-h-screen">
         <div className="container">
-          <Typography variant="h2" className="text-center text-darkblue font-haasGrotDisplay font-bold">
+          <Typography variant="h2" className="text-center text-darkblue font-robotoFlex font-bold">
             No content provided
           </Typography>
         </div>
@@ -187,7 +187,7 @@ export default function TwoColScroll({ title, text, actionButton, list, video, s
         {/* Left side - Changing PNG */}
         <div className="bg-beige rounded-xl flex-1 flex items-center justify-center xl:sticky xl:top-20 lg:top-16">
           {scrollImages && scrollImages.length > 0 ? (
-            <div className="relative w-full h-64 xl:h-80">
+            <div className="relative w-full h-80 sm:h-96 xl:h-80">
               {scrollImages.map((image, index) => (
                 <div
                   key={index}
@@ -208,8 +208,8 @@ export default function TwoColScroll({ title, text, actionButton, list, video, s
               ))}
             </div>
           ) : (
-            <div className="w-full h-64 xl:h-80 bg-gray-200 rounded-lg flex items-center justify-center">
-              <Typography variant="p" className="text-gray-500 font-haasGrotDisplay">
+            <div className="w-full h-80 sm:h-96 xl:h-80 bg-gray-200 rounded-lg flex items-center justify-center">
+              <Typography variant="p" className="text-gray-500 font-robotoFlex">
                 No images provided
               </Typography>
             </div>
@@ -259,7 +259,7 @@ export default function TwoColScroll({ title, text, actionButton, list, video, s
                   <div className="flex-1">
                     <Typography 
                       variant="h3" 
-                      className={`font-haasGrotDisplay font-medium text-sm mb-2 ${
+                      className={`font-robotoFlex font-semibold text-sm mb-2 ${
                         isActive 
                           ? 'text-darkblue-active'
                           : 'text-darkblue'
@@ -269,7 +269,7 @@ export default function TwoColScroll({ title, text, actionButton, list, video, s
                     </Typography>
                     <Typography 
                       variant="p" 
-                      className={`font-haasGrotDisplay font-light text-sm ${
+                      className={`font-robotoFlex font-normal text-sm ${
                         isActive 
                           ? 'text-darkblue-active'
                           : 'text-darkblue'

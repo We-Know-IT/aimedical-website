@@ -79,14 +79,14 @@ export default function PressRoom() {
         <title>AI Medical | Pressroom </title>
         <meta name="description" content="News and blog from AI Medical" />
         <MetaTags
-          image="/images/header.jpg"
+          image="/images/header.png"
           title="Pressroom"
           description="News and blog from AI Medical"
         />
       </Head>
-       <main className="pt-32">
+       <main className="pt-28">
         <div className="container pt-10">
-            <h3 className="text-darkblue font-haasGrotDisplay font-normal text-3xl">News</h3>
+            <h3 className="text-darkblue font-robotoFlex font-normal text-3xl">News</h3>
           {/* <section className="ml-auto mr-auto flex flex-row items-center justify-center gap-x-4 md:gap-x-8 ">
             <Typography variant="h2" className="hidden md:block">
               Filter
