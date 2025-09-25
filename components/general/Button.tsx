@@ -16,6 +16,8 @@ export const button = cva(
           "bg-transparent text-on-primary border-2 border-white hover:bg-gray-600/10 transition-colors text-on-bg-primary",
           transparentblue:
           "bg-transparent text-primary border-2 border-primary hover:bg-primary hover:text-white transition-colors",
+        transparentblueinv:
+          "bg-primary text-white border-2 border-primary hover:bg-transparent hover:text-primary transition-colors",
       },
       size: {
         small: "py-3 px-6 text-xs",

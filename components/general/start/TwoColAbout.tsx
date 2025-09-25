@@ -79,7 +79,7 @@ export default function TwoColText({ title, text, actionButton, list, image, lef
             {title}
           </Typography>
           <div className="flex flex-col items-start">
-            <Typography variant="p" className="mb-4 text-darkblue font-robotoFlex font-normal xl:text-[20px] xl:leading-[26px]">
+            <Typography variant="p" className="mb-4 text-darkblue font-robotoFlex font-normal text-[20px] leading-[26px]">
               {text}
             </Typography>
             {actionButton && (actionButton.href || actionButton.onClick) &&

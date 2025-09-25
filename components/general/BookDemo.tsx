@@ -6,14 +6,14 @@ import ReCAPTCHA from "react-google-recaptcha";
 import ErrorIcon from "../icons/common/Error";
 import Typography from "../common/Typography";
 
-const inputErrorClasses = "border-error-dark border-2";
+const inputErrorClasses = "border-error border-2";
 const privacyPolicyErrorMessage = "You must accept the privacy policy";
 
 const ErrorMessage = ({ message }: { message: string }) => {
   return (
     <div className="flex items-center space-x-2">
       <ErrorIcon h={24} w={24} />
-      <p className="font-robotoFlex font-semibold text-error-dark">{message}</p>
+      <p className="font-robotoFlex font-normal text-error">{message}</p>
     </div>
   );
 };
@@ -25,11 +25,12 @@ type ColorTheme = {
   inputBg: string;
   inputText: string;
   inputPlaceholder: string;
-  buttonIntent: "primary" | "white";
+  buttonIntent: "transparentblue" | "white";
 };
 
 type Props = {
   theme?: ColorTheme;
+  description?: string;
 };
 
 const defaultTheme: ColorTheme = {
@@ -38,11 +39,11 @@ const defaultTheme: ColorTheme = {
   textColor: "text-on-primary",
   inputBg: "bg-white/5",
   inputText: "text-white",
-  inputPlaceholder: "placeholder-white",
+  inputPlaceholder: "placeholder-darkgray-book",
   buttonIntent: "white"
 };
 
-export default function BookDemo({ theme = defaultTheme }: Props) {
+export default function BookDemo({ theme = defaultTheme, description }: Props) {
   const [name, setName] = useState("");
   const [title, setTitle] = useState("");
   const [email, setEmail] = useState("");
@@ -267,15 +268,15 @@ export default function BookDemo({ theme = defaultTheme }: Props) {
         <Typography variant="h3" className={`lg:mb-20 mb-12 font-robotoFlex font-normal text-sm ${theme.titleColor}`}>
           Book a demo
         </Typography>
-        <Typography variant="p" className={`${theme.textColor} font-robotoFlex font-normal text-[20px]`}>
-        Discover how Dermalyser doctors in detecting melanoma quickly and accurately. Leave your details, and we’ll arrange a demo at a time that works for you.
+        <Typography variant="p" className={`${theme.textColor} font-robotoFlex font-normal text-[20px] leading-[26px]`}>
+        {description || "Discover how Dermalyser doctors in detecting melanoma quickly and accurately. Leave your details, and we'll arrange a demo at a time that works for you."}
         </Typography>
       </div>
       
       {/* Right side - Contact form */}
-      <div className="w-full lg:w-1/2">
+      <div className="w-full lg:w-1/2 lg:pt-24">
         <form
-          className="flex flex-col space-y-4 font-robotoFlex font-extralight"
+          className="flex flex-col space-y-4 font-robotoFlex font-normal"
           onSubmit={onSubmit}
           aria-label="Contact form">
           <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
@@ -288,7 +289,7 @@ export default function BookDemo({ theme = defaultTheme }: Props) {
                   onChange={onNameChange}
                   onBlur={(e) => validateName(e.target.value)}
                   className={
-                    `font-robotoFlex font-extralight w-full rounded-3xl ${theme.inputBg} p-3 px-4 ${theme.inputText} ${theme.inputPlaceholder} focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary` +
+                    `font-robotoFlex font-normal w-full rounded-3xl ${theme.inputBg} p-3 px-4 ${theme.inputText} ${theme.inputPlaceholder} focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary` +
                     (nameErrorMsg ? " border-red-500" : "")
                   }
                   placeholder="Full name *"
@@ -307,7 +308,7 @@ export default function BookDemo({ theme = defaultTheme }: Props) {
                 value={email}
                 placeholder="Email address *"
                 className={
-                  `font-robotoFlex font-extralight w-full rounded-3xl ${theme.inputBg} p-3 px-4 ${theme.inputText} ${theme.inputPlaceholder} focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary` +
+                  `font-robotoFlex font-normal w-full rounded-3xl ${theme.inputBg} p-3 px-4 ${theme.inputText} ${theme.inputPlaceholder} focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary` +
                   (emailErrorMsg ? " border-red-500" : "")
                 }
                 aria-label="Enter your email"
@@ -326,10 +327,10 @@ export default function BookDemo({ theme = defaultTheme }: Props) {
                   onChange={onTitleChange}
                   onBlur={(e) => validateTitle(e.target.value)}
                   className={
-                    `font-robotoFlex font-extralight w-full rounded-3xl ${theme.inputBg} p-3 px-4 ${theme.inputText} ${theme.inputPlaceholder} focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary` +
+                    `font-robotoFlex font-normal w-full rounded-3xl ${theme.inputBg} p-3 px-4 ${theme.inputText} ${theme.inputPlaceholder} focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary` +
                     (titleErrorMsg ? " border-red-500" : "")
                   }
-                  placeholder="Title *"
+                  placeholder="Job title *"
                   required
                 />
               {titleErrorMsg && <ErrorMessage message={titleErrorMsg} />}
@@ -345,7 +346,7 @@ export default function BookDemo({ theme = defaultTheme }: Props) {
                 value={company}
                 placeholder="Company *"
                 className={
-                  `font-robotoFlex font-extralight w-full rounded-3xl ${theme.inputBg} p-3 px-4 ${theme.inputText} ${theme.inputPlaceholder} focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary` +
+                  `font-robotoFlex font-normal w-full rounded-3xl ${theme.inputBg} p-3 px-4 ${theme.inputText} ${theme.inputPlaceholder} focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary` +
                   (companyErrorMsg ? " border-red-500" : "")
                 }
                 aria-label="Enter your company"
@@ -363,7 +364,7 @@ export default function BookDemo({ theme = defaultTheme }: Props) {
               value={message}
               placeholder="Message"
               className={
-                `font-robotoFlex font-extralight h-32 w-full resize-none rounded-3xl ${theme.inputBg} p-3 px-4 ${theme.inputText} ${theme.inputPlaceholder} focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary ` +
+                `font-robotoFlex font-normal h-32 w-full resize-none rounded-3xl ${theme.inputBg} p-3 px-4 ${theme.inputText} ${theme.inputPlaceholder} focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary ` +
                 (messageErrorMsg ? "border-red-500" : "")
               }
               aria-label="Enter your message"

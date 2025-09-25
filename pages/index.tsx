@@ -117,7 +117,7 @@ export default function Home() {
             </>
           }
           text="Dermalyser is a CE-marked app that provides AI-driven decision support in just seconds, by analysing a dermoscopic image captured with your smartphone."
-          textClassName="mb-4 text-darkblue font-robotoFlex font-normal xl:text-[24px] whitespace-pre-line"
+          textClassName="mb-4 text-darkblue font-robotoFlex font-normal text-[20px] leading-[26px] whitespace-pre-line"
           video={{
             src: "https://www.w3schools.com/html/mov_bbb.mp4",
             title: "AI Medical Dermalyser Demo",
@@ -158,7 +158,7 @@ export default function Home() {
         <TwoColProduct
           title={
             <>
-              Product
+              Dermalyser
             </>
           }
           text="Dermalyser is a mobile app that gives general practitioners fast, reliable AI support for the early detection of melanoma. By simply taking an image with a smartphone and dermatoscope, doctors receive decision support in just a few seconds — helping them make quicker, more accurate assessments, reduce unnecessary referrals, and improve care for patients."

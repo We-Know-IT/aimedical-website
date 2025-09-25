@@ -103,7 +103,7 @@ export default function ClinicalStudyDetails(props: ServiceResponse<Post> & { re
           <div className="max-w-2xl mx-auto">
             <article className="prose prose-lg mb-12">
               {/* Study Title */}
-              <Typography variant="h3" className="text-lg md:text-xl font-robotoFlex font-medium text-primary mb-4 leading-tight">
+              <Typography variant="h3" className="text-lg md:text-xl font-robotoFlex font-normal text-darkgray mb-4 leading-tight">
                 {post?.title}
               </Typography>
               
@@ -111,11 +111,11 @@ export default function ClinicalStudyDetails(props: ServiceResponse<Post> & { re
               <div className="flex flex-col items-start mb-8">
                 <div className="flex items-center space-x-2">
                   <div className="w-2 h-2 bg-cyan rounded-full"></div>
-                  <span className="text-sm font-medium text-gray-600">
+                  <span className="text-sm font-normal text-gray-600">
                     Clinical Study
                   </span>
                 </div>
-                <Typography variant="p" className="text-sm font-light text-darkblue-page-active">
+                <Typography variant="p" className="text-sm font-normal text-darkblue-page-active">
                   {post && getDateString(new Date(post.publishedAt))}
                 </Typography>
               </div>
@@ -130,21 +130,21 @@ export default function ClinicalStudyDetails(props: ServiceResponse<Post> & { re
               },
               h2: (props) => {
                 return (
-                  <Typography variant="h3" className="mt-4 text-base md:text-base font-robotoFlex font-medium text-primary">
+                  <Typography variant="h3" className="mt-4 text-[22px] font-robotoFlex font-normal text-darkgray">
                     {props.children[0]}
                   </Typography>
                 );
               },
               h3: (props) => {
                 return (
-                  <Typography variant="h4" className="mt-4 text-base md:text-base font-robotoFlex font-medium text-primary">
+                  <Typography variant="h4" className="mt-4 text-[22px] font-robotoFlex font-normal text-darkgray">
                     {props.children[0]}
                   </Typography>
                 );
               },
               h4: (props) => {
                 return (
-                  <Typography variant="h5" className="mt-4 text-base md:text-base font-robotoFlex font-medium text-primary">
+                  <Typography variant="h5" className="mt-4 text-[22px] font-robotoFlex font-normal text-darkgray">
                     {props.children[0]}
                   </Typography>
                 );
@@ -180,7 +180,7 @@ export default function ClinicalStudyDetails(props: ServiceResponse<Post> & { re
                   return (
                     <Typography
                       variant="p"
-                      className="my-4 text-darkblue font-robotoFlex font-light leading-relaxed">
+                      className="my-4 text-darkblue font-robotoFlex font-normal leading-relaxed">
                       {props.children}
                     </Typography>
                   );
@@ -282,7 +282,7 @@ export default function ClinicalStudyDetails(props: ServiceResponse<Post> & { re
           {/* More like this section */}
           {relatedStudies.length > 0 && (
             <section className="mt-16">
-              <Typography variant="h3" className="text-xl font-robotoFlex font-medium text-primary mb-8">
+              <Typography variant="h3" className="text-xl font-robotoFlex font-normal text-darkgray mb-8">
                 More studies
               </Typography>
               

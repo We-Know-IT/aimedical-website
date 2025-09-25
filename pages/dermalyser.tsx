@@ -6,7 +6,7 @@ import MetaTags from "../components/general/seo/MetaTags";
 import InstructionsForUse from "../components/dermalyser/instructions-for-use/InstructionsForUse";
 import TwoColText from "../components/general/start/TwoColText";
 import Background from "../components/about/Background";
-import TwoColRef from "../components/general/start/TwoColRef";
+import TwoColRef from "../components/general/start/TwoColRef2";
 import TwoColInstructions from "../components/dermalyser/TwoColInstructions";
 
 import path from "path";
@@ -67,23 +67,9 @@ export default function Dermalyser({ engIfuPdfs, sweIfuPdfs, engPiPdfs, engVugPd
       </Head>
       <main className="flex flex-col pt-28">
       <TwoColText
-          text="AI support for faster, more confident skin cancer assessments."
-          textClassName="!mb-4 mt-10 lg:mt-24 text-darkblue font-robotoFlex font-normal text-3xl leading-tight"
-          actionButton={{
-            children: "Book a demo",
-            onClick: () => {
-              const element = document.getElementById('contact');
-              if (element) {
-                const navbarHeight = 80;
-                const elementPosition = element.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
-                window.scrollTo({
-                  top: offsetPosition,
-                  behavior: 'smooth'
-                });
-              }
-            }
-          }}
+          text="AI support for faster, more confident skin cancer assessments"
+          textClassName="!mb-4 mt-10 lg:mt-52 lg:mr-10 text-darkblue font-robotoFlex font-normal text-[32px] leading-tight"
+          mobileOrder="order-2"
           video={{
             src: "https://www.w3schools.com/html/mov_bbb.mp4",
             title: "AI Medical Dermalyser Demo",
@@ -94,7 +80,8 @@ export default function Dermalyser({ engIfuPdfs, sweIfuPdfs, engPiPdfs, engVugPd
           }}></TwoColText>
         <Background
           header="Dermalyser"
-          text="As a primary care doctor, you face difficult choices when assessing suspicious skin lesions. Dermalyser is a CE-marked app that provides AI-driven decision support in just seconds, by analysing a dermoscopic image captured with your smartphone. Our goal is to support you — not replace you — by improving confidence, reducing unnecessary referrals, and reassuring patients."
+          text="As a primary care doctor, you face difficult choices when assessing suspicious skin lesions. Dermalyser is a 
+CE-marked app that provides AI-driven decision support in just seconds, by analysing a dermoscopic image captured with your smartphone. Our goal is to support you — not replace you — by improving confidence, reducing unnecessary referrals, and reassuring patients."
           list={{
             items: [
               "Reliable AI support, built on clinical validation and real-world evidence.",
@@ -107,9 +94,9 @@ export default function Dermalyser({ engIfuPdfs, sweIfuPdfs, engPiPdfs, engVugPd
         <HowItWorks />
         <TwoColRef
           title={"“"}
-          text="Dermalyser isn’t replacing my judgement, but it gives me a second opinion that I can rely on. It’s especially useful when I’m in doubt, and it’s helped cut down on unnecessary referrals."
-          name="Kalle Appelkvist"
-          position="Clinic specialist Company."
+          text="I believe the app will contribute to safer and more resource-efficient management of skin tumors in primary care. Fewer patients would need to be referred to dermatologists for completely harmless skin lesions, or undergo unnecessary surgical removal. Since the experience and confidence in assessing skin lesions vary greatly among general practitioners, I believe the app can help improve diagnostic accuracy for those who feel less certain and therefore tend to excise or refer ‘just to be on the safe side."
+          name="Magnus Falk"
+          position="Principal Investigator"
           image={{
             src: "home/header.png",
             alt: "AI Medical Dermalyser Demo",
@@ -122,16 +109,11 @@ export default function Dermalyser({ engIfuPdfs, sweIfuPdfs, engPiPdfs, engVugPd
             </>
           }
           text="For many GPs, assessing suspicious skin lesions is one of the most challenging parts of daily practice. Subtle features of melanoma are easily missed, and the pressure of limited consultation time adds to the difficulty. Dermalyser fits seamlessly into this workflow.Dermalyser is designed to support this process. By analysing dermoscopic images in just seconds — evidence-based, CE-marked,
-it provides clinically validated decision support that complements your judgement — helping you feel more confident in difficult cases, reduce unnecessary referrals"
+ it provides clinically validated decision support that complements your judgement — helping you feel more confident in difficult cases, reduce unnecessary referrals, and reassure patients quickly."
           image={{
             src: "home/header.png",
             alt: "Dermalyser",
             quality: 100,
-          }}
-          videoPopup={{
-            buttonText: "Instructions video",
-            videoSrc: "https://www.w3schools.com/html/mov_bbb.mp4",
-            videoTitle: "Dermalyser",
           }}
           ></TwoColInstructions>
         <Performance />

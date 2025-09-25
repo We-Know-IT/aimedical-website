@@ -12,30 +12,35 @@ type Props = {
     alt: string;
     quality?: number;
   };
-  height?: string;
 };
 
-export default function TwoColRef({ title, text, name, position, image, height }: Props) {
+export default function TwoColRef({ title, text, name, position, image }: Props) {
   return (
     /* Container */
     <section className="pb-10">
       {/* Container */}
-      <div className={`container flex flex-col items-center justify-between xl:flex-row ${height || 'xl:h-[440px]'} space-y-6 xl:space-y-0 xl:gap-6`}>
+      <div className={`container flex flex-col items-center justify-between xl:flex-row xl:h-[580px] space-y-6 xl:space-y-0 xl:gap-6`}>
         {/* flex box */}
         <div className="flex w-full flex-col justify-center rounded-xl lg:items-center lg:justify-evenly xl:w-2/5 xl:h-full relative">
           {/* Three Columns with Continuous Flowing Squares */}
           <div className="w-full h-96 md:h-full flex justify-evenly items-center overflow-x-visible">
             {/* Left Column - Vertical marquee */}
             <div className="overflow-hidden h-full p-4 w-32 xl:w-36">
-              <div className="flex flex-col gap-4 pb-4 h-[150%] animate-marquee-vertical" style={{'--marquee-duration': '20000ms'} as React.CSSProperties}>
+              <div className="flex flex-col gap-4 pb-4 h-[150%] animate-marquee-vertical3" style={{'--marquee-duration': '20000ms'} as React.CSSProperties}>
                 {/* First set of squares */}
-                <div className="flex flex-col flex-1 gap-4 h-1/2">
+                <div className="flex flex-col flex-1 gap-4 h-1/3">
                   <div className="w-28 h-28 xl:w-32 xl:h-32 bg-lightblue rounded-lg mx-auto flex-shrink-0"></div>
                   <div className="w-28 h-28 xl:w-32 xl:h-32 bg-lightblue rounded-lg mx-auto flex-shrink-0"></div>
                   <div className="w-28 h-28 xl:w-32 xl:h-32 bg-lightblue rounded-lg mx-auto flex-shrink-0"></div>
                 </div>
                 {/* Duplicate set for seamless loop */}
-                <div className="flex flex-col flex-1 gap-4 h-1/2">
+                <div className="flex flex-col flex-1 gap-4 h-1/3">
+                  <div className="w-28 h-28 xl:w-32 xl:h-32 bg-lightblue rounded-lg mx-auto flex-shrink-0"></div>
+                  <div className="w-28 h-28 xl:w-32 xl:h-32 bg-lightblue rounded-lg mx-auto flex-shrink-0"></div>
+                  <div className="w-28 h-28 xl:w-32 xl:h-32 bg-lightblue rounded-lg mx-auto flex-shrink-0"></div>
+                </div>
+                                {/* Duplicate set for seamless loop */}
+                                <div className="flex flex-col flex-1 gap-4 h-1/3">
                   <div className="w-28 h-28 xl:w-32 xl:h-32 bg-lightblue rounded-lg mx-auto flex-shrink-0"></div>
                   <div className="w-28 h-28 xl:w-32 xl:h-32 bg-lightblue rounded-lg mx-auto flex-shrink-0"></div>
                   <div className="w-28 h-28 xl:w-32 xl:h-32 bg-lightblue rounded-lg mx-auto flex-shrink-0"></div>
@@ -44,32 +49,42 @@ export default function TwoColRef({ title, text, name, position, image, height }
             </div>
             
             {/* Middle Column - Three rows with picture in middle */}
-            <div className="flex flex-col justify-center h-full p-4 w-32 xl:w-36 gap-3">
+            <div className="flex flex-col justify-center h-full p-4 w-32 xl:w-36 gap-3 overflow-hidden">
+            <div className="w-28 h-28 xl:w-32 xl:h-32 bg-lightblue rounded-lg mx-auto flex-shrink-0 overflow-hidden"></div>
+
               <div className="w-28 h-28 xl:w-32 xl:h-32 bg-lightblue rounded-lg mx-auto flex-shrink-0"></div>
               <div className="w-28 h-28 xl:w-32 xl:h-32 bg-lightblue rounded-lg mx-auto flex-shrink-0 overflow-hidden">
                 <Image
-                  src={"/images/home/kalle.jpg"}
-                  alt={"Kalle"}
+                  src={"/images/employees/Magnus.png"}
+                  alt={"Magnus"}
                   width={128}
                   height={128}
-                  quality={ 75}
+                  quality={75}
                   className="w-full h-full object-cover"
                 />
               </div> 
               <div className="w-28 h-28 xl:w-32 xl:h-32 bg-lightblue rounded-lg mx-auto flex-shrink-0"></div>
+              <div className="w-28 h-28 xl:w-32 xl:h-32 bg-lightblue rounded-lg mx-auto flex-shrink-0"></div>
+
             </div>
             
             {/* Right Column - Vertical marquee */}
             <div className="overflow-hidden h-full p-4 w-32 xl:w-36 flex flex-col justify-end">
-              <div className="flex flex-col gap-4 pb-4 h-[150%] animate-marquee-vertical2" style={{'--marquee-duration': '20000ms'} as React.CSSProperties}>
+              <div className="flex flex-col gap-4 pb-4 h-[150%] animate-marquee-vertical4" style={{'--marquee-duration': '20000ms'} as React.CSSProperties}>
                 {/* First set of squares */}
-                <div className="flex flex-col flex-1 gap-4 h-1/2">
+                <div className="flex flex-col flex-1 gap-4 h-1/3">
                   <div className="w-28 h-28 xl:w-32 xl:h-32 bg-lightblue rounded-lg mx-auto flex-shrink-0"></div>
                   <div className="w-28 h-28 xl:w-32 xl:h-32 bg-lightblue rounded-lg mx-auto flex-shrink-0"></div>
                   <div className="w-28 h-28 xl:w-32 xl:h-32 bg-lightblue rounded-lg mx-auto flex-shrink-0"></div>
                 </div>
                 {/* Duplicate set for seamless loop */}
-                <div className="flex flex-col flex-1 gap-4 h-1/2">
+                <div className="flex flex-col flex-1 gap-4 h-1/3">
+                  <div className="w-28 h-28 xl:w-32 xl:h-32 bg-lightblue rounded-lg mx-auto flex-shrink-0"></div>
+                  <div className="w-28 h-28 xl:w-32 xl:h-32 bg-lightblue rounded-lg mx-auto flex-shrink-0"></div>
+                  <div className="w-28 h-28 xl:w-32 xl:h-32 bg-lightblue rounded-lg mx-auto flex-shrink-0"></div>
+                </div>
+                  {/* Duplicate set for seamless loop */}
+                <div className="flex flex-col flex-1 gap-4 h-1/3">
                   <div className="w-28 h-28 xl:w-32 xl:h-32 bg-lightblue rounded-lg mx-auto flex-shrink-0"></div>
                   <div className="w-28 h-28 xl:w-32 xl:h-32 bg-lightblue rounded-lg mx-auto flex-shrink-0"></div>
                   <div className="w-28 h-28 xl:w-32 xl:h-32 bg-lightblue rounded-lg mx-auto flex-shrink-0"></div>

@@ -12,13 +12,13 @@ const slides = [
   {
     title: "Step 2, One Image",
     text: "Attach your dermatoscope, take a dermoscopic image, and upload it securely.",
-    image: "/images/dermalyser/slide_2.png",
+    image: "/images/dermalyser/slide_1.png",
     imageAlt: "Dermascope being used to take a picture of a skin lesion",
   },
   {
     title: "Step 3, Receive instant diagnostic support",
     text: "Dermalyser analyses the image in seconds and provides AI-driven decision support to guide your next step.",
-    image: "/images/dermalyser/slide_3.png",
+    image: "/images/dermalyser/slide_1.png",
     imageAlt: "Results being displayed on the app",
   },
 ];
@@ -36,10 +36,10 @@ type HowItWorksStepProps = {
 
 function HowItWorksStep({ slide }: HowItWorksStepProps) {
   return (
-    <div className="bg-background-secondary flex flex-col items-center gap-8 rounded-lg p-6 md:p-12 min-h-[400px] md:min-h-[450px]">
-      <Typography variant="h3" className="font-robotoFlex font-normal text-primary self-start text-left text-sm">{slide.title}</Typography>
+    <div className="bg-background-secondary flex flex-col items-center gap-8 rounded-lg p-6 md:py-12 px-4 min-h-[400px] md:min-h-[450px]">
+      <Typography variant="h3" className="font-robotoFlex font-normal text-darkblue-page-active text-center text-[14px]">{slide.title}</Typography>
       <Image src={slide.image} width={312/2} height={524/2} alt={slide.imageAlt} />
-      <Typography variant="p" className="max-w-sm font-robotoFlex font-normal text-darkblue text-sm text-left">
+      <Typography variant="p" className="max-w-sm font-robotoFlex font-normal text-darkgray text-[16px] text-center">
         {slide.text}
       </Typography>
     </div>

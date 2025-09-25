@@ -16,38 +16,38 @@ const pageSize = 6;
 const initialFilters = new Set<PostType>(["blog", "news"]);
 
 export default function PressRoom() {
-  // const [filters, setFilters] = useState<Set<PostType>>(initialFilters);
-  // const [displayFilters, setDisplayFilters] =
-  //   useState<Set<PostType>>(initialFilters);
+  const [filters, setFilters] = useState<Set<PostType>>(initialFilters);
+  const [displayFilters, setDisplayFilters] =
+    useState<Set<PostType>>(initialFilters);
 
   const { posts, hasNextPosts, loadingPosts, error, loadMorePosts, initPosts } =
-    usePosts(initialFilters, pageSize);
+    usePosts(filters, pageSize);
 
   const showSkeletons = loadingPosts && !error;
   const [newPostsCount, setNewPostsCount] = useState(0);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const previousPostsLength = useRef(posts.length);
 
-  // const toggleBlogsFilter = () => {
-  //   toggleEntryInFilters("blog");
-  // };
+  const toggleArticlesFilter = () => {
+    toggleEntryInFilters("blog");
+  };
 
-  // const togglePressReleasesFilter = () => {
-  //   toggleEntryInFilters("news");
-  // };
+  const togglePressReleasesFilter = () => {
+    toggleEntryInFilters("news");
+  };
 
-  // const toggleEntryInFilters = (entry: PostType) => {
-  //   const _filters = new Set(displayFilters);
-  //   if (_filters.has(entry)) {
-  //     _filters.delete(entry);
-  //   } else {
-  //     _filters.add(entry);
-  //   }
-  //   setDisplayFilters(_filters);
-  //   if (_filters.size > 0) {
-  //     setFilters(_filters);
-  //   } else setFilters(initialFilters);
-  // };
+  const toggleEntryInFilters = (entry: PostType) => {
+    const _filters = new Set(displayFilters);
+    if (_filters.has(entry)) {
+      _filters.delete(entry);
+    } else {
+      _filters.add(entry);
+    }
+    setDisplayFilters(_filters);
+    if (_filters.size > 0) {
+      setFilters(_filters);
+    } else setFilters(initialFilters);
+  };
 
   // Track when new posts are loaded
   useEffect(() => {
@@ -86,7 +86,27 @@ export default function PressRoom() {
       </Head>
        <main className="pt-28">
         <div className="container pt-10">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-2">
             <h3 className="text-darkblue font-robotoFlex font-normal text-3xl">News</h3>
+            <div className="flex flex-row items-center gap-4">
+              <Button
+                className="flex items-center justify-center"
+                intent={displayFilters.has("blog") ? "transparentblue" : "transparentblueinv"}
+                onClick={toggleArticlesFilter}
+                disabled={error ? true : false}>
+                <span className="w-1.5 h-1.5 bg-cyan rounded-full mr-2"></span>
+                Press Releases
+              </Button>
+              <Button
+                className="flex items-center justify-center"
+                intent={displayFilters.has("news") ? "transparentblue" : "transparentblueinv"}
+                onClick={togglePressReleasesFilter}
+                disabled={error ? true : false}>
+                <span className="w-1.5 h-1.5 bg-cyan rounded-full mr-2"></span>
+                Articles
+              </Button>
+            </div>
+          </div>
           {/* <section className="ml-auto mr-auto flex flex-row items-center justify-center gap-x-4 md:gap-x-8 ">
             <Typography variant="h2" className="hidden md:block">
               Filter

@@ -413,6 +413,7 @@ export default function Navbar() {
           }}
         >
           <BookDemo 
+            description="You’re welcome to contact us for any questions you might have and we’ll contact you within 48 hours."
             theme={{
               containerBg: "bg-beige-dark",
               titleColor: "text-darkblue-page-active",
@@ -420,8 +421,9 @@ export default function Navbar() {
               inputBg: "bg-beige",
               inputText: "text-darkblue",
               inputPlaceholder: "placeholder-gray-500",
-              buttonIntent: "primary"
-            }}
+              buttonIntent: "transparentblue"
+            }
+          }
           />
         </div>
         </div>

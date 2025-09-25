@@ -121,6 +121,19 @@ module.exports = {
           "100%": { 
             transform: "translateY(25%)"
           },
+        },        
+        "marquee-vertical3": {
+          "100%": { 
+            transform: "translateY(-52%)"
+          },
+        },
+        "marquee-vertical4": {
+          "0%": { 
+            transform: "translateY(-25%)"
+          },
+          "100%": { 
+            transform: "translateY(27%)"
+          },
         },
       },
       animation: {
@@ -159,6 +172,7 @@ module.exports = {
         darkgray: {
           DEFAULT: "#333333",
           active:"#FFFFFF99",
+          book: "#B7B4B2",
           
         },
         lightblue: {
@@ -166,7 +180,7 @@ module.exports = {
           active: "#EAf4FB",
         },  
         primary: {
-          DEFAULT: "#0063AF",
+          DEFAULT: "#0163AE",
           hover: "#004275",
           light: "#008cf7",
           active: "#013054",

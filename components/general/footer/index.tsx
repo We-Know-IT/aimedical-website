@@ -24,12 +24,12 @@ export default function Footer() {
         <BookDemo />
 
         {/* Footer content */}
-        <div className="bg-darkgray mb-8 flex flex-col gap-8 p-12 rounded-lg">
+        <div className="bg-darkgray mb-8 flex flex-col gap-8 p-8 rounded-lg">
           {/* First and Second rows - Contact and Navigation */}
           <div className="flex flex-col lg:flex-row space-y-12 lg:space-y-0 border-b border-gray-300 pb-8">
             {/* First row - Contact */}
-            <div className="flex flex-col space-y-6 lg:w-1/2">
-              <Typography variant="h3" className="text-darkblue-page-active font-robotoFlex font-normal">
+            <div className="flex flex-col space-y-6 lg:w-1/2 text-[14px]">
+              <Typography variant="h3" className="text-darkblue-page-active font-robotoFlex font-normal ">
                 Contact
               </Typography>
               <div className="flex items-start">
@@ -64,12 +64,12 @@ export default function Footer() {
             </div>                  
 
             {/* Second row - Navigation */}
-            <div className="flex flex-col space-y-6 lg:w-1/2">
+            <div className="flex flex-col space-y-6 lg:w-1/2 text-[14px]">
               <Typography variant="h3" className="text-darkblue-page-active font-robotoFlex font-normal">
                 Find
               </Typography>
               <nav className="flex flex-col space-y-1">
-                <div className="flex flex-row space-x-32">
+                <div className="flex flex-col space-y-1 md:flex-row md:space-y-0 md:space-x-32">
                   <div className="space-y-1 w-32">
                     <Link href="/dermalyser" className="block text-white font-robotoFlex font-normal hover:text-primary">
                       Product
@@ -98,14 +98,14 @@ export default function Footer() {
           </div>
 
           {/* Bottom row - Additional info */}
-          <div className="flex flex-row justify-between items-center">
-            <div className="flex space-y-3 w-1/2">
-              <Typography variant="p" className="text-darkblue-page-active font-robotoFlex font-normal">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center text-[12px]">
+            <div className="flex pb-4 md:pb-0 space-y-3 md:w-1/2">
+              <Typography variant="p" className="text-darkblue-page-active font-robotoFlex font-normal text-[11px] md:text-[12px]">
                 All rights reserved AI Medical Technology, 2025
               </Typography>
             </div>
             
-            <div className="flex items-center space-x-32 w-1/2">
+            <div className="flex items-center space-x-4 md:space-x-32 md:w-1/2">
               <div className="w-auto flex justify-start">
                 <img 
                   src="/images/footer/bsi.svg" 
