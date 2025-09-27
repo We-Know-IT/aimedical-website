@@ -43,7 +43,7 @@ export default function TwoColImg({
           (animate ? " animate-fade-up " : " invisible animate-fade-down")
         }>
         {/* left box */}
-        <div className="relative aspect-square w-full xl:w-2/5">
+        <div className="relative aspect-square w-full h-80 sm:h-96 lg:h-auto xl:w-2/5">
           <Image
             {...image}
             src={"/images/" + image?.src}

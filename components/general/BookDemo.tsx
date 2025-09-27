@@ -6,14 +6,14 @@ import ReCAPTCHA from "react-google-recaptcha";
 import ErrorIcon from "../icons/common/Error";
 import Typography from "../common/Typography";
 
-const inputErrorClasses = "border-error-dark border-2";
+const inputErrorClasses = "border-error border-2";
 const privacyPolicyErrorMessage = "You must accept the privacy policy";
 
 const ErrorMessage = ({ message }: { message: string }) => {
   return (
     <div className="flex items-center space-x-2">
       <ErrorIcon h={24} w={24} />
-      <p className="font-haasGrotDisplay font-semibold text-error-dark">{message}</p>
+      <p className="font-robotoFlex font-normal text-error">{message}</p>
     </div>
   );
 };
@@ -25,11 +25,13 @@ type ColorTheme = {
   inputBg: string;
   inputText: string;
   inputPlaceholder: string;
-  buttonIntent: "primary" | "white";
+  buttonIntent: "transparentblue" | "white";
 };
 
 type Props = {
   theme?: ColorTheme;
+  description?: string;
+  title?: string;
 };
 
 const defaultTheme: ColorTheme = {
@@ -38,20 +40,24 @@ const defaultTheme: ColorTheme = {
   textColor: "text-on-primary",
   inputBg: "bg-white/5",
   inputText: "text-white",
-  inputPlaceholder: "placeholder-white",
+  inputPlaceholder: "placeholder-darkgray-book",
   buttonIntent: "white"
 };
 
-export default function BookDemo({ theme = defaultTheme }: Props) {
+export default function BookDemo({ theme = defaultTheme, description, title = "Book a demo" }: Props) {
   const [name, setName] = useState("");
+  const [jobTitle, setJobTitle] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [company, setCompany] = useState("");
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const [isSent, setIsSent] = useState(false);
   const [nameErrorMsg, setNameErrorMsg] = useState("");
+  const [jobTitleErrorMsg, setJobTitleErrorMsg] = useState("");
   const [emailErrorMsg, setEmailErrorMsg] = useState("");
   const [messageErrorMsg, setMessageErrorMsg] = useState("");
+  const [companyErrorMsg, setCompanyErrorMsg] = useState("");
   const [sendingErrorMsg, setSendingErrorMsg] = useState("");
   const [privacyPolicyErrorMsg, setPrivacyPolicyErrorMsg] = useState("");
   const [captchaErrorMsg, setCaptchaErrorMsg] = useState("");
@@ -63,6 +69,12 @@ export default function BookDemo({ theme = defaultTheme }: Props) {
     if (nameErrorMsg) {
       validateName(e.target.value);
     }
+  };  
+  const onJobTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setJobTitle(e.target.value);
+    if (jobTitleErrorMsg) {
+      validateJobTitle(e.target.value);
+    }
   };
 
   const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,7 +83,12 @@ export default function BookDemo({ theme = defaultTheme }: Props) {
       validateEmail(e.target.value);
     }
   };
-
+  const onCompanyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCompany(e.target.value);
+    if (companyErrorMsg) {
+      validateCompany(e.target.value);
+    }
+  };
   const onMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(e.target.value);
     if (messageErrorMsg) {
@@ -81,9 +98,26 @@ export default function BookDemo({ theme = defaultTheme }: Props) {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const captcha = await getCaptcha();
+    // Bypass captcha for testing (REMOVE IN PROD!!!!!!)
+    const captcha = 'bypass-for-testing';
+    // REMOVE IN PROD!!!!!!
 
     let formIsValid = true;
+    if (!name.trim()) {
+      validateName(name);
+      formIsValid = false;
+    }
+
+    if (!jobTitle.trim()) {
+      validateJobTitle(jobTitle);
+      formIsValid = false;
+    }
+
+    if (!company.trim()) {
+      validateCompany(company);
+      formIsValid = false;
+    }
+
     if (!isValidEmail(email)) {
       validateEmail(email);
       formIsValid = false;
@@ -117,10 +151,20 @@ export default function BookDemo({ theme = defaultTheme }: Props) {
           Accept: "application/json, text/plain, */*",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ message, email, captcha }),
+        body: JSON.stringify({ 
+          name, 
+          jobTitle, 
+          company, 
+          email, 
+          message, 
+          captcha 
+        }),
       });
 
       if (response.status === 200) {
+        setName("");
+        setJobTitle("");
+        setCompany("");
         setEmail("");
         setMessage("");
         setSendingErrorMsg("");
@@ -146,6 +190,22 @@ export default function BookDemo({ theme = defaultTheme }: Props) {
       return;
     }
     setNameErrorMsg("");
+  };
+
+  const validateJobTitle = (name: string) => {
+    if (!name.trim()) {
+      setJobTitleErrorMsg("Title is required");
+      return;
+    }
+    setJobTitleErrorMsg("");
+  };
+
+  const validateCompany = (company: string) => {
+    if (!company.trim()) {
+      setCompanyErrorMsg("Company is required");
+      return;
+    }
+    setCompanyErrorMsg("");
   };
 
   const validateEmail = (email: string) => {
@@ -177,6 +237,7 @@ export default function BookDemo({ theme = defaultTheme }: Props) {
   const hasPassedValidation = () => {
     return (
       !nameErrorMsg &&
+      !jobTitleErrorMsg &&
       !emailErrorMsg &&
       !messageErrorMsg &&
       !privacyPolicyErrorMsg &&
@@ -233,22 +294,22 @@ export default function BookDemo({ theme = defaultTheme }: Props) {
     <div className={`mb-8 flex flex-col ${theme.containerBg} rounded-lg p-8 items-start justify-between lg:flex-row lg:space-x-12`}>
       {/* Left side - Text content */}
       <div className="mb-8 lg:mb-0 lg:w-1/2 flex flex-col items-start">
-        <Typography variant="h3" className={`lg:mb-20 mb-12 font-haasGrotDisplay font-normal text-sm ${theme.titleColor}`}>
-          Book a demo
+        <Typography variant="h3" className={`lg:mb-20 mb-12 font-robotoFlex font-normal text-sm ${theme.titleColor}`}>
+          {title}
         </Typography>
-        <Typography variant="p" className={`${theme.textColor} font-haasGrotDisplay font-normal text-lg`}>
-          Discover how Dermalyser doctors in detecting melanoma quickly and accurately. Leave your details, and we'll arrange a demo at a time that works for you.
+        <Typography variant="p" className={`${theme.textColor} font-robotoFlex font-normal text-[19px] leading-[26px]`}>
+        {description || "Discover how Dermalyser doctors in detecting melanoma quickly and accurately. Leave your details, and we'll arrange a demo at a time that works for you."}
         </Typography>
       </div>
       
       {/* Right side - Contact form */}
-      <div className="w-full lg:w-1/2">
+      <div className="w-full lg:w-1/2 lg:pt-24">
         <form
-          className="flex flex-col space-y-4 font-haasGrotDisplay font-extralight"
+          className="flex flex-col space-y-4 font-robotoFlex font-normal"
           onSubmit={onSubmit}
           aria-label="Contact form">
           <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
-            <div className="flex-1 space-y-1">
+          <div className="flex-1 space-y-1">
                 <input
                   type="text"
                   id="fullname"
@@ -257,7 +318,7 @@ export default function BookDemo({ theme = defaultTheme }: Props) {
                   onChange={onNameChange}
                   onBlur={(e) => validateName(e.target.value)}
                   className={
-                    `font-haasGrotDisplay font-extralight w-full rounded-3xl ${theme.inputBg} p-3 px-4 ${theme.inputText} ${theme.inputPlaceholder} focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary` +
+                    `font-robotoFlex font-normal w-full rounded-3xl ${theme.inputBg} p-3 px-4 ${theme.inputText} ${theme.inputPlaceholder} focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary` +
                     (nameErrorMsg ? " border-red-500" : "")
                   }
                   placeholder="Full name *"
@@ -276,13 +337,51 @@ export default function BookDemo({ theme = defaultTheme }: Props) {
                 value={email}
                 placeholder="Email address *"
                 className={
-                  `font-haasGrotDisplay font-extralight w-full rounded-3xl ${theme.inputBg} p-3 px-4 ${theme.inputText} ${theme.inputPlaceholder} focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary` +
+                  `font-robotoFlex font-normal w-full rounded-3xl ${theme.inputBg} p-3 px-4 ${theme.inputText} ${theme.inputPlaceholder} focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary` +
                   (emailErrorMsg ? " border-red-500" : "")
                 }
                 aria-label="Enter your email"
                 required
               />
               {emailErrorMsg && <ErrorMessage message={emailErrorMsg} />}
+            </div>
+          </div>          
+          <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+          <div className="flex-1 space-y-1">
+                <input
+                  type="text"
+                  id="jobTitle"
+                  name="jobTitle"
+                  value={jobTitle}
+                  onChange={onJobTitleChange}
+                  onBlur={(e) => validateJobTitle(e.target.value)}
+                  className={
+                    `font-robotoFlex font-normal w-full rounded-3xl ${theme.inputBg} p-3 px-4 ${theme.inputText} ${theme.inputPlaceholder} focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary` +
+                    (jobTitleErrorMsg ? " border-red-500" : "")
+                  }
+                  placeholder="Job title *"
+                  required
+                />
+              {jobTitleErrorMsg && <ErrorMessage message={jobTitleErrorMsg} />}
+            </div>
+            <div className="flex-1 space-y-1">
+              <input
+                type="company"
+                id="company"
+                name="company"
+                autoComplete="company"
+                onChange={onCompanyChange}
+                onBlur={(e) => validateCompany(e.target.value)}
+                value={company}
+                placeholder="Company *"
+                className={
+                  `font-robotoFlex font-normal w-full rounded-3xl ${theme.inputBg} p-3 px-4 ${theme.inputText} ${theme.inputPlaceholder} focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary` +
+                  (companyErrorMsg ? " border-red-500" : "")
+                }
+                aria-label="Enter your company"
+                required
+              />
+              {companyErrorMsg && <ErrorMessage message={companyErrorMsg} />}
             </div>
           </div>
           <div className="space-y-1">
@@ -294,7 +393,7 @@ export default function BookDemo({ theme = defaultTheme }: Props) {
               value={message}
               placeholder="Message"
               className={
-                `font-haasGrotDisplay font-extralight h-32 w-full resize-none rounded-3xl ${theme.inputBg} p-3 px-4 ${theme.inputText} ${theme.inputPlaceholder} focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary ` +
+                `font-robotoFlex font-normal h-32 w-full resize-none rounded-3xl ${theme.inputBg} p-3 px-4 ${theme.inputText} ${theme.inputPlaceholder} focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary ` +
                 (messageErrorMsg ? "border-red-500" : "")
               }
               aria-label="Enter your message"
@@ -317,14 +416,14 @@ export default function BookDemo({ theme = defaultTheme }: Props) {
                 aria-label="Agree to Privacy Policy"
                 required
               />
-              <label htmlFor="privacy-policy" className={`text-sm ${theme.textColor}`}>
-                I agree to the{" "}
+              <label htmlFor="privacy-policy" className={`font-robotoFlex font-normal text-[12px] ${theme.textColor}`}>
+              I consent to the processing of my personal data in accordance with the{" "}
                 <Link href="/privacy-policy" legacyBehavior>
                   <a
                     className={`${theme.textColor} underline hover:text-primary`}
                     target="_blank"
                     rel="noopener noreferrer">
-                    Privacy Policy
+                    Privacy Policy.
                   </a>
                 </Link>
               </label>

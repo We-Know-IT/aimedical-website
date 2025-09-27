@@ -7,6 +7,7 @@ type Props = {
   titleClassName?: string;
   text?: string;
   textClassName?: string;
+  mobileOrder?: "left-first" | "right-first";
   actionButton?: {
     children: React.ReactNode | string;
     onClick?: () => void;
@@ -29,9 +30,13 @@ type Props = {
   };
 };
 
-export default function TwoColText({ title, titleClassName, text, textClassName, actionButton, list, video }: Props) {
+export default function TwoColText({ title, titleClassName, text, textClassName, mobileOrder = "left-first", actionButton, list, video }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  
+  // Determine mobile order classes
+  const leftColumnOrder = mobileOrder === "right-first" ? "order-2 xl:order-1" : "order-1 xl:order-1";
+  const rightColumnOrder = mobileOrder === "right-first" ? "order-1 xl:order-2" : "order-2 xl:order-2";
   
   useEffect(() => {
     const video = videoRef.current;
@@ -72,17 +77,17 @@ export default function TwoColText({ title, titleClassName, text, textClassName,
     /* Container */
     <section className="pb-10">
       {/* Container */}
-      <div className="container flex flex-col items-center justify-between xl:flex-row xl:h-[400px] space-y-6 xl:space-y-0 gap-6">
+      <div className="container flex flex-col items-center justify-between xl:flex-row xl:h-[440px] space-y-6 xl:space-y-0 gap-6">
         {/* flex box */}
-        <div className="flex w-full flex-col justify-between rounded-xl bg-background-secondary px-8 py-12 space-y-12 lg:space-y-0 lg:items-start xl:w-1/2 xl:h-full order-2 xl:order-1">
+        <div className={`flex w-full flex-col justify-between rounded-xl bg-background-secondary px-8 py-12 space-y-12 lg:space-y-0 lg:items-start xl:w-1/2 xl:h-full ${leftColumnOrder}`}>
           {/* left box */}
           {title && (
-            <Typography variant="p" className={titleClassName || "text-darkblue-page-active font-haasGrotDisplay font-normal"}>
+            <Typography variant="p" className={titleClassName || "text-darkblue-page-active font-robotoFlex font-normal"}>
               {title}
             </Typography>
           )}
           <div className="flex flex-col items-start">
-            <Typography variant="p" className={textClassName || "mb-4 text-darkblue font-haasGrotDisplay font-normal xl:text-lg"}>
+            <Typography variant="p" className={textClassName || "mb-4 text-darkblue font-robotoFlex font-normal text-[19px] leading-[26px]"}>
               {text}
             </Typography>
             {actionButton && (actionButton.href || actionButton.onClick) &&
@@ -103,10 +108,10 @@ export default function TwoColText({ title, titleClassName, text, textClassName,
               ))}
           </div>
         </div>
-        <div className="flex w-full flex-col justify-center rounded-xl lg:items-center lg:justify-evenly xl:w-1/2 xl:h-full order-1 xl:order-2">
+        <div className={`flex w-full flex-col justify-center rounded-xl lg:items-center lg:justify-evenly xl:w-1/2 xl:h-full ${rightColumnOrder}`}>
           {/*  right box */}
           {video ? (
-            <div className="w-full h-full relative min-h-[200px] sm:min-h-[250px] lg:min-h-[300px]">
+            <div className="w-full h-80 sm:h-96 lg:h-full relative">
               <video
                 ref={videoRef}
                 src={video.src}
@@ -122,7 +127,7 @@ export default function TwoColText({ title, titleClassName, text, textClassName,
                 Your browser does not support the video tag.
               </video>
               {/* Custom play button overlay */}
-              <div ref={overlayRef} className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 rounded-lg">
+              <div ref={overlayRef} className="absolute inset-0 flex items-center justify-center rounded-lg">
                 <button
                   onClick={async (e) => {
                     if (videoRef.current && overlayRef.current) {

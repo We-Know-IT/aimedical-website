@@ -18,7 +18,7 @@ type Props = {
   imagePosition?: string;
 };
 
-const buttonStyles = "z-1 relative flex justify-center items-center w-fit font-haasGrotDisplay font-extralight text-sm px-7 py-3";
+const buttonStyles = "z-1 relative flex justify-center items-center w-fit font-robotoFlex text-sm";
 
 export default function Header({
   title,
@@ -30,9 +30,9 @@ export default function Header({
   imagePosition = "center",
 }: Props) {
   const cyclingTexts = [
-    "From doubt to diagnosis - guides clinical decision.",
-    "Detect melanoma earlier, Reduce referrals, Improve clinical outcomes.",
-    "Smarter, Safe, Faster skin cancer detection."
+    "From doubt to diagnosis -\nguides clinical decision",
+    "Detect melanoma earlier, \nreduce referrals, improve\nclinical outcomes",
+    "Smarter, safe, faster\nskin cancer detection"
   ];
 
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
@@ -47,16 +47,16 @@ export default function Header({
         setCurrentTextIndex((prev) => (prev + 1) % cyclingTexts.length);
         setTimeout(() => {
           setIsTransitioning(false);
-        }, 50);
-      }, 250);
-    }, 3000);
+        }, 100);
+      }, 500);
+    }, 4500);
 
     return () => clearInterval(interval);
   }, [currentTextIndex]);
 
   return (
     <header
-      className="relative h-[70vh] max-h-[55vh] 2xl:max-h-[75vh] w-full pt-32 pb-12"
+      className="relative h-[65vh] lg:h-[85vh] max-h-[85vh] 2xl:max-h-[85vh] w-full pt-28 pb-12"
       id="header">
       <div className="container flex h-full justify-center">
         <div className="relative w-full overflow-hidden rounded-xl xl:container xl:max-w-none">
@@ -64,39 +64,38 @@ export default function Header({
             src={imageUrl}
             alt={imageAlt || "Header image"}
             fill
-            className="object-cover"
+            className="object-cover animate-zoom-slow"
             style={{ objectPosition: imagePosition }}
             placeholder="blur"
             blurDataURL="/images/blur.jpg"
           />
-          <div className="relative flex h-full flex-col items-center justify-center p-4 lg:p-8 text-center">
+          {/* Vignette overlay */}
+          <div 
+            className="absolute inset-0 z-10"
+            style={{
+              background: 'linear-gradient(to right, rgba(0,0,0,0.3) 0%, transparent 50%, transparent 100%)'
+            }}
+          />
+          <div className="relative flex h-full flex-col items-bottom lg:items-start justify-center lg:justify-end p-4 lg:p-8 text-center lg:text-left z-20">
             <div className="animate-focus-in">
               {title && (
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center lg:items-start">
                   <Typography
                     variant="h1"
-                    className="relative font-haasGrot font-extralight text-on-primary text-center">
+                    className="relative font-robotoFlex font-normal text-on-primary text-left">
                     {title}
                   </Typography>
                   <div className="relative mb-4 mt-2 h-1 w-full max-w-xs rounded bg-darkblue-hover"></div>
                 </div>
               )}
-              {/* Static Dermalyser text */}
-              <div className="flex justify-center w-full mb-0">
-                <Typography
-                  variant="p"
-                  className="text-on-primary text-[14px] lg:text-[16px] font-haasGrotDisplay font-normal tracking-wider">
-                  Dermalyser
-                </Typography>
-              </div>
-              
+
               {/* Cycling text */}
-              <div className="relative mb-6 h-16 flex items-center justify-center w-full max-w-4xl px-0 lg:px-8">
+              <div className="relative mb-4 flex items-end lg:items-end justify-center lg:justify-start w-full max-w-4xl px-0 lg:px-0 min-h-[120px] lg:min-h-[140px]">
                 <Typography
                   variant="p"
-                  className={`whitespace-pre-wrap text-[19px] text-on-primary lg:text-[26px] transition-all duration-500 text-center w-full font-haasGrot font-normal ${
+                  className={`whitespace-pre-wrap text-[24px] leading-[26px] text-on-primary lg:text-[36px] lg:leading-[42px] transition-all duration-1000 text-center lg:text-left w-full font-robotoFlex font-normal ${
                     isTransitioning 
-                      ? 'opacity-0 transform translate-y-4' 
+                      ? 'opacity-0 transform -translate-y-8' 
                       : 'opacity-100 transform translate-y-0'
                   }`}>
                   {cyclingTexts[currentTextIndex]}
@@ -104,24 +103,39 @@ export default function Header({
               </div>
 
               {actionButton && (
-                <div className="flex justify-center w-full">
+                <div className="flex justify-center lg:justify-start w-full mb-6 md:mb-8">
                   {actionButton.href ? (
                     <LinkButton
                       className={buttonStyles}
                       href={actionButton.href}
-                      intent="primary">
+                      intent="transparent">
                       {actionButton.children}
                     </LinkButton>
                   ) : (
                     <Button
                       className={buttonStyles}
                       onClick={actionButton.onClick}
-                      intent="primary">
+                      intent="transparent"
+                      size="small">
+                      
                       {actionButton.children}
+
                     </Button>
+                    
                   )}
                 </div>
               )}
+                             {/* Three dots indicator */}
+                             <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
+                {cyclingTexts.map((_, index) => (
+                  <div
+                    key={index}
+                    className={`w-2 h-2 rounded-full transition-colors duration-500 ${
+                      index === currentTextIndex ? 'bg-cyan' : 'bg-white'
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>

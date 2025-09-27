@@ -13,6 +13,13 @@ module.exports = {
         xl: "2rem",
         "2xl": "4rem",
       },
+      screens: {
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1380px",
+        "2xl": "1600px", // Increased from default 1536px
+      },
     },
     extend: {
       gridTemplateColumns: {
@@ -64,6 +71,10 @@ module.exports = {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-40px)" },
         },
+        "zoom-slow": {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.05)" },
+        },
         "flow-down": {
           "0%": { 
             transform: "translateY(-50%)",
@@ -110,6 +121,19 @@ module.exports = {
           "100%": { 
             transform: "translateY(25%)"
           },
+        },        
+        "marquee-vertical3": {
+          "100%": { 
+            transform: "translateY(-52%)"
+          },
+        },
+        "marquee-vertical4": {
+          "0%": { 
+            transform: "translateY(-25%)"
+          },
+          "100%": { 
+            transform: "translateY(27%)"
+          },
         },
       },
       animation: {
@@ -121,16 +145,19 @@ module.exports = {
         "focus-in": "focus-in 500ms cubic-bezier(0.11, 0, 0.5, 0) 1",
         "bounce-down": "bounce-down 3s ease-in-out infinite",
         "bounce-up": "bounce-up 3s ease-in-out infinite",
+        "zoom-slow": "zoom-slow 8s ease-in-out infinite",
         "flow-down": "flow-down 8s linear infinite",
         "flow-up": "flow-up 8s linear infinite",
         "flow-alternate": "flow-alternate 8s ease-in-out infinite",
         "marquee-vertical": "marquee-vertical var(--marquee-duration) linear infinite",
         "marquee-vertical2": "marquee-vertical2 var(--marquee-duration) linear infinite",
+        "marquee-vertical3": "marquee-vertical3 var(--marquee-duration) linear infinite",
+        "marquee-vertical4": "marquee-vertical4 var(--marquee-duration) linear infinite",
       },
 
       colors: {
         darkblue: {
-          DEFAULT: "#012C46",
+          DEFAULT: "#333333",
           hover: "#0163AE",
           light: "#008cf7",
           active: "#0163AE",
@@ -147,6 +174,7 @@ module.exports = {
         darkgray: {
           DEFAULT: "#333333",
           active:"#FFFFFF99",
+          book: "#B7B4B2",
           
         },
         lightblue: {
@@ -154,7 +182,7 @@ module.exports = {
           active: "#EAf4FB",
         },  
         primary: {
-          DEFAULT: "#0063AF",
+          DEFAULT: "#0163AE",
           hover: "#004275",
           light: "#008cf7",
           active: "#013054",
@@ -190,7 +218,7 @@ module.exports = {
           hover: "rgba(235, 235, 235, 0.9)",
         },
         "background-secondary": {
-          DEFAULT: "rgba(243, 243, 243, 0.502)",
+          DEFAULT: "#FAF9F7",
           dark: "rgba(243, 243, 243, 1.0)",
         },
         "background-accent": "rgba(33, 33, 33, 1)",
@@ -227,9 +255,8 @@ module.exports = {
       fontFamily: {
         lato: ['"Lato"', "Arial", "Sans-serif"],
         openSans: ['"Open Sans"', "Arial", "Sans-serif"],
-        haasGrot: ['"Neue Haas Grotesk"', '"Inter"', '"Helvetica Neue"', '"Helvetica"', '"Arial Unicode MS"', "Arial", "Sans-serif"],
-        haasGrotDisplay: ['"Neue Haas Grotesk Display"', '"Inter"', '"Helvetica Neue"', '"Helvetica"', '"Arial Unicode MS"', "Arial", "Sans-serif"],
-        sans: ['"Neue Haas Grotesk"', '"Inter"', '"Helvetica Neue"', '"Helvetica"', '"Arial Unicode MS"', "Arial", "Sans-serif"],
+        robotoFlex: ['"Roboto Flex"', '"Inter"', '"Helvetica Neue"', '"Helvetica"', '"Arial Unicode MS"', "Arial", "Sans-serif"],
+        sans: ['"Inter"', '"Helvetica Neue"', '"Helvetica"', '"Arial Unicode MS"', "Arial", "Sans-serif"],
       },
 
       fontSize: {

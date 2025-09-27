@@ -2,7 +2,7 @@ import { VariantProps, cva } from "class-variance-authority";
 import Link from "next/link";
 
 export const button = cva(
-  "rounded-full font-normal font-haasGrotDisplay font-extralight disabled:opacity-50 disabled:cursor-default",
+  "rounded-full font-normal font-robotoFlex font-normal disabled:opacity-50 disabled:cursor-default",
   {
     variants: {
       intent: {
@@ -12,10 +12,16 @@ export const button = cva(
           "bg-secondary hover:bg-secondary-hover transition-colors text-on-secondary active:bg-secondary-active",
         white:
           "bg-white border border-gray-500 hover:bg-gray-200 transition-colors text-on-bg-primary active:bg-gray-300",
+        transparent:
+          "bg-transparent text-white border-2 border-white hover:bg-gray-600/10 transition-colors",
+          transparentblue:
+          "bg-transparent text-primary border-2 border-primary hover:bg-primary hover:text-white transition-colors",
+        transparentblueinv:
+          "bg-primary text-white border-2 border-primary hover:bg-transparent hover:text-primary transition-colors",
       },
       size: {
-        small: "py-2 px-6 text-sm",
-        medium: "py-[15px] px-10 text-sm lg:text-base",
+        small: "py-3 px-6 text-xs",
+        medium: "py-3 px-8 text-sm lg:text-base",
       },
     },
     defaultVariants: {

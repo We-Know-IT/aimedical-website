@@ -25,7 +25,7 @@ const PDFDownloadButton: React.FC<PDFListProps> = ({ pdfFiles, directory, button
   return (
     <button
       onClick={handleOpenPDF}
-      className={className || "flex items-center justify-center sm:w-fit bg-white border border-primary text-primary hover:border-darkblue hover:bg-darkblue hover:text-white rounded-full px-6 py-3 font-haasGrotDisplay font-extralight transition-colors cursor-pointer disabled:opacity-50"}>
+      className={className || "flex items-center justify-center sm:w-fit bg-transparent border border-primary text-primary hover:bg-primary hover:text-white rounded-full px-6 py-3 font-robotoFlex font-normal transition-colors cursor-pointer disabled:opacity-50"}>
       {buttonText || "Open PDF"} 
     </button>
   );

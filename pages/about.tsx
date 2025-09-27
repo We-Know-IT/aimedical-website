@@ -1,6 +1,6 @@
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
-import Background from "../components/about/Background";
+import Background from "../components/about/Purpose";
 import Team from "../components/about/Team";
 import Header from "../components/general/Header";
 import MetaTags from "../components/general/seo/MetaTags";
@@ -32,37 +32,24 @@ export default function About({
           description="We are dedicated to developing AI powered diagnostic solutions that enable frontline healthcare practitioners to make easier, faster and more reliable diagnoses for their patients."
         />
       </Head>
-      <main className="pt-32">
+      <main className="pt-28">
       <TwoColText
-          text="We are doctors, scientists, and innovators united by one purpose, saving lives through earlier melanoma detection."
-          textClassName="!mb-4 mt-10 lg:mt-14 text-darkblue font-haasGrotDisplay font-normal text-3xl leading-tight"
-          actionButton={{
-            children: "Book a demo",
-            onClick: () => {
-              const element = document.getElementById('contact');
-              if (element) {
-                const navbarHeight = 80;
-                const elementPosition = element.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
-                window.scrollTo({
-                  top: offsetPosition,
-                  behavior: 'smooth'
-                });
-              }
-            }
-          }}
+          mobileOrder="right-first"
+          text="We are doctors, scientists, and innovators united by one purpose, saving lives through earlier melanoma detection"
+          textClassName="!mb-4 mt-10 lg:mt-32 lg:pr-10 text-darkblue font-robotoFlex font-normal text-[40px] leading-[42px]"
+
           video={{
-            src: "https://www.w3schools.com/html/mov_bbb.mp4",
+            src: "/videos/instructionvideo.mp4",
             title: "AI Medical Dermalyser Demo",
             controls: false,
             autoPlay: false,
             muted: true,
-            poster: "/images/home/header.jpg"
+            poster: "/images/home/header.png"
           }}></TwoColText>
         <Background 
           header="Our purpose"
           text="AI Medical Technology was founded by physicians, scientists, and innovators with a clear purpose: to support healthcare professionals in providing the best possible diagnosis for their patients. We understand the challenges doctors face in primary care, and our work is dedicated to creating solutions that strengthen their expertise and make daily practice safer and more efficient. For us, technology is not the end goal — it is a means to empower those who care for patients every day."
-        />
+          />
         <TwoColAbout
           title="Meet Christoffer Ekström"
           text="Christoffer Ekström is one of the founders of AI Medical Technology and is the company's CEO and one of the board members. He is a serial entrepreneur and holds a Master's degree in immersive technologies (M.Sc.) from Stockholm University and finalising a bachelor's degree in business administration (BBA) at Uppsala University. Christoffer is an experienced climber and adventurer."
@@ -71,7 +58,7 @@ export default function About({
             alt: "Christoffer Ekström",
             quality: 100,
           }}
-          leftColumnClassName="w-full h-full flex items-center justify-center p-0 pt-32 px-6 md:p-24 pb-0 md:pb-0"
+          leftColumnClassName="w-full h-full flex items-center justify-center p-0 pt-28 px-6 md:p-24 pb-0 md:pb-0"
           leftColumnImageClassName="w-full h-full md:max-h-xs object-cover md:object-contain rounded-lg"
         />
         <TwoColAbout
@@ -82,7 +69,7 @@ export default function About({
             alt: "Panos Papachristou",
             quality: 100,
           }}
-          leftColumnClassName="w-full h-full flex items-center justify-center p-0 pt-32 px-6 md:p-24 pb-0 md:pb-0"
+          leftColumnClassName="w-full h-full flex items-center justify-center p-0 pt-28 px-6 md:p-24 pb-0 md:pb-0"
           leftColumnImageClassName="w-full h-full md:max-h-xs object-cover md:object-contain rounded-lg"
         />
         <Team

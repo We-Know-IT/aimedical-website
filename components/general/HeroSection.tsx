@@ -42,7 +42,7 @@ export default function HeroSection({ title, subTitle, image, button }: Props) {
         {subTitle && (
           <Typography
             variant="p"
-            className="z-20 text-[16px] font-semibold text-on-primary lg:text-[20px]">
+            className="z-20 text-[16px] font-semibold text-on-primary lg:text-[19px]">
             {subTitle.split("\n").map((line, index) => (
               <React.Fragment key={index}>
                 <span>{line}</span>
