@@ -23,7 +23,7 @@ export default function TwoColRef({ title, text, name, position, image }: Props)
         {/* flex box */}
         <div className="flex w-full flex-col justify-center rounded-xl lg:items-center lg:justify-evenly xl:w-2/5 xl:h-full relative">
           {/* Three Columns with Continuous Flowing Squares */}
-          <div className="w-full h-96 md:h-full flex justify-evenly items-center overflow-x-visible">
+          <div className="w-full h-64 md:h-96 lg:h-full flex justify-evenly items-center overflow-x-visible">
             {/* Left Column - Vertical marquee */}
             <div className="overflow-hidden h-full p-4 w-32 xl:w-36">
               <div className="flex flex-col gap-4 pb-4 h-[150%] animate-marquee-vertical3" style={{'--marquee-duration': '20000ms'} as React.CSSProperties}>

@@ -50,7 +50,7 @@ export default function HowItWorks() {
   return (
     <section className="bg-background-primary pb-12 ">
       <div className="container max-w-xl lg:container">
-        <div className="flex flex-col md:flex-row items-stretch gap-6">
+        <div className="flex flex-col md:flex-row items-stretch gap-6 justify-between">
               {slides.map((slide, index) => (
                 <HowItWorksStep key={index} slide={slide} />
               ))}

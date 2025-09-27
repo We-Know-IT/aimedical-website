@@ -39,7 +39,8 @@ export default function PostCard({ post }: Props) {
           <div className="w-2 h-2 bg-cyan rounded-full"></div>
           <span className="text-sm font-light text-darkblue">
             {post ? (
-              post.postType === "news" ? "Press release" : "Article"
+              post.postType === "news" ? "Press release" : 
+              post.postType === "clinical-studies" ? `Clinical Study ${post.id}` : "Article"
             ) : (
               <Skeleton width={80} />
             )}

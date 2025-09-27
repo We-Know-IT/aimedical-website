@@ -10,8 +10,7 @@ export default function PrivacyPolicy() {
         <title>AI Medical | Privacy Policy </title>
         <meta name="description" content="Privacy Policy" />
       </Head>
-      <Header imageUrl="/images/header.png" title="Privacy Policy" />
-      <main className="container ml-auto mr-auto max-w-3xl px-6 ">
+      <main className="container font-robotoFlex font-normal ml-auto mr-auto max-w-3xl px-6 ">
         <PrivacyPolicyContent />
       </main>
     </>

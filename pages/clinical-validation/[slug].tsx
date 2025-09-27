@@ -10,7 +10,7 @@ import MetaTags from "../../components/general/seo/MetaTags";
 import remarkGfm from "remark-gfm";
 import Typography from "../../components/common/Typography";
 import VideoPlaceholder from "../../components/general/cookie-consent/VideoPlaceholder";
-import ResearchPostCard from "../../components/research/ResearchPostCard";
+import PostCard from "../../components/pressroom/PostCard";
 import { getDateString } from "../../utils/date";
 
 function capitalizeFirstLetter(string: string) {
@@ -289,7 +289,7 @@ export default function ClinicalStudyDetails(props: ServiceResponse<Post> & { re
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {relatedStudies.slice(0, 3).map((relatedStudy) => (
                   <Link key={relatedStudy.id} href={`/clinical-validation/${relatedStudy.slug}`}>
-                    <ResearchPostCard post={relatedStudy} />
+                    <PostCard post={relatedStudy} />
                   </Link>
                 ))}
               </div>

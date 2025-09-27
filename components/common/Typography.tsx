@@ -24,7 +24,7 @@ export default function Typography({
     },
     h2: {
       component: "h2",
-      variantClassName: "text-primary text-[20px] font-semibold lg:text-xl",
+      variantClassName: "text-primary text-[19px] font-semibold lg:text-xl",
     },
     h3: {
       component: "h3",

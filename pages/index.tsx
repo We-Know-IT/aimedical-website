@@ -18,7 +18,7 @@ import TwoColAbout from "../components/general/start/TwoColAbout";
 const buttonHeader = {
   children: "About Dermalyser",
   onClick: () => {
-    document.getElementById('home-section1')?.scrollIntoView({ behavior: 'smooth' });
+    window.location.href = "/dermalyser";
   },
 };
 
@@ -117,7 +117,7 @@ export default function Home() {
             </>
           }
           text="Dermalyser is a CE-marked app that provides AI-driven decision support in just seconds, by analysing a dermoscopic image captured with your smartphone."
-          textClassName="mb-4 text-darkblue font-robotoFlex font-normal text-[20px] leading-[26px] whitespace-pre-line"
+          textClassName="mb-4 text-darkblue font-robotoFlex font-normal text-[19px] leading-[26px] whitespace-pre-line"
           video={{
             src: "https://www.w3schools.com/html/mov_bbb.mp4",
             title: "AI Medical Dermalyser Demo",

@@ -83,7 +83,7 @@ export default function Bar({
           
           {/* Bar label text at bottom of the bar */}
           <Typography
-            className="absolute left-1/2 bottom-3 -translate-x-1/2 whitespace-pre-line font-robotoFlex font-light text-darkblue z-10 pointer-events-none text-[12px] text-center"
+            className="absolute left-1/2 bottom-3 -translate-x-1/2 whitespace-pre-line font-robotoFlex font-normal text-darkblue z-10 pointer-events-none text-[12px] text-center"
             variant={"p"}>
             {text}
           </Typography>
@@ -92,7 +92,7 @@ export default function Bar({
           <Typography
             variant="p"
             className={
-              "absolute left-1/2 top-4 -translate-x-1/2 font-robotoFlex font-light text-primary text-xs text-center " +
+              "absolute left-1/2 top-4 -translate-x-1/2 font-robotoFlex font-normal text-primary text-xs text-center " +
               (animateUp ? "  animate-fade-in" : "")
             }>
             {valueText}

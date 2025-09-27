@@ -55,9 +55,12 @@ export default function Background({
   return (
     <section className="pb-10">
       <div className="container flex flex-col items-start justify-center space-y-6 xl:flex-row xl:items-start xl:space-y-0 xl:space-x-12">
-        <div className="container flex flex-col xl:flex-row bg-background-secondary rounded-xl min-h-[500px]">
+        <div className="container flex flex-col xl:flex-row bg-background-secondary rounded-xl min-h-[500px]"
+                  style={{
+                    background: 'linear-gradient(45deg, transparent 0%, rgba(250,249,247,0.6) 20%, rgba(250,249,247,0.8) 60%, rgba(250,249,247,1) 100%)'
+                  }}>
 
-        <div className="flex bg-background-secondary w-full flex-col justify-between items-start rounded-xl xl:w-1/2 flex-1 px-0 pt-12 md:py-12 relative">
+        <div className="flex w-full flex-col justify-between items-start rounded-xl xl:w-1/2 flex-1 px-0 pt-12 md:py-12 relative">
         {/* left Column - Bar Graph */}
         <Typography variant="h3" className="font-robotoFlex font-normal !text-left pb-8">
             {header}
@@ -77,7 +80,7 @@ export default function Background({
             ))}
           </div>
         </div>
-        <div className="w-full xl:w-1/2 mt-0 space-y-6 px-8 py-12">
+        <div className="w-full xl:w-1/2 mt-0 space-y-6 px-0 lg:px-8 py-12">
           <Typography variant="p" className="text-left text-darkblue font-robotoFlex font-normal text-lg">
             {text}
           </Typography>

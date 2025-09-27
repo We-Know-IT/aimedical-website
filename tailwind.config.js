@@ -151,6 +151,8 @@ module.exports = {
         "flow-alternate": "flow-alternate 8s ease-in-out infinite",
         "marquee-vertical": "marquee-vertical var(--marquee-duration) linear infinite",
         "marquee-vertical2": "marquee-vertical2 var(--marquee-duration) linear infinite",
+        "marquee-vertical3": "marquee-vertical3 var(--marquee-duration) linear infinite",
+        "marquee-vertical4": "marquee-vertical4 var(--marquee-duration) linear infinite",
       },
 
       colors: {

@@ -69,7 +69,7 @@ export default function Dermalyser({ engIfuPdfs, sweIfuPdfs, engPiPdfs, engVugPd
       <TwoColText
           text="AI support for faster, more confident skin cancer assessments"
           textClassName="!mb-4 mt-10 lg:mt-52 lg:mr-10 text-darkblue font-robotoFlex font-normal text-[32px] leading-tight"
-          mobileOrder="order-2"
+          mobileOrder="right-first"
           video={{
             src: "https://www.w3schools.com/html/mov_bbb.mp4",
             title: "AI Medical Dermalyser Demo",

@@ -56,7 +56,7 @@ export default function Header({
 
   return (
     <header
-      className="relative h-[70vh] max-h-[55vh] 2xl:max-h-[85vh] w-full pt-28 pb-12"
+      className="relative h-[65vh] lg:h-[85vh] max-h-[85vh] 2xl:max-h-[85vh] w-full pt-28 pb-12"
       id="header">
       <div className="container flex h-full justify-center">
         <div className="relative w-full overflow-hidden rounded-xl xl:container xl:max-w-none">
@@ -108,7 +108,7 @@ export default function Header({
                     <LinkButton
                       className={buttonStyles}
                       href={actionButton.href}
-                      intent="primary">
+                      intent="transparent">
                       {actionButton.children}
                     </LinkButton>
                   ) : (

@@ -31,6 +31,7 @@ type ColorTheme = {
 type Props = {
   theme?: ColorTheme;
   description?: string;
+  title?: string;
 };
 
 const defaultTheme: ColorTheme = {
@@ -43,9 +44,9 @@ const defaultTheme: ColorTheme = {
   buttonIntent: "white"
 };
 
-export default function BookDemo({ theme = defaultTheme, description }: Props) {
+export default function BookDemo({ theme = defaultTheme, description, title = "Book a demo" }: Props) {
   const [name, setName] = useState("");
-  const [title, setTitle] = useState("");
+  const [jobTitle, setJobTitle] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [company, setCompany] = useState("");
@@ -53,7 +54,7 @@ export default function BookDemo({ theme = defaultTheme, description }: Props) {
   const [isSending, setIsSending] = useState(false);
   const [isSent, setIsSent] = useState(false);
   const [nameErrorMsg, setNameErrorMsg] = useState("");
-  const [titleErrorMsg, setTitleErrorMsg] = useState("");
+  const [jobTitleErrorMsg, setJobTitleErrorMsg] = useState("");
   const [emailErrorMsg, setEmailErrorMsg] = useState("");
   const [messageErrorMsg, setMessageErrorMsg] = useState("");
   const [companyErrorMsg, setCompanyErrorMsg] = useState("");
@@ -69,10 +70,10 @@ export default function BookDemo({ theme = defaultTheme, description }: Props) {
       validateName(e.target.value);
     }
   };  
-  const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-    if (titleErrorMsg) {
-      validateTitle(e.target.value);
+  const onJobTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setJobTitle(e.target.value);
+    if (jobTitleErrorMsg) {
+      validateJobTitle(e.target.value);
     }
   };
 
@@ -97,9 +98,26 @@ export default function BookDemo({ theme = defaultTheme, description }: Props) {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const captcha = await getCaptcha();
+    // Bypass captcha for testing (REMOVE IN PROD!!!!!!)
+    const captcha = 'bypass-for-testing';
+    // REMOVE IN PROD!!!!!!
 
     let formIsValid = true;
+    if (!name.trim()) {
+      validateName(name);
+      formIsValid = false;
+    }
+
+    if (!jobTitle.trim()) {
+      validateJobTitle(jobTitle);
+      formIsValid = false;
+    }
+
+    if (!company.trim()) {
+      validateCompany(company);
+      formIsValid = false;
+    }
+
     if (!isValidEmail(email)) {
       validateEmail(email);
       formIsValid = false;
@@ -133,10 +151,20 @@ export default function BookDemo({ theme = defaultTheme, description }: Props) {
           Accept: "application/json, text/plain, */*",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ message, email, captcha }),
+        body: JSON.stringify({ 
+          name, 
+          jobTitle, 
+          company, 
+          email, 
+          message, 
+          captcha 
+        }),
       });
 
       if (response.status === 200) {
+        setName("");
+        setJobTitle("");
+        setCompany("");
         setEmail("");
         setMessage("");
         setSendingErrorMsg("");
@@ -164,12 +192,12 @@ export default function BookDemo({ theme = defaultTheme, description }: Props) {
     setNameErrorMsg("");
   };
 
-  const validateTitle = (name: string) => {
+  const validateJobTitle = (name: string) => {
     if (!name.trim()) {
-      setTitleErrorMsg("Title is required");
+      setJobTitleErrorMsg("Title is required");
       return;
     }
-    setTitleErrorMsg("");
+    setJobTitleErrorMsg("");
   };
 
   const validateCompany = (company: string) => {
@@ -209,6 +237,7 @@ export default function BookDemo({ theme = defaultTheme, description }: Props) {
   const hasPassedValidation = () => {
     return (
       !nameErrorMsg &&
+      !jobTitleErrorMsg &&
       !emailErrorMsg &&
       !messageErrorMsg &&
       !privacyPolicyErrorMsg &&
@@ -266,9 +295,9 @@ export default function BookDemo({ theme = defaultTheme, description }: Props) {
       {/* Left side - Text content */}
       <div className="mb-8 lg:mb-0 lg:w-1/2 flex flex-col items-start">
         <Typography variant="h3" className={`lg:mb-20 mb-12 font-robotoFlex font-normal text-sm ${theme.titleColor}`}>
-          Book a demo
+          {title}
         </Typography>
-        <Typography variant="p" className={`${theme.textColor} font-robotoFlex font-normal text-[20px] leading-[26px]`}>
+        <Typography variant="p" className={`${theme.textColor} font-robotoFlex font-normal text-[19px] leading-[26px]`}>
         {description || "Discover how Dermalyser doctors in detecting melanoma quickly and accurately. Leave your details, and we'll arrange a demo at a time that works for you."}
         </Typography>
       </div>
@@ -320,20 +349,20 @@ export default function BookDemo({ theme = defaultTheme, description }: Props) {
           <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
           <div className="flex-1 space-y-1">
                 <input
-                  type="title"
-                  id="title"
-                  name="title"
-                  value={title}
-                  onChange={onTitleChange}
-                  onBlur={(e) => validateTitle(e.target.value)}
+                  type="text"
+                  id="jobTitle"
+                  name="jobTitle"
+                  value={jobTitle}
+                  onChange={onJobTitleChange}
+                  onBlur={(e) => validateJobTitle(e.target.value)}
                   className={
                     `font-robotoFlex font-normal w-full rounded-3xl ${theme.inputBg} p-3 px-4 ${theme.inputText} ${theme.inputPlaceholder} focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary` +
-                    (titleErrorMsg ? " border-red-500" : "")
+                    (jobTitleErrorMsg ? " border-red-500" : "")
                   }
                   placeholder="Job title *"
                   required
                 />
-              {titleErrorMsg && <ErrorMessage message={titleErrorMsg} />}
+              {jobTitleErrorMsg && <ErrorMessage message={jobTitleErrorMsg} />}
             </div>
             <div className="flex-1 space-y-1">
               <input

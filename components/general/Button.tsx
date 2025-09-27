@@ -13,7 +13,7 @@ export const button = cva(
         white:
           "bg-white border border-gray-500 hover:bg-gray-200 transition-colors text-on-bg-primary active:bg-gray-300",
         transparent:
-          "bg-transparent text-on-primary border-2 border-white hover:bg-gray-600/10 transition-colors text-on-bg-primary",
+          "bg-transparent text-white border-2 border-white hover:bg-gray-600/10 transition-colors",
           transparentblue:
           "bg-transparent text-primary border-2 border-primary hover:bg-primary hover:text-white transition-colors",
         transparentblueinv:

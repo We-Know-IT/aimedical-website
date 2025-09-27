@@ -73,6 +73,8 @@ export default function Navbar() {
     if (path === '/dermalyser-2') return 'Dermalyser 2.0';
     if (path === '/clinical-validation' || path.startsWith('/clinical-validation/')) return 'Clinical Studies';
     if (path === '/pressroom' || path.startsWith('/pressroom/')) return 'News';
+    if (path === '/contact') return 'Contact us';
+    if (path === '/faq') return 'FAQ';
     if (path === '/privacy-policy') return 'Privacy Policy';
     
     // Default fallback
@@ -113,7 +115,7 @@ export default function Navbar() {
           {/* AI Medical Technology text with vertical bar */}
           <div className="hidden lg:flex items-center space-x-3">
             <Link href="/" className="text-darkblue font-robotoFlex font-normal text-sm">
-              Ai Medical Technology
+              AI Medical Technology
             </Link>
             <div className="w-[1px] h-6 bg-darkblue"></div>
           </div>
@@ -246,6 +248,13 @@ export default function Navbar() {
                 <li>
                   <Link href="/pressroom" className={getLinkStyles("/pressroom", true)}>
                     News
+                  </Link>
+                </li>
+                
+                {/* Contact us */}
+                <li>
+                  <Link href="/contact" className={getLinkStyles("/contact")}>
+                    Contact us
                   </Link>
                 </li>
                 
@@ -399,6 +408,24 @@ export default function Navbar() {
               </Link>
             </div>
           </li>
+
+          {/* Contact us */}
+          <li 
+            className={`py-0 px-6 w-full transition-all duration-300 ease-in-out transform ${
+              isNavbarOpen 
+                ? "translate-y-0 opacity-100" 
+                : "translate-y-4 opacity-0"
+            }`}
+            style={{
+              transitionDelay: isNavbarOpen ? "500ms" : "0ms"
+            }}
+          >
+            <div className="text-lg">
+              <Link href="/contact" className="font-robotoFlex font-light text-darkblue hover:text-darkblue-hover text-xl">
+                Contact us
+              </Link>
+            </div>
+          </li>
         </ul>
         
         {/* BookDemo section in mobile menu */}
@@ -409,7 +436,7 @@ export default function Navbar() {
               : "translate-y-4 opacity-0"
           }`}
           style={{
-            transitionDelay: isNavbarOpen ? "500ms" : "0ms"
+            transitionDelay: isNavbarOpen ? "600ms" : "0ms"
           }}
         >
           <BookDemo 

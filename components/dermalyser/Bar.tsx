@@ -65,7 +65,7 @@ export default function Bar({
     <div
       ref={barRef}
       className={
-        " relative h-[40px] w-full sm:h-[60px] " +
+        " relative h-[50px] w-full sm:h-[75px] " +
         classes
       }
       aria-label={ariaLabel}>
@@ -83,7 +83,7 @@ export default function Bar({
         
         {/* Overlaid bar label text */}
         <Typography
-          className="absolute left-4 top-1/2 -translate-y-1/2 whitespace-pre-wrap font-robotoFlex font-light text-darkblue z-10 pointer-events-none text-sm sm:text-sm"
+          className="absolute left-4 top-1/2 -translate-y-1/2 whitespace-pre-wrap font-robotoFlex font-normal text-darkblue z-10 pointer-events-none text-sm sm:text-sm"
           variant={"p"}>
           {text}
         </Typography>
@@ -92,7 +92,7 @@ export default function Bar({
         <Typography
           variant="p"
           className={
-            "absolute left-auto top-1/2 right-2 -translate-y-1/2 translate-x-0 font-robotoFlex font-light text-primary sm:right-4  " +
+            "absolute left-auto top-1/2 right-2 -translate-y-1/2 translate-x-0 font-robotoFlex font-normal text-primary sm:right-4  " +
             (animateRight || animateUp ? "  animate-fade-in" : "")
           }>
           {valueText}
