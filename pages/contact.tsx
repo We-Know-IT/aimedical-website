@@ -39,7 +39,7 @@ export default function About({
            textClassName="!mb-4 mt-10 lg:mt-56 lg:pr-10 text-darkblue font-robotoFlex font-normal text-[40px] leading-[42px] flex items-end"
 
           video={{
-            src: "https://www.w3schools.com/html/mov_bbb.mp4",
+            src: "/videos/instructionvideo.mp4",
             title: "AI Medical Dermalyser Demo",
             controls: false,
             autoPlay: false,

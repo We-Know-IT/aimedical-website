@@ -74,17 +74,16 @@ export default function FAQ() {
         <TwoColText
           text="Frequently asked questions"
           textClassName="!mb-4 mt-10 lg:mt-60 lg:pr-24 text-darkblue font-robotoFlex font-normal text-[32px] lg:text-[40px] leading-[34px] lg:leading-[42px]"
-
           mobileOrder="right-first"
           video={{
-            src: "https://www.w3schools.com/html/mov_bbb.mp4",
+            src: "/videos/instructionvideo.mp4",
             title: "AI Medical Dermalyser Demo",
             controls: false,
             autoPlay: false,
             muted: true,
             poster: "/images/home/header.png"
-          }}>
-        </TwoColText>
+          }}
+        />
 
         {/* FAQ Body Section */}
         <FAQBody faqData={faqData} />

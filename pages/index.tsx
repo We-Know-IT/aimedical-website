@@ -119,7 +119,7 @@ export default function Home() {
           text="Dermalyser is a CE-marked app that provides AI-driven decision support in just seconds, by analysing a dermoscopic image captured with your smartphone."
           textClassName="mb-4 text-darkblue font-robotoFlex font-normal text-[19px] leading-[26px] whitespace-pre-line"
           video={{
-            src: "https://www.w3schools.com/html/mov_bbb.mp4",
+            src: "/videos/instructionvideo.mp4",
             title: "AI Medical Dermalyser Demo",
             controls: false,
             autoPlay: false,

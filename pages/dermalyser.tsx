@@ -71,7 +71,7 @@ export default function Dermalyser({ engIfuPdfs, sweIfuPdfs, engPiPdfs, engVugPd
           textClassName="!mb-4 mt-10 lg:mt-52 lg:mr-10 text-darkblue font-robotoFlex font-normal text-[32px] leading-tight"
           mobileOrder="right-first"
           video={{
-            src: "https://www.w3schools.com/html/mov_bbb.mp4",
+            src: "/videos/instructionvideo.mp4",
             title: "AI Medical Dermalyser Demo",
             controls: false,
             autoPlay: false,
